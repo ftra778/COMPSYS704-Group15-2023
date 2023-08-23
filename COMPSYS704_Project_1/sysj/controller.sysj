@@ -1,0 +1,140 @@
+Controller(
+		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,request;
+		output signal pusherExtend,vacOn,armSource,armDest;
+		input Integer signal mode;
+		input signal pusherExtendM,vacOnM,armSourceM,armDestM;
+		)
+->{
+/* TODO: Write control-logic */
+	loop{
+		present(mode) {
+			signal auto;
+			{ 
+				loop{
+					if((Integer)#mode == 0) { 
+						emit auto;
+						pause; 
+					} else {
+						pause;
+					}
+				}
+			}
+			||
+			{
+				loop{
+					// 1. The arm swivels to the position "extended" if a new workpiece is requested (request).
+					await(request);
+					System.out.println("req");
+					abort(armAtDest) {
+//						if (modeVar == 0) {
+						loop{
+							present(auto){
+								sustain armDest;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+				
+					System.out.println("armAtDest");
+					// 2. The pusher extends and pushes a workpiece out of the magazine.
+					abort(pusherExtended) {
+						loop{
+							present(auto){
+								sustain pusherExtend;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("pusherEx");
+		
+					// 3. The pusher retracts back once it is fully extended.
+					abort(pusherRetracted) {
+						halt;
+					}
+					System.out.println("pusherRe");
+					
+					// 4. The arm swivels back to to the position "retracted"
+					abort(armAtSource) {
+						loop{
+							present(auto){
+								sustain armSource;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("armAS");
+						
+					// 5. The vaccum is switched on (wait until the workplace is securely held, e.g. via WPgripped).
+					abort(WPgripped) {
+						loop{
+							present(auto){
+								sustain vacOn;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("WPgripped");
+		
+					// 6. The arm swivels to the position "extended", transferring a workpiece to a pick-up zone.
+					abort(armAtDest) {
+						loop{
+							present(auto){
+								{ sustain armDest; } || { sustain vacOn; } 
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("armAD");
+					
+					// 7. The vaccum is switched off (wait until the workpiece is released, e.g. via !WPGripped).
+					abort(!WPgripped) {
+						halt;
+					}
+					System.out.println("!WPgripped");
+					
+					// 8. The arm swivels back to to the position "retracted" so that the cup can be picked up by another machine.
+					abort(armAtSource) {
+						loop{
+							present(auto){
+								sustain armSource;
+							} else {
+								halt;
+							}
+						pause;
+						}
+					}
+					System.out.println("armAS");
+				}
+			}
+			||
+			{	
+				loop{
+					// If mode is manual
+					present(!auto){
+						{present(armSourceM && !armDestM) 	{ emit armSource; }}
+						||
+						{present(pusherExtendM) 			{ emit pusherExtend; }}
+						||
+						{present(vacOnM) 					{ emit vacOn; }}
+						||
+						{present(!armSourceM && armDestM) 	{ emit armDest; }}
+					}
+					pause;
+				}
+			}
+			pause;
+		} else {
+			pause;
+		}
+	}
+}
