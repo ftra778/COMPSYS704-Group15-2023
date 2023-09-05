@@ -1,0 +1,30 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS1" Local="true">
+		<ClockDomain Name="ControllerCD" Class="Controller">
+			<iSignal Name="mode"          	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleReady"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			<iSignal Name="gripperClose"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="gripperOpen"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="clampOpen"  		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="clampClose"		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="capperLowered" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="capperRaised"   	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="gripperAtFinal"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="gripperAtHome"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			<oSignal Name="clampBottle"    		To="PlantCD.clampBottle"    	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="gripCap"      		To="PlantCD.gripCap"      		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="lowerCapper" 		To="PlantCD.lowerCapper" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="turnGripperFinal"	To="PlantCD.turnGripperFinal"   Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="turnGripperHome"     To="PlantCD.turnGripperHome"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="bottlePos5"     		To="PlantCD.bottlePos5"   		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			
+			<iSignal Name="clampBottleM"    	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="gripCapM"      		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="lowerCapperM" 		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="turnGripperFinalM"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="turnGripperHomeM"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+		</ClockDomain>
+	</SubSystem>
+</System>

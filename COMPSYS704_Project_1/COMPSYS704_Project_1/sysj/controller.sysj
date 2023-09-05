@@ -1,0 +1,130 @@
+Controller(
+		input signal bottleReady;
+		input Integer signal mode;
+		
+		input signal clampClose,clampOpen,gripperClose,gripperOpen,capperRaised,capperLowered,gripperAtFinal,gripperAtHome;
+		output signal clampBottle,gripCap,lowerCapper,turnGripperFinal,turnGripperHome,bottlePos5;
+		input signal clampBottleM,gripCapM,lowerCapperM,turnGripperFinalM,turnGripperHomeM;
+		)
+->{
+	loop{
+		present(mode) {
+			signal auto;
+			{ 
+				loop{
+					if((Integer)#mode == 0) { 
+						emit auto;
+						pause; 
+					} else {
+						pause;
+					}
+				}
+			}
+			||
+			{
+				loop{
+					// 1. Check if a bottle is at position 4 (Capper station). If not, wait until one arrives.
+					abort(bottleReady && capperRaised && gripperAtHome) {
+						halt;
+					}
+					
+					// 2. Lower the gripper.
+					abort(capperLowered && clampOpen && gripperOpen) {
+						loop{
+							present(auto){
+								{ sustain turnGripperHome; } || { sustain lowerCapper; } || { sustain bottlePos5; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					
+					// 3. Clamp the bottle & grip the cap.
+					abort(capperLowered && clampClose && !gripperAtFinal && gripperClose) {
+						abort(clampClose && !gripperAtFinal && gripperClose) {
+							loop{
+								present(auto){
+									{ sustain turnGripperHome; } || { sustain lowerCapper; } || { sustain bottlePos5; } || { sustain clampBottle; } || { sustain gripCap; }
+								} else {
+									sustain bottlePos5;
+								}
+								pause;
+							}
+						}
+					}
+					
+					// 4. Twist the gripper.
+					abort(gripperAtFinal && clampClose && gripperClose && !capperRaised) {
+						loop{
+							present(auto){
+								{ sustain turnGripperFinal; } || { sustain gripCap; } || { sustain bottlePos5; } || { sustain clampBottle; } || { sustain lowerCapper; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+
+					// 5. Release cap & unclamp bottle.
+					abort(gripperOpen && !gripperAtHome && clampOpen && !capperRaised) {
+						loop{
+							present(auto){
+								{ sustain turnGripperFinal; } || { sustain bottlePos5; } || { sustain lowerCapper; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					
+					// 6. Untwist the gripper & unclamp the bottle.
+					abort(gripperAtHome && !gripperAtFinal && clampOpen && !capperRaised && gripperOpen) {
+						loop{
+							present(auto){
+								{ sustain turnGripperHome; } || { sustain bottlePos5; } || { sustain lowerCapper; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					
+					// 7. Raise the gripper.
+					abort(capperRaised && clampOpen && gripperOpen) {
+						loop{
+							present(auto){
+								{ sustain turnGripperHome; } || { sustain bottlePos5; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					emit bottlePos5;
+				}
+			}
+			||
+			{	
+				loop{
+					// If mode is manual
+					present(!auto){
+						{present(clampBottleM) 								{ emit clampBottle; }}
+						||
+						{present(gripCapM) 									{ emit gripCap; }}
+						||
+						{present(lowerCapperM) 								{ emit lowerCapper; }}
+						||
+						{present(turnGripperFinalM && !turnGripperHomeM) 	{ emit turnGripperFinal; }}
+						||
+						{present(!turnGripperFinalM && turnGripperHomeM) 	{ emit turnGripperHome; }}
+					}
+					pause;
+				}
+			}
+			pause;
+		} else {
+			pause;
+		}
+	}
+}

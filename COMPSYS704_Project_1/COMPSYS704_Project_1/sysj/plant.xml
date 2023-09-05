@@ -1,0 +1,34 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="PlantCD" Class="Plant">
+			<iSignal Name="modeGUI"      	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="enable"       	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="mode"            To="ControllerCD.mode" 			  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			
+			<iSignal Name="bottlePos5"     		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			
+			<iSignal Name="clampBottle"    		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="gripCap"      		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="lowerCapper" 		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="turnGripperFinal"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="turnGripperHome" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="gripperClose"  		To="ControllerCD.gripperClose"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="gripperOpen"  		To="ControllerCD.gripperOpen"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="clampClose"   		To="ControllerCD.clampClose"     	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="clampOpen"  			To="ControllerCD.clampOpen"    		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="capperLowered" 		To="ControllerCD.capperLowered" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="capperRaised"  		To="ControllerCD.capperRaised"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="gripperAtFinal"  	To="ControllerCD.gripperAtFinal"    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="gripperAtHome"   	To="ControllerCD.gripperAtHome"     Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+
+			<oSignal Name="clampCloseE" 		To="UI.clampCloseE" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="gripperCloseE" 		To="UI.gripperCloseE" 				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="capperRaisedE"  		To="UI.capperRaisedE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="gripperAtFinalE" 	To="UI.gripperAtFinalE" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="gripperAtHomeE"  	To="UI.gripperAtHomeE"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="bottlePos5DispE" 	To="UI.bottlePos5DispE" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+		</ClockDomain>
+	</SubSystem>
+</System>
