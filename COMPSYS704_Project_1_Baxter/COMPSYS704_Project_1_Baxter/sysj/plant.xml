@@ -1,0 +1,24 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="PlantCD" Class="Plant">
+			<iSignal Name="CMDR"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="CMDL"   	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="enable"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="CMDRfb"	To="ControllerRCD.CMDfb"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="CMDLfb"  To="ControllerLCD.CMDfb"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="LAE"  	To="UI.LAE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="LBE"  	To="UI.LBE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="LCE"  	To="UI.LCE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="LDE"   	To="UI.LDE"   				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="LOE"  	To="UI.LOE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="LGE"   	To="UI.LGE"   				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="RAE"  	To="UI.RAE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="RBE"  	To="UI.RBE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="RCE"   	To="UI.RCE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="RDE"  	To="UI.RDE"    				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="ROE"   	To="UI.ROE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="RGE"  	To="UI.RGE"    				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+		</ClockDomain>
+	</SubSystem>
+</System>

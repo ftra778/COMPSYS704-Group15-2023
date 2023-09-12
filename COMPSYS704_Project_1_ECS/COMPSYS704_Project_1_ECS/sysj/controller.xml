@@ -1,0 +1,54 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS1" Local="true">
+		<ClockDomain Name="ControllerCD" Class="Controller">
+			<iSignal Name="update"       	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="time"	       	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="updatep"   		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="updates"   		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			<iSignal Name="SIGNAL_Z1_TEMP"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z1_HUMIDITY"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z1_LIGHT"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z1_SMOKE"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z1_PRESENCE"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z2_TEMP"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z2_HUMIDITY"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z2_LIGHT"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z2_SMOKE"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z2_PRESENCE"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z3_TEMP"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z3_HUMIDITY"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z3_LIGHT"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z3_SMOKE"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z3_PRESENCE"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z4_TEMP"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z4_HUMIDITY"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z4_LIGHT"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z4_SMOKE"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z4_PRESENCE"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z5_TEMP"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z5_HUMIDITY"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z5_LIGHT"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z5_SMOKE"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z5_PRESENCE"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z6_TEMP"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z6_HUMIDITY"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z6_LIGHT"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z6_SMOKE"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z6_PRESENCE"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z7_TEMP"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z7_HUMIDITY"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z7_LIGHT"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z7_SMOKE"  	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="SIGNAL_Z7_PRESENCE"  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			<oSignal Name="tempState"       To="PlantCD.tempState"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="humidityState"   To="PlantCD.humidityState"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="lightState"      To="PlantCD.lightState"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="smokeState"   	To="PlantCD.smokeState"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="presenceState"   To="PlantCD.presenceState"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="closedState"   	To="PlantCD.closedState"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<!--<oSignal Name="emergency"  		To="ABS.emergency"    	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="30000" />-->
+		</ClockDomain>
+	</SubSystem>
+</System>

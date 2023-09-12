@@ -1,0 +1,157 @@
+import java.util.List;
+import org.compsys704.*;
+
+Controller(
+		input signal			update,updatep,updates;
+		input String signal		time;
+		input int signal		SIGNAL_Z1_TEMP,SIGNAL_Z2_TEMP,SIGNAL_Z3_TEMP,SIGNAL_Z4_TEMP,SIGNAL_Z5_TEMP,SIGNAL_Z6_TEMP,SIGNAL_Z7_TEMP;
+		input int signal		SIGNAL_Z1_HUMIDITY,SIGNAL_Z2_HUMIDITY,SIGNAL_Z3_HUMIDITY,SIGNAL_Z4_HUMIDITY,SIGNAL_Z5_HUMIDITY,SIGNAL_Z6_HUMIDITY,SIGNAL_Z7_HUMIDITY;
+		input int signal		SIGNAL_Z1_LIGHT,SIGNAL_Z2_LIGHT,SIGNAL_Z3_LIGHT,SIGNAL_Z4_LIGHT,SIGNAL_Z5_LIGHT,SIGNAL_Z6_LIGHT,SIGNAL_Z7_LIGHT;
+		input signal			SIGNAL_Z1_SMOKE,SIGNAL_Z2_SMOKE,SIGNAL_Z3_SMOKE,SIGNAL_Z4_SMOKE,SIGNAL_Z5_SMOKE,SIGNAL_Z6_SMOKE,SIGNAL_Z7_SMOKE;
+		input signal			SIGNAL_Z1_PRESENCE,SIGNAL_Z2_PRESENCE,SIGNAL_Z3_PRESENCE,SIGNAL_Z4_PRESENCE,SIGNAL_Z5_PRESENCE,SIGNAL_Z6_PRESENCE,SIGNAL_Z7_PRESENCE;
+		
+		output List signal 		tempState,humidityState,lightState,presenceState;
+		output int signal		smokeState,closedState;
+		/*output signal 			emergency;*/
+		)
+->{
+	{
+	loop{
+		{// Environment Control
+			List envcond = Arrays.asList(	20,22,		// Ideal zone 1 & 7 Temperature Range
+											40,50,		// Ideal zone 2 & 3 Temperature Range
+											-5,-1,		// Ideal zone 4, 5, & 6 Temperature Range
+											
+											30,50,		// Ideal zone 1 & 7 Humidity Range
+											90,100,		// Ideal zone 2 & 3 Humidity Range
+											0,5,		// Ideal zone 4, 5, & 6 Humidity Range
+											
+											400,		// Ideal zone 1 & 7 Light Intensity
+											10,			// Ideal zone 2 & 3 Light Intensity
+											2000,		// Ideal zone 4, 5, & 6 Light Intensity
+											
+											4, 30,		// Facility open time
+											15, 0);		// Facility close time
+			loop{
+				// Wait for update button
+				await(update);
+				await(!update);
+				
+				List setTemp 		= Arrays.asList(#SIGNAL_Z1_TEMP,#SIGNAL_Z2_TEMP,#SIGNAL_Z3_TEMP,#SIGNAL_Z4_TEMP,#SIGNAL_Z5_TEMP,#SIGNAL_Z6_TEMP,#SIGNAL_Z7_TEMP);
+				List setHumidity 	= Arrays.asList(#SIGNAL_Z1_HUMIDITY,#SIGNAL_Z2_HUMIDITY,#SIGNAL_Z3_HUMIDITY,#SIGNAL_Z4_HUMIDITY,#SIGNAL_Z5_HUMIDITY,#SIGNAL_Z6_HUMIDITY,#SIGNAL_Z7_HUMIDITY);
+				List setLight 		= Arrays.asList(#SIGNAL_Z1_LIGHT,#SIGNAL_Z2_LIGHT,#SIGNAL_Z3_LIGHT,#SIGNAL_Z4_LIGHT,#SIGNAL_Z5_LIGHT,#SIGNAL_Z6_LIGHT,#SIGNAL_Z7_LIGHT);
+				List setPresence 	= Arrays.asList(false,false,false,false,false,false,false);
+				String timeString	= #time;
+				int setClosed		= 0;
+
+				// Loop through each zone
+				int j = 0;
+				for (int i = 0; i < setTemp.size(); i++) {
+					// Accesses each zone groups ideal conditions from the j'th element of the environment conditions array
+					if((i == 0) || (i == 6)) 		{ j = 0; } 
+					else if ((i == 1) || (i == 2)) 	{ j = 2; } 
+					else 							{ j = 4; }
+					
+					// 0 = Zone is too cold (activates heater/air conditioner to heat)
+					// 1 = Zone is OK (deactivates heater & fan/air conditioner)
+					// 2 = Zone is too hot (activates fan/air conditioner to cool)
+					if ((int)setTemp.get(i) < (int)envcond.get(j)) 					{ setTemp.set(i,0); } 
+					else if ((int)setTemp.get(i) > (int)envcond.get(j+1)) 			{ setTemp.set(i,2); } 
+					else 															{ setTemp.set(i,1); }
+					
+					// 0 = Zone is too arid (activates humidifier)
+					// 1 = Zone is OK (deactivates humidifier & dehumidifier)
+					// 2 = Zone is too humid (activates dehumidifier)
+					if ((int)setHumidity.get(i) < (int)envcond.get(6+j)) 			{ setHumidity.set(i,0); } 
+					else if ((int)setHumidity.get(i) > (int)envcond.get(6+j+1)) 	{ setHumidity.set(i,2); } 
+					else 															{ setHumidity.set(i,1); }
+					
+					// 0 = Zone is OK (switches light off)
+					// >0 = Zone is too dark (sets light brightness to difference between ideal light intensity and current light intensity)
+					if ((int)setLight.get(i) < (int)envcond.get(12+(j/2))) 			{ setLight.set(i,0); } 
+					else 															{ setLight.set(i,((int)envcond.get(12+(j/2)) - (int)setLight.get(i))); }
+				}
+				
+				// 0 = Facility is open (enaables environment control functions)
+				// 1 = Facility is closed (disables environment control functions unless people are present)
+				if((Integer.parseInt(timeString.substring(0, 2)) < (int)envcond.get(15)) 
+						|| (Integer.parseInt(timeString.substring(0, 2)) > (int)envcond.get(17))) {
+					setClosed = 1;
+				} else if((Integer.parseInt(timeString.substring(0, 2)) == (int)envcond.get(15)) && ((Integer.parseInt(timeString.substring(3, 5)) < (int)envcond.get(16)))
+						|| ((Integer.parseInt(timeString.substring(0, 2)) == (int)envcond.get(17)) && (Integer.parseInt(timeString.substring(3, 5)) > (int)envcond.get(18)))) {
+					setClosed = 1;
+				} else {
+					setClosed = 0;
+				}
+				
+				// false = Person is not present (disaables environment control functions if facility is also closed)
+				// true = Person is present (enables environment control functions if facility is also closed)
+				present(SIGNAL_Z1_PRESENCE)	{ setPresence.set(0,true); }
+				present(SIGNAL_Z2_PRESENCE)	{ setPresence.set(1,true); }
+				present(SIGNAL_Z3_PRESENCE)	{ setPresence.set(2,true); }
+				present(SIGNAL_Z4_PRESENCE)	{ setPresence.set(3,true); }
+				present(SIGNAL_Z5_PRESENCE)	{ setPresence.set(4,true); }
+				present(SIGNAL_Z6_PRESENCE)	{ setPresence.set(5,true); }
+				present(SIGNAL_Z7_PRESENCE)	{ setPresence.set(6,true); }
+
+				// Synchronously send all information to plant ('updatep' is received from environment control reaction of  the plant)
+				abort(updatep){
+					 sustain tempState(setTemp); 
+				}
+				await(!updatep);
+				abort(updatep){
+					 sustain humidityState(setHumidity); 
+				}
+				await(!updatep);
+				abort(updatep){
+					 sustain lightState(setLight); 
+				}
+				await(!updatep);
+				abort(updatep){
+					 sustain presenceState(setPresence); 
+				}
+				await(!updatep);
+				abort(updatep){
+					 sustain closedState(setClosed); 
+				}
+				await(!updatep);
+				pause;
+			}
+		}
+		||
+		{// Smoke/Fire Detection
+			// Smoke/Fire detection reaction separated from other environment conditions since emergency signals should be sent ASAP
+			int setSmoke;
+			loop{
+				// Wait for update button
+				await(update);
+				await(!update);
+				
+				// If any smoke is detected, set fire alarms throughout facility
+				present(SIGNAL_Z1_SMOKE || SIGNAL_Z2_SMOKE || SIGNAL_Z3_SMOKE || SIGNAL_Z4_SMOKE || SIGNAL_Z5_SMOKE || SIGNAL_Z6_SMOKE || SIGNAL_Z7_SMOKE)	{ 
+					setSmoke = 1; 
+				} else { 
+					setSmoke = 0; 
+				}
+				
+				// Synchronously send smoke information to plant ('updates' is received from smoke/fire reaction of the plant)
+				abort(updates){
+					 sustain smokeState(setSmoke); 
+				}
+				await(!updates);
+			}
+		}
+//		||
+//		{
+//			loop {
+//				await(!smokeState)
+//				abort(smokeState){
+//					if((int)#smokeState == 1) {
+//						sustain emergency;
+//					}
+//				}
+//			}
+//		}
+	}
+	}
+}

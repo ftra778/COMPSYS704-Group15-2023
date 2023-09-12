@@ -1,0 +1,106 @@
+import run.GUI;
+import org.compsys704.*;
+
+Plant(
+		input String signal CMDR,CMDL;
+		input signal enable;
+
+		output signal CMDRfb, CMDLfb;
+		output signal LAE, LBE, LCE, LDE, LOE, LGE;
+		output signal RAE, RBE, RCE, RDE, ROE, RGE;
+		)
+->
+{
+	new Thread(new GUI()).start();
+	{//Right Arm
+		loop{
+			present(CMDR && enable){
+				await(!enable);
+				if(#CMDR.contains("right_limb")) {
+					if(#CMDR.contains("limb_moveto")) {
+						if(#CMDR.contains("A")) {
+							emit RAE;
+						} else if (#CMDR.contains("B")) {
+							emit RBE;
+						} else if (#CMDR.contains("C")) {
+							emit RCE;
+						} else if (#CMDR.contains("D")) {
+							emit RDE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					} else if(#CMDR.contains("limb_gripper")) {
+						if(#CMDR.contains("open")) {
+							emit ROE;
+						} else if (#CMDR.contains("close")) {
+							emit RGE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					}
+					emit CMDRfb;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{//Right Arm
+		loop{
+			present(CMDL && enable){
+				await(!enable);
+				if(#CMDL.contains("left_limb")) {
+					if(#CMDL.contains("limb_moveto")) {
+						if(#CMDL.contains("A")) {
+							emit LAE;
+						} else if (#CMDL.contains("B")) {
+							emit LBE;
+						} else if (#CMDL.contains("C")) {
+							emit LCE;
+						} else if (#CMDL.contains("D")) {
+							emit LDE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					} else if(#CMDL.contains("limb_gripper")) {
+						if(#CMDL.contains("open")) {
+							emit LOE;
+						} else if (#CMDL.contains("close")) {
+							emit LGE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					}
+					emit CMDLfb;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{
+		{loop{present(LAE){System.out.println("LA");} pause;}}
+		||
+		{loop{present(LBE){System.out.println("LB");} pause;}}
+		||
+		{loop{present(LCE){System.out.println("LC");} pause;}}
+		||
+		{loop{present(LDE){System.out.println("LD");} pause;}}
+		||
+		{loop{present(LOE){System.out.println("LO");} pause;}}
+		||
+		{loop{present(LGE){System.out.println("LG");} pause;}}
+		||
+		{loop{present(RAE){System.out.println("RA");} pause;}}
+		||
+		{loop{present(RBE){System.out.println("RB");} pause;}}
+		||
+		{loop{present(RCE){System.out.println("RC");} pause;}}
+		||
+		{loop{present(RDE){System.out.println("RD");} pause;}}
+		||
+		{loop{present(ROE){System.out.println("RO");} pause;}}
+		||
+		{loop{present(RGE){System.out.println("RG");} pause;}}
+	}
+}

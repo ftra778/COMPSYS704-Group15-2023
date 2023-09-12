@@ -1,0 +1,20 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS1" Local="true">
+		<ClockDomain Name="ControllerRCD" 	Class="ControllerR">
+			<iSignal Name="bottleReady"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleAtPoint" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="CMDfb"   		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<!--<iSignal Name="emergency"   		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />-->
+			
+			<oSignal Name="CMD"  			To="PlantCD.CMDR"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+		</ClockDomain>
+		<ClockDomain Name="ControllerLCD" 	Class="ControllerL">
+			<iSignal Name="bottleReady"     Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleAtPoint" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="CMDfb"   		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<!--<iSignal Name="emergency"   		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />-->
+			
+			<oSignal Name="CMD"  			To="PlantCD.CMDL"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+		</ClockDomain>
+	</SubSystem>
+</System>

@@ -1,0 +1,107 @@
+import java.util.List;
+import org.compsys704.*;
+
+ControllerR(
+		input signal bottleReady;
+		input signal bottleAtPoint/*,emergency*/;	//Present when a bottle is on the loading table,Present when the arm has reached its destination
+		input signal CMDfb;
+		
+		output String signal CMD;			//Sends a command to the Baxter
+		)
+->{
+	{//Right Arm
+		loop{
+			//1. Check if a bottle is on the conveyor. If not, wait until it arrives
+			await(bottleReady);
+			await(!bottleReady);
+			
+			//2. Lower the arm slightly to the right height (Position B)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb B");
+			}
+			await(!CMDfb);
+	
+			//3. Close the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper right_limb close");
+			}
+			await(!CMDfb);
+	
+			//4. Move the arm to the loading table (Position C)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb C");
+			}
+			await(!CMDfb);
+	
+			//5. Lower the arm to the right height (Position D)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb D");
+			}
+			await(!CMDfb);
+	
+			//6. Open the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper right_limb open");
+			}
+			await(!CMDfb);
+	
+			//7. Move the arm back to the pickup location (Position A)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb A");
+			}
+			await(!CMDfb);
+		}
+	}
+}
+
+ControllerL(
+		input signal bottleReady;
+		input signal bottleAtPoint/*,emergency*/;	//Present when a bottle is on the loading table,Present when the arm has reached its destination
+		input signal CMDfb;
+		output String signal CMD;							//Sends a command to the Baxter
+		)
+->{
+	{//R Arm
+		loop{
+			//1. Check if a bottle is on the loading table. If not, wait until it arrives
+			await(bottleReady);
+			await(!bottleReady);
+	
+			//2. Lower the arm slightly to the right height (Position B)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb B");
+			}
+			await(!CMDfb);
+
+			//3. Close the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper left_limb close");
+			}
+			await(!CMDfb);
+			
+			//4. Move the arm to the conveyor, position 1 (Position C)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb C");
+			}
+			await(!CMDfb);
+			
+			//5. Lower the arm to the right height (Position D)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb D");
+			}
+			await(!CMDfb);
+			
+			//6. Open the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper left_limb open");
+			}
+			await(!CMDfb);
+			
+			//7. Move the arm back to the pickup location (Position A)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb A");
+			}
+			await(!CMDfb);
+		}
+	}
+}
