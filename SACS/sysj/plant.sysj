@@ -1,0 +1,61 @@
+import run.GUI;
+
+Plant(
+		input signal open_door1, open_door2, open_door3, close_door1, close_door2, close_door3, hp1, hp2, hp3;
+		output signal door1_opened, door2_opened, door3_opened, door1_closed, door2_closed, door3_closed;
+		
+		)
+->
+{
+	new Thread(new GUI()).start();
+
+	{	
+		while(true) {
+			await(open_door1 || open_door2 || open_door3);
+			{
+				System.out.println("Open Door");
+				
+			}
+			await(close_door1 || close_door2 || close_door3);
+			{
+				System.out.println("Close Door");
+				
+			}
+			
+			await(hp1);
+			{
+				System.out.println("Human Detected in zone 1 & 7");
+			}
+			
+			await(hp2);
+			{
+				System.out.println("Human Detected in zone 2 & 3");
+			}
+			
+			await(hp3);
+			{
+				System.out.println("Human Detected in zone 4 & 5 & 6");
+			}
+
+			
+			
+		}
+		
+	}
+	
+	
+	||
+	{// To viz
+		{while(true){present(open_door1){emit door1_opened;}; pause;}}
+		||
+		{while(true){present(open_door2){emit door2_opened;}; pause;}}
+		||
+		{while(true){present(open_door3){emit door3_opened;}; pause;}}
+		||
+		{while(true){present(close_door1){emit door1_closed;} pause;}}
+		||
+		{while(true){present(close_door2){emit door2_closed;} pause;}}
+		||
+		{while(true){present(close_door3){emit door3_closed;} pause;}}
+	}
+}

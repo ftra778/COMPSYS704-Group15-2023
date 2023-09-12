@@ -1,0 +1,24 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="PlantCD" Class="Plant">
+			<iSignal Name="open_door1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="open_door2"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="open_door3"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="close_door1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="close_door2"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="close_door3"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="hp1"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="hp2"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="hp3"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			
+
+			<oSignal Name="door1_opened" To="UI.door1_opened" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="door2_opened" To="UI.door2_opened"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="door3_opened" To="UI.door3_opened"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="door1_closed" To="UI.door1_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="door2_closed" To="UI.door2_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="door3_closed" To="UI.door3_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+
+		</ClockDomain>
+	</SubSystem>
+</System>
