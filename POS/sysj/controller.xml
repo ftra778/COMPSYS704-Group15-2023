@@ -1,0 +1,13 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="POSControllerCD" Class="Controller">
+			<iSignal Name="orderQuantity" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="liquidRatio" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="bottleReady" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="suspendOrder" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="sendOrder" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="liquidRatio" To="ABSControllerCD.liquidRatio" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+		</ClockDomain>
+	</SubSystem>
+</System>
