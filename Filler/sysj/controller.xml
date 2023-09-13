@@ -1,0 +1,37 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS1" Local="true">
+		<ClockDomain Name="ControllerCD" Class="Controller">
+			
+			<iSignal Name="liquidRatio" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="emergencyStop" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			<iSignal Name="dosUnitEvac" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="dosUnitFilled" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="liquidVolumeDetector" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleAtPos2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+					
+			<oSignal Name="valveInjectorOnOff1" To="PlantCD.valveInjectorOnOff1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="valveInjectorOnOff2" To="PlantCD.valveInjectorOnOff2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="valveInjectorOnOff3" To="PlantCD.valveInjectorOnOff3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="valveInjectorOnOff4" To="PlantCD.valveInjectorOnOff4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="valveInletOnOff1" To="PlantCD.valveInletOnOff1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="valveInletOnOff2" To="PlantCD.valveInletOnOff2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="valveInletOnOff3" To="PlantCD.valveInletOnOff3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="valveInletOnOff4" To="PlantCD.valveInletOnOff4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="dosUnitValveRetract1" To="PlantCD.dosUnitValveRetract1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="dosUnitValveRetract2" To="PlantCD.dosUnitValveRetract2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="dosUnitValveRetract3" To="PlantCD.dosUnitValveRetract3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="dosUnitValveRetract4" To="PlantCD.dosUnitValveRetract4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="dosUnitExtend1" To="PlantCD.dosUnitExtend1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="dosUnitExtend2" To="PlantCD.dosUnitExtend2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="dosUnitExtend3" To="PlantCD.dosUnitExtend3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="dosUnitExtend4" To="PlantCD.dosUnitExtend4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			
+			<oSignal Name="bottleFilled" To="ABSCD.bottleFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			
+		</ClockDomain>
+	</SubSystem>
+</System>

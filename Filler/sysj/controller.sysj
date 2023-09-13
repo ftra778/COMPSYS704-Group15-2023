@@ -1,0 +1,19 @@
+import java.util.List;
+
+Controller(
+			input signal bottleAtPos2, dosUnitEvac, dosUnitFilled, emergencyStop;
+			input List signal liquidRatio;
+			output signal bottleFilled;
+			output signal valveInjectorOnOff1, valveInjectorOnOff2, valveInjectorOnOff3, valveInjectorOnOff4;
+			output signal valveInletOnOff1, valveInletOnOff2, valveInletOnOff3, valveInletOnOff4;
+			output signal dosUnitValveRetract1, dosUnitValveRetract2, dosUnitValveRetract3, dosUnitValveRetract4;
+			output signal dosUnitExtend1, dosUnitExtend2, dosUnitExtend3, dosUnitExtend4;
+		)
+->{
+	
+	loop {
+		
+	}
+	
+		
+}
