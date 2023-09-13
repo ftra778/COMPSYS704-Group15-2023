@@ -1,0 +1,46 @@
+import run.GUI;
+
+Plant(
+		input signal ConveyorON, ConveyorOFF;
+		output signal ConveyorONe, ConveyorOFFe;
+		)
+->
+{
+	new Thread(new GUI()).start();
+
+	{	
+		while(true) {
+			await(ConveyorON);
+			{
+				System.out.println("ConveyorON");
+				emit ConveyorONe;
+				
+			}
+			await(ConveyorOFF);
+			{
+				System.out.println("Conveyor OFF");
+				emit ConveyorOFFe;
+				
+			}
+			
+			
+		}
+		
+	}
+	
+	
+//	||
+//	{// To viz
+//		{while(true){present(open_door1){emit door1_opened;}; pause;}}
+//		||
+//		{while(true){present(open_door2){emit door2_opened;}; pause;}}
+//		||
+//		{while(true){present(open_door3){emit door3_opened;}; pause;}}
+//		||
+//		{while(true){present(close_door1){emit door1_closed;} pause;}}
+//		||
+//		{while(true){present(close_door2){emit door2_closed;} pause;}}
+//		||
+//		{while(true){present(close_door3){emit door3_closed;} pause;}}
+//	}
+}

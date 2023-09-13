@@ -1,0 +1,28 @@
+Controller(
+		input signal emptyBottleReady, bottleAtPos1, bottleAtPos5, bottleLeftPos5, emergencyStop;
+		output signal ConveyorON, ConveyorOFF;
+		)
+->{
+   
+	loop{
+		await(bottleLeftPos5 && emptyBottleReady);
+		
+		trap(T){
+			{sustain ConveyorON;} || {waitl(3.0s); exit(T);}
+		}
+		emit ConveyorOFF;
+		
+		abort(bottleLeftPos5 && emptyBottleReady){
+			await(!ConveyorON);
+		}
+	}
+	||
+	
+	loop{
+		await(emergencyStop);
+		
+		abort(!emergencyStop){
+			sustain ConveyorOFF;
+		}
+	}
+}
