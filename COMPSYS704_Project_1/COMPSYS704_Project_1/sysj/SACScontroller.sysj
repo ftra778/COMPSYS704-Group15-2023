@@ -1,4 +1,4 @@
-Controller(
+SACSController(
 		input signal accessDoor1, accessDoor2, accessDoor3, officeAuthorised, ManufacturingAuthorised, smokeDetected;
 		output signal open_door1, open_door2, open_door3, close_door1, close_door2, close_door3;
 		)

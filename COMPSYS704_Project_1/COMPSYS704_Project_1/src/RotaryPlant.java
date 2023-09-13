@@ -17,19 +17,19 @@ public class RotaryPlant extends ClockDomain{
   public Signal stop = new Signal("stop", Signal.INPUT);
   public Signal turnE = new Signal("turnE", Signal.OUTPUT);
   public Signal stopE = new Signal("stopE", Signal.OUTPUT);
-  private int S31664 = 1;
-  private int S31612 = 1;
-  private int S31600 = 1;
-  private int S31630 = 1;
+  private int S31670 = 1;
+  private int S31618 = 1;
+  private int S31606 = 1;
+  private int S31636 = 1;
+  private int S31626 = 1;
   private int S31620 = 1;
-  private int S31614 = 1;
-  private int S31628 = 1;
+  private int S31634 = 1;
   
-  private int[] ends = new int[53];
-  private int[] tdone = new int[53];
+  private int[] ends = new int[74];
+  private int[] tdone = new int[74];
   
-  public void thread34185(int [] tdone, int [] ends){
-        switch(S31628){
+  public void thread44675(int [] tdone, int [] ends){
+        switch(S31634){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -56,8 +56,8 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread34184(int [] tdone, int [] ends){
-        switch(S31620){
+  public void thread44674(int [] tdone, int [] ends){
+        switch(S31626){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -65,21 +65,21 @@ public class RotaryPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S31614){
+        switch(S31620){
           case 0 : 
-            S31614=0;
+            S31620=0;
             if(turn.getprestatus()){//sysj\ABSplant.sysj line: 60, column: 24
               turnE.setPresent();//sysj\ABSplant.sysj line: 60, column: 30
               currsigs.addElement(turnE);
               ;//sysj\ABSplant.sysj line: 60, column: 42
-              S31614=1;
+              S31620=1;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
               ;//sysj\ABSplant.sysj line: 60, column: 42
-              S31614=1;
+              S31620=1;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
@@ -87,20 +87,20 @@ public class RotaryPlant extends ClockDomain{
             break;
           
           case 1 : 
-            S31614=1;
-            S31614=0;
+            S31620=1;
+            S31620=0;
             if(turn.getprestatus()){//sysj\ABSplant.sysj line: 60, column: 24
               turnE.setPresent();//sysj\ABSplant.sysj line: 60, column: 30
               currsigs.addElement(turnE);
               ;//sysj\ABSplant.sysj line: 60, column: 42
-              S31614=1;
+              S31620=1;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
               ;//sysj\ABSplant.sysj line: 60, column: 42
-              S31614=1;
+              S31620=1;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
@@ -113,8 +113,8 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread34183(int [] tdone, int [] ends){
-        switch(S31630){
+  public void thread44673(int [] tdone, int [] ends){
+        switch(S31636){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -122,23 +122,23 @@ public class RotaryPlant extends ClockDomain{
         break;
       
       case 1 : 
-        thread34184(tdone,ends);
-        thread34185(tdone,ends);
-        int biggest34186 = 0;
-        if(ends[5]>=biggest34186){
-          biggest34186=ends[5];
+        thread44674(tdone,ends);
+        thread44675(tdone,ends);
+        int biggest44676 = 0;
+        if(ends[5]>=biggest44676){
+          biggest44676=ends[5];
         }
-        if(ends[6]>=biggest34186){
-          biggest34186=ends[6];
+        if(ends[6]>=biggest44676){
+          biggest44676=ends[6];
         }
-        if(biggest34186 == 1){
+        if(biggest44676 == 1){
           active[4]=1;
           ends[4]=1;
           tdone[4]=1;
         }
         //FINXME code
-        if(biggest34186 == 0){
-          S31630=0;
+        if(biggest44676 == 0){
+          S31636=0;
           active[4]=0;
           ends[4]=0;
           tdone[4]=1;
@@ -148,8 +148,8 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread34182(int [] tdone, int [] ends){
-        switch(S31612){
+  public void thread44672(int [] tdone, int [] ends){
+        switch(S31618){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -157,11 +157,11 @@ public class RotaryPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S31600){
+        switch(S31606){
           case 0 : 
             if(turn.getprestatus()){//sysj\ABSplant.sysj line: 42, column: 10
               System.out.println("TURN");//sysj\ABSplant.sysj line: 44, column: 5
-              S31600=1;
+              S31606=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -176,7 +176,7 @@ public class RotaryPlant extends ClockDomain{
           case 1 : 
             if(stop.getprestatus()){//sysj\ABSplant.sysj line: 47, column: 10
               System.out.println("STOP");//sysj\ABSplant.sysj line: 49, column: 5
-              S31600=0;
+              S31606=0;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -194,8 +194,8 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread34179(int [] tdone, int [] ends){
-        S31628=1;
+  public void thread44669(int [] tdone, int [] ends){
+        S31634=1;
     if(stop.getprestatus()){//sysj\ABSplant.sysj line: 62, column: 24
       stopE.setPresent();//sysj\ABSplant.sysj line: 62, column: 30
       currsigs.addElement(stopE);
@@ -212,48 +212,48 @@ public class RotaryPlant extends ClockDomain{
     }
   }
 
-  public void thread34178(int [] tdone, int [] ends){
-        S31620=1;
-    S31614=0;
+  public void thread44668(int [] tdone, int [] ends){
+        S31626=1;
+    S31620=0;
     if(turn.getprestatus()){//sysj\ABSplant.sysj line: 60, column: 24
       turnE.setPresent();//sysj\ABSplant.sysj line: 60, column: 30
       currsigs.addElement(turnE);
       ;//sysj\ABSplant.sysj line: 60, column: 42
-      S31614=1;
+      S31620=1;
       active[5]=1;
       ends[5]=1;
       tdone[5]=1;
     }
     else {
       ;//sysj\ABSplant.sysj line: 60, column: 42
-      S31614=1;
+      S31620=1;
       active[5]=1;
       ends[5]=1;
       tdone[5]=1;
     }
   }
 
-  public void thread34177(int [] tdone, int [] ends){
-        S31630=1;
-    thread34178(tdone,ends);
-    thread34179(tdone,ends);
-    int biggest34180 = 0;
-    if(ends[5]>=biggest34180){
-      biggest34180=ends[5];
+  public void thread44667(int [] tdone, int [] ends){
+        S31636=1;
+    thread44668(tdone,ends);
+    thread44669(tdone,ends);
+    int biggest44670 = 0;
+    if(ends[5]>=biggest44670){
+      biggest44670=ends[5];
     }
-    if(ends[6]>=biggest34180){
-      biggest34180=ends[6];
+    if(ends[6]>=biggest44670){
+      biggest44670=ends[6];
     }
-    if(biggest34180 == 1){
+    if(biggest44670 == 1){
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
   }
 
-  public void thread34176(int [] tdone, int [] ends){
-        S31612=1;
-    S31600=0;
+  public void thread44666(int [] tdone, int [] ends){
+        S31618=1;
+    S31606=0;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
@@ -266,51 +266,51 @@ public class RotaryPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S31664){
+      switch(S31670){
         case 0 : 
-          S31664=0;
+          S31670=0;
           break RUN;
         
         case 1 : 
-          S31664=2;
-          S31664=2;
+          S31670=2;
+          S31670=2;
           System.out.println("RotaryPlant");//sysj\ABSplant.sysj line: 39, column: 2
-          thread34176(tdone,ends);
-          thread34177(tdone,ends);
-          int biggest34181 = 0;
-          if(ends[3]>=biggest34181){
-            biggest34181=ends[3];
+          thread44666(tdone,ends);
+          thread44667(tdone,ends);
+          int biggest44671 = 0;
+          if(ends[3]>=biggest44671){
+            biggest44671=ends[3];
           }
-          if(ends[4]>=biggest34181){
-            biggest34181=ends[4];
+          if(ends[4]>=biggest44671){
+            biggest44671=ends[4];
           }
-          if(biggest34181 == 1){
+          if(biggest44671 == 1){
             active[2]=1;
             ends[2]=1;
             break RUN;
           }
         
         case 2 : 
-          thread34182(tdone,ends);
-          thread34183(tdone,ends);
-          int biggest34187 = 0;
-          if(ends[3]>=biggest34187){
-            biggest34187=ends[3];
+          thread44672(tdone,ends);
+          thread44673(tdone,ends);
+          int biggest44677 = 0;
+          if(ends[3]>=biggest44677){
+            biggest44677=ends[3];
           }
-          if(ends[4]>=biggest34187){
-            biggest34187=ends[4];
+          if(ends[4]>=biggest44677){
+            biggest44677=ends[4];
           }
-          if(biggest34187 == 1){
+          if(biggest44677 == 1){
             active[2]=1;
             ends[2]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest34187 == 0){
-            S31664=0;
+          if(biggest44677 == 0){
+            S31670=0;
             active[2]=0;
             ends[2]=0;
-            S31664=0;
+            S31670=0;
             break RUN;
           }
         
@@ -319,9 +319,9 @@ public class RotaryPlant extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;

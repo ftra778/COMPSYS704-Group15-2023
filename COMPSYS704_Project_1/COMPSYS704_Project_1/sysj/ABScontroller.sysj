@@ -40,7 +40,15 @@ ABSCoordinator(
 	}
 	||
 	{// Emergency Signals
-	loop{present(emergency) {System.out.println("bottleAtPos4");{ sustain emergencyConveyor; } || { sustain emergencyRotary; } || { sustain emergencyFiller; } || { sustain emergencyCapLoader; } || { sustain emergencyCapper; }} pause; }
+	loop{
+		present(emergency) {
+			System.out.println("emergency");
+			abort(!emergency){
+				{ sustain emergencyConveyor; } || { sustain emergencyRotary; } || { sustain emergencyFiller; } || { sustain emergencyCapLoader; } || { sustain emergencyCapper; }
+				}
+			} 
+		pause; 
+		}
 	}
 }
 
@@ -150,7 +158,7 @@ CapLoaderController(
 					// 1. The arm swivels to the position "extended" if a new workpiece is requested (request).
 					await(request);
 					System.out.println("req");
-					abort(armAtDest) {
+					abort(armAtDest && !emergency) {
 						loop{
 							present(auto){
 								sustain armDest;
@@ -163,7 +171,7 @@ CapLoaderController(
 				
 					System.out.println("armAtDest");
 					// 2. The pusher extends and pushes a workpiece out of the magazine.
-					abort(pusherExtended) {
+					abort(pusherExtended && !emergency) {
 						loop{
 							present(auto){
 								sustain pusherExtend;
@@ -182,7 +190,7 @@ CapLoaderController(
 					System.out.println("pusherRe");
 					
 					// 4. The arm swivels back to to the position "retracted"
-					abort(armAtSource) {
+					abort(armAtSource && !emergency) {
 						loop{
 							present(auto){
 								sustain armSource;
@@ -195,7 +203,7 @@ CapLoaderController(
 					System.out.println("armAS");
 						
 					// 5. The vaccum is switched on (wait until the workplace is securely held, e.g. via WPgripped).
-					abort(WPgripped) {
+					abort(WPgripped && !emergency) {
 						loop{
 							present(auto){
 								sustain vacOn;
@@ -208,7 +216,7 @@ CapLoaderController(
 					System.out.println("WPgripped");
 		
 					// 6. The arm swivels to the position "extended", transferring a workpiece to a pick-up zone.
-					abort(armAtDest) {
+					abort(armAtDest && !emergency) {
 						loop{
 							present(auto){
 								{ sustain armDest; } || { sustain vacOn; } 
@@ -221,13 +229,13 @@ CapLoaderController(
 					System.out.println("armAD");
 					
 					// 7. The vaccum is switched off (wait until the workpiece is released, e.g. via !WPGripped).
-					abort(!WPgripped) {
+					abort(!WPgripped && !emergency) {
 						halt;
 					}
 					System.out.println("!WPgripped");
 					
 					// 8. The arm swivels back to to the position "retracted" so that the cup can be picked up by another machine.
-					abort(armAtSource) {
+					abort(armAtSource && !emergency) {
 						loop{
 							present(auto){
 								sustain armSource;
@@ -256,13 +264,13 @@ CapLoaderController(
 				loop{
 					// If mode is manual
 					present(!auto){
-						{present(armSourceM && !armDestM) 	{ emit armSource; }}
+						{present(armSourceM && !armDestM && !emergency) 	{ emit armSource; }}
 						||
-						{present(pusherExtendM) 			{ emit pusherExtend; }}
+						{present(pusherExtendM && !emergency) 			{ emit pusherExtend; }}
 						||
-						{present(vacOnM) 					{ emit vacOn; }}
+						{present(vacOnM && !emergency) 					{ emit vacOn; }}
 						||
-						{present(!armSourceM && armDestM) 	{ emit armDest; }}
+						{present(!armSourceM && armDestM && !emergency) 	{ emit armDest; }}
 					}
 					pause;
 				}
@@ -301,13 +309,13 @@ CapperController(
 			{
 				loop{
 					// 1. Check if a bottle is at position 4 (Capper station). If not, wait until one arrives.
-					abort(bottleReady && capperRaised && gripperAtHome) {
+					abort(bottleReady && capperRaised && gripperAtHome && !emergency) {
 						halt;
 					}
 					System.out.println("bottleReady");
 					
 					// 2. Lower the gripper.
-					abort(capperLowered && clampOpen && gripperOpen) {
+					abort(capperLowered && clampOpen && gripperOpen && !emergency) {
 						loop{
 							present(auto){
 								{ sustain turnGripperHome; } || { sustain lowerCapper; } || { sustain bottlePos5; }
@@ -319,8 +327,8 @@ CapperController(
 					}
 					
 					// 3. Clamp the bottle & grip the cap.
-					abort(capperLowered && clampClose && !gripperAtFinal && gripperClose) {
-						abort(clampClose && !gripperAtFinal && gripperClose) {
+					abort(capperLowered && clampClose && !gripperAtFinal && gripperClose && !emergency) {
+						abort(clampClose && !gripperAtFinal && gripperClose && !emergency) {
 							loop{
 								present(auto){
 									{ sustain turnGripperHome; } || { sustain lowerCapper; } || { sustain bottlePos5; } || { sustain clampBottle; } || { sustain gripCap; }
@@ -333,7 +341,7 @@ CapperController(
 					}
 					
 					// 4. Twist the gripper.
-					abort(gripperAtFinal && clampClose && gripperClose && !capperRaised) {
+					abort(gripperAtFinal && clampClose && gripperClose && !capperRaised && !emergency) {
 						loop{
 							present(auto){
 								{ sustain turnGripperFinal; } || { sustain gripCap; } || { sustain bottlePos5; } || { sustain clampBottle; } || { sustain lowerCapper; }
@@ -345,7 +353,7 @@ CapperController(
 					}
 
 					// 5. Release cap & unclamp bottle.
-					abort(gripperOpen && !gripperAtHome && clampOpen && !capperRaised) {
+					abort(gripperOpen && !gripperAtHome && clampOpen && !capperRaised && !emergency) {
 						loop{
 							present(auto){
 								{ sustain turnGripperFinal; } || { sustain bottlePos5; } || { sustain lowerCapper; }
@@ -357,7 +365,7 @@ CapperController(
 					}
 					
 					// 6. Untwist the gripper & unclamp the bottle.
-					abort(gripperAtHome && !gripperAtFinal && clampOpen && !capperRaised && gripperOpen) {
+					abort(gripperAtHome && !gripperAtFinal && clampOpen && !capperRaised && gripperOpen && !emergency) {
 						loop{
 							present(auto){
 								{ sustain turnGripperHome; } || { sustain bottlePos5; } || { sustain lowerCapper; }
@@ -369,7 +377,7 @@ CapperController(
 					}
 					
 					// 7. Raise the gripper.
-					abort(capperRaised && clampOpen && gripperOpen) {
+					abort(capperRaised && clampOpen && gripperOpen && !emergency) {
 						loop{
 							present(auto){
 								{ sustain turnGripperHome; } || { sustain bottlePos5; }
@@ -388,15 +396,15 @@ CapperController(
 				loop{
 					// If mode is manual
 					present(!auto){
-						{present(clampBottleM) 								{ emit clampBottle; }}
+						{present(clampBottleM && !emergency) 								{ emit clampBottle; }}
 						||
-						{present(gripCapM) 									{ emit gripCap; }}
+						{present(gripCapM && !emergency) 									{ emit gripCap; }}
 						||
-						{present(lowerCapperM) 								{ emit lowerCapper; }}
+						{present(lowerCapperM && !emergency) 								{ emit lowerCapper; }}
 						||
-						{present(turnGripperFinalM && !turnGripperHomeM) 	{ emit turnGripperFinal; }}
+						{present(turnGripperFinalM && !turnGripperHomeM && !emergency) 	{ emit turnGripperFinal; }}
 						||
-						{present(!turnGripperFinalM && turnGripperHomeM) 	{ emit turnGripperHome; }}
+						{present(!turnGripperFinalM && turnGripperHomeM && !emergency) 	{ emit turnGripperHome; }}
 					}
 					pause;
 				}

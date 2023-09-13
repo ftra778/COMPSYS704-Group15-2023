@@ -143,17 +143,18 @@ ECSController(
 				await(!updates);
 			}
 		}
-//		||
-//		{
-//			loop {
-//				await(!smokeState)
-//				abort(smokeState){
-//					if((int)#smokeState == 1) {
-//						sustain emergency;
-//					}
-//				}
-//			}
-//		}
+		||
+		{
+			loop {
+				await(smokeState);
+				await(!smokeState);
+				abort(smokeState){
+					sustain emergency;
+				}
+
+				await(!smokeState);
+			}
+		}
 	}
-	}
+}
 }

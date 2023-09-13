@@ -1,96 +1,96 @@
 import run.GUI;
 import org.compsys704.*;
 
-ECSPlant(
-		input List signal tempState,humidityState,lightState,presenceState;
-		input int signal smokeState,closedState;
-		output signal updatep,updates;
-		
-		output signal tempHotE,tempColdE,tempOffE,humidityIncE,humidityRedE,humidityOffE,lightOffE,emergency;
-		output int signal lightOnE;
-		)
-->
-{
-	new Thread(new GUI()).start();
-	{
-		loop {// Environment Reaction
-			// Synchronously receive all information from controller
-			await(tempState);
-			abort(!tempState){
-				sustain updatep;
-			}
-			await(humidityState);
-			abort(!humidityState){
-				sustain updatep;
-			}
-			await(lightState);
-			abort(!lightState){
-				sustain updatep;
-			}
-			await(presenceState);
-			abort(!presenceState){
-				sustain updatep;
-			}
-			await(closedState);
-			abort(!closedState){
-				sustain updatep;
-			}
-			
-			// For loop sets state of each environment actuator in the plant
-			List tempOut 		= #tempState;
-			List humidityOut 	= #humidityState;
-			List lightOut 		= #lightState;
-			List presence 		= #presenceState;
-			int closed 			= #closedState;
-			for(int i = 0; i < 7; i++) {
-				States.CURR_ZONE = i;
-				if (((int)tempOut.get(i) == 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
-					emit tempHotE;
-					await(!tempHotE);
-				} else if (((int)tempOut.get(i) == 2) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
-					emit tempColdE;
-					await(!tempColdE);
-				} else {
-					emit tempOffE;
-					await(!tempOffE);
-				}
-				if (((int)humidityOut.get(i) == 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
-					emit humidityIncE;
-					await(!humidityIncE);
-				} else if (((int)humidityOut.get(i) == 2) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
-					emit humidityRedE;
-					await(!humidityRedE);
-				} else {
-					emit humidityOffE;
-					await(!humidityOffE);
-				}
-				if (((int)lightOut.get(i) > 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
-					emit lightOnE(lightOut.get(i));
-					await(!lightOnE);
-				} else {
-					emit lightOffE;
-					await(!lightOffE);
-				}
-				pause;
-			}
-		}
-	}
-	||
-	{// Smoke/Fire Reaction
-		// Smoke/Fire detection reaction separated from other environment conditions since emergency signals should be sent ASAP
-		loop{
-			// Synchronously receive smoke information from controller
-			await(smokeState);
-			abort(!smokeState) {
-				sustain updates;
-			}
-			int smoke = #smokeState;
-			if ((int)smoke == 1) {
-				States.SMOKE_STATE = 1;
-			} else {
-				States.SMOKE_STATE = 0;
-			}
-			emit emergency;
-		}
-	}
-}
+//ECSPlant(
+//		input List signal tempState,humidityState,lightState,presenceState;
+//		input int signal smokeState,closedState;
+//		output signal updatep,updates;
+//		
+//		output signal tempHotE,tempColdE,tempOffE,humidityIncE,humidityRedE,humidityOffE,lightOffE,emergency;
+//		output int signal lightOnE;
+//		)
+//->
+//{
+////	new Thread(new GUI()).start();
+//	{
+//		loop {// Environment Reaction
+//			// Synchronously receive all information from controller
+//			await(tempState);
+//			abort(!tempState){
+//				sustain updatep;
+//			}
+//			await(humidityState);
+//			abort(!humidityState){
+//				sustain updatep;
+//			}
+//			await(lightState);
+//			abort(!lightState){
+//				sustain updatep;
+//			}
+//			await(presenceState);
+//			abort(!presenceState){
+//				sustain updatep;
+//			}
+//			await(closedState);
+//			abort(!closedState){
+//				sustain updatep;
+//			}
+//			
+//			// For loop sets state of each environment actuator in the plant
+//			List tempOut 		= #tempState;
+//			List humidityOut 	= #humidityState;
+//			List lightOut 		= #lightState;
+//			List presence 		= #presenceState;
+//			int closed 			= #closedState;
+//			for(int i = 0; i < 7; i++) {
+//				States.CURR_ZONE = i;
+//				if (((int)tempOut.get(i) == 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+//					emit tempHotE;
+//					await(!tempHotE);
+//				} else if (((int)tempOut.get(i) == 2) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+//					emit tempColdE;
+//					await(!tempColdE);
+//				} else {
+//					emit tempOffE;
+//					await(!tempOffE);
+//				}
+//				if (((int)humidityOut.get(i) == 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+//					emit humidityIncE;
+//					await(!humidityIncE);
+//				} else if (((int)humidityOut.get(i) == 2) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+//					emit humidityRedE;
+//					await(!humidityRedE);
+//				} else {
+//					emit humidityOffE;
+//					await(!humidityOffE);
+//				}
+//				if (((int)lightOut.get(i) > 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+//					emit lightOnE(lightOut.get(i));
+//					await(!lightOnE);
+//				} else {
+//					emit lightOffE;
+//					await(!lightOffE);
+//				}
+//				pause;
+//			}
+//		}
+//	}
+//	||
+//	{// Smoke/Fire Reaction
+//		// Smoke/Fire detection reaction separated from other environment conditions since emergency signals should be sent ASAP
+//		loop{
+//			// Synchronously receive smoke information from controller
+//			await(smokeState);
+//			abort(!smokeState) {
+//				sustain updates;
+//			}
+//			int smoke = #smokeState;
+//			if ((int)smoke == 1) {
+//				States.SMOKE_STATE = 1;
+//			} else {
+//				States.SMOKE_STATE = 0;
+//			}
+//			emit emergency;
+//		}
+//	}
+//}

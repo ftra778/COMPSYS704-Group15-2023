@@ -32,38 +32,38 @@ public class CapLoaderController extends ClockDomain{
   public Signal armDest = new Signal("armDest", Signal.OUTPUT);
   public Signal bottleCapLoaded = new Signal("bottleCapLoaded", Signal.OUTPUT);
   private Signal auto_25;
-  private int S8000 = 1;
-  private int S1873 = 1;
-  private int S1872 = 1;
-  private int S1009 = 1;
-  private int S1001 = 1;
-  private int S1827 = 1;
-  private int S1011 = 1;
-  private int S1016 = 1;
+  private int S8006 = 1;
+  private int S1879 = 1;
+  private int S1878 = 1;
   private int S1015 = 1;
-  private int S1048 = 1;
-  private int S1047 = 1;
-  private int S1082 = 1;
-  private int S1081 = 1;
-  private int S1114 = 1;
-  private int S1113 = 1;
-  private int S1153 = 1;
+  private int S1007 = 1;
+  private int S1833 = 1;
+  private int S1017 = 1;
+  private int S1022 = 1;
+  private int S1021 = 1;
+  private int S1054 = 1;
+  private int S1053 = 1;
+  private int S1088 = 1;
+  private int S1087 = 1;
+  private int S1120 = 1;
+  private int S1119 = 1;
+  private int S1159 = 1;
+  private int S1158 = 1;
   private int S1152 = 1;
-  private int S1146 = 1;
-  private int S1151 = 1;
-  private int S1222 = 1;
-  private int S1221 = 1;
-  private int S1254 = 1;
-  private int S1253 = 1;
-  private int S1871 = 1;
-  private int S1841 = 1;
+  private int S1157 = 1;
+  private int S1228 = 1;
+  private int S1227 = 1;
+  private int S1260 = 1;
+  private int S1259 = 1;
+  private int S1877 = 1;
+  private int S1847 = 1;
   
   private int[] ends = new int[67];
   private int[] tdone = new int[67];
   
-  public void thread31437(int [] tdone, int [] ends){
-        if(!armSourceM.getprestatus() && armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 265, column: 16
-      armDest.setPresent();//sysj\ABScontroller.sysj line: 265, column: 44
+  public void thread31443(int [] tdone, int [] ends){
+        if(!armSourceM.getprestatus() && armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 273, column: 16
+      armDest.setPresent();//sysj\ABScontroller.sysj line: 273, column: 58
       currsigs.addElement(armDest);
       active[34]=0;
       ends[34]=0;
@@ -76,9 +76,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31436(int [] tdone, int [] ends){
-        if(vacOnM.getprestatus()){//sysj\ABScontroller.sysj line: 263, column: 16
-      vacOn.setPresent();//sysj\ABScontroller.sysj line: 263, column: 31
+  public void thread31442(int [] tdone, int [] ends){
+        if(vacOnM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 271, column: 16
+      vacOn.setPresent();//sysj\ABScontroller.sysj line: 271, column: 45
       currsigs.addElement(vacOn);
       active[33]=0;
       ends[33]=0;
@@ -91,9 +91,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31435(int [] tdone, int [] ends){
-        if(pusherExtendM.getprestatus()){//sysj\ABScontroller.sysj line: 261, column: 16
-      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 261, column: 36
+  public void thread31441(int [] tdone, int [] ends){
+        if(pusherExtendM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 269, column: 16
+      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 269, column: 50
       currsigs.addElement(pusherExtend);
       active[32]=0;
       ends[32]=0;
@@ -103,120 +103,120 @@ public class CapLoaderController extends ClockDomain{
       active[32]=0;
       ends[32]=0;
       tdone[32]=1;
+    }
+  }
+
+  public void thread31440(int [] tdone, int [] ends){
+        if(armSourceM.getprestatus() && !armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 267, column: 16
+      armSource.setPresent();//sysj\ABScontroller.sysj line: 267, column: 58
+      currsigs.addElement(armSource);
+      active[31]=0;
+      ends[31]=0;
+      tdone[31]=1;
+    }
+    else {
+      active[31]=0;
+      ends[31]=0;
+      tdone[31]=1;
+    }
+  }
+
+  public void thread31439(int [] tdone, int [] ends){
+        S1877=1;
+    S1847=0;
+    if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 266, column: 14
+      thread31440(tdone,ends);
+      thread31441(tdone,ends);
+      thread31442(tdone,ends);
+      thread31443(tdone,ends);
+      int biggest31444 = 0;
+      if(ends[31]>=biggest31444){
+        biggest31444=ends[31];
+      }
+      if(ends[32]>=biggest31444){
+        biggest31444=ends[32];
+      }
+      if(ends[33]>=biggest31444){
+        biggest31444=ends[33];
+      }
+      if(ends[34]>=biggest31444){
+        biggest31444=ends[34];
+      }
+      //FINXME code
+      if(biggest31444 == 0){
+        S1847=1;
+        active[30]=1;
+        ends[30]=1;
+        tdone[30]=1;
+      }
+    }
+    else {
+      S1847=1;
+      active[30]=1;
+      ends[30]=1;
+      tdone[30]=1;
+    }
+  }
+
+  public void thread31438(int [] tdone, int [] ends){
+        S1833=1;
+    S1017=0;
+    active[27]=1;
+    ends[27]=1;
+    tdone[27]=1;
+  }
+
+  public void thread31437(int [] tdone, int [] ends){
+        S1015=1;
+    if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 147, column: 9
+      S1007=0;
+      auto_25.setPresent();//sysj\ABScontroller.sysj line: 148, column: 7
+      currsigs.addElement(auto_25);
+      active[26]=1;
+      ends[26]=1;
+      tdone[26]=1;
+    }
+    else {
+      S1007=1;
+      active[26]=1;
+      ends[26]=1;
+      tdone[26]=1;
     }
   }
 
   public void thread31434(int [] tdone, int [] ends){
-        if(armSourceM.getprestatus() && !armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 259, column: 16
-      armSource.setPresent();//sysj\ABScontroller.sysj line: 259, column: 44
-      currsigs.addElement(armSource);
-      active[31]=0;
-      ends[31]=0;
-      tdone[31]=1;
+        if(!armSourceM.getprestatus() && armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 273, column: 16
+      armDest.setPresent();//sysj\ABScontroller.sysj line: 273, column: 58
+      currsigs.addElement(armDest);
+      active[34]=0;
+      ends[34]=0;
+      tdone[34]=1;
     }
     else {
-      active[31]=0;
-      ends[31]=0;
-      tdone[31]=1;
+      active[34]=0;
+      ends[34]=0;
+      tdone[34]=1;
     }
   }
 
   public void thread31433(int [] tdone, int [] ends){
-        S1871=1;
-    S1841=0;
-    if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 258, column: 14
-      thread31434(tdone,ends);
-      thread31435(tdone,ends);
-      thread31436(tdone,ends);
-      thread31437(tdone,ends);
-      int biggest31438 = 0;
-      if(ends[31]>=biggest31438){
-        biggest31438=ends[31];
-      }
-      if(ends[32]>=biggest31438){
-        biggest31438=ends[32];
-      }
-      if(ends[33]>=biggest31438){
-        biggest31438=ends[33];
-      }
-      if(ends[34]>=biggest31438){
-        biggest31438=ends[34];
-      }
-      //FINXME code
-      if(biggest31438 == 0){
-        S1841=1;
-        active[30]=1;
-        ends[30]=1;
-        tdone[30]=1;
-      }
+        if(vacOnM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 271, column: 16
+      vacOn.setPresent();//sysj\ABScontroller.sysj line: 271, column: 45
+      currsigs.addElement(vacOn);
+      active[33]=0;
+      ends[33]=0;
+      tdone[33]=1;
     }
     else {
-      S1841=1;
-      active[30]=1;
-      ends[30]=1;
-      tdone[30]=1;
+      active[33]=0;
+      ends[33]=0;
+      tdone[33]=1;
     }
   }
 
   public void thread31432(int [] tdone, int [] ends){
-        S1827=1;
-    S1011=0;
-    active[27]=1;
-    ends[27]=1;
-    tdone[27]=1;
-  }
-
-  public void thread31431(int [] tdone, int [] ends){
-        S1009=1;
-    if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 139, column: 9
-      S1001=0;
-      auto_25.setPresent();//sysj\ABScontroller.sysj line: 140, column: 7
-      currsigs.addElement(auto_25);
-      active[26]=1;
-      ends[26]=1;
-      tdone[26]=1;
-    }
-    else {
-      S1001=1;
-      active[26]=1;
-      ends[26]=1;
-      tdone[26]=1;
-    }
-  }
-
-  public void thread31428(int [] tdone, int [] ends){
-        if(!armSourceM.getprestatus() && armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 265, column: 16
-      armDest.setPresent();//sysj\ABScontroller.sysj line: 265, column: 44
-      currsigs.addElement(armDest);
-      active[34]=0;
-      ends[34]=0;
-      tdone[34]=1;
-    }
-    else {
-      active[34]=0;
-      ends[34]=0;
-      tdone[34]=1;
-    }
-  }
-
-  public void thread31427(int [] tdone, int [] ends){
-        if(vacOnM.getprestatus()){//sysj\ABScontroller.sysj line: 263, column: 16
-      vacOn.setPresent();//sysj\ABScontroller.sysj line: 263, column: 31
-      currsigs.addElement(vacOn);
-      active[33]=0;
-      ends[33]=0;
-      tdone[33]=1;
-    }
-    else {
-      active[33]=0;
-      ends[33]=0;
-      tdone[33]=1;
-    }
-  }
-
-  public void thread31426(int [] tdone, int [] ends){
-        if(pusherExtendM.getprestatus()){//sysj\ABScontroller.sysj line: 261, column: 16
-      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 261, column: 36
+        if(pusherExtendM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 269, column: 16
+      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 269, column: 50
       currsigs.addElement(pusherExtend);
       active[32]=0;
       ends[32]=0;
@@ -229,9 +229,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31425(int [] tdone, int [] ends){
-        if(armSourceM.getprestatus() && !armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 259, column: 16
-      armSource.setPresent();//sysj\ABScontroller.sysj line: 259, column: 44
+  public void thread31431(int [] tdone, int [] ends){
+        if(armSourceM.getprestatus() && !armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 267, column: 16
+      armSource.setPresent();//sysj\ABScontroller.sysj line: 267, column: 58
       currsigs.addElement(armSource);
       active[31]=0;
       ends[31]=0;
@@ -244,72 +244,72 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31424(int [] tdone, int [] ends){
-        S1871=1;
-    S1841=0;
-    if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 258, column: 14
-      thread31425(tdone,ends);
-      thread31426(tdone,ends);
-      thread31427(tdone,ends);
-      thread31428(tdone,ends);
-      int biggest31429 = 0;
-      if(ends[31]>=biggest31429){
-        biggest31429=ends[31];
+  public void thread31430(int [] tdone, int [] ends){
+        S1877=1;
+    S1847=0;
+    if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 266, column: 14
+      thread31431(tdone,ends);
+      thread31432(tdone,ends);
+      thread31433(tdone,ends);
+      thread31434(tdone,ends);
+      int biggest31435 = 0;
+      if(ends[31]>=biggest31435){
+        biggest31435=ends[31];
       }
-      if(ends[32]>=biggest31429){
-        biggest31429=ends[32];
+      if(ends[32]>=biggest31435){
+        biggest31435=ends[32];
       }
-      if(ends[33]>=biggest31429){
-        biggest31429=ends[33];
+      if(ends[33]>=biggest31435){
+        biggest31435=ends[33];
       }
-      if(ends[34]>=biggest31429){
-        biggest31429=ends[34];
+      if(ends[34]>=biggest31435){
+        biggest31435=ends[34];
       }
       //FINXME code
-      if(biggest31429 == 0){
-        S1841=1;
+      if(biggest31435 == 0){
+        S1847=1;
         active[30]=1;
         ends[30]=1;
         tdone[30]=1;
       }
     }
     else {
-      S1841=1;
+      S1847=1;
       active[30]=1;
       ends[30]=1;
       tdone[30]=1;
     }
   }
 
-  public void thread31423(int [] tdone, int [] ends){
-        S1827=1;
-    S1011=0;
+  public void thread31429(int [] tdone, int [] ends){
+        S1833=1;
+    S1017=0;
     active[27]=1;
     ends[27]=1;
     tdone[27]=1;
   }
 
-  public void thread31422(int [] tdone, int [] ends){
-        S1009=1;
-    if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 139, column: 9
-      S1001=0;
-      auto_25.setPresent();//sysj\ABScontroller.sysj line: 140, column: 7
+  public void thread31428(int [] tdone, int [] ends){
+        S1015=1;
+    if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 147, column: 9
+      S1007=0;
+      auto_25.setPresent();//sysj\ABScontroller.sysj line: 148, column: 7
       currsigs.addElement(auto_25);
       active[26]=1;
       ends[26]=1;
       tdone[26]=1;
     }
     else {
-      S1001=1;
+      S1007=1;
       active[26]=1;
       ends[26]=1;
       tdone[26]=1;
     }
   }
 
-  public void thread31419(int [] tdone, int [] ends){
-        if(!armSourceM.getprestatus() && armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 265, column: 16
-      armDest.setPresent();//sysj\ABScontroller.sysj line: 265, column: 44
+  public void thread31425(int [] tdone, int [] ends){
+        if(!armSourceM.getprestatus() && armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 273, column: 16
+      armDest.setPresent();//sysj\ABScontroller.sysj line: 273, column: 58
       currsigs.addElement(armDest);
       active[34]=0;
       ends[34]=0;
@@ -322,9 +322,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31418(int [] tdone, int [] ends){
-        if(vacOnM.getprestatus()){//sysj\ABScontroller.sysj line: 263, column: 16
-      vacOn.setPresent();//sysj\ABScontroller.sysj line: 263, column: 31
+  public void thread31424(int [] tdone, int [] ends){
+        if(vacOnM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 271, column: 16
+      vacOn.setPresent();//sysj\ABScontroller.sysj line: 271, column: 45
       currsigs.addElement(vacOn);
       active[33]=0;
       ends[33]=0;
@@ -337,9 +337,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31417(int [] tdone, int [] ends){
-        if(pusherExtendM.getprestatus()){//sysj\ABScontroller.sysj line: 261, column: 16
-      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 261, column: 36
+  public void thread31423(int [] tdone, int [] ends){
+        if(pusherExtendM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 269, column: 16
+      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 269, column: 50
       currsigs.addElement(pusherExtend);
       active[32]=0;
       ends[32]=0;
@@ -352,9 +352,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31416(int [] tdone, int [] ends){
-        if(armSourceM.getprestatus() && !armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 259, column: 16
-      armSource.setPresent();//sysj\ABScontroller.sysj line: 259, column: 44
+  public void thread31422(int [] tdone, int [] ends){
+        if(armSourceM.getprestatus() && !armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 267, column: 16
+      armSource.setPresent();//sysj\ABScontroller.sysj line: 267, column: 58
       currsigs.addElement(armSource);
       active[31]=0;
       ends[31]=0;
@@ -367,32 +367,32 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31414(int [] tdone, int [] ends){
+  public void thread31420(int [] tdone, int [] ends){
         active[34]=0;
     ends[34]=0;
     tdone[34]=1;
   }
 
-  public void thread31413(int [] tdone, int [] ends){
+  public void thread31419(int [] tdone, int [] ends){
         active[33]=0;
     ends[33]=0;
     tdone[33]=1;
   }
 
-  public void thread31412(int [] tdone, int [] ends){
+  public void thread31418(int [] tdone, int [] ends){
         active[32]=0;
     ends[32]=0;
     tdone[32]=1;
   }
 
-  public void thread31411(int [] tdone, int [] ends){
+  public void thread31417(int [] tdone, int [] ends){
         active[31]=0;
     ends[31]=0;
     tdone[31]=1;
   }
 
-  public void thread31410(int [] tdone, int [] ends){
-        switch(S1871){
+  public void thread31416(int [] tdone, int [] ends){
+        switch(S1877){
       case 0 : 
         active[30]=0;
         ends[30]=0;
@@ -400,28 +400,28 @@ public class CapLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1841){
+        switch(S1847){
           case 0 : 
-            thread31411(tdone,ends);
-            thread31412(tdone,ends);
-            thread31413(tdone,ends);
-            thread31414(tdone,ends);
-            int biggest31415 = 0;
-            if(ends[31]>=biggest31415){
-              biggest31415=ends[31];
+            thread31417(tdone,ends);
+            thread31418(tdone,ends);
+            thread31419(tdone,ends);
+            thread31420(tdone,ends);
+            int biggest31421 = 0;
+            if(ends[31]>=biggest31421){
+              biggest31421=ends[31];
             }
-            if(ends[32]>=biggest31415){
-              biggest31415=ends[32];
+            if(ends[32]>=biggest31421){
+              biggest31421=ends[32];
             }
-            if(ends[33]>=biggest31415){
-              biggest31415=ends[33];
+            if(ends[33]>=biggest31421){
+              biggest31421=ends[33];
             }
-            if(ends[34]>=biggest31415){
-              biggest31415=ends[34];
+            if(ends[34]>=biggest31421){
+              biggest31421=ends[34];
             }
             //FINXME code
-            if(biggest31415 == 0){
-              S1841=1;
+            if(biggest31421 == 0){
+              S1847=1;
               active[30]=1;
               ends[30]=1;
               tdone[30]=1;
@@ -429,36 +429,36 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 1 : 
-            S1841=1;
-            S1841=0;
-            if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 258, column: 14
-              thread31416(tdone,ends);
-              thread31417(tdone,ends);
-              thread31418(tdone,ends);
-              thread31419(tdone,ends);
-              int biggest31420 = 0;
-              if(ends[31]>=biggest31420){
-                biggest31420=ends[31];
+            S1847=1;
+            S1847=0;
+            if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 266, column: 14
+              thread31422(tdone,ends);
+              thread31423(tdone,ends);
+              thread31424(tdone,ends);
+              thread31425(tdone,ends);
+              int biggest31426 = 0;
+              if(ends[31]>=biggest31426){
+                biggest31426=ends[31];
               }
-              if(ends[32]>=biggest31420){
-                biggest31420=ends[32];
+              if(ends[32]>=biggest31426){
+                biggest31426=ends[32];
               }
-              if(ends[33]>=biggest31420){
-                biggest31420=ends[33];
+              if(ends[33]>=biggest31426){
+                biggest31426=ends[33];
               }
-              if(ends[34]>=biggest31420){
-                biggest31420=ends[34];
+              if(ends[34]>=biggest31426){
+                biggest31426=ends[34];
               }
               //FINXME code
-              if(biggest31420 == 0){
-                S1841=1;
+              if(biggest31426 == 0){
+                S1847=1;
                 active[30]=1;
                 ends[30]=1;
                 tdone[30]=1;
               }
             }
             else {
-              S1841=1;
+              S1847=1;
               active[30]=1;
               ends[30]=1;
               tdone[30]=1;
@@ -471,26 +471,26 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31408(int [] tdone, int [] ends){
-        S1151=1;
-    vacOn.setPresent();//sysj\ABScontroller.sysj line: 214, column: 35
+  public void thread31414(int [] tdone, int [] ends){
+        S1157=1;
+    vacOn.setPresent();//sysj\ABScontroller.sysj line: 222, column: 35
     currsigs.addElement(vacOn);
     active[29]=1;
     ends[29]=1;
     tdone[29]=1;
   }
 
-  public void thread31407(int [] tdone, int [] ends){
-        S1146=1;
-    armDest.setPresent();//sysj\ABScontroller.sysj line: 214, column: 11
+  public void thread31413(int [] tdone, int [] ends){
+        S1152=1;
+    armDest.setPresent();//sysj\ABScontroller.sysj line: 222, column: 11
     currsigs.addElement(armDest);
     active[28]=1;
     ends[28]=1;
     tdone[28]=1;
   }
 
-  public void thread31405(int [] tdone, int [] ends){
-        switch(S1151){
+  public void thread31411(int [] tdone, int [] ends){
+        switch(S1157){
       case 0 : 
         active[29]=0;
         ends[29]=0;
@@ -498,7 +498,7 @@ public class CapLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        vacOn.setPresent();//sysj\ABScontroller.sysj line: 214, column: 35
+        vacOn.setPresent();//sysj\ABScontroller.sysj line: 222, column: 35
         currsigs.addElement(vacOn);
         active[29]=1;
         ends[29]=1;
@@ -508,8 +508,8 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31404(int [] tdone, int [] ends){
-        switch(S1146){
+  public void thread31410(int [] tdone, int [] ends){
+        switch(S1152){
       case 0 : 
         active[28]=0;
         ends[28]=0;
@@ -517,7 +517,7 @@ public class CapLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        armDest.setPresent();//sysj\ABScontroller.sysj line: 214, column: 11
+        armDest.setPresent();//sysj\ABScontroller.sysj line: 222, column: 11
         currsigs.addElement(armDest);
         active[28]=1;
         ends[28]=1;
@@ -527,26 +527,26 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31402(int [] tdone, int [] ends){
-        S1151=1;
-    vacOn.setPresent();//sysj\ABScontroller.sysj line: 214, column: 35
+  public void thread31408(int [] tdone, int [] ends){
+        S1157=1;
+    vacOn.setPresent();//sysj\ABScontroller.sysj line: 222, column: 35
     currsigs.addElement(vacOn);
     active[29]=1;
     ends[29]=1;
     tdone[29]=1;
   }
 
-  public void thread31401(int [] tdone, int [] ends){
-        S1146=1;
-    armDest.setPresent();//sysj\ABScontroller.sysj line: 214, column: 11
+  public void thread31407(int [] tdone, int [] ends){
+        S1152=1;
+    armDest.setPresent();//sysj\ABScontroller.sysj line: 222, column: 11
     currsigs.addElement(armDest);
     active[28]=1;
     ends[28]=1;
     tdone[28]=1;
   }
 
-  public void thread31400(int [] tdone, int [] ends){
-        switch(S1827){
+  public void thread31406(int [] tdone, int [] ends){
+        switch(S1833){
       case 0 : 
         active[27]=0;
         ends[27]=0;
@@ -554,22 +554,22 @@ public class CapLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1011){
+        switch(S1017){
           case 0 : 
-            if(request.getprestatus()){//sysj\ABScontroller.sysj line: 151, column: 12
-              System.out.println("req");//sysj\ABScontroller.sysj line: 152, column: 6
-              S1011=1;
-              S1016=0;
-              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 155, column: 16
-                S1015=0;
-                armDest.setPresent();//sysj\ABScontroller.sysj line: 156, column: 9
+            if(request.getprestatus()){//sysj\ABScontroller.sysj line: 159, column: 12
+              System.out.println("req");//sysj\ABScontroller.sysj line: 160, column: 6
+              S1017=1;
+              S1022=0;
+              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 163, column: 16
+                S1021=0;
+                armDest.setPresent();//sysj\ABScontroller.sysj line: 164, column: 9
                 currsigs.addElement(armDest);
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
               else {
-                S1015=1;
+                S1021=1;
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
@@ -583,31 +583,31 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 1 : 
-            if(armAtDest.getprestatus()){//sysj\ABScontroller.sysj line: 153, column: 12
-              System.out.println("armAtDest");//sysj\ABScontroller.sysj line: 164, column: 6
-              S1011=2;
-              S1048=0;
-              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 168, column: 16
-                S1047=0;
-                pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 169, column: 9
+            if(armAtDest.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 161, column: 12
+              System.out.println("armAtDest");//sysj\ABScontroller.sysj line: 172, column: 6
+              S1017=2;
+              S1054=0;
+              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 176, column: 16
+                S1053=0;
+                pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 177, column: 9
                 currsigs.addElement(pusherExtend);
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
               else {
-                S1047=1;
+                S1053=1;
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
             }
             else {
-              switch(S1016){
+              switch(S1022){
                 case 0 : 
-                  switch(S1015){
+                  switch(S1021){
                     case 0 : 
-                      armDest.setPresent();//sysj\ABScontroller.sysj line: 156, column: 9
+                      armDest.setPresent();//sysj\ABScontroller.sysj line: 164, column: 9
                       currsigs.addElement(armDest);
                       active[27]=1;
                       ends[27]=1;
@@ -624,18 +624,18 @@ public class CapLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1016=1;
-                  S1016=0;
-                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 155, column: 16
-                    S1015=0;
-                    armDest.setPresent();//sysj\ABScontroller.sysj line: 156, column: 9
+                  S1022=1;
+                  S1022=0;
+                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 163, column: 16
+                    S1021=0;
+                    armDest.setPresent();//sysj\ABScontroller.sysj line: 164, column: 9
                     currsigs.addElement(armDest);
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
                   }
                   else {
-                    S1015=1;
+                    S1021=1;
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
@@ -647,19 +647,19 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 2 : 
-            if(pusherExtended.getprestatus()){//sysj\ABScontroller.sysj line: 166, column: 12
-              System.out.println("pusherEx");//sysj\ABScontroller.sysj line: 176, column: 6
-              S1011=3;
+            if(pusherExtended.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 174, column: 12
+              System.out.println("pusherEx");//sysj\ABScontroller.sysj line: 184, column: 6
+              S1017=3;
               active[27]=1;
               ends[27]=1;
               tdone[27]=1;
             }
             else {
-              switch(S1048){
+              switch(S1054){
                 case 0 : 
-                  switch(S1047){
+                  switch(S1053){
                     case 0 : 
-                      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 169, column: 9
+                      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 177, column: 9
                       currsigs.addElement(pusherExtend);
                       active[27]=1;
                       ends[27]=1;
@@ -676,18 +676,18 @@ public class CapLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1048=1;
-                  S1048=0;
-                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 168, column: 16
-                    S1047=0;
-                    pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 169, column: 9
+                  S1054=1;
+                  S1054=0;
+                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 176, column: 16
+                    S1053=0;
+                    pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 177, column: 9
                     currsigs.addElement(pusherExtend);
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
                   }
                   else {
-                    S1047=1;
+                    S1053=1;
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
@@ -699,20 +699,20 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 3 : 
-            if(pusherRetracted.getprestatus()){//sysj\ABScontroller.sysj line: 179, column: 12
-              System.out.println("pusherRe");//sysj\ABScontroller.sysj line: 182, column: 6
-              S1011=4;
-              S1082=0;
-              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 187, column: 16
-                S1081=0;
-                armSource.setPresent();//sysj\ABScontroller.sysj line: 188, column: 9
+            if(pusherRetracted.getprestatus()){//sysj\ABScontroller.sysj line: 187, column: 12
+              System.out.println("pusherRe");//sysj\ABScontroller.sysj line: 190, column: 6
+              S1017=4;
+              S1088=0;
+              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 195, column: 16
+                S1087=0;
+                armSource.setPresent();//sysj\ABScontroller.sysj line: 196, column: 9
                 currsigs.addElement(armSource);
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
               else {
-                S1081=1;
+                S1087=1;
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
@@ -726,31 +726,31 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 4 : 
-            if(armAtSource.getprestatus()){//sysj\ABScontroller.sysj line: 185, column: 12
-              System.out.println("armAS");//sysj\ABScontroller.sysj line: 195, column: 6
-              S1011=5;
-              S1114=0;
-              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 200, column: 16
-                S1113=0;
-                vacOn.setPresent();//sysj\ABScontroller.sysj line: 201, column: 9
+            if(armAtSource.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 193, column: 12
+              System.out.println("armAS");//sysj\ABScontroller.sysj line: 203, column: 6
+              S1017=5;
+              S1120=0;
+              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 208, column: 16
+                S1119=0;
+                vacOn.setPresent();//sysj\ABScontroller.sysj line: 209, column: 9
                 currsigs.addElement(vacOn);
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
               else {
-                S1113=1;
+                S1119=1;
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
             }
             else {
-              switch(S1082){
+              switch(S1088){
                 case 0 : 
-                  switch(S1081){
+                  switch(S1087){
                     case 0 : 
-                      armSource.setPresent();//sysj\ABScontroller.sysj line: 188, column: 9
+                      armSource.setPresent();//sysj\ABScontroller.sysj line: 196, column: 9
                       currsigs.addElement(armSource);
                       active[27]=1;
                       ends[27]=1;
@@ -767,18 +767,18 @@ public class CapLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1082=1;
-                  S1082=0;
-                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 187, column: 16
-                    S1081=0;
-                    armSource.setPresent();//sysj\ABScontroller.sysj line: 188, column: 9
+                  S1088=1;
+                  S1088=0;
+                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 195, column: 16
+                    S1087=0;
+                    armSource.setPresent();//sysj\ABScontroller.sysj line: 196, column: 9
                     currsigs.addElement(armSource);
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
                   }
                   else {
-                    S1081=1;
+                    S1087=1;
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
@@ -790,40 +790,40 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 5 : 
-            if(WPgripped.getprestatus()){//sysj\ABScontroller.sysj line: 198, column: 12
-              System.out.println("WPgripped");//sysj\ABScontroller.sysj line: 208, column: 6
-              S1011=6;
-              S1153=0;
-              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 213, column: 16
-                S1152=0;
-                thread31401(tdone,ends);
-                thread31402(tdone,ends);
-                int biggest31403 = 0;
-                if(ends[28]>=biggest31403){
-                  biggest31403=ends[28];
+            if(WPgripped.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 206, column: 12
+              System.out.println("WPgripped");//sysj\ABScontroller.sysj line: 216, column: 6
+              S1017=6;
+              S1159=0;
+              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 221, column: 16
+                S1158=0;
+                thread31407(tdone,ends);
+                thread31408(tdone,ends);
+                int biggest31409 = 0;
+                if(ends[28]>=biggest31409){
+                  biggest31409=ends[28];
                 }
-                if(ends[29]>=biggest31403){
-                  biggest31403=ends[29];
+                if(ends[29]>=biggest31409){
+                  biggest31409=ends[29];
                 }
-                if(biggest31403 == 1){
+                if(biggest31409 == 1){
                   active[27]=1;
                   ends[27]=1;
                   tdone[27]=1;
                 }
               }
               else {
-                S1152=1;
+                S1158=1;
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
             }
             else {
-              switch(S1114){
+              switch(S1120){
                 case 0 : 
-                  switch(S1113){
+                  switch(S1119){
                     case 0 : 
-                      vacOn.setPresent();//sysj\ABScontroller.sysj line: 201, column: 9
+                      vacOn.setPresent();//sysj\ABScontroller.sysj line: 209, column: 9
                       currsigs.addElement(vacOn);
                       active[27]=1;
                       ends[27]=1;
@@ -840,18 +840,18 @@ public class CapLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1114=1;
-                  S1114=0;
-                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 200, column: 16
-                    S1113=0;
-                    vacOn.setPresent();//sysj\ABScontroller.sysj line: 201, column: 9
+                  S1120=1;
+                  S1120=0;
+                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 208, column: 16
+                    S1119=0;
+                    vacOn.setPresent();//sysj\ABScontroller.sysj line: 209, column: 9
                     currsigs.addElement(vacOn);
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
                   }
                   else {
-                    S1113=1;
+                    S1119=1;
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
@@ -863,35 +863,35 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 6 : 
-            if(armAtDest.getprestatus()){//sysj\ABScontroller.sysj line: 211, column: 12
-              System.out.println("armAD");//sysj\ABScontroller.sysj line: 221, column: 6
-              S1011=7;
+            if(armAtDest.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 219, column: 12
+              System.out.println("armAD");//sysj\ABScontroller.sysj line: 229, column: 6
+              S1017=7;
               active[27]=1;
               ends[27]=1;
               tdone[27]=1;
             }
             else {
-              switch(S1153){
+              switch(S1159){
                 case 0 : 
-                  switch(S1152){
+                  switch(S1158){
                     case 0 : 
-                      thread31404(tdone,ends);
-                      thread31405(tdone,ends);
-                      int biggest31406 = 0;
-                      if(ends[28]>=biggest31406){
-                        biggest31406=ends[28];
+                      thread31410(tdone,ends);
+                      thread31411(tdone,ends);
+                      int biggest31412 = 0;
+                      if(ends[28]>=biggest31412){
+                        biggest31412=ends[28];
                       }
-                      if(ends[29]>=biggest31406){
-                        biggest31406=ends[29];
+                      if(ends[29]>=biggest31412){
+                        biggest31412=ends[29];
                       }
-                      if(biggest31406 == 1){
+                      if(biggest31412 == 1){
                         active[27]=1;
                         ends[27]=1;
                         tdone[27]=1;
                       }
                       //FINXME code
-                      if(biggest31406 == 0){
-                        S1153=1;
+                      if(biggest31412 == 0){
+                        S1159=1;
                         active[27]=1;
                         ends[27]=1;
                         tdone[27]=1;
@@ -908,27 +908,27 @@ public class CapLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1153=1;
-                  S1153=0;
-                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 213, column: 16
-                    S1152=0;
-                    thread31407(tdone,ends);
-                    thread31408(tdone,ends);
-                    int biggest31409 = 0;
-                    if(ends[28]>=biggest31409){
-                      biggest31409=ends[28];
+                  S1159=1;
+                  S1159=0;
+                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 221, column: 16
+                    S1158=0;
+                    thread31413(tdone,ends);
+                    thread31414(tdone,ends);
+                    int biggest31415 = 0;
+                    if(ends[28]>=biggest31415){
+                      biggest31415=ends[28];
                     }
-                    if(ends[29]>=biggest31409){
-                      biggest31409=ends[29];
+                    if(ends[29]>=biggest31415){
+                      biggest31415=ends[29];
                     }
-                    if(biggest31409 == 1){
+                    if(biggest31415 == 1){
                       active[27]=1;
                       ends[27]=1;
                       tdone[27]=1;
                     }
                   }
                   else {
-                    S1152=1;
+                    S1158=1;
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
@@ -940,20 +940,20 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 7 : 
-            if(!WPgripped.getprestatus()){//sysj\ABScontroller.sysj line: 224, column: 12
-              System.out.println("!WPgripped");//sysj\ABScontroller.sysj line: 227, column: 6
-              S1011=8;
-              S1222=0;
-              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 232, column: 16
-                S1221=0;
-                armSource.setPresent();//sysj\ABScontroller.sysj line: 233, column: 9
+            if(!WPgripped.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 232, column: 12
+              System.out.println("!WPgripped");//sysj\ABScontroller.sysj line: 235, column: 6
+              S1017=8;
+              S1228=0;
+              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 240, column: 16
+                S1227=0;
+                armSource.setPresent();//sysj\ABScontroller.sysj line: 241, column: 9
                 currsigs.addElement(armSource);
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
               else {
-                S1221=1;
+                S1227=1;
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
@@ -967,33 +967,33 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 8 : 
-            if(armAtSource.getprestatus()){//sysj\ABScontroller.sysj line: 230, column: 12
-              System.out.println("armAS");//sysj\ABScontroller.sysj line: 240, column: 6
-              bottleCapLoaded.setPresent();//sysj\ABScontroller.sysj line: 241, column: 6
+            if(armAtSource.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 238, column: 12
+              System.out.println("armAS");//sysj\ABScontroller.sysj line: 248, column: 6
+              bottleCapLoaded.setPresent();//sysj\ABScontroller.sysj line: 249, column: 6
               currsigs.addElement(bottleCapLoaded);
-              S1011=9;
-              S1254=0;
-              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 244, column: 16
-                S1253=0;
-                armSource.setPresent();//sysj\ABScontroller.sysj line: 245, column: 9
+              S1017=9;
+              S1260=0;
+              if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 252, column: 16
+                S1259=0;
+                armSource.setPresent();//sysj\ABScontroller.sysj line: 253, column: 9
                 currsigs.addElement(armSource);
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
               else {
-                S1253=1;
+                S1259=1;
                 active[27]=1;
                 ends[27]=1;
                 tdone[27]=1;
               }
             }
             else {
-              switch(S1222){
+              switch(S1228){
                 case 0 : 
-                  switch(S1221){
+                  switch(S1227){
                     case 0 : 
-                      armSource.setPresent();//sysj\ABScontroller.sysj line: 233, column: 9
+                      armSource.setPresent();//sysj\ABScontroller.sysj line: 241, column: 9
                       currsigs.addElement(armSource);
                       active[27]=1;
                       ends[27]=1;
@@ -1010,18 +1010,18 @@ public class CapLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1222=1;
-                  S1222=0;
-                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 232, column: 16
-                    S1221=0;
-                    armSource.setPresent();//sysj\ABScontroller.sysj line: 233, column: 9
+                  S1228=1;
+                  S1228=0;
+                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 240, column: 16
+                    S1227=0;
+                    armSource.setPresent();//sysj\ABScontroller.sysj line: 241, column: 9
                     currsigs.addElement(armSource);
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
                   }
                   else {
-                    S1221=1;
+                    S1227=1;
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
@@ -1033,18 +1033,18 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 9 : 
-            if(armAtSource.getprestatus()){//sysj\ABScontroller.sysj line: 242, column: 12
-              S1011=0;
+            if(armAtSource.getprestatus()){//sysj\ABScontroller.sysj line: 250, column: 12
+              S1017=0;
               active[27]=1;
               ends[27]=1;
               tdone[27]=1;
             }
             else {
-              switch(S1254){
+              switch(S1260){
                 case 0 : 
-                  switch(S1253){
+                  switch(S1259){
                     case 0 : 
-                      armSource.setPresent();//sysj\ABScontroller.sysj line: 245, column: 9
+                      armSource.setPresent();//sysj\ABScontroller.sysj line: 253, column: 9
                       currsigs.addElement(armSource);
                       active[27]=1;
                       ends[27]=1;
@@ -1061,18 +1061,18 @@ public class CapLoaderController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S1254=1;
-                  S1254=0;
-                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 244, column: 16
-                    S1253=0;
-                    armSource.setPresent();//sysj\ABScontroller.sysj line: 245, column: 9
+                  S1260=1;
+                  S1260=0;
+                  if(auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 252, column: 16
+                    S1259=0;
+                    armSource.setPresent();//sysj\ABScontroller.sysj line: 253, column: 9
                     currsigs.addElement(armSource);
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
                   }
                   else {
-                    S1253=1;
+                    S1259=1;
                     active[27]=1;
                     ends[27]=1;
                     tdone[27]=1;
@@ -1089,8 +1089,8 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31399(int [] tdone, int [] ends){
-        switch(S1009){
+  public void thread31405(int [] tdone, int [] ends){
+        switch(S1015){
       case 0 : 
         active[26]=0;
         ends[26]=0;
@@ -1098,18 +1098,18 @@ public class CapLoaderController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1001){
+        switch(S1007){
           case 0 : 
-            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 139, column: 9
-              S1001=0;
-              auto_25.setPresent();//sysj\ABScontroller.sysj line: 140, column: 7
+            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 147, column: 9
+              S1007=0;
+              auto_25.setPresent();//sysj\ABScontroller.sysj line: 148, column: 7
               currsigs.addElement(auto_25);
               active[26]=1;
               ends[26]=1;
               tdone[26]=1;
             }
             else {
-              S1001=1;
+              S1007=1;
               active[26]=1;
               ends[26]=1;
               tdone[26]=1;
@@ -1117,17 +1117,17 @@ public class CapLoaderController extends ClockDomain{
             break;
           
           case 1 : 
-            S1001=1;
-            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 139, column: 9
-              S1001=0;
-              auto_25.setPresent();//sysj\ABScontroller.sysj line: 140, column: 7
+            S1007=1;
+            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 147, column: 9
+              S1007=0;
+              auto_25.setPresent();//sysj\ABScontroller.sysj line: 148, column: 7
               currsigs.addElement(auto_25);
               active[26]=1;
               ends[26]=1;
               tdone[26]=1;
             }
             else {
-              S1001=1;
+              S1007=1;
               active[26]=1;
               ends[26]=1;
               tdone[26]=1;
@@ -1140,9 +1140,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31396(int [] tdone, int [] ends){
-        if(!armSourceM.getprestatus() && armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 265, column: 16
-      armDest.setPresent();//sysj\ABScontroller.sysj line: 265, column: 44
+  public void thread31402(int [] tdone, int [] ends){
+        if(!armSourceM.getprestatus() && armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 273, column: 16
+      armDest.setPresent();//sysj\ABScontroller.sysj line: 273, column: 58
       currsigs.addElement(armDest);
       active[34]=0;
       ends[34]=0;
@@ -1155,9 +1155,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31395(int [] tdone, int [] ends){
-        if(vacOnM.getprestatus()){//sysj\ABScontroller.sysj line: 263, column: 16
-      vacOn.setPresent();//sysj\ABScontroller.sysj line: 263, column: 31
+  public void thread31401(int [] tdone, int [] ends){
+        if(vacOnM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 271, column: 16
+      vacOn.setPresent();//sysj\ABScontroller.sysj line: 271, column: 45
       currsigs.addElement(vacOn);
       active[33]=0;
       ends[33]=0;
@@ -1170,9 +1170,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31394(int [] tdone, int [] ends){
-        if(pusherExtendM.getprestatus()){//sysj\ABScontroller.sysj line: 261, column: 16
-      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 261, column: 36
+  public void thread31400(int [] tdone, int [] ends){
+        if(pusherExtendM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 269, column: 16
+      pusherExtend.setPresent();//sysj\ABScontroller.sysj line: 269, column: 50
       currsigs.addElement(pusherExtend);
       active[32]=0;
       ends[32]=0;
@@ -1185,9 +1185,9 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31393(int [] tdone, int [] ends){
-        if(armSourceM.getprestatus() && !armDestM.getprestatus()){//sysj\ABScontroller.sysj line: 259, column: 16
-      armSource.setPresent();//sysj\ABScontroller.sysj line: 259, column: 44
+  public void thread31399(int [] tdone, int [] ends){
+        if(armSourceM.getprestatus() && !armDestM.getprestatus() && !emergency.getprestatus()){//sysj\ABScontroller.sysj line: 267, column: 16
+      armSource.setPresent();//sysj\ABScontroller.sysj line: 267, column: 58
       currsigs.addElement(armSource);
       active[31]=0;
       ends[31]=0;
@@ -1200,63 +1200,63 @@ public class CapLoaderController extends ClockDomain{
     }
   }
 
-  public void thread31392(int [] tdone, int [] ends){
-        S1871=1;
-    S1841=0;
-    if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 258, column: 14
-      thread31393(tdone,ends);
-      thread31394(tdone,ends);
-      thread31395(tdone,ends);
-      thread31396(tdone,ends);
-      int biggest31397 = 0;
-      if(ends[31]>=biggest31397){
-        biggest31397=ends[31];
+  public void thread31398(int [] tdone, int [] ends){
+        S1877=1;
+    S1847=0;
+    if(!auto_25.getprestatus()){//sysj\ABScontroller.sysj line: 266, column: 14
+      thread31399(tdone,ends);
+      thread31400(tdone,ends);
+      thread31401(tdone,ends);
+      thread31402(tdone,ends);
+      int biggest31403 = 0;
+      if(ends[31]>=biggest31403){
+        biggest31403=ends[31];
       }
-      if(ends[32]>=biggest31397){
-        biggest31397=ends[32];
+      if(ends[32]>=biggest31403){
+        biggest31403=ends[32];
       }
-      if(ends[33]>=biggest31397){
-        biggest31397=ends[33];
+      if(ends[33]>=biggest31403){
+        biggest31403=ends[33];
       }
-      if(ends[34]>=biggest31397){
-        biggest31397=ends[34];
+      if(ends[34]>=biggest31403){
+        biggest31403=ends[34];
       }
       //FINXME code
-      if(biggest31397 == 0){
-        S1841=1;
+      if(biggest31403 == 0){
+        S1847=1;
         active[30]=1;
         ends[30]=1;
         tdone[30]=1;
       }
     }
     else {
-      S1841=1;
+      S1847=1;
       active[30]=1;
       ends[30]=1;
       tdone[30]=1;
     }
   }
 
-  public void thread31391(int [] tdone, int [] ends){
-        S1827=1;
-    S1011=0;
+  public void thread31397(int [] tdone, int [] ends){
+        S1833=1;
+    S1017=0;
     active[27]=1;
     ends[27]=1;
     tdone[27]=1;
   }
 
-  public void thread31390(int [] tdone, int [] ends){
-        S1009=1;
-    if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 139, column: 9
-      S1001=0;
-      auto_25.setPresent();//sysj\ABScontroller.sysj line: 140, column: 7
+  public void thread31396(int [] tdone, int [] ends){
+        S1015=1;
+    if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\ABScontroller.sysj line: 147, column: 9
+      S1007=0;
+      auto_25.setPresent();//sysj\ABScontroller.sysj line: 148, column: 7
       currsigs.addElement(auto_25);
       active[26]=1;
       ends[26]=1;
       tdone[26]=1;
     }
     else {
-      S1001=1;
+      S1007=1;
       active[26]=1;
       ends[26]=1;
       tdone[26]=1;
@@ -1270,104 +1270,104 @@ public class CapLoaderController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S8000){
+      switch(S8006){
         case 0 : 
-          S8000=0;
+          S8006=0;
           break RUN;
         
         case 1 : 
-          S8000=2;
-          S8000=2;
-          System.out.println("CapLoaderController");//sysj\ABScontroller.sysj line: 133, column: 2
-          if(mode.getprestatus()){//sysj\ABScontroller.sysj line: 135, column: 11
-            S1873=0;
-            auto_25.setClear();//sysj\ABScontroller.sysj line: 136, column: 4
-            S1872=0;
-            thread31390(tdone,ends);
-            thread31391(tdone,ends);
-            thread31392(tdone,ends);
-            int biggest31398 = 0;
-            if(ends[26]>=biggest31398){
-              biggest31398=ends[26];
+          S8006=2;
+          S8006=2;
+          System.out.println("CapLoaderController");//sysj\ABScontroller.sysj line: 141, column: 2
+          if(mode.getprestatus()){//sysj\ABScontroller.sysj line: 143, column: 11
+            S1879=0;
+            auto_25.setClear();//sysj\ABScontroller.sysj line: 144, column: 4
+            S1878=0;
+            thread31396(tdone,ends);
+            thread31397(tdone,ends);
+            thread31398(tdone,ends);
+            int biggest31404 = 0;
+            if(ends[26]>=biggest31404){
+              biggest31404=ends[26];
             }
-            if(ends[27]>=biggest31398){
-              biggest31398=ends[27];
+            if(ends[27]>=biggest31404){
+              biggest31404=ends[27];
             }
-            if(ends[30]>=biggest31398){
-              biggest31398=ends[30];
+            if(ends[30]>=biggest31404){
+              biggest31404=ends[30];
             }
-            if(biggest31398 == 1){
+            if(biggest31404 == 1){
               active[25]=1;
               ends[25]=1;
               break RUN;
             }
           }
           else {
-            S1873=1;
+            S1879=1;
             active[25]=1;
             ends[25]=1;
             break RUN;
           }
         
         case 2 : 
-          switch(S1873){
+          switch(S1879){
             case 0 : 
-              auto_25.setClear();//sysj\ABScontroller.sysj line: 136, column: 4
-              switch(S1872){
+              auto_25.setClear();//sysj\ABScontroller.sysj line: 144, column: 4
+              switch(S1878){
                 case 0 : 
-                  thread31399(tdone,ends);
-                  thread31400(tdone,ends);
-                  thread31410(tdone,ends);
-                  int biggest31421 = 0;
-                  if(ends[26]>=biggest31421){
-                    biggest31421=ends[26];
+                  thread31405(tdone,ends);
+                  thread31406(tdone,ends);
+                  thread31416(tdone,ends);
+                  int biggest31427 = 0;
+                  if(ends[26]>=biggest31427){
+                    biggest31427=ends[26];
                   }
-                  if(ends[27]>=biggest31421){
-                    biggest31421=ends[27];
+                  if(ends[27]>=biggest31427){
+                    biggest31427=ends[27];
                   }
-                  if(ends[30]>=biggest31421){
-                    biggest31421=ends[30];
+                  if(ends[30]>=biggest31427){
+                    biggest31427=ends[30];
                   }
-                  if(biggest31421 == 1){
+                  if(biggest31427 == 1){
                     active[25]=1;
                     ends[25]=1;
                     break RUN;
                   }
                   //FINXME code
-                  if(biggest31421 == 0){
-                    S1872=1;
+                  if(biggest31427 == 0){
+                    S1878=1;
                     active[25]=1;
                     ends[25]=1;
                     break RUN;
                   }
                 
                 case 1 : 
-                  S1872=1;
-                  if(mode.getprestatus()){//sysj\ABScontroller.sysj line: 135, column: 11
-                    S1873=0;
-                    auto_25.setClear();//sysj\ABScontroller.sysj line: 136, column: 4
-                    S1872=0;
-                    thread31422(tdone,ends);
-                    thread31423(tdone,ends);
-                    thread31424(tdone,ends);
-                    int biggest31430 = 0;
-                    if(ends[26]>=biggest31430){
-                      biggest31430=ends[26];
+                  S1878=1;
+                  if(mode.getprestatus()){//sysj\ABScontroller.sysj line: 143, column: 11
+                    S1879=0;
+                    auto_25.setClear();//sysj\ABScontroller.sysj line: 144, column: 4
+                    S1878=0;
+                    thread31428(tdone,ends);
+                    thread31429(tdone,ends);
+                    thread31430(tdone,ends);
+                    int biggest31436 = 0;
+                    if(ends[26]>=biggest31436){
+                      biggest31436=ends[26];
                     }
-                    if(ends[27]>=biggest31430){
-                      biggest31430=ends[27];
+                    if(ends[27]>=biggest31436){
+                      biggest31436=ends[27];
                     }
-                    if(ends[30]>=biggest31430){
-                      biggest31430=ends[30];
+                    if(ends[30]>=biggest31436){
+                      biggest31436=ends[30];
                     }
-                    if(biggest31430 == 1){
+                    if(biggest31436 == 1){
                       active[25]=1;
                       ends[25]=1;
                       break RUN;
                     }
                   }
                   else {
-                    S1873=1;
+                    S1879=1;
                     active[25]=1;
                     ends[25]=1;
                     break RUN;
@@ -1377,32 +1377,32 @@ public class CapLoaderController extends ClockDomain{
               break;
             
             case 1 : 
-              S1873=1;
-              if(mode.getprestatus()){//sysj\ABScontroller.sysj line: 135, column: 11
-                S1873=0;
-                auto_25.setClear();//sysj\ABScontroller.sysj line: 136, column: 4
-                S1872=0;
-                thread31431(tdone,ends);
-                thread31432(tdone,ends);
-                thread31433(tdone,ends);
-                int biggest31439 = 0;
-                if(ends[26]>=biggest31439){
-                  biggest31439=ends[26];
+              S1879=1;
+              if(mode.getprestatus()){//sysj\ABScontroller.sysj line: 143, column: 11
+                S1879=0;
+                auto_25.setClear();//sysj\ABScontroller.sysj line: 144, column: 4
+                S1878=0;
+                thread31437(tdone,ends);
+                thread31438(tdone,ends);
+                thread31439(tdone,ends);
+                int biggest31445 = 0;
+                if(ends[26]>=biggest31445){
+                  biggest31445=ends[26];
                 }
-                if(ends[27]>=biggest31439){
-                  biggest31439=ends[27];
+                if(ends[27]>=biggest31445){
+                  biggest31445=ends[27];
                 }
-                if(ends[30]>=biggest31439){
-                  biggest31439=ends[30];
+                if(ends[30]>=biggest31445){
+                  biggest31445=ends[30];
                 }
-                if(biggest31439 == 1){
+                if(biggest31445 == 1){
                   active[25]=1;
                   ends[25]=1;
                   break RUN;
                 }
               }
               else {
-                S1873=1;
+                S1879=1;
                 active[25]=1;
                 ends[25]=1;
                 break RUN;

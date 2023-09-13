@@ -304,7 +304,7 @@ BaxterPlant(
 ->
 {
 	System.out.println("BaxterPlant");
-	new Thread(new GUI()).start();
+//	new Thread(new GUI()).start();
 	{//Right Arm
 		loop{
 			present(CMDR && enable){
@@ -395,5 +395,207 @@ BaxterPlant(
 		{loop{present(ROE){System.out.println("RO");} pause;}}
 		||
 		{loop{present(RGE){System.out.println("RG");} pause;}}
+	}
+}
+
+ECSPlant(
+		input List signal tempState,humidityState,lightState,presenceState;
+		input int signal smokeState,closedState;
+		output signal updatep,updates;
+		
+		output signal tempHotE,tempColdE,tempOffE,humidityIncE,humidityRedE,humidityOffE,lightOffE,emergency;
+		output int signal lightOnE;
+		)
+->
+{
+	new Thread(new GUI()).start();
+	{
+		System.out.println("ECSPlant");
+		loop {// Environment Reaction
+			// Synchronously receive all information from controller
+			await(tempState);
+			abort(!tempState){
+				sustain updatep;
+			}
+			await(humidityState);
+			abort(!humidityState){
+				sustain updatep;
+			}
+			await(lightState);
+			abort(!lightState){
+				sustain updatep;
+			}
+			await(presenceState);
+			abort(!presenceState){
+				sustain updatep;
+			}
+			await(closedState);
+			abort(!closedState){
+				sustain updatep;
+			}
+			
+			// For loop sets state of each environment actuator in the plant
+			List tempOut 		= #tempState;
+			List humidityOut 	= #humidityState;
+			List lightOut 		= #lightState;
+			List presence 		= #presenceState;
+			int closed 			= #closedState;
+			for(int i = 0; i < 7; i++) {
+				States.CURR_ZONE = i;
+				if (((int)tempOut.get(i) == 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+					emit tempHotE;
+					await(!tempHotE);
+				} else if (((int)tempOut.get(i) == 2) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+					emit tempColdE;
+					await(!tempColdE);
+				} else {
+					emit tempOffE;
+					await(!tempOffE);
+				}
+				if (((int)humidityOut.get(i) == 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+					emit humidityIncE;
+					await(!humidityIncE);
+				} else if (((int)humidityOut.get(i) == 2) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+					emit humidityRedE;
+					await(!humidityRedE);
+				} else {
+					emit humidityOffE;
+					await(!humidityOffE);
+				}
+				if (((int)lightOut.get(i) > 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+					emit lightOnE(lightOut.get(i));
+					await(!lightOnE);
+				} else {
+					emit lightOffE;
+					await(!lightOffE);
+				}
+				pause;
+			}
+		}
+	}
+	||
+	{// Smoke/Fire Reaction
+		// Smoke/Fire detection reaction separated from other environment conditions since emergency signals should be sent ASAP
+		loop{
+			// Synchronously receive smoke information from controller
+			await(smokeState);
+			abort(!smokeState) {
+				sustain updates;
+			}
+			int smoke = #smokeState;
+			if ((int)smoke == 1) {
+				States.SMOKE_STATE = 1;
+			} else {
+				States.SMOKE_STATE = 0;
+			}
+		}
+	}
+}
+
+SACSPlant(
+		input signal open_door1, open_door2, open_door3, close_door1, close_door2, close_door3, hp1, hp2, hp3, hp4, hp5, hp6, hp7;
+		output signal door1_opened, door2_opened, door3_opened, door1_closed, door2_closed, door3_closed;
+		
+		)
+->
+{
+//	new Thread(new GUI()).start();
+
+	{	
+		while(true) {
+			
+			loop{
+				await(open_door1 || open_door2 || open_door3);
+				{
+					System.out.println("Open Door");
+					
+				}
+			}
+			||
+			
+			loop{
+				await(close_door1 || close_door2 || close_door3);
+				{
+					System.out.println("Close Door");
+					
+				}
+			}
+			
+			||
+			
+			loop{
+				await(hp1);
+				{
+					System.out.println("Human Detected in zone 1");
+				}
+			}
+			||
+			
+			loop{
+				await(hp2);
+				{
+					System.out.println("Human Detected in zone 2");
+				}
+			}
+			||
+			
+			loop{
+				await(hp3);
+				{
+					System.out.println("Human Detected in zone 3");
+				}
+			}
+			||
+			
+			loop{
+				await(hp4);
+				{
+					System.out.println("Human Detected in zone 4");
+				}
+			}
+			||
+			
+			loop{
+				await(hp5);
+				{
+					System.out.println("Human Detected in zone 5");
+				}
+			}
+			||
+			
+			loop{
+				await(hp6);
+				{
+					System.out.println("Human Detected in zone 6");
+				}
+			}
+			||
+			
+			loop{
+				await(hp7);
+				{
+					System.out.println("Human Detected in zone 7");
+				}
+			}
+
+				
+		}
+		
+	}
+	
+	
+	||
+	{// To viz
+		{while(true){present(open_door1){emit door1_opened;}; pause;}}
+		||
+		{while(true){present(open_door2){emit door2_opened;}; pause;}}
+		||
+		{while(true){present(open_door3){emit door3_opened;}; pause;}}
+		||
+		{while(true){present(close_door1){emit door1_closed;} pause;}}
+		||
+		{while(true){present(close_door2){emit door2_closed;} pause;}}
+		||
+		{while(true){present(close_door3){emit door3_closed;} pause;}}
 	}
 }

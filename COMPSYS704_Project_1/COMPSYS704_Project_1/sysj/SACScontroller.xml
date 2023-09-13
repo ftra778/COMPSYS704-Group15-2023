@@ -1,20 +1,20 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SS1" Local="true">
-		<ClockDomain Name="ControllerCD" Class="Controller">
+		<ClockDomain Name="SACSControllerCD" Class="SACSController">
 			
-			<iSignal Name="accessDoor1"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-			<iSignal Name="accessDoor2"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-			<iSignal Name="accessDoor3"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-			<iSignal Name="officeAuthorised"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-			<iSignal Name="ManufacturingAuthorised"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-			<iSignal Name="smokeDetected"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="accessDoor1"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="accessDoor2"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="accessDoor3"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="officeAuthorised"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="ManufacturingAuthorised"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
+			<iSignal Name="smokeDetected"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
 			
-			<oSignal Name="open_door1" To="PlantCD.open_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="open_door2" To="PlantCD.open_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="open_door3" To="PlantCD.open_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="close_door1" To="PlantCD.close_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="close_door2" To="PlantCD.close_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="close_door3" To="PlantCD.close_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="open_door1" To="PlantCD.open_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="open_door2" To="PlantCD.open_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="open_door3" To="PlantCD.open_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="close_door1" To="PlantCD.close_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="close_door2" To="PlantCD.close_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="close_door3" To="PlantCD.close_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
 
 
 		</ClockDomain>

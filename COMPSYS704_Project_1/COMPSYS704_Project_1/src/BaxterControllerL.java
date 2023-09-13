@@ -18,8 +18,8 @@ public class BaxterControllerL extends ClockDomain{
   public Signal emergency = new Signal("emergency", Signal.INPUT);
   public Signal CMDfb = new Signal("CMDfb", Signal.INPUT);
   public Signal CMD = new Signal("CMD", Signal.OUTPUT);
-  private int S31326 = 1;
-  private int S30944 = 1;
+  private int S31332 = 1;
+  private int S30950 = 1;
   
   private int[] ends = new int[67];
   private int[] tdone = new int[67];
@@ -31,25 +31,25 @@ public class BaxterControllerL extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S31326){
+      switch(S31332){
         case 0 : 
-          S31326=0;
+          S31332=0;
           break RUN;
         
         case 1 : 
-          S31326=2;
-          S31326=2;
-          System.out.println("BaxterControllerL");//sysj\ABScontroller.sysj line: 475, column: 2
-          S30944=0;
+          S31332=2;
+          S31332=2;
+          System.out.println("BaxterControllerL");//sysj\ABScontroller.sysj line: 483, column: 2
+          S30950=0;
           active[66]=1;
           ends[66]=1;
           break RUN;
         
         case 2 : 
-          switch(S30944){
+          switch(S30950){
             case 0 : 
-              if(bottleReady.getprestatus()){//sysj\ABScontroller.sysj line: 479, column: 10
-                S30944=1;
+              if(bottleReady.getprestatus()){//sysj\ABScontroller.sysj line: 487, column: 10
+                S30950=1;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
@@ -61,12 +61,12 @@ public class BaxterControllerL extends ClockDomain{
               }
             
             case 1 : 
-              if(!bottleReady.getprestatus()){//sysj\ABScontroller.sysj line: 480, column: 10
-                System.out.println("bottleReadyL");//sysj\ABScontroller.sysj line: 481, column: 4
-                S30944=2;
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 485, column: 5
+              if(!bottleReady.getprestatus()){//sysj\ABScontroller.sysj line: 488, column: 10
+                System.out.println("bottleReadyL");//sysj\ABScontroller.sysj line: 489, column: 4
+                S30950=2;
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 493, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb B");//sysj\ABScontroller.sysj line: 485, column: 5
+                CMD.setValue("limb_moveto left_limb B");//sysj\ABScontroller.sysj line: 493, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
@@ -78,27 +78,27 @@ public class BaxterControllerL extends ClockDomain{
               }
             
             case 2 : 
-              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 484, column: 10
-                S30944=3;
+              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 492, column: 10
+                S30950=3;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
               else {
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 485, column: 5
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 493, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb B");//sysj\ABScontroller.sysj line: 485, column: 5
+                CMD.setValue("limb_moveto left_limb B");//sysj\ABScontroller.sysj line: 493, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
             
             case 3 : 
-              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 487, column: 10
-                S30944=4;
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 491, column: 5
+              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 495, column: 10
+                S30950=4;
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 499, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_gripper left_limb close");//sysj\ABScontroller.sysj line: 491, column: 5
+                CMD.setValue("limb_gripper left_limb close");//sysj\ABScontroller.sysj line: 499, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
@@ -110,27 +110,27 @@ public class BaxterControllerL extends ClockDomain{
               }
             
             case 4 : 
-              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 490, column: 10
-                S30944=5;
+              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 498, column: 10
+                S30950=5;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
               else {
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 491, column: 5
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 499, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_gripper left_limb close");//sysj\ABScontroller.sysj line: 491, column: 5
+                CMD.setValue("limb_gripper left_limb close");//sysj\ABScontroller.sysj line: 499, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
             
             case 5 : 
-              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 493, column: 10
-                S30944=6;
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 497, column: 5
+              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 501, column: 10
+                S30950=6;
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 505, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb C");//sysj\ABScontroller.sysj line: 497, column: 5
+                CMD.setValue("limb_moveto left_limb C");//sysj\ABScontroller.sysj line: 505, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
@@ -142,27 +142,27 @@ public class BaxterControllerL extends ClockDomain{
               }
             
             case 6 : 
-              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 496, column: 10
-                S30944=7;
+              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 504, column: 10
+                S30950=7;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
               else {
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 497, column: 5
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 505, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb C");//sysj\ABScontroller.sysj line: 497, column: 5
+                CMD.setValue("limb_moveto left_limb C");//sysj\ABScontroller.sysj line: 505, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
             
             case 7 : 
-              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 499, column: 10
-                S30944=8;
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 503, column: 5
+              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 507, column: 10
+                S30950=8;
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 511, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb D");//sysj\ABScontroller.sysj line: 503, column: 5
+                CMD.setValue("limb_moveto left_limb D");//sysj\ABScontroller.sysj line: 511, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
@@ -174,27 +174,27 @@ public class BaxterControllerL extends ClockDomain{
               }
             
             case 8 : 
-              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 502, column: 10
-                S30944=9;
+              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 510, column: 10
+                S30950=9;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
               else {
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 503, column: 5
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 511, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb D");//sysj\ABScontroller.sysj line: 503, column: 5
+                CMD.setValue("limb_moveto left_limb D");//sysj\ABScontroller.sysj line: 511, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
             
             case 9 : 
-              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 505, column: 10
-                S30944=10;
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 509, column: 5
+              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 513, column: 10
+                S30950=10;
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 517, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_gripper left_limb open");//sysj\ABScontroller.sysj line: 509, column: 5
+                CMD.setValue("limb_gripper left_limb open");//sysj\ABScontroller.sysj line: 517, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
@@ -206,27 +206,27 @@ public class BaxterControllerL extends ClockDomain{
               }
             
             case 10 : 
-              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 508, column: 10
-                S30944=11;
+              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 516, column: 10
+                S30950=11;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
               else {
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 509, column: 5
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 517, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_gripper left_limb open");//sysj\ABScontroller.sysj line: 509, column: 5
+                CMD.setValue("limb_gripper left_limb open");//sysj\ABScontroller.sysj line: 517, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
             
             case 11 : 
-              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 511, column: 10
-                S30944=12;
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 515, column: 5
+              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 519, column: 10
+                S30950=12;
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 523, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb A");//sysj\ABScontroller.sysj line: 515, column: 5
+                CMD.setValue("limb_moveto left_limb A");//sysj\ABScontroller.sysj line: 523, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
@@ -238,24 +238,24 @@ public class BaxterControllerL extends ClockDomain{
               }
             
             case 12 : 
-              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 514, column: 10
-                S30944=13;
+              if(CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 522, column: 10
+                S30950=13;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
               else {
-                CMD.setPresent();//sysj\ABScontroller.sysj line: 515, column: 5
+                CMD.setPresent();//sysj\ABScontroller.sysj line: 523, column: 5
                 currsigs.addElement(CMD);
-                CMD.setValue("limb_moveto left_limb A");//sysj\ABScontroller.sysj line: 515, column: 5
+                CMD.setValue("limb_moveto left_limb A");//sysj\ABScontroller.sysj line: 523, column: 5
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
               }
             
             case 13 : 
-              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 517, column: 10
-                S30944=0;
+              if(!CMDfb.getprestatus()){//sysj\ABScontroller.sysj line: 525, column: 10
+                S30950=0;
                 active[66]=1;
                 ends[66]=1;
                 break RUN;
