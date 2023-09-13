@@ -1,0 +1,36 @@
+Controller(
+    input signal tableAlignedWithSensor, bottleAtPos5, CapOnBottleAtPos1, rotaryTableTrigger, emergencyStop;
+    output signal turn, stop;
+)
+->{
+    signal readyToTurn; // Moved outside the loop
+    
+    loop{
+        // Wait until the table is aligned and no stop conditions are met
+        await(tableAlignedWithSensor && !CapOnBottleAtPos1 && !emergencyStop && !bottleAtPos5); 
+        trap(T){
+            {sustain readyToTurn;} || {await(emergencyStop || CapOnBottleAtPos1 || bottleAtPos5); exit(T);}
+        }
+        emit stop; 
+    }
+    ||
+
+    loop{
+        await(readyToTurn && rotaryTableTrigger); // Wait until both signals are present
+        
+        trap(T1){
+            {sustain turn;} || {waitl(0.5s); exit(T1);} // Sustain 'turn' for 0.5 seconds
+        }
+        
+        emit stop;
+        await(!readyToTurn || !rotaryTableTrigger);
+    }
+    
+    ||
+    
+    // Handle emergency stop separately to act immediately
+    loop {
+        await(emergencyStop);
+        emit stop;
+    }
+}

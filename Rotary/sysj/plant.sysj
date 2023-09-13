@@ -1,0 +1,36 @@
+import run.GUI;
+
+Plant(
+		input signal turn, stop;
+		output signal turnE, stopE;
+		
+		)
+->
+{
+	new Thread(new GUI()).start();
+
+	{	
+		while(true) {
+			await(turn);
+			{
+				System.out.println("TURN");
+				
+			}
+			await(stop);
+			{
+				System.out.println("STOP");
+				
+			}
+
+		}
+		
+	}
+	
+	
+	||
+	{// To viz
+		{while(true){present(turn){emit turnE;}; pause;}}
+		||
+		{while(true){present(stop){emit stopE;}; pause;}}
+	}
+}

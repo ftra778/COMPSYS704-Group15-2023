@@ -1,0 +1,15 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="PlantCD" Class="Plant">
+		
+			<iSignal Name="turn" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="stop"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+		
+
+			<oSignal Name="turnE" To="UI.turnE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="stopE" To="UI.stopE"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			
+
+		</ClockDomain>
+	</SubSystem>
+</System>

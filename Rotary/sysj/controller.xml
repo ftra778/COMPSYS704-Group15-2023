@@ -1,0 +1,19 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS1" Local="true">
+		<ClockDomain Name="ControllerCD" Class="Controller">
+			
+			<iSignal Name="tableAlignedWithSensor"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleAtPos5"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="CapOnBottleAtPos1"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="rotaryTableTrigger"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="emergencyStop"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			
+			<oSignal Name="turn" To="PlantCD.turn" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="stop" To="PlantCD.stop" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			
+			
+
+		</ClockDomain>
+	</SubSystem>
+</System>
