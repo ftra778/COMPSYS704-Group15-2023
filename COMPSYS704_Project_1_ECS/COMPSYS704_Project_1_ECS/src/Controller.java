@@ -58,43 +58,57 @@ public class Controller extends ClockDomain{
   public Signal presenceState = new Signal("presenceState", Signal.OUTPUT);
   public Signal smokeState = new Signal("smokeState", Signal.OUTPUT);
   public Signal closedState = new Signal("closedState", Signal.OUTPUT);
-  private List envcond_thread_2;//sysj\controller.sysj line: 21, column: 4
-  private int setSmoke_thread_3;//sysj\controller.sysj line: 124, column: 4
-  private List setTemp_thread_2;//sysj\controller.sysj line: 40, column: 5
-  private List setHumidity_thread_2;//sysj\controller.sysj line: 41, column: 5
-  private List setLight_thread_2;//sysj\controller.sysj line: 42, column: 5
-  private List setPresence_thread_2;//sysj\controller.sysj line: 43, column: 5
-  private String timeString_thread_2;//sysj\controller.sysj line: 44, column: 5
-  private int setClosed_thread_2;//sysj\controller.sysj line: 45, column: 5
-  private int j_thread_2;//sysj\controller.sysj line: 48, column: 5
-  private int S12901 = 1;
-  private int S4177 = 1;
+  private int setSmoke_thread_3;//sysj\controller.sysj line: 128, column: 4
+  private List setTemp_thread_2;//sysj\controller.sysj line: 44, column: 5
+  private List setHumidity_thread_2;//sysj\controller.sysj line: 45, column: 5
+  private List setLight_thread_2;//sysj\controller.sysj line: 46, column: 5
+  private List setPresence_thread_2;//sysj\controller.sysj line: 47, column: 5
+  private String timeString_thread_2;//sysj\controller.sysj line: 48, column: 5
+  private int setClosed_thread_2;//sysj\controller.sysj line: 49, column: 5
+  private int j_thread_2;//sysj\controller.sysj line: 52, column: 5
+  private int S6565 = 1;
+  private int S2089 = 1;
   private int S3 = 1;
-  private int S4299 = 1;
-  private int S4181 = 1;
+  private int S2187 = 1;
+  private int S2103 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread12910(int [] tdone, int [] ends){
-        S4299=1;
-        S4181=0;
-    active[3]=1;
-    ends[3]=1;
-    tdone[3]=1;
+  public void thread6574(int [] tdone, int [] ends){
+        S2187=1;
+        if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 135, column: 13
+      setSmoke_thread_3 = 1;//sysj\controller.sysj line: 136, column: 6
+      S2103=0;
+      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      currsigs.addElement(smokeState);
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
+    }
+    else {
+      setSmoke_thread_3 = 0;//sysj\controller.sysj line: 138, column: 6
+      S2103=0;
+      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      currsigs.addElement(smokeState);
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
+    }
   }
 
-  public void thread12909(int [] tdone, int [] ends){
-        S4177=1;
-    envcond_thread_2 = Arrays.asList(20, 22, 40, 50, -5, -1, 30, 50, 90, 100, 0, 5, 400, 10, 2000, 4, 30, 15, 0);//sysj\controller.sysj line: 21, column: 4
+  public void thread6573(int [] tdone, int [] ends){
+        S2089=1;
     S3=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
   }
 
-  public void thread12907(int [] tdone, int [] ends){
-        switch(S4299){
+  public void thread6571(int [] tdone, int [] ends){
+        switch(S2187){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -102,15 +116,18 @@ public class Controller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S4181){
+        switch(S2103){
           case 0 : 
-            if(update.getprestatus()){//sysj\controller.sysj line: 127, column: 11
-              S4181=1;
+            if(updates.getprestatus()){//sysj\controller.sysj line: 142, column: 11
+              S2103=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
+              smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+              currsigs.addElement(smokeState);
+              smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -118,58 +135,27 @@ public class Controller extends ClockDomain{
             break;
           
           case 1 : 
-            if(!update.getprestatus()){//sysj\controller.sysj line: 128, column: 11
-              if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 131, column: 13
-                setSmoke_thread_3 = 1;//sysj\controller.sysj line: 132, column: 6
-                S4181=2;
-                smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
+            if(!updates.getprestatus()){//sysj\controller.sysj line: 145, column: 11
+              if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 135, column: 13
+                setSmoke_thread_3 = 1;//sysj\controller.sysj line: 136, column: 6
+                S2103=0;
+                smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
                 currsigs.addElement(smokeState);
-                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
+                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                setSmoke_thread_3 = 0;//sysj\controller.sysj line: 134, column: 6
-                S4181=2;
-                smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
+                setSmoke_thread_3 = 0;//sysj\controller.sysj line: 138, column: 6
+                S2103=0;
+                smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
                 currsigs.addElement(smokeState);
-                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
+                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
-            }
-            else {
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            break;
-          
-          case 2 : 
-            if(updates.getprestatus()){//sysj\controller.sysj line: 138, column: 11
-              S4181=3;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            else {
-              smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
-              currsigs.addElement(smokeState);
-              smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
-            }
-            break;
-          
-          case 3 : 
-            if(!updates.getprestatus()){//sysj\controller.sysj line: 141, column: 11
-              S4181=0;
-              active[3]=1;
-              ends[3]=1;
-              tdone[3]=1;
             }
             else {
               active[3]=1;
@@ -184,8 +170,8 @@ public class Controller extends ClockDomain{
     }
   }
 
-  public void thread12906(int [] tdone, int [] ends){
-        switch(S4177){
+  public void thread6570(int [] tdone, int [] ends){
+        switch(S2089){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -195,7 +181,7 @@ public class Controller extends ClockDomain{
       case 1 : 
         switch(S3){
           case 0 : 
-            if(update.getprestatus()){//sysj\controller.sysj line: 37, column: 11
+            if(update.getprestatus()){//sysj\controller.sysj line: 41, column: 11
               S3=1;
               active[2]=1;
               ends[2]=1;
@@ -209,115 +195,115 @@ public class Controller extends ClockDomain{
             break;
           
           case 1 : 
-            if(!update.getprestatus()){//sysj\controller.sysj line: 38, column: 11
-              setTemp_thread_2 = Arrays.asList((SIGNAL_Z1_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z1_TEMP.getpreval()).intValue()), (SIGNAL_Z2_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z2_TEMP.getpreval()).intValue()), (SIGNAL_Z3_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z3_TEMP.getpreval()).intValue()), (SIGNAL_Z4_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z4_TEMP.getpreval()).intValue()), (SIGNAL_Z5_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z5_TEMP.getpreval()).intValue()), (SIGNAL_Z6_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z6_TEMP.getpreval()).intValue()), (SIGNAL_Z7_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z7_TEMP.getpreval()).intValue()));//sysj\controller.sysj line: 40, column: 5
-              setHumidity_thread_2 = Arrays.asList((SIGNAL_Z1_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z1_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z2_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z2_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z3_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z3_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z4_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z4_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z5_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z5_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z6_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z6_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z7_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z7_HUMIDITY.getpreval()).intValue()));//sysj\controller.sysj line: 41, column: 5
-              setLight_thread_2 = Arrays.asList((SIGNAL_Z1_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z1_LIGHT.getpreval()).intValue()), (SIGNAL_Z2_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z2_LIGHT.getpreval()).intValue()), (SIGNAL_Z3_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z3_LIGHT.getpreval()).intValue()), (SIGNAL_Z4_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z4_LIGHT.getpreval()).intValue()), (SIGNAL_Z5_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z5_LIGHT.getpreval()).intValue()), (SIGNAL_Z6_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z6_LIGHT.getpreval()).intValue()), (SIGNAL_Z7_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z7_LIGHT.getpreval()).intValue()));//sysj\controller.sysj line: 42, column: 5
-              setPresence_thread_2 = Arrays.asList(false, false, false, false, false, false, false);//sysj\controller.sysj line: 43, column: 5
-              timeString_thread_2 = (time.getpreval() == null ? null : ((String)time.getpreval()));//sysj\controller.sysj line: 44, column: 5
-              setClosed_thread_2 = 0;//sysj\controller.sysj line: 45, column: 5
-              j_thread_2 = 0;//sysj\controller.sysj line: 48, column: 5
-              for(int i_thread_2 = 0; i_thread_2 < setTemp_thread_2.size(); i_thread_2 = i_thread_2 + 1) {//sysj\controller.sysj line: 49, column: 46
-                if((i_thread_2 == 0) || (i_thread_2 == 6)) {//sysj\controller.sysj line: 51, column: 33
-                  j_thread_2 = 0;//sysj\controller.sysj line: 51, column: 35
+            if(!update.getprestatus()){//sysj\controller.sysj line: 42, column: 11
+              setTemp_thread_2 = Arrays.asList((SIGNAL_Z1_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z1_TEMP.getpreval()).intValue()), (SIGNAL_Z2_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z2_TEMP.getpreval()).intValue()), (SIGNAL_Z3_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z3_TEMP.getpreval()).intValue()), (SIGNAL_Z4_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z4_TEMP.getpreval()).intValue()), (SIGNAL_Z5_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z5_TEMP.getpreval()).intValue()), (SIGNAL_Z6_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z6_TEMP.getpreval()).intValue()), (SIGNAL_Z7_TEMP.getpreval() == null ? 0 : ((Integer)SIGNAL_Z7_TEMP.getpreval()).intValue()));//sysj\controller.sysj line: 44, column: 5
+              setHumidity_thread_2 = Arrays.asList((SIGNAL_Z1_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z1_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z2_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z2_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z3_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z3_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z4_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z4_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z5_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z5_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z6_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z6_HUMIDITY.getpreval()).intValue()), (SIGNAL_Z7_HUMIDITY.getpreval() == null ? 0 : ((Integer)SIGNAL_Z7_HUMIDITY.getpreval()).intValue()));//sysj\controller.sysj line: 45, column: 5
+              setLight_thread_2 = Arrays.asList((SIGNAL_Z1_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z1_LIGHT.getpreval()).intValue()), (SIGNAL_Z2_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z2_LIGHT.getpreval()).intValue()), (SIGNAL_Z3_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z3_LIGHT.getpreval()).intValue()), (SIGNAL_Z4_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z4_LIGHT.getpreval()).intValue()), (SIGNAL_Z5_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z5_LIGHT.getpreval()).intValue()), (SIGNAL_Z6_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z6_LIGHT.getpreval()).intValue()), (SIGNAL_Z7_LIGHT.getpreval() == null ? 0 : ((Integer)SIGNAL_Z7_LIGHT.getpreval()).intValue()));//sysj\controller.sysj line: 46, column: 5
+              setPresence_thread_2 = Arrays.asList(false, false, false, false, false, false, false);//sysj\controller.sysj line: 47, column: 5
+              timeString_thread_2 = (time.getpreval() == null ? null : ((String)time.getpreval()));//sysj\controller.sysj line: 48, column: 5
+              setClosed_thread_2 = 0;//sysj\controller.sysj line: 49, column: 5
+              j_thread_2 = 0;//sysj\controller.sysj line: 52, column: 5
+              for(int i_thread_2 = 0; i_thread_2 < setTemp_thread_2.size(); i_thread_2 = i_thread_2 + 1) {//sysj\controller.sysj line: 53, column: 46
+                if((i_thread_2 == 0) || (i_thread_2 == 6)) {//sysj\controller.sysj line: 55, column: 33
+                  j_thread_2 = 0;//sysj\controller.sysj line: 55, column: 35
                 }
-                else {//sysj\controller.sysj line: 51, column: 6
-                  if((i_thread_2 == 1) || (i_thread_2 == 2)) {//sysj\controller.sysj line: 52, column: 38
-                    j_thread_2 = 2;//sysj\controller.sysj line: 52, column: 40
+                else {//sysj\controller.sysj line: 55, column: 6
+                  if((i_thread_2 == 1) || (i_thread_2 == 2)) {//sysj\controller.sysj line: 56, column: 38
+                    j_thread_2 = 2;//sysj\controller.sysj line: 56, column: 40
                   }
-                  else {//sysj\controller.sysj line: 53, column: 18
-                    j_thread_2 = 4;//sysj\controller.sysj line: 53, column: 20
-                  }
-                }
-                if((int)setTemp_thread_2.get(i_thread_2) < (int)envcond_thread_2.get(j_thread_2)) {//sysj\controller.sysj line: 58, column: 58
-                  setTemp_thread_2.set(i_thread_2, 0);//sysj\controller.sysj line: 58, column: 60
-                }
-                else {//sysj\controller.sysj line: 58, column: 6
-                  if((int)setTemp_thread_2.get(i_thread_2) > (int)envcond_thread_2.get(j_thread_2 + 1)) {//sysj\controller.sysj line: 59, column: 63
-                    setTemp_thread_2.set(i_thread_2, 2);//sysj\controller.sysj line: 59, column: 65
-                  }
-                  else {//sysj\controller.sysj line: 60, column: 26
-                    setTemp_thread_2.set(i_thread_2, 1);//sysj\controller.sysj line: 60, column: 28
+                  else {//sysj\controller.sysj line: 57, column: 18
+                    j_thread_2 = 4;//sysj\controller.sysj line: 57, column: 20
                   }
                 }
-                if((int)setHumidity_thread_2.get(i_thread_2) < (int)envcond_thread_2.get(6 + j_thread_2)) {//sysj\controller.sysj line: 65, column: 62
-                  setHumidity_thread_2.set(i_thread_2, 0);//sysj\controller.sysj line: 65, column: 64
+                if((int)setTemp_thread_2.get(i_thread_2) < (int)Labels.envcond.get(j_thread_2)) {//sysj\controller.sysj line: 62, column: 65
+                  setTemp_thread_2.set(i_thread_2, 0);//sysj\controller.sysj line: 62, column: 67
                 }
-                else {//sysj\controller.sysj line: 65, column: 6
-                  if((int)setHumidity_thread_2.get(i_thread_2) > (int)envcond_thread_2.get(6 + j_thread_2 + 1)) {//sysj\controller.sysj line: 66, column: 67
-                    setHumidity_thread_2.set(i_thread_2, 2);//sysj\controller.sysj line: 66, column: 69
+                else {//sysj\controller.sysj line: 62, column: 6
+                  if((int)setTemp_thread_2.get(i_thread_2) > (int)Labels.envcond.get(j_thread_2 + 1)) {//sysj\controller.sysj line: 63, column: 70
+                    setTemp_thread_2.set(i_thread_2, 2);//sysj\controller.sysj line: 63, column: 72
                   }
-                  else {//sysj\controller.sysj line: 67, column: 26
-                    setHumidity_thread_2.set(i_thread_2, 1);//sysj\controller.sysj line: 67, column: 28
+                  else {//sysj\controller.sysj line: 64, column: 26
+                    setTemp_thread_2.set(i_thread_2, 1);//sysj\controller.sysj line: 64, column: 28
                   }
                 }
-                if((int)setLight_thread_2.get(i_thread_2) < (int)envcond_thread_2.get(12 + (j_thread_2 / 2))) {//sysj\controller.sysj line: 71, column: 64
-                  setLight_thread_2.set(i_thread_2, 0);//sysj\controller.sysj line: 71, column: 66
+                if((int)setHumidity_thread_2.get(i_thread_2) < (int)Labels.envcond.get(6 + j_thread_2)) {//sysj\controller.sysj line: 69, column: 68
+                  setHumidity_thread_2.set(i_thread_2, 0);//sysj\controller.sysj line: 69, column: 70
                 }
-                else {//sysj\controller.sysj line: 72, column: 26
-                  setLight_thread_2.set(i_thread_2, ((int)envcond_thread_2.get(12 + (j_thread_2 / 2)) - (int)setLight_thread_2.get(i_thread_2)));//sysj\controller.sysj line: 72, column: 28
+                else {//sysj\controller.sysj line: 69, column: 6
+                  if((int)setHumidity_thread_2.get(i_thread_2) > (int)Labels.envcond.get(6 + j_thread_2 + 1)) {//sysj\controller.sysj line: 70, column: 74
+                    setHumidity_thread_2.set(i_thread_2, 2);//sysj\controller.sysj line: 70, column: 76
+                  }
+                  else {//sysj\controller.sysj line: 71, column: 27
+                    setHumidity_thread_2.set(i_thread_2, 1);//sysj\controller.sysj line: 71, column: 29
+                  }
+                }
+                if((int)setLight_thread_2.get(i_thread_2) < (int)Labels.envcond.get(12 + (j_thread_2 / 2))) {//sysj\controller.sysj line: 75, column: 69
+                  setLight_thread_2.set(i_thread_2, ((int)Labels.envcond.get(12 + (j_thread_2 / 2)) - (int)setLight_thread_2.get(i_thread_2)));//sysj\controller.sysj line: 75, column: 71
+                }
+                else {//sysj\controller.sysj line: 76, column: 26
+                  setLight_thread_2.set(i_thread_2, 0);//sysj\controller.sysj line: 76, column: 28
                 }
               }
-              if((Integer.parseInt(timeString_thread_2.substring(0, 2)) < (int)envcond_thread_2.get(15)) || (Integer.parseInt(timeString_thread_2.substring(0, 2)) > (int)envcond_thread_2.get(17))) {//sysj\controller.sysj line: 78, column: 81
-                setClosed_thread_2 = 1;//sysj\controller.sysj line: 79, column: 6
+              if((Integer.parseInt(timeString_thread_2.substring(0, 2)) < (int)Labels.envcond.get(15)) || (Integer.parseInt(timeString_thread_2.substring(0, 2)) > (int)Labels.envcond.get(17))) {//sysj\controller.sysj line: 82, column: 88
+                setClosed_thread_2 = 1;//sysj\controller.sysj line: 83, column: 6
               }
-              else {//sysj\controller.sysj line: 77, column: 5
-                if((Integer.parseInt(timeString_thread_2.substring(0, 2)) == (int)envcond_thread_2.get(15)) && ((Integer.parseInt(timeString_thread_2.substring(3, 5)) < (int)envcond_thread_2.get(16))) || ((Integer.parseInt(timeString_thread_2.substring(0, 2)) == (int)envcond_thread_2.get(17)) && (Integer.parseInt(timeString_thread_2.substring(3, 5)) > (int)envcond_thread_2.get(18)))) {//sysj\controller.sysj line: 81, column: 157
-                  setClosed_thread_2 = 1;//sysj\controller.sysj line: 82, column: 6
+              else {//sysj\controller.sysj line: 81, column: 5
+                if((Integer.parseInt(timeString_thread_2.substring(0, 2)) == (int)Labels.envcond.get(15)) && ((Integer.parseInt(timeString_thread_2.substring(3, 5)) < (int)Labels.envcond.get(16))) || ((Integer.parseInt(timeString_thread_2.substring(0, 2)) == (int)Labels.envcond.get(17)) && (Integer.parseInt(timeString_thread_2.substring(3, 5)) > (int)Labels.envcond.get(18)))) {//sysj\controller.sysj line: 85, column: 171
+                  setClosed_thread_2 = 1;//sysj\controller.sysj line: 86, column: 6
                 }
-                else {//sysj\controller.sysj line: 83, column: 12
-                  setClosed_thread_2 = 0;//sysj\controller.sysj line: 84, column: 6
+                else {//sysj\controller.sysj line: 87, column: 12
+                  setClosed_thread_2 = 0;//sysj\controller.sysj line: 88, column: 6
                 }
               }
               S3=2;
-              if(SIGNAL_Z1_PRESENCE.getprestatus()){//sysj\controller.sysj line: 89, column: 13
-                setPresence_thread_2.set(0, true);//sysj\controller.sysj line: 89, column: 35
-                if(SIGNAL_Z2_PRESENCE.getprestatus()){//sysj\controller.sysj line: 90, column: 13
-                  setPresence_thread_2.set(1, true);//sysj\controller.sysj line: 90, column: 35
-                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 91, column: 13
-                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 91, column: 35
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+              if(SIGNAL_Z1_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
+                setPresence_thread_2.set(0, true);//sysj\controller.sysj line: 93, column: 35
+                if(SIGNAL_Z2_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
+                  setPresence_thread_2.set(1, true);//sysj\controller.sysj line: 94, column: 35
+                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
+                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -325,44 +311,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -371,46 +357,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -418,44 +404,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -465,48 +451,48 @@ public class Controller extends ClockDomain{
                     }
                   }
                   else {
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -514,44 +500,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -560,46 +546,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -607,44 +593,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -655,50 +641,50 @@ public class Controller extends ClockDomain{
                   }
                 }
                 else {
-                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 91, column: 13
-                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 91, column: 35
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
+                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -706,44 +692,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -752,46 +738,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -799,44 +785,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -846,48 +832,48 @@ public class Controller extends ClockDomain{
                     }
                   }
                   else {
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -895,44 +881,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -941,46 +927,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -988,44 +974,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1037,52 +1023,52 @@ public class Controller extends ClockDomain{
                 }
               }
               else {
-                if(SIGNAL_Z2_PRESENCE.getprestatus()){//sysj\controller.sysj line: 90, column: 13
-                  setPresence_thread_2.set(1, true);//sysj\controller.sysj line: 90, column: 35
-                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 91, column: 13
-                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 91, column: 35
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                if(SIGNAL_Z2_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
+                  setPresence_thread_2.set(1, true);//sysj\controller.sysj line: 94, column: 35
+                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
+                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1090,44 +1076,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1136,46 +1122,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1183,44 +1169,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1230,48 +1216,48 @@ public class Controller extends ClockDomain{
                     }
                   }
                   else {
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1279,44 +1265,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1325,46 +1311,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1372,44 +1358,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1420,50 +1406,50 @@ public class Controller extends ClockDomain{
                   }
                 }
                 else {
-                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 91, column: 13
-                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 91, column: 35
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                  if(SIGNAL_Z3_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
+                    setPresence_thread_2.set(2, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1471,44 +1457,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1517,46 +1503,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1564,44 +1550,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1611,48 +1597,48 @@ public class Controller extends ClockDomain{
                     }
                   }
                   else {
-                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 92, column: 13
-                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 92, column: 35
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                    if(SIGNAL_Z4_PRESENCE.getprestatus()){//sysj\controller.sysj line: 96, column: 13
+                      setPresence_thread_2.set(3, true);//sysj\controller.sysj line: 96, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1660,44 +1646,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1706,46 +1692,46 @@ public class Controller extends ClockDomain{
                       }
                     }
                     else {
-                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 93, column: 13
-                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 93, column: 35
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                      if(SIGNAL_Z5_PRESENCE.getprestatus()){//sysj\controller.sysj line: 97, column: 13
+                        setPresence_thread_2.set(4, true);//sysj\controller.sysj line: 97, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1753,44 +1739,44 @@ public class Controller extends ClockDomain{
                         }
                       }
                       else {
-                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 94, column: 13
-                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 94, column: 35
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                        if(SIGNAL_Z6_PRESENCE.getprestatus()){//sysj\controller.sysj line: 98, column: 13
+                          setPresence_thread_2.set(5, true);//sysj\controller.sysj line: 98, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                         }
                         else {
-                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 95, column: 13
-                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 95, column: 35
+                          if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\controller.sysj line: 99, column: 13
+                            setPresence_thread_2.set(6, true);//sysj\controller.sysj line: 99, column: 35
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
                           }
                           else {
                             S3=3;
-                            tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+                            tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
                             currsigs.addElement(tempState);
-                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+                            tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
                             active[2]=1;
                             ends[2]=1;
                             tdone[2]=1;
@@ -1817,16 +1803,16 @@ public class Controller extends ClockDomain{
             break;
           
           case 3 : 
-            if(updatep.getprestatus()){//sysj\controller.sysj line: 98, column: 11
+            if(updatep.getprestatus()){//sysj\controller.sysj line: 102, column: 11
               S3=4;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              tempState.setPresent();//sysj\controller.sysj line: 99, column: 7
+              tempState.setPresent();//sysj\controller.sysj line: 103, column: 7
               currsigs.addElement(tempState);
-              tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 99, column: 7
+              tempState.setValue(setTemp_thread_2);//sysj\controller.sysj line: 103, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1834,11 +1820,11 @@ public class Controller extends ClockDomain{
             break;
           
           case 4 : 
-            if(!updatep.getprestatus()){//sysj\controller.sysj line: 101, column: 11
+            if(!updatep.getprestatus()){//sysj\controller.sysj line: 105, column: 11
               S3=5;
-              humidityState.setPresent();//sysj\controller.sysj line: 103, column: 7
+              humidityState.setPresent();//sysj\controller.sysj line: 107, column: 7
               currsigs.addElement(humidityState);
-              humidityState.setValue(setHumidity_thread_2);//sysj\controller.sysj line: 103, column: 7
+              humidityState.setValue(setHumidity_thread_2);//sysj\controller.sysj line: 107, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1851,16 +1837,16 @@ public class Controller extends ClockDomain{
             break;
           
           case 5 : 
-            if(updatep.getprestatus()){//sysj\controller.sysj line: 102, column: 11
+            if(updatep.getprestatus()){//sysj\controller.sysj line: 106, column: 11
               S3=6;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              humidityState.setPresent();//sysj\controller.sysj line: 103, column: 7
+              humidityState.setPresent();//sysj\controller.sysj line: 107, column: 7
               currsigs.addElement(humidityState);
-              humidityState.setValue(setHumidity_thread_2);//sysj\controller.sysj line: 103, column: 7
+              humidityState.setValue(setHumidity_thread_2);//sysj\controller.sysj line: 107, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1868,11 +1854,11 @@ public class Controller extends ClockDomain{
             break;
           
           case 6 : 
-            if(!updatep.getprestatus()){//sysj\controller.sysj line: 105, column: 11
+            if(!updatep.getprestatus()){//sysj\controller.sysj line: 109, column: 11
               S3=7;
-              lightState.setPresent();//sysj\controller.sysj line: 107, column: 7
+              lightState.setPresent();//sysj\controller.sysj line: 111, column: 7
               currsigs.addElement(lightState);
-              lightState.setValue(setLight_thread_2);//sysj\controller.sysj line: 107, column: 7
+              lightState.setValue(setLight_thread_2);//sysj\controller.sysj line: 111, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1885,16 +1871,16 @@ public class Controller extends ClockDomain{
             break;
           
           case 7 : 
-            if(updatep.getprestatus()){//sysj\controller.sysj line: 106, column: 11
+            if(updatep.getprestatus()){//sysj\controller.sysj line: 110, column: 11
               S3=8;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              lightState.setPresent();//sysj\controller.sysj line: 107, column: 7
+              lightState.setPresent();//sysj\controller.sysj line: 111, column: 7
               currsigs.addElement(lightState);
-              lightState.setValue(setLight_thread_2);//sysj\controller.sysj line: 107, column: 7
+              lightState.setValue(setLight_thread_2);//sysj\controller.sysj line: 111, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1902,11 +1888,11 @@ public class Controller extends ClockDomain{
             break;
           
           case 8 : 
-            if(!updatep.getprestatus()){//sysj\controller.sysj line: 109, column: 11
+            if(!updatep.getprestatus()){//sysj\controller.sysj line: 113, column: 11
               S3=9;
-              presenceState.setPresent();//sysj\controller.sysj line: 111, column: 7
+              presenceState.setPresent();//sysj\controller.sysj line: 115, column: 7
               currsigs.addElement(presenceState);
-              presenceState.setValue(setPresence_thread_2);//sysj\controller.sysj line: 111, column: 7
+              presenceState.setValue(setPresence_thread_2);//sysj\controller.sysj line: 115, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1919,16 +1905,16 @@ public class Controller extends ClockDomain{
             break;
           
           case 9 : 
-            if(updatep.getprestatus()){//sysj\controller.sysj line: 110, column: 11
+            if(updatep.getprestatus()){//sysj\controller.sysj line: 114, column: 11
               S3=10;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              presenceState.setPresent();//sysj\controller.sysj line: 111, column: 7
+              presenceState.setPresent();//sysj\controller.sysj line: 115, column: 7
               currsigs.addElement(presenceState);
-              presenceState.setValue(setPresence_thread_2);//sysj\controller.sysj line: 111, column: 7
+              presenceState.setValue(setPresence_thread_2);//sysj\controller.sysj line: 115, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1936,11 +1922,11 @@ public class Controller extends ClockDomain{
             break;
           
           case 10 : 
-            if(!updatep.getprestatus()){//sysj\controller.sysj line: 113, column: 11
+            if(!updatep.getprestatus()){//sysj\controller.sysj line: 117, column: 11
               S3=11;
-              closedState.setPresent();//sysj\controller.sysj line: 115, column: 7
+              closedState.setPresent();//sysj\controller.sysj line: 119, column: 7
               currsigs.addElement(closedState);
-              closedState.setValue(setClosed_thread_2);//sysj\controller.sysj line: 115, column: 7
+              closedState.setValue(setClosed_thread_2);//sysj\controller.sysj line: 119, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1953,16 +1939,16 @@ public class Controller extends ClockDomain{
             break;
           
           case 11 : 
-            if(updatep.getprestatus()){//sysj\controller.sysj line: 114, column: 11
+            if(updatep.getprestatus()){//sysj\controller.sysj line: 118, column: 11
               S3=12;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              closedState.setPresent();//sysj\controller.sysj line: 115, column: 7
+              closedState.setPresent();//sysj\controller.sysj line: 119, column: 7
               currsigs.addElement(closedState);
-              closedState.setValue(setClosed_thread_2);//sysj\controller.sysj line: 115, column: 7
+              closedState.setValue(setClosed_thread_2);//sysj\controller.sysj line: 119, column: 7
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1970,7 +1956,7 @@ public class Controller extends ClockDomain{
             break;
           
           case 12 : 
-            if(!updatep.getprestatus()){//sysj\controller.sysj line: 117, column: 11
+            if(!updatep.getprestatus()){//sysj\controller.sysj line: 121, column: 11
               S3=13;
               active[2]=1;
               ends[2]=1;
@@ -1997,17 +1983,32 @@ public class Controller extends ClockDomain{
     }
   }
 
-  public void thread12904(int [] tdone, int [] ends){
-        S4299=1;
-        S4181=0;
-    active[3]=1;
-    ends[3]=1;
-    tdone[3]=1;
+  public void thread6568(int [] tdone, int [] ends){
+        S2187=1;
+        if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 135, column: 13
+      setSmoke_thread_3 = 1;//sysj\controller.sysj line: 136, column: 6
+      S2103=0;
+      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      currsigs.addElement(smokeState);
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
+    }
+    else {
+      setSmoke_thread_3 = 0;//sysj\controller.sysj line: 138, column: 6
+      S2103=0;
+      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      currsigs.addElement(smokeState);
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
+    }
   }
 
-  public void thread12903(int [] tdone, int [] ends){
-        S4177=1;
-    envcond_thread_2 = Arrays.asList(20, 22, 40, 50, -5, -1, 30, 50, 90, 100, 0, 5, 400, 10, 2000, 4, 30, 15, 0);//sysj\controller.sysj line: 21, column: 4
+  public void thread6567(int [] tdone, int [] ends){
+        S2089=1;
     S3=0;
     active[2]=1;
     ends[2]=1;
@@ -2021,56 +2022,56 @@ public class Controller extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S12901){
+      switch(S6565){
         case 0 : 
-          S12901=0;
+          S6565=0;
           break RUN;
         
         case 1 : 
-          S12901=2;
-          S12901=2;
-          thread12903(tdone,ends);
-          thread12904(tdone,ends);
-          int biggest12905 = 0;
-          if(ends[2]>=biggest12905){
-            biggest12905=ends[2];
+          S6565=2;
+          S6565=2;
+          thread6567(tdone,ends);
+          thread6568(tdone,ends);
+          int biggest6569 = 0;
+          if(ends[2]>=biggest6569){
+            biggest6569=ends[2];
           }
-          if(ends[3]>=biggest12905){
-            biggest12905=ends[3];
+          if(ends[3]>=biggest6569){
+            biggest6569=ends[3];
           }
-          if(biggest12905 == 1){
+          if(biggest6569 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread12906(tdone,ends);
-          thread12907(tdone,ends);
-          int biggest12908 = 0;
-          if(ends[2]>=biggest12908){
-            biggest12908=ends[2];
+          thread6570(tdone,ends);
+          thread6571(tdone,ends);
+          int biggest6572 = 0;
+          if(ends[2]>=biggest6572){
+            biggest6572=ends[2];
           }
-          if(ends[3]>=biggest12908){
-            biggest12908=ends[3];
+          if(ends[3]>=biggest6572){
+            biggest6572=ends[3];
           }
-          if(biggest12908 == 1){
+          if(biggest6572 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest12908 == 0){
-            thread12909(tdone,ends);
-            thread12910(tdone,ends);
-            int biggest12911 = 0;
-            if(ends[2]>=biggest12911){
-              biggest12911=ends[2];
+          if(biggest6572 == 0){
+            thread6573(tdone,ends);
+            thread6574(tdone,ends);
+            int biggest6575 = 0;
+            if(ends[2]>=biggest6575){
+              biggest6575=ends[2];
             }
-            if(ends[3]>=biggest12911){
-              biggest12911=ends[3];
+            if(ends[3]>=biggest6575){
+              biggest6575=ends[3];
             }
-            if(biggest12911 == 1){
+            if(biggest6575 == 1){
               active[1]=1;
               ends[1]=1;
               break RUN;

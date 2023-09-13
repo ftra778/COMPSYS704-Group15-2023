@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
@@ -60,7 +61,6 @@ public class Canvas extends JPanel {
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(layout, 0, 0, null);
-		
 		for(int i = 0; i < States.TEMP_STATE.length; i++) {
 			if ((i == 0) || (i == 6)) {
 				if (States.TEMP_STATE[i] == 0) {
@@ -91,10 +91,11 @@ public class Canvas extends JPanel {
 				g.drawImage(humidityDec, x[i] + 100, y[i], null);
 			}
 			
-			if (States.LIGHT_STATE[i] == false) {
+			if (States.LIGHT_STATE[i] == 0) {
 				g.drawImage(lightOff, x[i], y[i] + 50, null);
 			} else {
 				g.drawImage(lightOn, x[i], y[i] + 50, null);
+				g.drawString(Integer.toString(States.LIGHT_STATE[i]) + " lux", x[i], y[i] + 110);	// Display required light intensity to meet ideal condition
 			}
 			
 			if (States.SMOKE_STATE == 0) {

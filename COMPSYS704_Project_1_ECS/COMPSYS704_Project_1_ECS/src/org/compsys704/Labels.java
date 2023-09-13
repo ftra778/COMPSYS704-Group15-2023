@@ -14,7 +14,20 @@ public class Labels {
 	public static final int[] tempbounds 		= {-10,50};
 	public static final int[] humiditybounds 	= {0,100};
 	public static final int[] lightbounds 		= {0,5000};
-	
+	public static final List envcond = Arrays.asList(	20,22,		// Ideal zone 1 & 7 Temperature Range
+														40,50,		// Ideal zone 2 & 3 Temperature Range
+														-5,-1,		// Ideal zone 4, 5, & 6 Temperature Range
+														
+														30,50,		// Ideal zone 1 & 7 Humidity Range
+														90,100,		// Ideal zone 2 & 3 Humidity Range
+														0,5,		// Ideal zone 4, 5, & 6 Humidity Range
+														
+														400,		// Ideal zone 1 & 7 Light Intensity
+														10,			// Ideal zone 2 & 3 Light Intensity
+														2000,		// Ideal zone 4, 5, & 6 Light Intensity
+														
+														4, 30,		// Facility open time
+														15, 0);		// Facility close time
 	
 	// Temperature Labels
 	public static JLabel lz1t = new JLabel();

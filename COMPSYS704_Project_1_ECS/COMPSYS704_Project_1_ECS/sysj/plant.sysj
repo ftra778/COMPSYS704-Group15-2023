@@ -6,7 +6,8 @@ Plant(
 		input int signal smokeState,closedState;
 		output signal updatep,updates;
 		
-		output signal tempHotE,tempColdE,tempOffE,humidityIncE,humidityRedE,humidityOffE,lightOnE,lightOffE;
+		output signal tempHotE,tempColdE,tempOffE,humidityIncE,humidityRedE,humidityOffE,lightOffE;
+		output int signal lightOnE;
 		)
 ->
 {
@@ -63,8 +64,8 @@ Plant(
 					emit humidityOffE;
 					await(!humidityOffE);
 				}
-				if (((int)lightOut.get(i) == 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
-					emit lightOnE;
+				if (((int)lightOut.get(i) > 0) && (((Boolean)presence.get(i) == true) || ((int)closed == 0))) {
+					emit lightOnE(lightOut.get(i));
 					await(!lightOnE);
 				} else {
 					emit lightOffE;

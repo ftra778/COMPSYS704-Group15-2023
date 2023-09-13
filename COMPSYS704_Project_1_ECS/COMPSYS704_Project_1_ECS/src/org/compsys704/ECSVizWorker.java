@@ -1,5 +1,6 @@
 package org.compsys704;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,9 +10,9 @@ public class ECSVizWorker extends Worker{
 	
 	@Override
 	public void setSignal(boolean status) {
-		
+		int j;
 		if (!this.dupe) {
-			this.dupe = true;
+//			this.dupe = true;
 			switch(signame){
 			case "tempHotE":
 				States.TEMP_STATE[States.CURR_ZONE] = 2;
@@ -31,11 +32,14 @@ public class ECSVizWorker extends Worker{
 			case "humidityRedE":
 				States.HUMIDITY_STATE[States.CURR_ZONE] = 0;
 				break;
-			case "lightOnE":
-				States.LIGHT_STATE[States.CURR_ZONE] = true;
+			case "lightOnE":		
+				if((States.CURR_ZONE == 0) || (States.CURR_ZONE == 6)) 			{ j = 0; } 
+				else if ((States.CURR_ZONE == 1) || (States.CURR_ZONE == 2)) 	{ j = 1; } 
+				else 															{ j = 2; }
+				States.LIGHT_STATE[States.CURR_ZONE] = (int)Labels.envcond.get(j+12) - Labels.sliders.get(2).get(States.CURR_ZONE).getValue();
 				break;
 			case "lightOffE":
-				States.LIGHT_STATE[States.CURR_ZONE] = false;
+				States.LIGHT_STATE[States.CURR_ZONE] = 0;
 				break;
 			default: 
 				System.err.println("Wrong sig name : "+signame);
