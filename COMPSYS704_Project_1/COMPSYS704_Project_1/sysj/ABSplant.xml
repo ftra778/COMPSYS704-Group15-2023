@@ -1,0 +1,141 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">		
+		<!-- 	
+		ABS Coordinator Port 			= 10000
+		Conveyor Controller Port		= 11000, Conveyor Plant Port		= 11001, Conveyor Viz Port		= 11002
+		Rotary Controller Table Port	= 12000, Rotary Plant Table Port	= 12001, Rotary Viz Table Port	= 12002
+		Filler Controller Port			= 13000, Filler Plant Port			= 13001, Filler Viz Port		= 13002
+		Cap Loader Controller Port		= 14000, Cap Loader Plant Port		= 14001, Cap Loader Viz Port	= 14002
+		Capper Controller Port			= 15000, Capper Plant Port			= 15001, Capper Viz Port		= 15002
+		Baxter Controller Port			= 16000, Baxter Plant Port			= 16001
+		
+		POS Controller Port				= 30000, POS Plant Port				= 30001, POS Viz Port			= 30002
+		SACS Controller Port			= 40000, SACS Plant Port			= 40001, SACS Viz Port			= 40002
+		ECS Controller Port				= 50000, ECS Plant Port				= 50001, ECS Viz Port			= 50002
+		-->
+		<ClockDomain Name="ConveyorPlantCD" Class="ConveyorPlant">
+			<iSignal Name="ConveyorON" 										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11001" />
+			<iSignal Name="ConveyorOFF" 									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11001" />
+			<iSignal Name="emergencyStopPlant" 								Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11001" />
+			
+
+			<oSignal Name="ConveyorONe" 	To="ConveyorUI.ConveyorONe" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11002" />
+			<oSignal Name="ConveyorOFFe" 	To="ConveyorUI.ConveyorOFFe"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11002" />
+		</ClockDomain>
+		
+		<ClockDomain Name="RotaryPlantCD" Class="RotaryPlant">
+			<iSignal Name="turn" 						Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+			<iSignal Name="stop"    					Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12001" />
+
+			<oSignal Name="turnE" To="RotaryUI.turnE" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12002" />
+			<oSignal Name="stopE" To="RotaryUI.stopE"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12002" />
+		</ClockDomain>
+		
+		<!--<ClockDomain Name="FillerPlantCD" Class="FillerPlant">
+			<iSignal Name="valveInjectorOnOff1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="valveInjectorOnOff2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="valveInjectorOnOff3" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="valveInjectorOnOff4" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			
+			<iSignal Name="valveInletOnOff1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="valveInletOnOff2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="valveInletOnOff3" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="valveInletOnOff4" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			
+			<iSignal Name="dosUnitValveRetract1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="dosUnitValveRetract2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="dosUnitValveRetract3" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="dosUnitValveRetract4" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			
+			<iSignal Name="dosUnitExtend1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="dosUnitExtend2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="dosUnitExtend3" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			<iSignal Name="dosUnitExtend4" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
+			
+			<oSignal Name="dosUnitEvac" To="ControllerCD.dosUnitEvac" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="dosUnitFilled" To="ControllerCD.dosUnitFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="liquidVolumeDetector" To="ControllerCD.liquidVolumeDetector" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			
+			<oSignal Name="dosUnitEvacE" To="UI.dosUnitEvacE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13002" />
+			<oSignal Name="dosUnitFilledE" To="UI.dosUnitFilledE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13002" />
+			<oSignal Name="liquidVolumeDetectorE" To="UI.liquidVolumeDetectorE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13002" />
+		</ClockDomain>-->
+		
+		<ClockDomain Name="CapLoaderPlantCD" Class="CapLoaderPlant">
+			<iSignal Name="pusherExtend" 													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="vacOn"        													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="armSource"    													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="armDest"      													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="enable"       													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="refill"       													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="modeGUI"      													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+
+			<oSignal Name="pusherRetracted" 	To="CapLoaderControllerCD.pusherRetracted" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="pusherExtended"  	To="CapLoaderControllerCD.pusherExtended"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="WPgripped"       	To="CapLoaderControllerCD.WPgripped"       	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="armAtSource"     	To="CapLoaderControllerCD.armAtSource"     	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="armAtDest"       	To="CapLoaderControllerCD.armAtDest"       	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="empty"           	To="CapLoaderControllerCD.empty"           	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="mode"            	To="CapLoaderControllerCD.mode" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+
+			<oSignal Name="pusherRetractedE" 	To="CapLoaderUI.pusherRetractedE" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="pusherExtendedE"  	To="CapLoaderUI.pusherExtendedE" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="WPgrippedE"       	To="CapLoaderUI.WPgrippedE"       			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="armAtSourceE"     	To="CapLoaderUI.armAtSourceE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="armAtDestE"       	To="CapLoaderUI.armAtDestE"       			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="emptyE"           	To="CapLoaderUI.emptyE"           			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+		</ClockDomain>
+		
+		<ClockDomain Name="CapperPlantCD" Class="CapperPlant">
+			<iSignal Name="modeGUI"      												Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			<iSignal Name="enable"       												Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			
+			<oSignal Name="mode"            	To="CapperControllerCD.mode" 			Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			
+			<iSignal Name="bottlePos5"     												Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			
+			<iSignal Name="clampBottle"    												Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			<iSignal Name="gripCap"      												Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			<iSignal Name="lowerCapper" 												Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			<iSignal Name="turnGripperFinal"											Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			<iSignal Name="turnGripperHome" 											Class="com.systemj.ipc.SimpleServer" 	IP="127.0.0.1" Port="15001" />
+			
+			<oSignal Name="gripperClose"  		To="CapperControllerCD.gripperClose"  	Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			<oSignal Name="gripperOpen"  		To="CapperControllerCD.gripperOpen"  	Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			<oSignal Name="clampClose"   		To="CapperControllerCD.clampClose"     	Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			<oSignal Name="clampOpen"  			To="CapperControllerCD.clampOpen"    	Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			<oSignal Name="capperLowered" 		To="CapperControllerCD.capperLowered" 	Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			<oSignal Name="capperRaised"  		To="CapperControllerCD.capperRaised"  	Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			<oSignal Name="gripperAtFinal"  	To="CapperControllerCD.gripperAtFinal"  Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+			<oSignal Name="gripperAtHome"   	To="CapperControllerCD.gripperAtHome"  	Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15000" />
+
+			<oSignal Name="clampCloseE" 		To="CapperUI.clampCloseE" 				Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15002" />
+			<oSignal Name="gripperCloseE" 		To="CapperUI.gripperCloseE" 			Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15002" />
+			<oSignal Name="capperRaisedE"  		To="CapperUI.capperRaisedE"  			Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15002" />
+			<oSignal Name="gripperAtFinalE" 	To="CapperUI.gripperAtFinalE" 			Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15002" />
+			<oSignal Name="gripperAtHomeE"  	To="CapperUI.gripperAtHomeE"  			Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15002" />
+			<oSignal Name="bottlePos5DispE" 	To="CapperUI.bottlePos5DispE" 			Class="com.systemj.ipc.SimpleClient" 	IP="127.0.0.1" Port="15002" />
+		</ClockDomain>
+		
+		<ClockDomain Name="BaxterPlantCD" Class="BaxterPlant">
+			<iSignal Name="CMDR"									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16001" />
+			<iSignal Name="CMDL"   									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16001" />
+			<iSignal Name="enable"  								Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16001" />
+			
+			<oSignal Name="CMDRfb"	To="BaxterControllerRCD.CMDfb"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16000" />
+			<oSignal Name="CMDLfb"  To="BaxterControllerLCD.CMDfb"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16000" />
+			<oSignal Name="LAE"  	To="BaxterUI.LAE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LBE"  	To="BaxterUI.LBE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LCE"  	To="BaxterUI.LCE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LDE"   	To="BaxterUI.LDE"   			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LOE"  	To="BaxterUI.LOE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LGE"   	To="BaxterUI.LGE"   			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RAE"  	To="BaxterUI.RAE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RBE"  	To="BaxterUI.RBE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RCE"   	To="BaxterUI.RCE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RDE"  	To="BaxterUI.RDE"    			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="ROE"   	To="BaxterUI.ROE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RGE"  	To="BaxterUI.RGE"    			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+		</ClockDomain>
+	</SubSystem>
+</System>

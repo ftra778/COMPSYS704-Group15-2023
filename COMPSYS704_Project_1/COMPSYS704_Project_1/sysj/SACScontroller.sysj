@@ -1,0 +1,65 @@
+Controller(
+		input signal accessDoor1, accessDoor2, accessDoor3, officeAuthorised, ManufacturingAuthorised, smokeDetected;
+		output signal open_door1, open_door2, open_door3, close_door1, close_door2, close_door3;
+		)
+->{
+	
+	
+
+	loop{
+		await(officeAuthorised && accessDoor1 && !smokeDetected); // Wait until both signals are present
+			trap(T){
+			
+				{sustain open_door1;} || {waitl(3.0s); exit(T);} // Sustain open_door1 for 3 seconds
+				
+			}
+			emit close_door1;
+		
+			abort(officeAuthorised && accessDoor1) {
+		        await(!open_door1);
+		    }
+		
+		
+	}
+
+||
+	loop{
+		await(ManufacturingAuthorised && accessDoor2 && !smokeDetected);
+		
+		trap(T3){
+			{sustain open_door2;} || {waitl(3.0s); exit(T3);}
+		}
+		emit close_door2;
+		
+		abort(ManufacturingAuthorised && accessDoor2) {
+	        await(!open_door2);
+	    }
+		
+	}
+||
+	loop{
+		await(ManufacturingAuthorised && accessDoor3 && !smokeDetected);
+		
+		trap(T4){
+			{sustain open_door3;} || {waitl(3.0s); exit(T4);}
+		}
+		emit close_door3;
+		
+		abort(ManufacturingAuthorised && accessDoor3) {
+	        await(!open_door3);
+	    }
+		
+	}
+||
+	loop{
+	    await(smokeDetected); // Wait for smokeDetected signal
+	    
+	    trap(T5){
+	    	{sustain open_door3;} || {await(!smokeDetected); exit(T5);}
+	    }
+		{emit close_door1;} || {emit close_door2;} || {emit close_door3;}
+		
+	}
+	
+	
+}

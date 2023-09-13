@@ -1,0 +1,24 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="ECSPlantCD" Class="ECSPlant">
+			<iSignal Name="tempState"    	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="humidityState"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="lightState" 		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="smokeState" 		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="presenceState" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="closedState" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			
+			<oSignal Name="emergency"  		To="ABSCoordinatorCD.emergency" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="updatep"  		To="ECSControllerCD.updatep"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50000" />
+			<oSignal Name="updates"  		To="ECSControllerCD.updates"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50000" />
+			<oSignal Name="tempHotE"  		To="UI.tempHotE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="tempColdE"  		To="UI.tempColdE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="tempOffE"  		To="UI.tempOffE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="humidityIncE"   	To="UI.humidityIncE"   			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="humidityRedE"  	To="UI.humidityRedE"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="humidityOffE"  	To="UI.humidityOffE"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="lightOnE"   		To="UI.lightOnE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="lightOffE"  		To="UI.lightOffE"    			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+		</ClockDomain>
+	</SubSystem>
+</System>

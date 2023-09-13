@@ -1,0 +1,109 @@
+import run.GUI;
+
+CapperPlant(
+		input Integer signal modeGUI;
+		output Integer signal mode;
+
+		input signal clampBottle,gripCap,lowerCapper,turnGripperFinal,turnGripperHome;
+		input signal enable,bottlePos5;
+		output signal clampClose,clampOpen,gripperClose,gripperOpen,capperRaised,capperLowered,gripperAtFinal,gripperAtHome,bottlePos5Disp;
+		output signal clampCloseE,clampOpenE,gripperCloseE,gripperOpenE,capperRaisedE,capperLoweredE,gripperAtFinalE,gripperAtHomeE,bottlePos5DispE;
+		)
+->
+{
+	System.out.println("CapperPlant");
+	new Thread(new GUI()).start();
+
+	{// Bottle Clamp
+		while(true) {
+			abort(clampBottle && enable){
+				sustain clampOpen;
+			}
+			await(!enable);
+			abort(!clampBottle && enable){
+				sustain clampClose;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Gripper Pneumatic
+		while(true) {
+			abort(gripCap && enable){
+				sustain gripperOpen;
+			}
+			await(!enable);
+			abort(!gripCap && enable){
+				sustain gripperClose;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Rotation Pneumatic
+		while(true) {
+			abort(turnGripperFinal && enable){
+				sustain gripperAtHome;
+			}
+			await(!enable);
+			abort(turnGripperHome && enable){
+				sustain gripperAtFinal;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Linear Pneumatic
+		while(true) {
+			abort(lowerCapper && enable){
+				sustain capperRaised;
+			}
+			await(!enable);
+			abort(!lowerCapper && enable){
+				sustain capperLowered;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Display bottle to GUI
+		while(true) {
+			abort(bottlePos5 && capperRaised){
+				halt;
+			}
+			pause;
+			abort(!bottlePos5){
+				sustain bottlePos5Disp;
+			}
+		}
+	}
+	||
+	{// To viz
+		{while(true){present(clampClose){emit clampCloseE;} pause;}}
+		||
+		{while(true){present(clampOpen){emit clampOpenE;} pause;}}
+		||
+		{while(true){present(gripperClose){emit gripperCloseE;} pause;}}
+		||
+		{while(true){present(gripperAtHome){emit gripperAtHomeE;} pause;}}
+		||
+		{while(true){present(capperRaised){emit capperRaisedE;} pause;}}
+		||
+		{while(true){present(capperLowered){emit capperLoweredE;} pause;}}
+		||
+		{while(true){present(gripperAtFinal){emit gripperAtFinalE;} pause;}}
+		||
+		{while(true){present(bottlePos5Disp){emit bottlePos5DispE;} pause;}}
+	}
+	||
+	{// Mode selection
+		{while(true){
+			present(modeGUI){
+				mode = modeGUI;
+				emit mode;
+			}
+			pause;
+		}
+	}
+}
+}

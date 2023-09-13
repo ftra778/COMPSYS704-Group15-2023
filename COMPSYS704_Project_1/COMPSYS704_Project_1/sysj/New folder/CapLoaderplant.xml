@@ -1,0 +1,28 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="CapLoaderPlantCD" Class="CapLoaderPlant">
+			<iSignal Name="pusherExtend" 													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="vacOn"        													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="armSource"    													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="armDest"      													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="enable"       													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="refill"       													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+			<iSignal Name="modeGUI"      													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
+
+			<oSignal Name="pusherRetracted" 	To="CapLoaderControllerCD.pusherRetracted" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="pusherExtended"  	To="CapLoaderControllerCD.pusherExtended"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="WPgripped"       	To="CapLoaderControllerCD.WPgripped"       	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="armAtSource"     	To="CapLoaderControllerCD.armAtSource"     	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="armAtDest"       	To="CapLoaderControllerCD.armAtDest"       	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="empty"           	To="CapLoaderControllerCD.empty"           	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="mode"            	To="CapLoaderControllerCD.mode" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+
+			<oSignal Name="pusherRetractedE" 	To="CapLoaderUI.pusherRetractedE" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="pusherExtendedE"  	To="CapLoaderUI.pusherExtendedE" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="WPgrippedE"       	To="CapLoaderUI.WPgrippedE"       			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="armAtSourceE"     	To="CapLoaderUI.armAtSourceE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="armAtDestE"       	To="CapLoaderUI.armAtDestE"       			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+			<oSignal Name="emptyE"           	To="CapLoaderUI.emptyE"           			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14002" />
+		</ClockDomain>
+	</SubSystem>
+</System>

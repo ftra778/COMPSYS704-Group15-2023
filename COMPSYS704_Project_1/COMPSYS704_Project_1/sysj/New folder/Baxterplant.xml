@@ -1,0 +1,24 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="BaxterPlantCD" Class="BaxterPlant">
+			<iSignal Name="CMDR"									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16001" />
+			<iSignal Name="CMDL"   									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16001" />
+			<iSignal Name="enable"  								Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16001" />
+			
+			<oSignal Name="CMDRfb"	To="BaxterControllerRCD.CMDfb"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16000" />
+			<oSignal Name="CMDLfb"  To="BaxterControllerLCD.CMDfb"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16000" />
+			<oSignal Name="LAE"  	To="BaxterUI.LAE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LBE"  	To="BaxterUI.LBE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LCE"  	To="BaxterUI.LCE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LDE"   	To="BaxterUI.LDE"   			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LOE"  	To="BaxterUI.LOE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="LGE"   	To="BaxterUI.LGE"   			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RAE"  	To="BaxterUI.RAE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RBE"  	To="BaxterUI.RBE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RCE"   	To="BaxterUI.RCE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RDE"  	To="BaxterUI.RDE"    			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="ROE"   	To="BaxterUI.ROE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+			<oSignal Name="RGE"  	To="BaxterUI.RGE"    			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
+		</ClockDomain>
+	</SubSystem>
+</System>

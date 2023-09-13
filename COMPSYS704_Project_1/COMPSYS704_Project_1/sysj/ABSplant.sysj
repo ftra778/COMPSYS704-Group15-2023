@@ -1,0 +1,399 @@
+import run.GUI;
+import org.compsys704.*;
+
+
+ConveyorPlant(
+		input signal ConveyorON, ConveyorOFF, emergencyStopPlant;
+		output signal ConveyorONe, ConveyorOFFe;
+		)
+->
+{
+
+	System.out.println("ConveyorPlant");
+	{	
+		while(true) {
+			await(ConveyorON && !emergencyStopPlant);
+			{
+				System.out.println("Conveyor ON");
+				emit ConveyorONe;
+				
+			}
+			await(ConveyorOFF || emergencyStopPlant);
+			{
+				System.out.println("Conveyor OFF");
+				emit ConveyorOFFe;
+				
+			}
+		}
+	}
+}
+
+RotaryPlant(
+		input signal turn, stop;
+		output signal turnE, stopE;
+		
+		)
+->
+{
+
+	System.out.println("RotaryPlant");
+	{	
+		while(true) {
+			await(turn);
+			{
+				System.out.println("TURN");
+				
+			}
+			await(stop);
+			{
+				System.out.println("STOP");
+				
+			}
+
+		}
+		
+	}
+	
+	
+	||
+	{// To viz
+		{while(true){present(turn){emit turnE;}; pause;}}
+		||
+		{while(true){present(stop){emit stopE;}; pause;}}
+	}
+}
+
+CapLoaderPlant(
+		input signal pusherExtend,vacOn,armSource,armDest;
+		input signal enable,refill;
+		input Integer signal modeGUI;
+		output signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty;
+		output signal pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
+		output Integer signal mode;
+		)
+->
+{
+	System.out.println("CapLoaderPlant");
+
+	signal capDec;
+	int signal capPos;
+	emit capPos(0);
+	{// Arm
+		while(true){
+			abort(armSource && enable){
+				sustain armAtDest;
+			}
+			await(!enable);
+			abort(armDest && enable){
+				sustain armAtSource;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Pusher
+		while(true){
+			abort(pusherExtend && enable){
+				sustain pusherRetracted;
+			}
+			await(!enable);
+			abort(!pusherExtend && enable){
+				sustain pusherExtended;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Vacuum
+		while(true){
+			present(vacOn && armAtSource){
+				if((Integer)#capPos == 1){
+					emit capPos(0);
+					abort(!vacOn){
+						sustain WPgripped; 
+					}
+					present(armAtSource){
+						emit capPos(1);
+					}
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{
+		/*
+		 * Cap positions
+		 * 0 = at Mag
+		 * 1 = at pick-up
+		 */
+		while(true){
+			// At mag
+			abort(empty){
+				while(true){
+						await(pusherRetracted);
+						await(pusherExtended);
+						// At pick-up
+						emit capPos(1);
+						await(pusherRetracted);
+						emit capDec;
+				}
+			}
+			await(refill);
+		}
+	}
+	||
+	{
+		int capcount = 5;
+		while(true){
+			present(capDec){
+				if(capcount > 0)
+					capcount--;
+			}
+			present(refill){
+				capcount = 5;
+			}
+//			present(pusherRetracted){
+				if(capcount == 0)
+					emit empty;
+//			}
+			pause;
+		}
+	}
+	||
+	{// To viz
+		{while(true){present(pusherRetracted){emit pusherRetractedE;} pause;}}
+		||
+		{while(true){present(pusherExtended){emit pusherExtendedE;} pause;}}
+		||
+		{while(true){present(WPgripped){emit WPgrippedE;} pause;}}
+		||
+		{while(true){present(armAtSource){emit armAtSourceE;} pause;}}
+		||
+		{while(true){present(armAtDest){emit armAtDestE;} pause;}}
+		||
+		{while(true){present(empty){emit emptyE;} pause;}}
+	}
+	||
+	{// Mode selection
+		{while(true){
+			present(modeGUI){
+				mode = modeGUI;
+				emit mode;
+			}
+			pause;
+		}
+	}
+}
+}
+
+CapperPlant(
+		input Integer signal modeGUI;
+		output Integer signal mode;
+
+		input signal clampBottle,gripCap,lowerCapper,turnGripperFinal,turnGripperHome;
+		input signal enable,bottlePos5;
+		output signal clampClose,clampOpen,gripperClose,gripperOpen,capperRaised,capperLowered,gripperAtFinal,gripperAtHome,bottlePos5Disp;
+		output signal clampCloseE,clampOpenE,gripperCloseE,gripperOpenE,capperRaisedE,capperLoweredE,gripperAtFinalE,gripperAtHomeE,bottlePos5DispE;
+		)
+->
+{
+	System.out.println("CapperPlant");
+	{// Bottle Clamp
+		while(true) {
+			abort(clampBottle && enable){
+				sustain clampOpen;
+			}
+			await(!enable);
+			abort(!clampBottle && enable){
+				sustain clampClose;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Gripper Pneumatic
+		while(true) {
+			abort(gripCap && enable){
+				sustain gripperOpen;
+			}
+			await(!enable);
+			abort(!gripCap && enable){
+				sustain gripperClose;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Rotation Pneumatic
+		while(true) {
+			abort(turnGripperFinal && enable){
+				sustain gripperAtHome;
+			}
+			await(!enable);
+			abort(turnGripperHome && enable){
+				sustain gripperAtFinal;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Linear Pneumatic
+		while(true) {
+			abort(lowerCapper && enable){
+				sustain capperRaised;
+			}
+			await(!enable);
+			abort(!lowerCapper && enable){
+				sustain capperLowered;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// Display bottle to GUI
+		while(true) {
+			abort(bottlePos5 && capperRaised){
+				halt;
+			}
+			pause;
+			abort(!bottlePos5){
+				sustain bottlePos5Disp;
+			}
+		}
+	}
+	||
+	{// To viz
+		{while(true){present(clampClose){emit clampCloseE;} pause;}}
+		||
+		{while(true){present(clampOpen){emit clampOpenE;} pause;}}
+		||
+		{while(true){present(gripperClose){emit gripperCloseE;} pause;}}
+		||
+		{while(true){present(gripperAtHome){emit gripperAtHomeE;} pause;}}
+		||
+		{while(true){present(capperRaised){emit capperRaisedE;} pause;}}
+		||
+		{while(true){present(capperLowered){emit capperLoweredE;} pause;}}
+		||
+		{while(true){present(gripperAtFinal){emit gripperAtFinalE;} pause;}}
+		||
+		{while(true){present(bottlePos5Disp){emit bottlePos5DispE;} pause;}}
+	}
+	||
+	{// Mode selection
+		{while(true){
+			present(modeGUI){
+				mode = modeGUI;
+				emit mode;
+			}
+			pause;
+		}
+	}
+}
+}
+
+BaxterPlant(
+		input String signal CMDR,CMDL;
+		input signal enable;
+
+		output signal CMDRfb, CMDLfb;
+		output signal LAE, LBE, LCE, LDE, LOE, LGE;
+		output signal RAE, RBE, RCE, RDE, ROE, RGE;
+		)
+->
+{
+	System.out.println("BaxterPlant");
+	new Thread(new GUI()).start();
+	{//Right Arm
+		loop{
+			present(CMDR && enable){
+				await(!enable);
+				if(#CMDR.contains("right_limb")) {
+					if(#CMDR.contains("limb_moveto")) {
+						if(#CMDR.contains("A")) {
+							emit RAE;
+						} else if (#CMDR.contains("B")) {
+							emit RBE;
+						} else if (#CMDR.contains("C")) {
+							emit RCE;
+						} else if (#CMDR.contains("D")) {
+							emit RDE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					} else if(#CMDR.contains("limb_gripper")) {
+						if(#CMDR.contains("open")) {
+							emit ROE;
+						} else if (#CMDR.contains("close")) {
+							emit RGE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					}
+					emit CMDRfb;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{//Right Arm
+		loop{
+			present(CMDL && enable){
+				await(!enable);
+				if(#CMDL.contains("left_limb")) {
+					if(#CMDL.contains("limb_moveto")) {
+						if(#CMDL.contains("A")) {
+							emit LAE;
+						} else if (#CMDL.contains("B")) {
+							emit LBE;
+						} else if (#CMDL.contains("C")) {
+							emit LCE;
+						} else if (#CMDL.contains("D")) {
+							emit LDE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					} else if(#CMDL.contains("limb_gripper")) {
+						if(#CMDL.contains("open")) {
+							emit LOE;
+						} else if (#CMDL.contains("close")) {
+							emit LGE;
+						} else {
+							System.err.println("Incorrect position argument");
+						}
+					}
+					emit CMDLfb;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{
+		{loop{present(LAE){System.out.println("LA");} pause;}}
+		||
+		{loop{present(LBE){System.out.println("LB");} pause;}}
+		||
+		{loop{present(LCE){System.out.println("LC");} pause;}}
+		||
+		{loop{present(LDE){System.out.println("LD");} pause;}}
+		||
+		{loop{present(LOE){System.out.println("LO");} pause;}}
+		||
+		{loop{present(LGE){System.out.println("LG");} pause;}}
+		||
+		{loop{present(RAE){System.out.println("RA");} pause;}}
+		||
+		{loop{present(RBE){System.out.println("RB");} pause;}}
+		||
+		{loop{present(RCE){System.out.println("RC");} pause;}}
+		||
+		{loop{present(RDE){System.out.println("RD");} pause;}}
+		||
+		{loop{present(ROE){System.out.println("RO");} pause;}}
+		||
+		{loop{present(RGE){System.out.println("RG");} pause;}}
+	}
+}

@@ -1,0 +1,178 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS1" Local="true">
+		<!-- 	
+		ABS Coordinator Port 			= 10000
+		Conveyor Controller Port		= 11000, Conveyor Plant Port		= 11001, Conveyor Viz Port		= 11002
+		Rotary Controller Table Port	= 12000, Rotary Plant Table Port	= 12001, Rotary Viz Table Port	= 12002
+		Filler Controller Port			= 13000, Filler Plant Port			= 13001, Filler Viz Port		= 13002
+		Cap Loader Controller Port		= 14000, Cap Loader Plant Port		= 14001, Cap Loader Viz Port	= 14002
+		Capper Controller Port			= 15000, Capper Plant Port			= 15001, Capper Viz Port		= 15002
+		Baxter Controller Port			= 16000, Baxter Plant Port			= 16001
+		
+		POS Controller Port				= 30000, POS Plant Port				= 30001, POS Viz Port			= 30002
+		SACS Controller Port			= 40000, SACS Plant Port			= 40001, SACS Viz Port			= 40002
+		ECS Controller Port				= 50000, ECS Plant Port				= 50001, ECS Viz Port			= 50002
+		-->
+		
+		<ClockDomain Name="ABSCoordinatorCD" Class="ABSCoordinator">
+			<iSignal Name="emergency"  											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="motConveyorOnOff"  									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleFilled"  										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleCapOn"  										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleCapped"  										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="presence"  											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="bottleInTable"  										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			<iSignal Name="orderPOS"  											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			
+			
+			<oSignal Name="emergencyConveyor"      	To="ConveyorControllerCD.emergency"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
+			<oSignal Name="emergencyRotary"       	To="RotaryControllerCD.emergency"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="bottleAtPos1"       		To="RotaryControllerCD.bottleAtPos1"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="bottleAtPos5"       		To="RotaryControllerCD.bottleAtPos5"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="tableAlignedWithSensors"	To="RotaryControllerCD.tableAlignedWithSensors"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="capOnBottleAtPos1"       To="RotaryControllerCD.capOnBottleAtPos1"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="rotaryTableTrigger"      To="RotaryControllerCD.rotaryTableTrigger"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="emergencyFiller"       	To="FillerControllerCD.emergency"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="bottleAtPos2"       		To="FillerControllerCD.bottleAtPos2"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="order"       			To="FillerControllerCD.order"  					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="emergencyCapLoader"      To="CapLoaderControllerCD.emergency"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="bottleAtPos3"       		To="CapLoaderControllerCD.request"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14000" />
+			<oSignal Name="emergencyCapper"       	To="CapperControllerCD.emergency"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15000" />
+			<oSignal Name="bottleAtPos4"       		To="CapperControllerCD.bottleReady"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15000" />
+		</ClockDomain>	
+		
+		<ClockDomain Name="ConveyorControllerCD" Class="ConveyorController">
+			<iSignal Name="emptyBottleReady"         									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+			<iSignal Name="bottleAtPos1"         										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+			<iSignal Name="bottleAtPos5"         										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+			<iSignal Name="bottleLeftPos5"         										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="11000" />
+			<iSignal Name="emergencyStop"         										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			
+			<oSignal Name="bottleInTable" 		To="ABSCoordinatorCD.bottleInTable" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="bottleReady" 		To="BaxterControllerLCD.bottleReady" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+			<oSignal Name="ConveyorON" 			To="ConveyorPlantCD.ConveyorON" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+			<oSignal Name="ConveyorOFF" 		To="ConveyorPlantCD.ConveyorOFF" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+			<oSignal Name="emergencyStopPlant" 	To="ConveyorPlantCD.emergencyStopPlant" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11001" />
+		</ClockDomain>
+		
+		<ClockDomain Name="RotaryControllerCD" Class="RotaryController">
+			<iSignal Name="tableAlignedWithSensor"  		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="bottleAtPos5"         			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="CapOnBottleAtPos1"      	 		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="rotaryTableTrigger"      		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			<iSignal Name="emergencyStop"         			Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="12000" />
+			
+			<oSignal Name="turn" To="RotaryPlantCD.turn" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+			<oSignal Name="stop" To="RotaryPlantCD.stop" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12001" />
+		</ClockDomain>
+		
+		<!--<ClockDomain Name="FillerControllerCD" Class="FillerController">
+			
+			<iSignal Name="liquidRatio" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="emergencyStop" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			
+			<iSignal Name="dosUnitEvac" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="dosUnitFilled" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="liquidVolumeDetector" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+			<iSignal Name="bottleAtPos2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13000" />
+					
+			<oSignal Name="valveInjectorOnOff1" To="PlantCD.valveInjectorOnOff1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="valveInjectorOnOff2" To="PlantCD.valveInjectorOnOff2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="valveInjectorOnOff3" To="PlantCD.valveInjectorOnOff3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="valveInjectorOnOff4" To="PlantCD.valveInjectorOnOff4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			
+			<oSignal Name="valveInletOnOff1" To="PlantCD.valveInletOnOff1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="valveInletOnOff2" To="PlantCD.valveInletOnOff2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="valveInletOnOff3" To="PlantCD.valveInletOnOff3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="valveInletOnOff4" To="PlantCD.valveInletOnOff4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			
+			<oSignal Name="dosUnitValveRetract1" To="PlantCD.dosUnitValveRetract1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="dosUnitValveRetract2" To="PlantCD.dosUnitValveRetract2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="dosUnitValveRetract3" To="PlantCD.dosUnitValveRetract3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="dosUnitValveRetract4" To="PlantCD.dosUnitValveRetract4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			
+			<oSignal Name="dosUnitExtend1" To="PlantCD.dosUnitExtend1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="dosUnitExtend2" To="PlantCD.dosUnitExtend2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="dosUnitExtend3" To="PlantCD.dosUnitExtend3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			<oSignal Name="dosUnitExtend4" To="PlantCD.dosUnitExtend4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			
+			<oSignal Name="bottleFilled" To="ABSCD.bottleFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13001" />
+			
+		</ClockDomain>-->
+		
+		<ClockDomain Name="CapLoaderControllerCD" Class="CapLoaderController">
+			<iSignal Name="emergency"   										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="pusherRetracted" 									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="pusherExtended"  									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="WPgripped"       									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="armAtSource"     									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="armAtDest"       									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="empty"           									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="request"         									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+
+			<oSignal Name="pusherExtend" 	To="CapLoaderPlantCD.pusherExtend" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
+			<oSignal Name="vacOn"        	To="CapLoaderPlantCD.vacOn"        	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
+			<oSignal Name="armSource"    	To="CapLoaderPlantCD.armSource"    	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
+			<oSignal Name="armDest"      	To="CapLoaderPlantCD.armDest"      	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="14001" />
+
+			<iSignal Name="mode"          										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="pusherExtendM" 										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="vacOnM"        										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="armSourceM"    										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			<iSignal Name="armDestM"     										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14000" />
+			
+			<oSignal Name="bottleCapLoaded"	To="ABSCoordinatorCD.bottleCapOn" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+		</ClockDomain>		
+		
+		
+		<ClockDomain Name="CapperControllerCD" Class="CapperController">
+			<iSignal Name="emergency"   											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="mode"          											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="bottleReady"												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			
+			<iSignal Name="gripperClose"  											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="gripperOpen"  											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="clampOpen"  												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="clampClose"												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="capperLowered" 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="capperRaised"   											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="gripperAtFinal"  										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="gripperAtHome"  											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			
+			<oSignal Name="clampBottle"    		To="CapperPlantCD.clampBottle"    	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15001" />
+			<oSignal Name="gripCap"      		To="CapperPlantCD.gripCap"      	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15001" />
+			<oSignal Name="lowerCapper" 		To="CapperPlantCD.lowerCapper" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15001" />
+			<oSignal Name="turnGripperFinal"	To="CapperPlantCD.turnGripperFinal"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15001" />
+			<oSignal Name="turnGripperHome"     To="CapperPlantCD.turnGripperHome"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15001" />
+			<oSignal Name="bottlePos5"     		To="CapperPlantCD.bottlePos5"   	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="15001" />
+			
+			<iSignal Name="clampBottleM"    										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="gripCapM"      											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="lowerCapperM" 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="turnGripperFinalM"										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			<iSignal Name="turnGripperHomeM"    									Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="15000" />
+			
+			<oSignal Name="bottleCapped"		To="ABSCoordinatorCD.bottleCapped" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+		</ClockDomain>
+		
+		
+		<ClockDomain Name="BaxterControllerRCD" 	Class="BaxterControllerR">
+			<iSignal Name="emergency"   						Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			<iSignal Name="bottleReady"    					 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			<iSignal Name="bottleAtPoint" 						Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			<iSignal Name="CMDfb"   							Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			
+			<oSignal Name="emptyBottleReady"	To="ABSCoordinatorCD.emptyBottleReady"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="CMD"  				To="BaxterPlantCD.CMDR"						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16001" />
+		</ClockDomain>
+		<ClockDomain Name="BaxterControllerLCD" 	Class="BaxterControllerL">
+			<iSignal Name="emergency"   						Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			<iSignal Name="bottleReady"     					Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			<iSignal Name="bottleAtPoint" 						Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			<iSignal Name="CMDfb"   							Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="16000" />
+			
+			<oSignal Name="CMD"  			To="BaxterPlantCD.CMDL"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16001" />
+		</ClockDomain>
+	</SubSystem>
+</System>

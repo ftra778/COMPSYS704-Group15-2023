@@ -1,0 +1,520 @@
+import java.util.List;
+import org.compsys704.*;
+
+ABSCoordinator(
+	// ABS Input Signals
+	input signal		emergency,motConveyorOnOff,bottleInTable,bottleFilled,bottleCapOn,bottleCapped;
+	
+	// Other Input Signals
+	input List signal	orderPOS,presence;
+	
+	
+	// ABS Output Signals
+	output signal		rotaryTableTrigger,emergencyConveyor,emergencyRotary,emergencyFiller,emergencyCapLoader,emergencyCapper,emergencyPOS,bottleAtPos1,bottleAtPos2,bottleAtPos3,bottleAtPos4,bottleAtPos5,tableAlignedWithSensors,capOnBottleAtPos1;
+	output List signal	order;
+	
+//	// Other Output Signals
+//	output signal		bottleReady;
+	)
+	->{
+	{// Conveyor
+		{loop{present(bottleInTable) { emit bottleAtPos2;System.out.println("bottleAtPos2"); } pause; }}
+	}
+	||
+	{// Rotary Table
+		{loop{present((bottleInTable && bottleAtPos1) || (bottleFilled && bottleAtPos2) || (bottleCapOn && bottleAtPos3) || (bottleCapped && bottleAtPos4)) { emit rotaryTableTrigger;System.out.println("rotaryTableTrigger"); } pause; }}
+	}
+	||
+//	{// Filler
+//		{loop{present(bottleCapOn) { emit bottleAtPos3;System.out.println("bottleAtPos3"); } pause; }}
+//	}
+//	||
+	{// Cap Loader
+		
+		{loop{present(bottleCapOn) { emit bottleAtPos4;System.out.println("bottleAtPos4"); } pause; }}
+	}
+	||
+	{// Capper
+		
+		{loop{present(bottleCapped) { emit bottleAtPos5;System.out.println("bottleAtPos5"); } pause; }}
+	}
+	||
+	{// Emergency Signals
+	loop{present(emergency) {System.out.println("bottleAtPos4");{ sustain emergencyConveyor; } || { sustain emergencyRotary; } || { sustain emergencyFiller; } || { sustain emergencyCapLoader; } || { sustain emergencyCapper; }} pause; }
+	}
+}
+
+ConveyorController(
+		input signal emptyBottleReady, bottleAtPos1, bottleAtPos5, bottleLeftPos5, emergencyStop;
+		output signal ConveyorON, ConveyorOFF, emergencyStopPlant, bottleReady, bottleInTable;
+		)
+->{
+	System.out.println("ConveyorController");
+	loop{
+		await(bottleLeftPos5 && (emptyBottleReady || bottleAtPos5) && !emergencyStop);
+		
+		trap(T){
+			{sustain ConveyorON;} || {await(bottleAtPos1); exit(T);}
+		}
+		emit ConveyorOFF;
+		
+		abort(bottleLeftPos5 && emptyBottleReady){
+			await(!ConveyorON);
+		}
+		emit bottleInTable;
+	}
+	||
+	// Handle emergency stop separately to act immediately
+	loop {
+		await(emergencyStop);
+		await(!emergencyStop);
+		abort(emergencyStop){
+			sustain emergencyStopPlant;
+		}
+		await(!emergencyStop);
+	}
+}
+
+RotaryController(
+	    input signal tableAlignedWithSensor, bottleAtPos5, CapOnBottleAtPos1, rotaryTableTrigger, emergencyStop;
+	    output signal turn, stop;
+	)
+->{
+	System.out.println("RotaryController");
+    signal readyToTurn; // Moved outside the loop
+    
+    loop{
+        // Wait until the table is aligned and no stop conditions are met
+        await(tableAlignedWithSensor && !CapOnBottleAtPos1 && !emergencyStop && !bottleAtPos5); 
+        trap(T){
+            {sustain readyToTurn;} || {await(emergencyStop || CapOnBottleAtPos1 || bottleAtPos5); exit(T);}
+        }
+        System.out.println("readyToTurn");
+        emit stop;
+    }
+    ||
+
+    loop{
+        await(readyToTurn && rotaryTableTrigger); // Wait until both signals are present
+        System.out.println("rotaryTableTrigger");
+
+        trap(T1){
+            {sustain turn;} || {waitl(0.5s); exit(T1);} // Sustain 'turn' for 0.5 seconds
+        }
+
+        emit stop;
+        await(!readyToTurn || !rotaryTableTrigger);
+    }
+    
+    ||
+    
+    // Handle emergency stop separately to act immediately
+    loop {
+        await(emergencyStop);
+        emit stop;
+    }
+}
+
+//
+//FillerController(
+//
+//		)
+//->{
+//
+//}
+
+CapLoaderController(
+		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,request,emergency;
+		output signal pusherExtend,vacOn,armSource,armDest,bottleCapLoaded;
+		input Integer signal mode;
+		input signal pusherExtendM,vacOnM,armSourceM,armDestM;
+		)
+->{
+	System.out.println("CapLoaderController");
+	loop{
+		present(mode) {
+			signal auto;
+			{ 
+				loop{
+					if((Integer)#mode == 0) { 
+						emit auto;
+						pause; 
+					} else {
+						pause;
+					}
+				}
+			}
+			||
+			{
+				loop{
+					// 1. The arm swivels to the position "extended" if a new workpiece is requested (request).
+					await(request);
+					System.out.println("req");
+					abort(armAtDest) {
+						loop{
+							present(auto){
+								sustain armDest;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+				
+					System.out.println("armAtDest");
+					// 2. The pusher extends and pushes a workpiece out of the magazine.
+					abort(pusherExtended) {
+						loop{
+							present(auto){
+								sustain pusherExtend;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("pusherEx");
+		
+					// 3. The pusher retracts back once it is fully extended.
+					abort(pusherRetracted) {
+						halt;
+					}
+					System.out.println("pusherRe");
+					
+					// 4. The arm swivels back to to the position "retracted"
+					abort(armAtSource) {
+						loop{
+							present(auto){
+								sustain armSource;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("armAS");
+						
+					// 5. The vaccum is switched on (wait until the workplace is securely held, e.g. via WPgripped).
+					abort(WPgripped) {
+						loop{
+							present(auto){
+								sustain vacOn;
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("WPgripped");
+		
+					// 6. The arm swivels to the position "extended", transferring a workpiece to a pick-up zone.
+					abort(armAtDest) {
+						loop{
+							present(auto){
+								{ sustain armDest; } || { sustain vacOn; } 
+							} else {
+								halt;
+							}
+							pause;
+						}
+					}
+					System.out.println("armAD");
+					
+					// 7. The vaccum is switched off (wait until the workpiece is released, e.g. via !WPGripped).
+					abort(!WPgripped) {
+						halt;
+					}
+					System.out.println("!WPgripped");
+					
+					// 8. The arm swivels back to to the position "retracted" so that the cup can be picked up by another machine.
+					abort(armAtSource) {
+						loop{
+							present(auto){
+								sustain armSource;
+							} else {
+								halt;
+							}
+						pause;
+						}
+					}
+					System.out.println("armAS");
+					emit bottleCapLoaded;
+					abort(armAtSource) {
+						loop{
+							present(auto){
+								sustain armSource;
+							} else {
+								halt;
+							}
+						pause;
+						}
+					}
+				}
+			}
+			||
+			{	
+				loop{
+					// If mode is manual
+					present(!auto){
+						{present(armSourceM && !armDestM) 	{ emit armSource; }}
+						||
+						{present(pusherExtendM) 			{ emit pusherExtend; }}
+						||
+						{present(vacOnM) 					{ emit vacOn; }}
+						||
+						{present(!armSourceM && armDestM) 	{ emit armDest; }}
+					}
+					pause;
+				}
+			}
+			pause;
+		} else {
+			pause;
+		}
+	}
+}
+
+CapperController(
+		input signal bottleReady,emergency;
+		input Integer signal mode;
+		
+		input signal clampClose,clampOpen,gripperClose,gripperOpen,capperRaised,capperLowered,gripperAtFinal,gripperAtHome;
+		output signal clampBottle,gripCap,lowerCapper,turnGripperFinal,turnGripperHome,bottlePos5,bottleCapped;
+		input signal clampBottleM,gripCapM,lowerCapperM,turnGripperFinalM,turnGripperHomeM;
+		)
+->{
+	System.out.println("CapperController");
+	loop{
+		present(mode) {
+			signal auto;
+			{ 
+				loop{
+					if((Integer)#mode == 0) { 
+						emit auto;
+						pause; 
+					} else {
+						pause;
+					}
+				}
+			}
+			||
+			{
+				loop{
+					// 1. Check if a bottle is at position 4 (Capper station). If not, wait until one arrives.
+					abort(bottleReady && capperRaised && gripperAtHome) {
+						halt;
+					}
+					System.out.println("bottleReady");
+					
+					// 2. Lower the gripper.
+					abort(capperLowered && clampOpen && gripperOpen) {
+						loop{
+							present(auto){
+								{ sustain turnGripperHome; } || { sustain lowerCapper; } || { sustain bottlePos5; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					
+					// 3. Clamp the bottle & grip the cap.
+					abort(capperLowered && clampClose && !gripperAtFinal && gripperClose) {
+						abort(clampClose && !gripperAtFinal && gripperClose) {
+							loop{
+								present(auto){
+									{ sustain turnGripperHome; } || { sustain lowerCapper; } || { sustain bottlePos5; } || { sustain clampBottle; } || { sustain gripCap; }
+								} else {
+									sustain bottlePos5;
+								}
+								pause;
+							}
+						}
+					}
+					
+					// 4. Twist the gripper.
+					abort(gripperAtFinal && clampClose && gripperClose && !capperRaised) {
+						loop{
+							present(auto){
+								{ sustain turnGripperFinal; } || { sustain gripCap; } || { sustain bottlePos5; } || { sustain clampBottle; } || { sustain lowerCapper; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+
+					// 5. Release cap & unclamp bottle.
+					abort(gripperOpen && !gripperAtHome && clampOpen && !capperRaised) {
+						loop{
+							present(auto){
+								{ sustain turnGripperFinal; } || { sustain bottlePos5; } || { sustain lowerCapper; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					
+					// 6. Untwist the gripper & unclamp the bottle.
+					abort(gripperAtHome && !gripperAtFinal && clampOpen && !capperRaised && gripperOpen) {
+						loop{
+							present(auto){
+								{ sustain turnGripperHome; } || { sustain bottlePos5; } || { sustain lowerCapper; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					
+					// 7. Raise the gripper.
+					abort(capperRaised && clampOpen && gripperOpen) {
+						loop{
+							present(auto){
+								{ sustain turnGripperHome; } || { sustain bottlePos5; }
+							} else {
+								sustain bottlePos5;
+							}
+							pause;
+						}
+					}
+					emit bottlePos5;
+					emit bottlePos5;
+				}
+			}
+			||
+			{	
+				loop{
+					// If mode is manual
+					present(!auto){
+						{present(clampBottleM) 								{ emit clampBottle; }}
+						||
+						{present(gripCapM) 									{ emit gripCap; }}
+						||
+						{present(lowerCapperM) 								{ emit lowerCapper; }}
+						||
+						{present(turnGripperFinalM && !turnGripperHomeM) 	{ emit turnGripperFinal; }}
+						||
+						{present(!turnGripperFinalM && turnGripperHomeM) 	{ emit turnGripperHome; }}
+					}
+					pause;
+				}
+			}
+			pause;
+		} else {
+			pause;
+		}
+	}
+}
+
+BaxterControllerR(
+		input signal bottleReady;
+		input signal bottleAtPoint,emergency;	//Present when a bottle is on the loading table,Present when the arm has reached its destination
+		input signal CMDfb;
+		
+		output signal emptyBottleReady;			
+		output String signal CMD;				//Sends a command to the Baxter
+		)
+->{
+	System.out.println("BaxterControllerR");
+	{//Right Arm
+		loop{
+			//1. Check if a bottle is on the conveyor. If not, wait until it arrives
+			await(bottleReady);
+			await(!bottleReady);
+			System.out.println("bottleReadyR");
+			
+			//2. Lower the arm slightly to the right height (Position B)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb B");
+			}
+			await(!CMDfb);
+	
+			//3. Close the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper right_limb close");
+			}
+			await(!CMDfb);
+	
+			//4. Move the arm to the loading table (Position C)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb C");
+			}
+			await(!CMDfb);
+	
+			//5. Lower the arm to the right height (Position D)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb D");
+			}
+			await(!CMDfb);
+	
+			//6. Open the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper right_limb open");
+			}
+			await(!CMDfb);
+	
+			//7. Move the arm back to the pickup location (Position A)
+			abort(CMDfb){
+				sustain CMD("limb_moveto right_limb A");
+			}
+			await(!CMDfb);
+			emit emptyBottleReady;
+		}
+	}
+}
+
+BaxterControllerL(
+		input signal bottleReady;
+		input signal bottleAtPoint,emergency;	//Present when a bottle is on the conveyor,Present when the arm has reached its destination
+		input signal CMDfb;
+		output String signal CMD;				//Sends a command to the Baxter
+		)
+->{
+	System.out.println("BaxterControllerL");
+	{//Left Arm
+		loop{
+			//1. Check if a bottle is on the loading table. If not, wait until it arrives
+			await(bottleReady);
+			await(!bottleReady);
+			System.out.println("bottleReadyL");
+			
+			//2. Lower the arm slightly to the right height (Position B)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb B");
+			}
+			await(!CMDfb);
+
+			//3. Close the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper left_limb close");
+			}
+			await(!CMDfb);
+			
+			//4. Move the arm to the conveyor, position 1 (Position C)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb C");
+			}
+			await(!CMDfb);
+			
+			//5. Lower the arm to the right height (Position D)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb D");
+			}
+			await(!CMDfb);
+			
+			//6. Open the gripper
+			abort(CMDfb){
+				sustain CMD("limb_gripper left_limb open");
+			}
+			await(!CMDfb);
+			
+			//7. Move the arm back to the pickup location (Position A)
+			abort(CMDfb){
+				sustain CMD("limb_moveto left_limb A");
+			}
+			await(!CMDfb);
+		}
+	}
+}
