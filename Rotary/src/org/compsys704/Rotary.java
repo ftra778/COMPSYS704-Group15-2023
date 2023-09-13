@@ -45,13 +45,13 @@ public class Rotary extends JFrame {
 		
 
 		JCheckBox co = new JCheckBox("Cap on Bottle At Position 1");
-		co.addActionListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.CAPONBOTTLE));
+		co.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.CAPONBOTTLE));
 		
 		JCheckBox as = new JCheckBox("Table aligned with sensor");
-		as.addActionListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.ALIGNEDSENSOR));
+		as.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.ALIGNEDSENSOR));
 		
 		JCheckBox a5 = new JCheckBox("bottle At Pos5");
-		a5.addActionListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.BOTTLEATPOS5));
+		a5.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.BOTTLEATPOS5));
 		
 		
 		JPanel pan = new JPanel(new GridLayout(1, 0));

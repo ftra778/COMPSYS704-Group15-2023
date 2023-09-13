@@ -77,22 +77,22 @@ public class Controller extends ClockDomain{
   
   public void thread6574(int [] tdone, int [] ends){
         S2187=1;
-        if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 135, column: 13
-      setSmoke_thread_3 = 1;//sysj\controller.sysj line: 136, column: 6
+        if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 131, column: 13
+      setSmoke_thread_3 = 1;//sysj\controller.sysj line: 132, column: 6
       S2103=0;
-      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
       currsigs.addElement(smokeState);
-      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
     else {
-      setSmoke_thread_3 = 0;//sysj\controller.sysj line: 138, column: 6
+      setSmoke_thread_3 = 0;//sysj\controller.sysj line: 134, column: 6
       S2103=0;
-      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
       currsigs.addElement(smokeState);
-      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
@@ -118,16 +118,16 @@ public class Controller extends ClockDomain{
       case 1 : 
         switch(S2103){
           case 0 : 
-            if(updates.getprestatus()){//sysj\controller.sysj line: 142, column: 11
+            if(updates.getprestatus()){//sysj\controller.sysj line: 138, column: 11
               S2103=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+              smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
               currsigs.addElement(smokeState);
-              smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+              smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -135,23 +135,23 @@ public class Controller extends ClockDomain{
             break;
           
           case 1 : 
-            if(!updates.getprestatus()){//sysj\controller.sysj line: 145, column: 11
-              if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 135, column: 13
-                setSmoke_thread_3 = 1;//sysj\controller.sysj line: 136, column: 6
+            if(!updates.getprestatus()){//sysj\controller.sysj line: 141, column: 11
+              if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 131, column: 13
+                setSmoke_thread_3 = 1;//sysj\controller.sysj line: 132, column: 6
                 S2103=0;
-                smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+                smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
                 currsigs.addElement(smokeState);
-                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                setSmoke_thread_3 = 0;//sysj\controller.sysj line: 138, column: 6
+                setSmoke_thread_3 = 0;//sysj\controller.sysj line: 134, column: 6
                 S2103=0;
-                smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+                smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
                 currsigs.addElement(smokeState);
-                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+                smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
@@ -1985,22 +1985,22 @@ public class Controller extends ClockDomain{
 
   public void thread6568(int [] tdone, int [] ends){
         S2187=1;
-        if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 135, column: 13
-      setSmoke_thread_3 = 1;//sysj\controller.sysj line: 136, column: 6
+        if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\controller.sysj line: 131, column: 13
+      setSmoke_thread_3 = 1;//sysj\controller.sysj line: 132, column: 6
       S2103=0;
-      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
       currsigs.addElement(smokeState);
-      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
     else {
-      setSmoke_thread_3 = 0;//sysj\controller.sysj line: 138, column: 6
+      setSmoke_thread_3 = 0;//sysj\controller.sysj line: 134, column: 6
       S2103=0;
-      smokeState.setPresent();//sysj\controller.sysj line: 143, column: 7
+      smokeState.setPresent();//sysj\controller.sysj line: 139, column: 7
       currsigs.addElement(smokeState);
-      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 143, column: 7
+      smokeState.setValue(setSmoke_thread_3);//sysj\controller.sysj line: 139, column: 7
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;

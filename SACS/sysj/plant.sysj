@@ -1,7 +1,7 @@
 import run.GUI;
 
 Plant(
-		input signal open_door1, open_door2, open_door3, close_door1, close_door2, close_door3, hp1, hp2, hp3;
+		input signal open_door1, open_door2, open_door3, close_door1, close_door2, close_door3, hp1, hp2, hp3, hp4, hp5, hp6, hp7;
 		output signal door1_opened, door2_opened, door3_opened, door1_closed, door2_closed, door3_closed;
 		
 		)
@@ -11,34 +11,82 @@ Plant(
 
 	{	
 		while(true) {
-			await(open_door1 || open_door2 || open_door3);
-			{
-				System.out.println("Open Door");
-				
+			
+			loop{
+				await(open_door1 || open_door2 || open_door3);
+				{
+					System.out.println("Open Door");
+					
+				}
 			}
-			await(close_door1 || close_door2 || close_door3);
-			{
-				System.out.println("Close Door");
-				
+			||
+			
+			loop{
+				await(close_door1 || close_door2 || close_door3);
+				{
+					System.out.println("Close Door");
+					
+				}
 			}
 			
-			await(hp1);
-			{
-				System.out.println("Human Detected in zone 1 & 7");
-			}
+			||
 			
-			await(hp2);
-			{
-				System.out.println("Human Detected in zone 2 & 3");
+			loop{
+				await(hp1);
+				{
+					System.out.println("Human Detected in zone 1");
+				}
 			}
+			||
 			
-			await(hp3);
-			{
-				System.out.println("Human Detected in zone 4 & 5 & 6");
+			loop{
+				await(hp2);
+				{
+					System.out.println("Human Detected in zone 2");
+				}
+			}
+			||
+			
+			loop{
+				await(hp3);
+				{
+					System.out.println("Human Detected in zone 3");
+				}
+			}
+			||
+			
+			loop{
+				await(hp4);
+				{
+					System.out.println("Human Detected in zone 4");
+				}
+			}
+			||
+			
+			loop{
+				await(hp5);
+				{
+					System.out.println("Human Detected in zone 5");
+				}
+			}
+			||
+			
+			loop{
+				await(hp6);
+				{
+					System.out.println("Human Detected in zone 6");
+				}
+			}
+			||
+			
+			loop{
+				await(hp7);
+				{
+					System.out.println("Human Detected in zone 7");
+				}
 			}
 
-			
-			
+				
 		}
 		
 	}

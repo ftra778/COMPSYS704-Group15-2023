@@ -10,6 +10,10 @@
 			<iSignal Name="hp1"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="hp2"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="hp3"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="hp4"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="hp5"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="hp6"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="hp7"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			
 
 			<oSignal Name="door1_opened" To="UI.door1_opened" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />

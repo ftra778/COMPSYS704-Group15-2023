@@ -8,6 +8,10 @@ public class Ports {
 	public static final String HP1 = "PlantCD.hp1";
 	public static final String HP2 = "PlantCD.hp2";
 	public static final String HP3 = "PlantCD.hp3";
+	public static final String HP4 = "PlantCD.hp4";
+	public static final String HP5 = "PlantCD.hp5";
+	public static final String HP6 = "PlantCD.hp6";
+	public static final String HP7 = "PlantCD.hp7";
 	
 	public static final String SmokeDetected = "ControllerCD.smokeDetected";
 	

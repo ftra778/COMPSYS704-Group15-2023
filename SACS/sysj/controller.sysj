@@ -3,12 +3,15 @@ Controller(
 		output signal open_door1, open_door2, open_door3, close_door1, close_door2, close_door3;
 		)
 ->{
+	
+	
 
 	loop{
-		await(officeAuthorised && accessDoor1); // Wait until both signals are present
-		
+		await(officeAuthorised && accessDoor1 && !smokeDetected); // Wait until both signals are present
 			trap(T){
+			
 				{sustain open_door1;} || {waitl(3.0s); exit(T);} // Sustain open_door1 for 3 seconds
+				
 			}
 			emit close_door1;
 		
@@ -18,39 +21,10 @@ Controller(
 		
 		
 	}
-	||
+
+||
 	loop{
-		await(officeAuthorised && accessDoor2); // Wait until both signals are present
-		
-			trap(T1){
-				{sustain open_door2;} || {waitl(3.0s); exit(T1);} // Sustain open_door1 for 3 seconds
-			}
-			emit close_door2;
-		
-			abort(officeAuthorised && accessDoor1) {
-		        await(!open_door2);
-		    }
-		
-		
-	}
-	||
-	loop{
-		await(officeAuthorised && accessDoor3); // Wait until both signals are present
-		
-			trap(T2){
-				{sustain open_door3;} || {waitl(3.0s); exit(T2);} // Sustain open_door1 for 3 seconds
-			}
-			emit close_door3;
-		
-			abort(officeAuthorised && accessDoor3) {
-		        await(!open_door3);
-		    }
-		
-		
-	}
-	||
-	loop{
-		await(ManufacturingAuthorised && accessDoor2);
+		await(ManufacturingAuthorised && accessDoor2 && !smokeDetected);
 		
 		trap(T3){
 			{sustain open_door2;} || {waitl(3.0s); exit(T3);}
@@ -62,9 +36,9 @@ Controller(
 	    }
 		
 	}
-	||
+||
 	loop{
-		await(ManufacturingAuthorised && accessDoor3);
+		await(ManufacturingAuthorised && accessDoor3 && !smokeDetected);
 		
 		trap(T4){
 			{sustain open_door3;} || {waitl(3.0s); exit(T4);}
@@ -76,14 +50,15 @@ Controller(
 	    }
 		
 	}
-	||
+||
 	loop{
 	    await(smokeDetected); // Wait for smokeDetected signal
-
-	    abort(!smokeDetected){ 
-	        // Open all the doors when smoke is detected. They will remain open as long as smokeDetected signal is present.
-	        {sustain open_door1;} || {sustain open_door2;} || {sustain open_door3;} 
+	    
+	    trap(T5){
+	    	{sustain open_door3;} || {await(!smokeDetected); exit(T5);}
 	    }
+		{emit close_door1;} || {emit close_door2;} || {emit close_door3;}
+		
 	}
 	
 	

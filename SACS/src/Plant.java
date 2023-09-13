@@ -21,155 +21,363 @@ public class Plant extends ClockDomain{
   public Signal hp1 = new Signal("hp1", Signal.INPUT);
   public Signal hp2 = new Signal("hp2", Signal.INPUT);
   public Signal hp3 = new Signal("hp3", Signal.INPUT);
+  public Signal hp4 = new Signal("hp4", Signal.INPUT);
+  public Signal hp5 = new Signal("hp5", Signal.INPUT);
+  public Signal hp6 = new Signal("hp6", Signal.INPUT);
+  public Signal hp7 = new Signal("hp7", Signal.INPUT);
   public Signal door1_opened = new Signal("door1_opened", Signal.OUTPUT);
   public Signal door2_opened = new Signal("door2_opened", Signal.OUTPUT);
   public Signal door3_opened = new Signal("door3_opened", Signal.OUTPUT);
   public Signal door1_closed = new Signal("door1_closed", Signal.OUTPUT);
   public Signal door2_closed = new Signal("door2_closed", Signal.OUTPUT);
   public Signal door3_closed = new Signal("door3_closed", Signal.OUTPUT);
-  private int S1448 = 1;
-  private int S1314 = 1;
-  private int S1284 = 1;
-  private int S1364 = 1;
-  private int S1322 = 1;
-  private int S1316 = 1;
-  private int S1330 = 1;
-  private int S1338 = 1;
-  private int S1346 = 1;
-  private int S1354 = 1;
-  private int S1362 = 1;
+  private int S1432 = 1;
+  private int S1112 = 1;
+  private int S902 = 1;
+  private int S910 = 1;
+  private int S918 = 1;
+  private int S926 = 1;
+  private int S934 = 1;
+  private int S942 = 1;
+  private int S950 = 1;
+  private int S958 = 1;
+  private int S966 = 1;
+  private int S1162 = 1;
+  private int S1120 = 1;
+  private int S1114 = 1;
+  private int S1128 = 1;
+  private int S1136 = 1;
+  private int S1144 = 1;
+  private int S1152 = 1;
+  private int S1160 = 1;
   
-  private int[] ends = new int[10];
-  private int[] tdone = new int[10];
+  private int[] ends = new int[19];
+  private int[] tdone = new int[19];
   
-  public void thread1467(int [] tdone, int [] ends){
-        switch(S1362){
+  public void thread1481(int [] tdone, int [] ends){
+        switch(S1160){
       case 0 : 
-        active[9]=0;
-        ends[9]=0;
-        tdone[9]=1;
+        active[18]=0;
+        ends[18]=0;
+        tdone[18]=1;
         break;
       
       case 1 : 
-        if(close_door3.getprestatus()){//sysj\plant.sysj line: 59, column: 24
-          door3_closed.setPresent();//sysj\plant.sysj line: 59, column: 37
+        if(close_door3.getprestatus()){//sysj\plant.sysj line: 107, column: 24
+          door3_closed.setPresent();//sysj\plant.sysj line: 107, column: 37
           currsigs.addElement(door3_closed);
-          active[9]=1;
-          ends[9]=1;
-          tdone[9]=1;
+          active[18]=1;
+          ends[18]=1;
+          tdone[18]=1;
         }
         else {
-          active[9]=1;
-          ends[9]=1;
-          tdone[9]=1;
+          active[18]=1;
+          ends[18]=1;
+          tdone[18]=1;
         }
         break;
       
     }
+  }
+
+  public void thread1480(int [] tdone, int [] ends){
+        switch(S1152){
+      case 0 : 
+        active[17]=0;
+        ends[17]=0;
+        tdone[17]=1;
+        break;
+      
+      case 1 : 
+        if(close_door2.getprestatus()){//sysj\plant.sysj line: 105, column: 24
+          door2_closed.setPresent();//sysj\plant.sysj line: 105, column: 37
+          currsigs.addElement(door2_closed);
+          active[17]=1;
+          ends[17]=1;
+          tdone[17]=1;
+        }
+        else {
+          active[17]=1;
+          ends[17]=1;
+          tdone[17]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1479(int [] tdone, int [] ends){
+        switch(S1144){
+      case 0 : 
+        active[16]=0;
+        ends[16]=0;
+        tdone[16]=1;
+        break;
+      
+      case 1 : 
+        if(close_door1.getprestatus()){//sysj\plant.sysj line: 103, column: 24
+          door1_closed.setPresent();//sysj\plant.sysj line: 103, column: 37
+          currsigs.addElement(door1_closed);
+          active[16]=1;
+          ends[16]=1;
+          tdone[16]=1;
+        }
+        else {
+          active[16]=1;
+          ends[16]=1;
+          tdone[16]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1478(int [] tdone, int [] ends){
+        switch(S1136){
+      case 0 : 
+        active[15]=0;
+        ends[15]=0;
+        tdone[15]=1;
+        break;
+      
+      case 1 : 
+        if(open_door3.getprestatus()){//sysj\plant.sysj line: 101, column: 24
+          door3_opened.setPresent();//sysj\plant.sysj line: 101, column: 36
+          currsigs.addElement(door3_opened);
+          ;//sysj\plant.sysj line: 101, column: 55
+          active[15]=1;
+          ends[15]=1;
+          tdone[15]=1;
+        }
+        else {
+          ;//sysj\plant.sysj line: 101, column: 55
+          active[15]=1;
+          ends[15]=1;
+          tdone[15]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1477(int [] tdone, int [] ends){
+        switch(S1128){
+      case 0 : 
+        active[14]=0;
+        ends[14]=0;
+        tdone[14]=1;
+        break;
+      
+      case 1 : 
+        if(open_door2.getprestatus()){//sysj\plant.sysj line: 99, column: 24
+          door2_opened.setPresent();//sysj\plant.sysj line: 99, column: 36
+          currsigs.addElement(door2_opened);
+          ;//sysj\plant.sysj line: 99, column: 55
+          active[14]=1;
+          ends[14]=1;
+          tdone[14]=1;
+        }
+        else {
+          ;//sysj\plant.sysj line: 99, column: 55
+          active[14]=1;
+          ends[14]=1;
+          tdone[14]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1476(int [] tdone, int [] ends){
+        switch(S1120){
+      case 0 : 
+        active[13]=0;
+        ends[13]=0;
+        tdone[13]=1;
+        break;
+      
+      case 1 : 
+        switch(S1114){
+          case 0 : 
+            S1114=0;
+            if(open_door1.getprestatus()){//sysj\plant.sysj line: 97, column: 24
+              door1_opened.setPresent();//sysj\plant.sysj line: 97, column: 36
+              currsigs.addElement(door1_opened);
+              ;//sysj\plant.sysj line: 97, column: 55
+              S1114=1;
+              active[13]=1;
+              ends[13]=1;
+              tdone[13]=1;
+            }
+            else {
+              ;//sysj\plant.sysj line: 97, column: 55
+              S1114=1;
+              active[13]=1;
+              ends[13]=1;
+              tdone[13]=1;
+            }
+            break;
+          
+          case 1 : 
+            S1114=1;
+            S1114=0;
+            if(open_door1.getprestatus()){//sysj\plant.sysj line: 97, column: 24
+              door1_opened.setPresent();//sysj\plant.sysj line: 97, column: 36
+              currsigs.addElement(door1_opened);
+              ;//sysj\plant.sysj line: 97, column: 55
+              S1114=1;
+              active[13]=1;
+              ends[13]=1;
+              tdone[13]=1;
+            }
+            else {
+              ;//sysj\plant.sysj line: 97, column: 55
+              S1114=1;
+              active[13]=1;
+              ends[13]=1;
+              tdone[13]=1;
+            }
+            break;
+          
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1475(int [] tdone, int [] ends){
+        switch(S1162){
+      case 0 : 
+        active[12]=0;
+        ends[12]=0;
+        tdone[12]=1;
+        break;
+      
+      case 1 : 
+        thread1476(tdone,ends);
+        thread1477(tdone,ends);
+        thread1478(tdone,ends);
+        thread1479(tdone,ends);
+        thread1480(tdone,ends);
+        thread1481(tdone,ends);
+        int biggest1482 = 0;
+        if(ends[13]>=biggest1482){
+          biggest1482=ends[13];
+        }
+        if(ends[14]>=biggest1482){
+          biggest1482=ends[14];
+        }
+        if(ends[15]>=biggest1482){
+          biggest1482=ends[15];
+        }
+        if(ends[16]>=biggest1482){
+          biggest1482=ends[16];
+        }
+        if(ends[17]>=biggest1482){
+          biggest1482=ends[17];
+        }
+        if(ends[18]>=biggest1482){
+          biggest1482=ends[18];
+        }
+        if(biggest1482 == 1){
+          active[12]=1;
+          ends[12]=1;
+          tdone[12]=1;
+        }
+        //FINXME code
+        if(biggest1482 == 0){
+          S1162=0;
+          active[12]=0;
+          ends[12]=0;
+          tdone[12]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1473(int [] tdone, int [] ends){
+        S966=1;
+    active[11]=1;
+    ends[11]=1;
+    tdone[11]=1;
+  }
+
+  public void thread1472(int [] tdone, int [] ends){
+        S958=1;
+    active[10]=1;
+    ends[10]=1;
+    tdone[10]=1;
+  }
+
+  public void thread1471(int [] tdone, int [] ends){
+        S950=1;
+    active[9]=1;
+    ends[9]=1;
+    tdone[9]=1;
+  }
+
+  public void thread1470(int [] tdone, int [] ends){
+        S942=1;
+    active[8]=1;
+    ends[8]=1;
+    tdone[8]=1;
+  }
+
+  public void thread1469(int [] tdone, int [] ends){
+        S934=1;
+    active[7]=1;
+    ends[7]=1;
+    tdone[7]=1;
+  }
+
+  public void thread1468(int [] tdone, int [] ends){
+        S926=1;
+    active[6]=1;
+    ends[6]=1;
+    tdone[6]=1;
+  }
+
+  public void thread1467(int [] tdone, int [] ends){
+        S918=1;
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
   }
 
   public void thread1466(int [] tdone, int [] ends){
-        switch(S1354){
-      case 0 : 
-        active[8]=0;
-        ends[8]=0;
-        tdone[8]=1;
-        break;
-      
-      case 1 : 
-        if(close_door2.getprestatus()){//sysj\plant.sysj line: 57, column: 24
-          door2_closed.setPresent();//sysj\plant.sysj line: 57, column: 37
-          currsigs.addElement(door2_closed);
-          active[8]=1;
-          ends[8]=1;
-          tdone[8]=1;
-        }
-        else {
-          active[8]=1;
-          ends[8]=1;
-          tdone[8]=1;
-        }
-        break;
-      
-    }
+        S910=1;
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
   }
 
   public void thread1465(int [] tdone, int [] ends){
-        switch(S1346){
-      case 0 : 
-        active[7]=0;
-        ends[7]=0;
-        tdone[7]=1;
-        break;
-      
-      case 1 : 
-        if(close_door1.getprestatus()){//sysj\plant.sysj line: 55, column: 24
-          door1_closed.setPresent();//sysj\plant.sysj line: 55, column: 37
-          currsigs.addElement(door1_closed);
-          active[7]=1;
-          ends[7]=1;
-          tdone[7]=1;
-        }
-        else {
-          active[7]=1;
-          ends[7]=1;
-          tdone[7]=1;
-        }
-        break;
-      
-    }
-  }
-
-  public void thread1464(int [] tdone, int [] ends){
-        switch(S1338){
-      case 0 : 
-        active[6]=0;
-        ends[6]=0;
-        tdone[6]=1;
-        break;
-      
-      case 1 : 
-        if(open_door3.getprestatus()){//sysj\plant.sysj line: 53, column: 24
-          door3_opened.setPresent();//sysj\plant.sysj line: 53, column: 36
-          currsigs.addElement(door3_opened);
-          ;//sysj\plant.sysj line: 53, column: 55
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
-        }
-        else {
-          ;//sysj\plant.sysj line: 53, column: 55
-          active[6]=1;
-          ends[6]=1;
-          tdone[6]=1;
-        }
-        break;
-      
-    }
+        S902=1;
+    active[3]=1;
+    ends[3]=1;
+    tdone[3]=1;
   }
 
   public void thread1463(int [] tdone, int [] ends){
-        switch(S1330){
+        switch(S966){
       case 0 : 
-        active[5]=0;
-        ends[5]=0;
-        tdone[5]=1;
+        active[11]=0;
+        ends[11]=0;
+        tdone[11]=1;
         break;
       
       case 1 : 
-        if(open_door2.getprestatus()){//sysj\plant.sysj line: 51, column: 24
-          door2_opened.setPresent();//sysj\plant.sysj line: 51, column: 36
-          currsigs.addElement(door2_opened);
-          ;//sysj\plant.sysj line: 51, column: 55
-          active[5]=1;
-          ends[5]=1;
-          tdone[5]=1;
+        if(hp7.getprestatus()){//sysj\plant.sysj line: 83, column: 11
+          System.out.println("Human Detected in zone 7");//sysj\plant.sysj line: 85, column: 6
+          active[11]=1;
+          ends[11]=1;
+          tdone[11]=1;
         }
         else {
-          ;//sysj\plant.sysj line: 51, column: 55
-          active[5]=1;
-          ends[5]=1;
-          tdone[5]=1;
+          active[11]=1;
+          ends[11]=1;
+          tdone[11]=1;
         }
         break;
       
@@ -177,56 +385,24 @@ public class Plant extends ClockDomain{
   }
 
   public void thread1462(int [] tdone, int [] ends){
-        switch(S1322){
+        switch(S958){
       case 0 : 
-        active[4]=0;
-        ends[4]=0;
-        tdone[4]=1;
+        active[10]=0;
+        ends[10]=0;
+        tdone[10]=1;
         break;
       
       case 1 : 
-        switch(S1316){
-          case 0 : 
-            S1316=0;
-            if(open_door1.getprestatus()){//sysj\plant.sysj line: 49, column: 24
-              door1_opened.setPresent();//sysj\plant.sysj line: 49, column: 36
-              currsigs.addElement(door1_opened);
-              ;//sysj\plant.sysj line: 49, column: 55
-              S1316=1;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            else {
-              ;//sysj\plant.sysj line: 49, column: 55
-              S1316=1;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            break;
-          
-          case 1 : 
-            S1316=1;
-            S1316=0;
-            if(open_door1.getprestatus()){//sysj\plant.sysj line: 49, column: 24
-              door1_opened.setPresent();//sysj\plant.sysj line: 49, column: 36
-              currsigs.addElement(door1_opened);
-              ;//sysj\plant.sysj line: 49, column: 55
-              S1316=1;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            else {
-              ;//sysj\plant.sysj line: 49, column: 55
-              S1316=1;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            break;
-          
+        if(hp6.getprestatus()){//sysj\plant.sysj line: 75, column: 11
+          System.out.println("Human Detected in zone 6");//sysj\plant.sysj line: 77, column: 6
+          active[10]=1;
+          ends[10]=1;
+          tdone[10]=1;
+        }
+        else {
+          active[10]=1;
+          ends[10]=1;
+          tdone[10]=1;
         }
         break;
       
@@ -234,50 +410,24 @@ public class Plant extends ClockDomain{
   }
 
   public void thread1461(int [] tdone, int [] ends){
-        switch(S1364){
+        switch(S950){
       case 0 : 
-        active[3]=0;
-        ends[3]=0;
-        tdone[3]=1;
+        active[9]=0;
+        ends[9]=0;
+        tdone[9]=1;
         break;
       
       case 1 : 
-        thread1462(tdone,ends);
-        thread1463(tdone,ends);
-        thread1464(tdone,ends);
-        thread1465(tdone,ends);
-        thread1466(tdone,ends);
-        thread1467(tdone,ends);
-        int biggest1468 = 0;
-        if(ends[4]>=biggest1468){
-          biggest1468=ends[4];
+        if(hp5.getprestatus()){//sysj\plant.sysj line: 67, column: 11
+          System.out.println("Human Detected in zone 5");//sysj\plant.sysj line: 69, column: 6
+          active[9]=1;
+          ends[9]=1;
+          tdone[9]=1;
         }
-        if(ends[5]>=biggest1468){
-          biggest1468=ends[5];
-        }
-        if(ends[6]>=biggest1468){
-          biggest1468=ends[6];
-        }
-        if(ends[7]>=biggest1468){
-          biggest1468=ends[7];
-        }
-        if(ends[8]>=biggest1468){
-          biggest1468=ends[8];
-        }
-        if(ends[9]>=biggest1468){
-          biggest1468=ends[9];
-        }
-        if(biggest1468 == 1){
-          active[3]=1;
-          ends[3]=1;
-          tdone[3]=1;
-        }
-        //FINXME code
-        if(biggest1468 == 0){
-          S1364=0;
-          active[3]=0;
-          ends[3]=0;
-          tdone[3]=1;
+        else {
+          active[9]=1;
+          ends[9]=1;
+          tdone[9]=1;
         }
         break;
       
@@ -285,90 +435,74 @@ public class Plant extends ClockDomain{
   }
 
   public void thread1460(int [] tdone, int [] ends){
-        switch(S1314){
+        switch(S942){
       case 0 : 
-        active[2]=0;
-        ends[2]=0;
-        tdone[2]=1;
+        active[8]=0;
+        ends[8]=0;
+        tdone[8]=1;
         break;
       
       case 1 : 
-        switch(S1284){
-          case 0 : 
-            if(open_door1.getprestatus() || open_door2.getprestatus() || open_door3.getprestatus()){//sysj\plant.sysj line: 14, column: 10
-              System.out.println("Open Door");//sysj\plant.sysj line: 16, column: 5
-              S1284=1;
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            break;
-          
-          case 1 : 
-            if(close_door1.getprestatus() || close_door2.getprestatus() || close_door3.getprestatus()){//sysj\plant.sysj line: 19, column: 10
-              System.out.println("Close Door");//sysj\plant.sysj line: 21, column: 5
-              S1284=2;
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            break;
-          
-          case 2 : 
-            if(hp1.getprestatus()){//sysj\plant.sysj line: 25, column: 10
-              System.out.println("Human Detected in zone 1 & 7");//sysj\plant.sysj line: 27, column: 5
-              S1284=3;
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            break;
-          
-          case 3 : 
-            if(hp2.getprestatus()){//sysj\plant.sysj line: 30, column: 10
-              System.out.println("Human Detected in zone 2 & 3");//sysj\plant.sysj line: 32, column: 5
-              S1284=4;
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            break;
-          
-          case 4 : 
-            if(hp3.getprestatus()){//sysj\plant.sysj line: 35, column: 10
-              System.out.println("Human Detected in zone 4 & 5 & 6");//sysj\plant.sysj line: 37, column: 5
-              S1284=0;
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            else {
-              active[2]=1;
-              ends[2]=1;
-              tdone[2]=1;
-            }
-            break;
-          
+        if(hp4.getprestatus()){//sysj\plant.sysj line: 59, column: 11
+          System.out.println("Human Detected in zone 4");//sysj\plant.sysj line: 61, column: 6
+          active[8]=1;
+          ends[8]=1;
+          tdone[8]=1;
+        }
+        else {
+          active[8]=1;
+          ends[8]=1;
+          tdone[8]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1459(int [] tdone, int [] ends){
+        switch(S934){
+      case 0 : 
+        active[7]=0;
+        ends[7]=0;
+        tdone[7]=1;
+        break;
+      
+      case 1 : 
+        if(hp3.getprestatus()){//sysj\plant.sysj line: 51, column: 11
+          System.out.println("Human Detected in zone 3");//sysj\plant.sysj line: 53, column: 6
+          active[7]=1;
+          ends[7]=1;
+          tdone[7]=1;
+        }
+        else {
+          active[7]=1;
+          ends[7]=1;
+          tdone[7]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread1458(int [] tdone, int [] ends){
+        switch(S926){
+      case 0 : 
+        active[6]=0;
+        ends[6]=0;
+        tdone[6]=1;
+        break;
+      
+      case 1 : 
+        if(hp2.getprestatus()){//sysj\plant.sysj line: 43, column: 11
+          System.out.println("Human Detected in zone 2");//sysj\plant.sysj line: 45, column: 6
+          active[6]=1;
+          ends[6]=1;
+          tdone[6]=1;
+        }
+        else {
+          active[6]=1;
+          ends[6]=1;
+          tdone[6]=1;
         }
         break;
       
@@ -376,150 +510,427 @@ public class Plant extends ClockDomain{
   }
 
   public void thread1457(int [] tdone, int [] ends){
-        S1362=1;
-    if(close_door3.getprestatus()){//sysj\plant.sysj line: 59, column: 24
-      door3_closed.setPresent();//sysj\plant.sysj line: 59, column: 37
-      currsigs.addElement(door3_closed);
-      active[9]=1;
-      ends[9]=1;
-      tdone[9]=1;
-    }
-    else {
-      active[9]=1;
-      ends[9]=1;
-      tdone[9]=1;
+        switch(S918){
+      case 0 : 
+        active[5]=0;
+        ends[5]=0;
+        tdone[5]=1;
+        break;
+      
+      case 1 : 
+        if(hp1.getprestatus()){//sysj\plant.sysj line: 35, column: 11
+          System.out.println("Human Detected in zone 1");//sysj\plant.sysj line: 37, column: 6
+          active[5]=1;
+          ends[5]=1;
+          tdone[5]=1;
+        }
+        else {
+          active[5]=1;
+          ends[5]=1;
+          tdone[5]=1;
+        }
+        break;
+      
     }
   }
 
   public void thread1456(int [] tdone, int [] ends){
-        S1354=1;
-    if(close_door2.getprestatus()){//sysj\plant.sysj line: 57, column: 24
-      door2_closed.setPresent();//sysj\plant.sysj line: 57, column: 37
-      currsigs.addElement(door2_closed);
-      active[8]=1;
-      ends[8]=1;
-      tdone[8]=1;
-    }
-    else {
-      active[8]=1;
-      ends[8]=1;
-      tdone[8]=1;
+        switch(S910){
+      case 0 : 
+        active[4]=0;
+        ends[4]=0;
+        tdone[4]=1;
+        break;
+      
+      case 1 : 
+        if(close_door1.getprestatus() || close_door2.getprestatus() || close_door3.getprestatus()){//sysj\plant.sysj line: 25, column: 11
+          System.out.println("Close Door");//sysj\plant.sysj line: 27, column: 6
+          active[4]=1;
+          ends[4]=1;
+          tdone[4]=1;
+        }
+        else {
+          active[4]=1;
+          ends[4]=1;
+          tdone[4]=1;
+        }
+        break;
+      
     }
   }
 
   public void thread1455(int [] tdone, int [] ends){
-        S1346=1;
-    if(close_door1.getprestatus()){//sysj\plant.sysj line: 55, column: 24
-      door1_closed.setPresent();//sysj\plant.sysj line: 55, column: 37
-      currsigs.addElement(door1_closed);
-      active[7]=1;
-      ends[7]=1;
-      tdone[7]=1;
-    }
-    else {
-      active[7]=1;
-      ends[7]=1;
-      tdone[7]=1;
+        switch(S902){
+      case 0 : 
+        active[3]=0;
+        ends[3]=0;
+        tdone[3]=1;
+        break;
+      
+      case 1 : 
+        if(open_door1.getprestatus() || open_door2.getprestatus() || open_door3.getprestatus()){//sysj\plant.sysj line: 16, column: 11
+          System.out.println("Open Door");//sysj\plant.sysj line: 18, column: 6
+          active[3]=1;
+          ends[3]=1;
+          tdone[3]=1;
+        }
+        else {
+          active[3]=1;
+          ends[3]=1;
+          tdone[3]=1;
+        }
+        break;
+      
     }
   }
 
   public void thread1454(int [] tdone, int [] ends){
-        S1338=1;
-    if(open_door3.getprestatus()){//sysj\plant.sysj line: 53, column: 24
-      door3_opened.setPresent();//sysj\plant.sysj line: 53, column: 36
-      currsigs.addElement(door3_opened);
-      ;//sysj\plant.sysj line: 53, column: 55
-      active[6]=1;
-      ends[6]=1;
-      tdone[6]=1;
-    }
-    else {
-      ;//sysj\plant.sysj line: 53, column: 55
-      active[6]=1;
-      ends[6]=1;
-      tdone[6]=1;
-    }
-  }
-
-  public void thread1453(int [] tdone, int [] ends){
-        S1330=1;
-    if(open_door2.getprestatus()){//sysj\plant.sysj line: 51, column: 24
-      door2_opened.setPresent();//sysj\plant.sysj line: 51, column: 36
-      currsigs.addElement(door2_opened);
-      ;//sysj\plant.sysj line: 51, column: 55
-      active[5]=1;
-      ends[5]=1;
-      tdone[5]=1;
-    }
-    else {
-      ;//sysj\plant.sysj line: 51, column: 55
-      active[5]=1;
-      ends[5]=1;
-      tdone[5]=1;
-    }
-  }
-
-  public void thread1452(int [] tdone, int [] ends){
-        S1322=1;
-    S1316=0;
-    if(open_door1.getprestatus()){//sysj\plant.sysj line: 49, column: 24
-      door1_opened.setPresent();//sysj\plant.sysj line: 49, column: 36
-      currsigs.addElement(door1_opened);
-      ;//sysj\plant.sysj line: 49, column: 55
-      S1316=1;
-      active[4]=1;
-      ends[4]=1;
-      tdone[4]=1;
-    }
-    else {
-      ;//sysj\plant.sysj line: 49, column: 55
-      S1316=1;
-      active[4]=1;
-      ends[4]=1;
-      tdone[4]=1;
+        switch(S1112){
+      case 0 : 
+        active[2]=0;
+        ends[2]=0;
+        tdone[2]=1;
+        break;
+      
+      case 1 : 
+        thread1455(tdone,ends);
+        thread1456(tdone,ends);
+        thread1457(tdone,ends);
+        thread1458(tdone,ends);
+        thread1459(tdone,ends);
+        thread1460(tdone,ends);
+        thread1461(tdone,ends);
+        thread1462(tdone,ends);
+        thread1463(tdone,ends);
+        int biggest1464 = 0;
+        if(ends[3]>=biggest1464){
+          biggest1464=ends[3];
+        }
+        if(ends[4]>=biggest1464){
+          biggest1464=ends[4];
+        }
+        if(ends[5]>=biggest1464){
+          biggest1464=ends[5];
+        }
+        if(ends[6]>=biggest1464){
+          biggest1464=ends[6];
+        }
+        if(ends[7]>=biggest1464){
+          biggest1464=ends[7];
+        }
+        if(ends[8]>=biggest1464){
+          biggest1464=ends[8];
+        }
+        if(ends[9]>=biggest1464){
+          biggest1464=ends[9];
+        }
+        if(ends[10]>=biggest1464){
+          biggest1464=ends[10];
+        }
+        if(ends[11]>=biggest1464){
+          biggest1464=ends[11];
+        }
+        if(biggest1464 == 1){
+          active[2]=1;
+          ends[2]=1;
+          tdone[2]=1;
+        }
+        //FINXME code
+        if(biggest1464 == 0){
+          thread1465(tdone,ends);
+          thread1466(tdone,ends);
+          thread1467(tdone,ends);
+          thread1468(tdone,ends);
+          thread1469(tdone,ends);
+          thread1470(tdone,ends);
+          thread1471(tdone,ends);
+          thread1472(tdone,ends);
+          thread1473(tdone,ends);
+          int biggest1474 = 0;
+          if(ends[3]>=biggest1474){
+            biggest1474=ends[3];
+          }
+          if(ends[4]>=biggest1474){
+            biggest1474=ends[4];
+          }
+          if(ends[5]>=biggest1474){
+            biggest1474=ends[5];
+          }
+          if(ends[6]>=biggest1474){
+            biggest1474=ends[6];
+          }
+          if(ends[7]>=biggest1474){
+            biggest1474=ends[7];
+          }
+          if(ends[8]>=biggest1474){
+            biggest1474=ends[8];
+          }
+          if(ends[9]>=biggest1474){
+            biggest1474=ends[9];
+          }
+          if(ends[10]>=biggest1474){
+            biggest1474=ends[10];
+          }
+          if(ends[11]>=biggest1474){
+            biggest1474=ends[11];
+          }
+          if(biggest1474 == 1){
+            active[2]=1;
+            ends[2]=1;
+            tdone[2]=1;
+          }
+        }
+        break;
+      
     }
   }
 
   public void thread1451(int [] tdone, int [] ends){
-        S1364=1;
-    thread1452(tdone,ends);
-    thread1453(tdone,ends);
-    thread1454(tdone,ends);
-    thread1455(tdone,ends);
-    thread1456(tdone,ends);
-    thread1457(tdone,ends);
-    int biggest1458 = 0;
-    if(ends[4]>=biggest1458){
-      biggest1458=ends[4];
+        S1160=1;
+    if(close_door3.getprestatus()){//sysj\plant.sysj line: 107, column: 24
+      door3_closed.setPresent();//sysj\plant.sysj line: 107, column: 37
+      currsigs.addElement(door3_closed);
+      active[18]=1;
+      ends[18]=1;
+      tdone[18]=1;
     }
-    if(ends[5]>=biggest1458){
-      biggest1458=ends[5];
-    }
-    if(ends[6]>=biggest1458){
-      biggest1458=ends[6];
-    }
-    if(ends[7]>=biggest1458){
-      biggest1458=ends[7];
-    }
-    if(ends[8]>=biggest1458){
-      biggest1458=ends[8];
-    }
-    if(ends[9]>=biggest1458){
-      biggest1458=ends[9];
-    }
-    if(biggest1458 == 1){
-      active[3]=1;
-      ends[3]=1;
-      tdone[3]=1;
+    else {
+      active[18]=1;
+      ends[18]=1;
+      tdone[18]=1;
     }
   }
 
   public void thread1450(int [] tdone, int [] ends){
-        S1314=1;
-    S1284=0;
-    active[2]=1;
-    ends[2]=1;
-    tdone[2]=1;
+        S1152=1;
+    if(close_door2.getprestatus()){//sysj\plant.sysj line: 105, column: 24
+      door2_closed.setPresent();//sysj\plant.sysj line: 105, column: 37
+      currsigs.addElement(door2_closed);
+      active[17]=1;
+      ends[17]=1;
+      tdone[17]=1;
+    }
+    else {
+      active[17]=1;
+      ends[17]=1;
+      tdone[17]=1;
+    }
+  }
+
+  public void thread1449(int [] tdone, int [] ends){
+        S1144=1;
+    if(close_door1.getprestatus()){//sysj\plant.sysj line: 103, column: 24
+      door1_closed.setPresent();//sysj\plant.sysj line: 103, column: 37
+      currsigs.addElement(door1_closed);
+      active[16]=1;
+      ends[16]=1;
+      tdone[16]=1;
+    }
+    else {
+      active[16]=1;
+      ends[16]=1;
+      tdone[16]=1;
+    }
+  }
+
+  public void thread1448(int [] tdone, int [] ends){
+        S1136=1;
+    if(open_door3.getprestatus()){//sysj\plant.sysj line: 101, column: 24
+      door3_opened.setPresent();//sysj\plant.sysj line: 101, column: 36
+      currsigs.addElement(door3_opened);
+      ;//sysj\plant.sysj line: 101, column: 55
+      active[15]=1;
+      ends[15]=1;
+      tdone[15]=1;
+    }
+    else {
+      ;//sysj\plant.sysj line: 101, column: 55
+      active[15]=1;
+      ends[15]=1;
+      tdone[15]=1;
+    }
+  }
+
+  public void thread1447(int [] tdone, int [] ends){
+        S1128=1;
+    if(open_door2.getprestatus()){//sysj\plant.sysj line: 99, column: 24
+      door2_opened.setPresent();//sysj\plant.sysj line: 99, column: 36
+      currsigs.addElement(door2_opened);
+      ;//sysj\plant.sysj line: 99, column: 55
+      active[14]=1;
+      ends[14]=1;
+      tdone[14]=1;
+    }
+    else {
+      ;//sysj\plant.sysj line: 99, column: 55
+      active[14]=1;
+      ends[14]=1;
+      tdone[14]=1;
+    }
+  }
+
+  public void thread1446(int [] tdone, int [] ends){
+        S1120=1;
+    S1114=0;
+    if(open_door1.getprestatus()){//sysj\plant.sysj line: 97, column: 24
+      door1_opened.setPresent();//sysj\plant.sysj line: 97, column: 36
+      currsigs.addElement(door1_opened);
+      ;//sysj\plant.sysj line: 97, column: 55
+      S1114=1;
+      active[13]=1;
+      ends[13]=1;
+      tdone[13]=1;
+    }
+    else {
+      ;//sysj\plant.sysj line: 97, column: 55
+      S1114=1;
+      active[13]=1;
+      ends[13]=1;
+      tdone[13]=1;
+    }
+  }
+
+  public void thread1445(int [] tdone, int [] ends){
+        S1162=1;
+    thread1446(tdone,ends);
+    thread1447(tdone,ends);
+    thread1448(tdone,ends);
+    thread1449(tdone,ends);
+    thread1450(tdone,ends);
+    thread1451(tdone,ends);
+    int biggest1452 = 0;
+    if(ends[13]>=biggest1452){
+      biggest1452=ends[13];
+    }
+    if(ends[14]>=biggest1452){
+      biggest1452=ends[14];
+    }
+    if(ends[15]>=biggest1452){
+      biggest1452=ends[15];
+    }
+    if(ends[16]>=biggest1452){
+      biggest1452=ends[16];
+    }
+    if(ends[17]>=biggest1452){
+      biggest1452=ends[17];
+    }
+    if(ends[18]>=biggest1452){
+      biggest1452=ends[18];
+    }
+    if(biggest1452 == 1){
+      active[12]=1;
+      ends[12]=1;
+      tdone[12]=1;
+    }
+  }
+
+  public void thread1443(int [] tdone, int [] ends){
+        S966=1;
+    active[11]=1;
+    ends[11]=1;
+    tdone[11]=1;
+  }
+
+  public void thread1442(int [] tdone, int [] ends){
+        S958=1;
+    active[10]=1;
+    ends[10]=1;
+    tdone[10]=1;
+  }
+
+  public void thread1441(int [] tdone, int [] ends){
+        S950=1;
+    active[9]=1;
+    ends[9]=1;
+    tdone[9]=1;
+  }
+
+  public void thread1440(int [] tdone, int [] ends){
+        S942=1;
+    active[8]=1;
+    ends[8]=1;
+    tdone[8]=1;
+  }
+
+  public void thread1439(int [] tdone, int [] ends){
+        S934=1;
+    active[7]=1;
+    ends[7]=1;
+    tdone[7]=1;
+  }
+
+  public void thread1438(int [] tdone, int [] ends){
+        S926=1;
+    active[6]=1;
+    ends[6]=1;
+    tdone[6]=1;
+  }
+
+  public void thread1437(int [] tdone, int [] ends){
+        S918=1;
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread1436(int [] tdone, int [] ends){
+        S910=1;
+    active[4]=1;
+    ends[4]=1;
+    tdone[4]=1;
+  }
+
+  public void thread1435(int [] tdone, int [] ends){
+        S902=1;
+    active[3]=1;
+    ends[3]=1;
+    tdone[3]=1;
+  }
+
+  public void thread1434(int [] tdone, int [] ends){
+        S1112=1;
+    thread1435(tdone,ends);
+    thread1436(tdone,ends);
+    thread1437(tdone,ends);
+    thread1438(tdone,ends);
+    thread1439(tdone,ends);
+    thread1440(tdone,ends);
+    thread1441(tdone,ends);
+    thread1442(tdone,ends);
+    thread1443(tdone,ends);
+    int biggest1444 = 0;
+    if(ends[3]>=biggest1444){
+      biggest1444=ends[3];
+    }
+    if(ends[4]>=biggest1444){
+      biggest1444=ends[4];
+    }
+    if(ends[5]>=biggest1444){
+      biggest1444=ends[5];
+    }
+    if(ends[6]>=biggest1444){
+      biggest1444=ends[6];
+    }
+    if(ends[7]>=biggest1444){
+      biggest1444=ends[7];
+    }
+    if(ends[8]>=biggest1444){
+      biggest1444=ends[8];
+    }
+    if(ends[9]>=biggest1444){
+      biggest1444=ends[9];
+    }
+    if(ends[10]>=biggest1444){
+      biggest1444=ends[10];
+    }
+    if(ends[11]>=biggest1444){
+      biggest1444=ends[11];
+    }
+    if(biggest1444 == 1){
+      active[2]=1;
+      ends[2]=1;
+      tdone[2]=1;
+    }
   }
 
   public void runClockDomain(){
@@ -529,51 +940,51 @@ public class Plant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S1448){
+      switch(S1432){
         case 0 : 
-          S1448=0;
+          S1432=0;
           break RUN;
         
         case 1 : 
-          S1448=2;
-          S1448=2;
+          S1432=2;
+          S1432=2;
           new Thread(new GUI()).start();//sysj\plant.sysj line: 10, column: 2
-          thread1450(tdone,ends);
-          thread1451(tdone,ends);
-          int biggest1459 = 0;
-          if(ends[2]>=biggest1459){
-            biggest1459=ends[2];
+          thread1434(tdone,ends);
+          thread1445(tdone,ends);
+          int biggest1453 = 0;
+          if(ends[2]>=biggest1453){
+            biggest1453=ends[2];
           }
-          if(ends[3]>=biggest1459){
-            biggest1459=ends[3];
+          if(ends[12]>=biggest1453){
+            biggest1453=ends[12];
           }
-          if(biggest1459 == 1){
+          if(biggest1453 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread1460(tdone,ends);
-          thread1461(tdone,ends);
-          int biggest1469 = 0;
-          if(ends[2]>=biggest1469){
-            biggest1469=ends[2];
+          thread1454(tdone,ends);
+          thread1475(tdone,ends);
+          int biggest1483 = 0;
+          if(ends[2]>=biggest1483){
+            biggest1483=ends[2];
           }
-          if(ends[3]>=biggest1469){
-            biggest1469=ends[3];
+          if(ends[12]>=biggest1483){
+            biggest1483=ends[12];
           }
-          if(biggest1469 == 1){
+          if(biggest1483 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest1469 == 0){
-            S1448=0;
+          if(biggest1483 == 0){
+            S1432=0;
             active[1]=0;
             ends[1]=0;
-            S1448=0;
+            S1432=0;
             break RUN;
           }
         
@@ -582,9 +993,9 @@ public class Plant extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -612,6 +1023,10 @@ public class Plant extends ClockDomain{
           hp1.gethook();
           hp2.gethook();
           hp3.gethook();
+          hp4.gethook();
+          hp5.gethook();
+          hp6.gethook();
+          hp7.gethook();
           df = true;
         }
         runClockDomain();
@@ -625,6 +1040,10 @@ public class Plant extends ClockDomain{
       hp1.setpreclear();
       hp2.setpreclear();
       hp3.setpreclear();
+      hp4.setpreclear();
+      hp5.setpreclear();
+      hp6.setpreclear();
+      hp7.setpreclear();
       door1_opened.setpreclear();
       door2_opened.setpreclear();
       door3_opened.setpreclear();
@@ -664,6 +1083,18 @@ public class Plant extends ClockDomain{
       dummyint = hp3.getStatus() ? hp3.setprepresent() : hp3.setpreclear();
       hp3.setpreval(hp3.getValue());
       hp3.setClear();
+      dummyint = hp4.getStatus() ? hp4.setprepresent() : hp4.setpreclear();
+      hp4.setpreval(hp4.getValue());
+      hp4.setClear();
+      dummyint = hp5.getStatus() ? hp5.setprepresent() : hp5.setpreclear();
+      hp5.setpreval(hp5.getValue());
+      hp5.setClear();
+      dummyint = hp6.getStatus() ? hp6.setprepresent() : hp6.setpreclear();
+      hp6.setpreval(hp6.getValue());
+      hp6.setClear();
+      dummyint = hp7.getStatus() ? hp7.setprepresent() : hp7.setpreclear();
+      hp7.setpreval(hp7.getValue());
+      hp7.setClear();
       door1_opened.sethook();
       door1_opened.setClear();
       door2_opened.sethook();
@@ -687,6 +1118,10 @@ public class Plant extends ClockDomain{
         hp1.gethook();
         hp2.gethook();
         hp3.gethook();
+        hp4.gethook();
+        hp5.gethook();
+        hp6.gethook();
+        hp7.gethook();
       }
       runFinisher();
       if(active[1] == 0){

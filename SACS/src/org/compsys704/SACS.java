@@ -49,21 +49,38 @@ public class SACS extends JFrame {
 		
 
 		JCheckBox hp1 = new JCheckBox("hp1");
-		hp1.addActionListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP1));
+		hp1.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP1));
 		
 		JCheckBox hp2 = new JCheckBox("hp2");
-		hp2.addActionListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP2));
+		hp2.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP2));
 		
 		JCheckBox hp3 = new JCheckBox("hp3");
-		hp3.addActionListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP3));
+		hp3.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP3));
+		
+		JCheckBox hp4 = new JCheckBox("hp4");
+		hp4.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP4));
+		
+		JCheckBox hp5 = new JCheckBox("hp5");
+		hp5.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP5));
+		
+		JCheckBox hp6 = new JCheckBox("hp6");
+		hp6.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP6));
+		
+		JCheckBox hp7 = new JCheckBox("hp7");
+		hp7.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP7));
+		
 		
 		JCheckBox smokeDetected = new JCheckBox("smokeDetected");
-		smokeDetected.addActionListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SmokeDetected));
+		smokeDetected.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SmokeDetected));
 		
-		JPanel pan = new JPanel(new GridLayout(1, 0));
+		JPanel pan = new JPanel(new GridLayout(2, 0));
 		pan.add(hp1);
 		pan.add(hp2);
 		pan.add(hp3);
+		pan.add(hp4);
+		pan.add(hp5);
+		pan.add(hp6);
+		pan.add(hp7);
 		pan.add(smokeDetected);
 		c.gridx = 0;
 		c.gridy = 2;
