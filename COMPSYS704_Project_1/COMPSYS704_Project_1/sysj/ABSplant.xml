@@ -137,5 +137,51 @@
 			<oSignal Name="ROE"   	To="BaxterUI.ROE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
 			<oSignal Name="RGE"  	To="BaxterUI.RGE"    			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="16002" />
 		</ClockDomain>
+		
+		<ClockDomain Name="ECSPlantCD" Class="ECSPlant">
+			<iSignal Name="tempState"    	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="humidityState"   Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="lightState" 		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="smokeState" 		Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="presenceState" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			<iSignal Name="closedState" 	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50001" />
+			
+			<oSignal Name="emergency"  		To="ABSCoordinatorCD.emergency" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="updatep"  		To="ECSControllerCD.updatep"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50000" />
+			<oSignal Name="updates"  		To="ECSControllerCD.updates"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50000" />
+			<oSignal Name="tempHotE"  		To="UI.tempHotE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="tempColdE"  		To="UI.tempColdE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="tempOffE"  		To="UI.tempOffE"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="humidityIncE"   	To="UI.humidityIncE"   			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="humidityRedE"  	To="UI.humidityRedE"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="humidityOffE"  	To="UI.humidityOffE"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="lightOnE"   		To="UI.lightOnE"     			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+			<oSignal Name="lightOffE"  		To="UI.lightOffE"    			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50002" />
+		</ClockDomain>
+		
+		<ClockDomain Name="SACSPlantCD" Class="SACSPlant">
+			<iSignal Name="open_door1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="open_door2"        Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="open_door3"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="close_door1"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="close_door2"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="close_door3"    Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="hp1"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="hp2"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="hp3"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="hp4"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="hp5"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="hp6"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			<iSignal Name="hp7"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
+			
+
+			<oSignal Name="door1_opened" To="UI.door1_opened" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="door2_opened" To="UI.door2_opened"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="door3_opened" To="UI.door3_opened"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="door1_closed" To="UI.door1_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="door2_closed" To="UI.door2_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="door3_closed" To="UI.door3_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+
+		</ClockDomain>
 	</SubSystem>
 </System>

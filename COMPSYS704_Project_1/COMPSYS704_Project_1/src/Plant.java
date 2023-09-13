@@ -31,31 +31,31 @@ public class Plant extends ClockDomain{
   public Signal door1_closed = new Signal("door1_closed", Signal.OUTPUT);
   public Signal door2_closed = new Signal("door2_closed", Signal.OUTPUT);
   public Signal door3_closed = new Signal("door3_closed", Signal.OUTPUT);
-  private int S47452 = 1;
-  private int S47132 = 1;
-  private int S46922 = 1;
-  private int S46930 = 1;
-  private int S46938 = 1;
-  private int S46946 = 1;
-  private int S46954 = 1;
-  private int S46962 = 1;
-  private int S46970 = 1;
-  private int S46978 = 1;
-  private int S46986 = 1;
-  private int S47182 = 1;
-  private int S47140 = 1;
-  private int S47134 = 1;
-  private int S47148 = 1;
-  private int S47156 = 1;
-  private int S47164 = 1;
-  private int S47172 = 1;
-  private int S47180 = 1;
+  private int S52984 = 1;
+  private int S52664 = 1;
+  private int S52454 = 1;
+  private int S52462 = 1;
+  private int S52470 = 1;
+  private int S52478 = 1;
+  private int S52486 = 1;
+  private int S52494 = 1;
+  private int S52502 = 1;
+  private int S52510 = 1;
+  private int S52518 = 1;
+  private int S52714 = 1;
+  private int S52672 = 1;
+  private int S52666 = 1;
+  private int S52680 = 1;
+  private int S52688 = 1;
+  private int S52696 = 1;
+  private int S52704 = 1;
+  private int S52712 = 1;
   
   private int[] ends = new int[19];
   private int[] tdone = new int[19];
   
-  public void thread47501(int [] tdone, int [] ends){
-        switch(S47180){
+  public void thread53033(int [] tdone, int [] ends){
+        switch(S52712){
       case 0 : 
         active[18]=0;
         ends[18]=0;
@@ -80,8 +80,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47500(int [] tdone, int [] ends){
-        switch(S47172){
+  public void thread53032(int [] tdone, int [] ends){
+        switch(S52704){
       case 0 : 
         active[17]=0;
         ends[17]=0;
@@ -106,8 +106,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47499(int [] tdone, int [] ends){
-        switch(S47164){
+  public void thread53031(int [] tdone, int [] ends){
+        switch(S52696){
       case 0 : 
         active[16]=0;
         ends[16]=0;
@@ -132,8 +132,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47498(int [] tdone, int [] ends){
-        switch(S47156){
+  public void thread53030(int [] tdone, int [] ends){
+        switch(S52688){
       case 0 : 
         active[15]=0;
         ends[15]=0;
@@ -160,8 +160,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47497(int [] tdone, int [] ends){
-        switch(S47148){
+  public void thread53029(int [] tdone, int [] ends){
+        switch(S52680){
       case 0 : 
         active[14]=0;
         ends[14]=0;
@@ -188,8 +188,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47496(int [] tdone, int [] ends){
-        switch(S47140){
+  public void thread53028(int [] tdone, int [] ends){
+        switch(S52672){
       case 0 : 
         active[13]=0;
         ends[13]=0;
@@ -197,21 +197,21 @@ public class Plant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S47134){
+        switch(S52666){
           case 0 : 
-            S47134=0;
+            S52666=0;
             if(open_door1.getprestatus()){//sysj\SACSplant.sysj line: 97, column: 24
               door1_opened.setPresent();//sysj\SACSplant.sysj line: 97, column: 36
               currsigs.addElement(door1_opened);
               ;//sysj\SACSplant.sysj line: 97, column: 55
-              S47134=1;
+              S52666=1;
               active[13]=1;
               ends[13]=1;
               tdone[13]=1;
             }
             else {
               ;//sysj\SACSplant.sysj line: 97, column: 55
-              S47134=1;
+              S52666=1;
               active[13]=1;
               ends[13]=1;
               tdone[13]=1;
@@ -219,20 +219,20 @@ public class Plant extends ClockDomain{
             break;
           
           case 1 : 
-            S47134=1;
-            S47134=0;
+            S52666=1;
+            S52666=0;
             if(open_door1.getprestatus()){//sysj\SACSplant.sysj line: 97, column: 24
               door1_opened.setPresent();//sysj\SACSplant.sysj line: 97, column: 36
               currsigs.addElement(door1_opened);
               ;//sysj\SACSplant.sysj line: 97, column: 55
-              S47134=1;
+              S52666=1;
               active[13]=1;
               ends[13]=1;
               tdone[13]=1;
             }
             else {
               ;//sysj\SACSplant.sysj line: 97, column: 55
-              S47134=1;
+              S52666=1;
               active[13]=1;
               ends[13]=1;
               tdone[13]=1;
@@ -245,8 +245,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47495(int [] tdone, int [] ends){
-        switch(S47182){
+  public void thread53027(int [] tdone, int [] ends){
+        switch(S52714){
       case 0 : 
         active[12]=0;
         ends[12]=0;
@@ -254,39 +254,39 @@ public class Plant extends ClockDomain{
         break;
       
       case 1 : 
-        thread47496(tdone,ends);
-        thread47497(tdone,ends);
-        thread47498(tdone,ends);
-        thread47499(tdone,ends);
-        thread47500(tdone,ends);
-        thread47501(tdone,ends);
-        int biggest47502 = 0;
-        if(ends[13]>=biggest47502){
-          biggest47502=ends[13];
+        thread53028(tdone,ends);
+        thread53029(tdone,ends);
+        thread53030(tdone,ends);
+        thread53031(tdone,ends);
+        thread53032(tdone,ends);
+        thread53033(tdone,ends);
+        int biggest53034 = 0;
+        if(ends[13]>=biggest53034){
+          biggest53034=ends[13];
         }
-        if(ends[14]>=biggest47502){
-          biggest47502=ends[14];
+        if(ends[14]>=biggest53034){
+          biggest53034=ends[14];
         }
-        if(ends[15]>=biggest47502){
-          biggest47502=ends[15];
+        if(ends[15]>=biggest53034){
+          biggest53034=ends[15];
         }
-        if(ends[16]>=biggest47502){
-          biggest47502=ends[16];
+        if(ends[16]>=biggest53034){
+          biggest53034=ends[16];
         }
-        if(ends[17]>=biggest47502){
-          biggest47502=ends[17];
+        if(ends[17]>=biggest53034){
+          biggest53034=ends[17];
         }
-        if(ends[18]>=biggest47502){
-          biggest47502=ends[18];
+        if(ends[18]>=biggest53034){
+          biggest53034=ends[18];
         }
-        if(biggest47502 == 1){
+        if(biggest53034 == 1){
           active[12]=1;
           ends[12]=1;
           tdone[12]=1;
         }
         //FINXME code
-        if(biggest47502 == 0){
-          S47182=0;
+        if(biggest53034 == 0){
+          S52714=0;
           active[12]=0;
           ends[12]=0;
           tdone[12]=1;
@@ -296,71 +296,71 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47493(int [] tdone, int [] ends){
-        S46986=1;
+  public void thread53025(int [] tdone, int [] ends){
+        S52518=1;
     active[11]=1;
     ends[11]=1;
     tdone[11]=1;
   }
 
-  public void thread47492(int [] tdone, int [] ends){
-        S46978=1;
+  public void thread53024(int [] tdone, int [] ends){
+        S52510=1;
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread47491(int [] tdone, int [] ends){
-        S46970=1;
+  public void thread53023(int [] tdone, int [] ends){
+        S52502=1;
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread47490(int [] tdone, int [] ends){
-        S46962=1;
+  public void thread53022(int [] tdone, int [] ends){
+        S52494=1;
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread47489(int [] tdone, int [] ends){
-        S46954=1;
+  public void thread53021(int [] tdone, int [] ends){
+        S52486=1;
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread47488(int [] tdone, int [] ends){
-        S46946=1;
+  public void thread53020(int [] tdone, int [] ends){
+        S52478=1;
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread47487(int [] tdone, int [] ends){
-        S46938=1;
+  public void thread53019(int [] tdone, int [] ends){
+        S52470=1;
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread47486(int [] tdone, int [] ends){
-        S46930=1;
+  public void thread53018(int [] tdone, int [] ends){
+        S52462=1;
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread47485(int [] tdone, int [] ends){
-        S46922=1;
+  public void thread53017(int [] tdone, int [] ends){
+        S52454=1;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread47483(int [] tdone, int [] ends){
-        switch(S46986){
+  public void thread53015(int [] tdone, int [] ends){
+        switch(S52518){
       case 0 : 
         active[11]=0;
         ends[11]=0;
@@ -384,8 +384,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47482(int [] tdone, int [] ends){
-        switch(S46978){
+  public void thread53014(int [] tdone, int [] ends){
+        switch(S52510){
       case 0 : 
         active[10]=0;
         ends[10]=0;
@@ -409,8 +409,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47481(int [] tdone, int [] ends){
-        switch(S46970){
+  public void thread53013(int [] tdone, int [] ends){
+        switch(S52502){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -434,8 +434,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47480(int [] tdone, int [] ends){
-        switch(S46962){
+  public void thread53012(int [] tdone, int [] ends){
+        switch(S52494){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -459,8 +459,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47479(int [] tdone, int [] ends){
-        switch(S46954){
+  public void thread53011(int [] tdone, int [] ends){
+        switch(S52486){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -484,8 +484,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47478(int [] tdone, int [] ends){
-        switch(S46946){
+  public void thread53010(int [] tdone, int [] ends){
+        switch(S52478){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -509,8 +509,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47477(int [] tdone, int [] ends){
-        switch(S46938){
+  public void thread53009(int [] tdone, int [] ends){
+        switch(S52470){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -534,8 +534,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47476(int [] tdone, int [] ends){
-        switch(S46930){
+  public void thread53008(int [] tdone, int [] ends){
+        switch(S52462){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -559,8 +559,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47475(int [] tdone, int [] ends){
-        switch(S46922){
+  public void thread53007(int [] tdone, int [] ends){
+        switch(S52454){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -584,8 +584,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47474(int [] tdone, int [] ends){
-        switch(S47132){
+  public void thread53006(int [] tdone, int [] ends){
+        switch(S52664){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -593,88 +593,88 @@ public class Plant extends ClockDomain{
         break;
       
       case 1 : 
-        thread47475(tdone,ends);
-        thread47476(tdone,ends);
-        thread47477(tdone,ends);
-        thread47478(tdone,ends);
-        thread47479(tdone,ends);
-        thread47480(tdone,ends);
-        thread47481(tdone,ends);
-        thread47482(tdone,ends);
-        thread47483(tdone,ends);
-        int biggest47484 = 0;
-        if(ends[3]>=biggest47484){
-          biggest47484=ends[3];
+        thread53007(tdone,ends);
+        thread53008(tdone,ends);
+        thread53009(tdone,ends);
+        thread53010(tdone,ends);
+        thread53011(tdone,ends);
+        thread53012(tdone,ends);
+        thread53013(tdone,ends);
+        thread53014(tdone,ends);
+        thread53015(tdone,ends);
+        int biggest53016 = 0;
+        if(ends[3]>=biggest53016){
+          biggest53016=ends[3];
         }
-        if(ends[4]>=biggest47484){
-          biggest47484=ends[4];
+        if(ends[4]>=biggest53016){
+          biggest53016=ends[4];
         }
-        if(ends[5]>=biggest47484){
-          biggest47484=ends[5];
+        if(ends[5]>=biggest53016){
+          biggest53016=ends[5];
         }
-        if(ends[6]>=biggest47484){
-          biggest47484=ends[6];
+        if(ends[6]>=biggest53016){
+          biggest53016=ends[6];
         }
-        if(ends[7]>=biggest47484){
-          biggest47484=ends[7];
+        if(ends[7]>=biggest53016){
+          biggest53016=ends[7];
         }
-        if(ends[8]>=biggest47484){
-          biggest47484=ends[8];
+        if(ends[8]>=biggest53016){
+          biggest53016=ends[8];
         }
-        if(ends[9]>=biggest47484){
-          biggest47484=ends[9];
+        if(ends[9]>=biggest53016){
+          biggest53016=ends[9];
         }
-        if(ends[10]>=biggest47484){
-          biggest47484=ends[10];
+        if(ends[10]>=biggest53016){
+          biggest53016=ends[10];
         }
-        if(ends[11]>=biggest47484){
-          biggest47484=ends[11];
+        if(ends[11]>=biggest53016){
+          biggest53016=ends[11];
         }
-        if(biggest47484 == 1){
+        if(biggest53016 == 1){
           active[2]=1;
           ends[2]=1;
           tdone[2]=1;
         }
         //FINXME code
-        if(biggest47484 == 0){
-          thread47485(tdone,ends);
-          thread47486(tdone,ends);
-          thread47487(tdone,ends);
-          thread47488(tdone,ends);
-          thread47489(tdone,ends);
-          thread47490(tdone,ends);
-          thread47491(tdone,ends);
-          thread47492(tdone,ends);
-          thread47493(tdone,ends);
-          int biggest47494 = 0;
-          if(ends[3]>=biggest47494){
-            biggest47494=ends[3];
+        if(biggest53016 == 0){
+          thread53017(tdone,ends);
+          thread53018(tdone,ends);
+          thread53019(tdone,ends);
+          thread53020(tdone,ends);
+          thread53021(tdone,ends);
+          thread53022(tdone,ends);
+          thread53023(tdone,ends);
+          thread53024(tdone,ends);
+          thread53025(tdone,ends);
+          int biggest53026 = 0;
+          if(ends[3]>=biggest53026){
+            biggest53026=ends[3];
           }
-          if(ends[4]>=biggest47494){
-            biggest47494=ends[4];
+          if(ends[4]>=biggest53026){
+            biggest53026=ends[4];
           }
-          if(ends[5]>=biggest47494){
-            biggest47494=ends[5];
+          if(ends[5]>=biggest53026){
+            biggest53026=ends[5];
           }
-          if(ends[6]>=biggest47494){
-            biggest47494=ends[6];
+          if(ends[6]>=biggest53026){
+            biggest53026=ends[6];
           }
-          if(ends[7]>=biggest47494){
-            biggest47494=ends[7];
+          if(ends[7]>=biggest53026){
+            biggest53026=ends[7];
           }
-          if(ends[8]>=biggest47494){
-            biggest47494=ends[8];
+          if(ends[8]>=biggest53026){
+            biggest53026=ends[8];
           }
-          if(ends[9]>=biggest47494){
-            biggest47494=ends[9];
+          if(ends[9]>=biggest53026){
+            biggest53026=ends[9];
           }
-          if(ends[10]>=biggest47494){
-            biggest47494=ends[10];
+          if(ends[10]>=biggest53026){
+            biggest53026=ends[10];
           }
-          if(ends[11]>=biggest47494){
-            biggest47494=ends[11];
+          if(ends[11]>=biggest53026){
+            biggest53026=ends[11];
           }
-          if(biggest47494 == 1){
+          if(biggest53026 == 1){
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -685,8 +685,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47471(int [] tdone, int [] ends){
-        S47180=1;
+  public void thread53003(int [] tdone, int [] ends){
+        S52712=1;
     if(close_door3.getprestatus()){//sysj\SACSplant.sysj line: 107, column: 24
       door3_closed.setPresent();//sysj\SACSplant.sysj line: 107, column: 37
       currsigs.addElement(door3_closed);
@@ -701,8 +701,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47470(int [] tdone, int [] ends){
-        S47172=1;
+  public void thread53002(int [] tdone, int [] ends){
+        S52704=1;
     if(close_door2.getprestatus()){//sysj\SACSplant.sysj line: 105, column: 24
       door2_closed.setPresent();//sysj\SACSplant.sysj line: 105, column: 37
       currsigs.addElement(door2_closed);
@@ -717,8 +717,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47469(int [] tdone, int [] ends){
-        S47164=1;
+  public void thread53001(int [] tdone, int [] ends){
+        S52696=1;
     if(close_door1.getprestatus()){//sysj\SACSplant.sysj line: 103, column: 24
       door1_closed.setPresent();//sysj\SACSplant.sysj line: 103, column: 37
       currsigs.addElement(door1_closed);
@@ -733,8 +733,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47468(int [] tdone, int [] ends){
-        S47156=1;
+  public void thread53000(int [] tdone, int [] ends){
+        S52688=1;
     if(open_door3.getprestatus()){//sysj\SACSplant.sysj line: 101, column: 24
       door3_opened.setPresent();//sysj\SACSplant.sysj line: 101, column: 36
       currsigs.addElement(door3_opened);
@@ -751,8 +751,8 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47467(int [] tdone, int [] ends){
-        S47148=1;
+  public void thread52999(int [] tdone, int [] ends){
+        S52680=1;
     if(open_door2.getprestatus()){//sysj\SACSplant.sysj line: 99, column: 24
       door2_opened.setPresent();//sysj\SACSplant.sysj line: 99, column: 36
       currsigs.addElement(door2_opened);
@@ -769,164 +769,164 @@ public class Plant extends ClockDomain{
     }
   }
 
-  public void thread47466(int [] tdone, int [] ends){
-        S47140=1;
-    S47134=0;
+  public void thread52998(int [] tdone, int [] ends){
+        S52672=1;
+    S52666=0;
     if(open_door1.getprestatus()){//sysj\SACSplant.sysj line: 97, column: 24
       door1_opened.setPresent();//sysj\SACSplant.sysj line: 97, column: 36
       currsigs.addElement(door1_opened);
       ;//sysj\SACSplant.sysj line: 97, column: 55
-      S47134=1;
+      S52666=1;
       active[13]=1;
       ends[13]=1;
       tdone[13]=1;
     }
     else {
       ;//sysj\SACSplant.sysj line: 97, column: 55
-      S47134=1;
+      S52666=1;
       active[13]=1;
       ends[13]=1;
       tdone[13]=1;
     }
   }
 
-  public void thread47465(int [] tdone, int [] ends){
-        S47182=1;
-    thread47466(tdone,ends);
-    thread47467(tdone,ends);
-    thread47468(tdone,ends);
-    thread47469(tdone,ends);
-    thread47470(tdone,ends);
-    thread47471(tdone,ends);
-    int biggest47472 = 0;
-    if(ends[13]>=biggest47472){
-      biggest47472=ends[13];
+  public void thread52997(int [] tdone, int [] ends){
+        S52714=1;
+    thread52998(tdone,ends);
+    thread52999(tdone,ends);
+    thread53000(tdone,ends);
+    thread53001(tdone,ends);
+    thread53002(tdone,ends);
+    thread53003(tdone,ends);
+    int biggest53004 = 0;
+    if(ends[13]>=biggest53004){
+      biggest53004=ends[13];
     }
-    if(ends[14]>=biggest47472){
-      biggest47472=ends[14];
+    if(ends[14]>=biggest53004){
+      biggest53004=ends[14];
     }
-    if(ends[15]>=biggest47472){
-      biggest47472=ends[15];
+    if(ends[15]>=biggest53004){
+      biggest53004=ends[15];
     }
-    if(ends[16]>=biggest47472){
-      biggest47472=ends[16];
+    if(ends[16]>=biggest53004){
+      biggest53004=ends[16];
     }
-    if(ends[17]>=biggest47472){
-      biggest47472=ends[17];
+    if(ends[17]>=biggest53004){
+      biggest53004=ends[17];
     }
-    if(ends[18]>=biggest47472){
-      biggest47472=ends[18];
+    if(ends[18]>=biggest53004){
+      biggest53004=ends[18];
     }
-    if(biggest47472 == 1){
+    if(biggest53004 == 1){
       active[12]=1;
       ends[12]=1;
       tdone[12]=1;
     }
   }
 
-  public void thread47463(int [] tdone, int [] ends){
-        S46986=1;
+  public void thread52995(int [] tdone, int [] ends){
+        S52518=1;
     active[11]=1;
     ends[11]=1;
     tdone[11]=1;
   }
 
-  public void thread47462(int [] tdone, int [] ends){
-        S46978=1;
+  public void thread52994(int [] tdone, int [] ends){
+        S52510=1;
     active[10]=1;
     ends[10]=1;
     tdone[10]=1;
   }
 
-  public void thread47461(int [] tdone, int [] ends){
-        S46970=1;
+  public void thread52993(int [] tdone, int [] ends){
+        S52502=1;
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread47460(int [] tdone, int [] ends){
-        S46962=1;
+  public void thread52992(int [] tdone, int [] ends){
+        S52494=1;
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread47459(int [] tdone, int [] ends){
-        S46954=1;
+  public void thread52991(int [] tdone, int [] ends){
+        S52486=1;
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread47458(int [] tdone, int [] ends){
-        S46946=1;
+  public void thread52990(int [] tdone, int [] ends){
+        S52478=1;
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread47457(int [] tdone, int [] ends){
-        S46938=1;
+  public void thread52989(int [] tdone, int [] ends){
+        S52470=1;
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread47456(int [] tdone, int [] ends){
-        S46930=1;
+  public void thread52988(int [] tdone, int [] ends){
+        S52462=1;
     active[4]=1;
     ends[4]=1;
     tdone[4]=1;
   }
 
-  public void thread47455(int [] tdone, int [] ends){
-        S46922=1;
+  public void thread52987(int [] tdone, int [] ends){
+        S52454=1;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread47454(int [] tdone, int [] ends){
-        S47132=1;
-    thread47455(tdone,ends);
-    thread47456(tdone,ends);
-    thread47457(tdone,ends);
-    thread47458(tdone,ends);
-    thread47459(tdone,ends);
-    thread47460(tdone,ends);
-    thread47461(tdone,ends);
-    thread47462(tdone,ends);
-    thread47463(tdone,ends);
-    int biggest47464 = 0;
-    if(ends[3]>=biggest47464){
-      biggest47464=ends[3];
+  public void thread52986(int [] tdone, int [] ends){
+        S52664=1;
+    thread52987(tdone,ends);
+    thread52988(tdone,ends);
+    thread52989(tdone,ends);
+    thread52990(tdone,ends);
+    thread52991(tdone,ends);
+    thread52992(tdone,ends);
+    thread52993(tdone,ends);
+    thread52994(tdone,ends);
+    thread52995(tdone,ends);
+    int biggest52996 = 0;
+    if(ends[3]>=biggest52996){
+      biggest52996=ends[3];
     }
-    if(ends[4]>=biggest47464){
-      biggest47464=ends[4];
+    if(ends[4]>=biggest52996){
+      biggest52996=ends[4];
     }
-    if(ends[5]>=biggest47464){
-      biggest47464=ends[5];
+    if(ends[5]>=biggest52996){
+      biggest52996=ends[5];
     }
-    if(ends[6]>=biggest47464){
-      biggest47464=ends[6];
+    if(ends[6]>=biggest52996){
+      biggest52996=ends[6];
     }
-    if(ends[7]>=biggest47464){
-      biggest47464=ends[7];
+    if(ends[7]>=biggest52996){
+      biggest52996=ends[7];
     }
-    if(ends[8]>=biggest47464){
-      biggest47464=ends[8];
+    if(ends[8]>=biggest52996){
+      biggest52996=ends[8];
     }
-    if(ends[9]>=biggest47464){
-      biggest47464=ends[9];
+    if(ends[9]>=biggest52996){
+      biggest52996=ends[9];
     }
-    if(ends[10]>=biggest47464){
-      biggest47464=ends[10];
+    if(ends[10]>=biggest52996){
+      biggest52996=ends[10];
     }
-    if(ends[11]>=biggest47464){
-      biggest47464=ends[11];
+    if(ends[11]>=biggest52996){
+      biggest52996=ends[11];
     }
-    if(biggest47464 == 1){
+    if(biggest52996 == 1){
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
@@ -940,51 +940,51 @@ public class Plant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S47452){
+      switch(S52984){
         case 0 : 
-          S47452=0;
+          S52984=0;
           break RUN;
         
         case 1 : 
-          S47452=2;
-          S47452=2;
+          S52984=2;
+          S52984=2;
           new Thread(new GUI()).start();//sysj\SACSplant.sysj line: 10, column: 2
-          thread47454(tdone,ends);
-          thread47465(tdone,ends);
-          int biggest47473 = 0;
-          if(ends[2]>=biggest47473){
-            biggest47473=ends[2];
+          thread52986(tdone,ends);
+          thread52997(tdone,ends);
+          int biggest53005 = 0;
+          if(ends[2]>=biggest53005){
+            biggest53005=ends[2];
           }
-          if(ends[12]>=biggest47473){
-            biggest47473=ends[12];
+          if(ends[12]>=biggest53005){
+            biggest53005=ends[12];
           }
-          if(biggest47473 == 1){
+          if(biggest53005 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread47474(tdone,ends);
-          thread47495(tdone,ends);
-          int biggest47503 = 0;
-          if(ends[2]>=biggest47503){
-            biggest47503=ends[2];
+          thread53006(tdone,ends);
+          thread53027(tdone,ends);
+          int biggest53035 = 0;
+          if(ends[2]>=biggest53035){
+            biggest53035=ends[2];
           }
-          if(ends[12]>=biggest47503){
-            biggest47503=ends[12];
+          if(ends[12]>=biggest53035){
+            biggest53035=ends[12];
           }
-          if(biggest47503 == 1){
+          if(biggest53035 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest47503 == 0){
-            S47452=0;
+          if(biggest53035 == 0){
+            S52984=0;
             active[1]=0;
             ends[1]=0;
-            S47452=0;
+            S52984=0;
             break RUN;
           }
         

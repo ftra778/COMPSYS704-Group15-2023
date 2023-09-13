@@ -26,8 +26,8 @@
 			<iSignal Name="orderPOS"  											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			
 			
-			<oSignal Name="emergencyConveyor"      	To="ConveyorControllerCD.emergency"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
-			<oSignal Name="emergencyRotary"       	To="RotaryControllerCD.emergency"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
+			<oSignal Name="emergencyConveyor"      	To="ConveyorControllerCD.emergencyStop"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="11000" />
+			<oSignal Name="emergencyRotary"       	To="RotaryControllerCD.emergencyStop"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
 			<oSignal Name="bottleAtPos1"       		To="RotaryControllerCD.bottleAtPos1"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
 			<oSignal Name="bottleAtPos5"       		To="RotaryControllerCD.bottleAtPos5"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />
 			<oSignal Name="tableAlignedWithSensors"	To="RotaryControllerCD.tableAlignedWithSensors"	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12000" />

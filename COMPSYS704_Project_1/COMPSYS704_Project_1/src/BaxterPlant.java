@@ -30,30 +30,30 @@ public class BaxterPlant extends ClockDomain{
   public Signal RDE = new Signal("RDE", Signal.OUTPUT);
   public Signal ROE = new Signal("ROE", Signal.OUTPUT);
   public Signal RGE = new Signal("RGE", Signal.OUTPUT);
-  private int S34174 = 1;
-  private int S33755 = 1;
-  private int S33705 = 1;
-  private int S33829 = 1;
-  private int S33779 = 1;
-  private int S33927 = 1;
-  private int S33837 = 1;
-  private int S33845 = 1;
-  private int S33853 = 1;
-  private int S33861 = 1;
-  private int S33869 = 1;
-  private int S33877 = 1;
-  private int S33885 = 1;
-  private int S33893 = 1;
-  private int S33901 = 1;
-  private int S33909 = 1;
-  private int S33917 = 1;
-  private int S33925 = 1;
+  private int S34180 = 1;
+  private int S33760 = 1;
+  private int S33710 = 1;
+  private int S33834 = 1;
+  private int S33784 = 1;
+  private int S33932 = 1;
+  private int S33842 = 1;
+  private int S33850 = 1;
+  private int S33858 = 1;
+  private int S33866 = 1;
+  private int S33874 = 1;
+  private int S33882 = 1;
+  private int S33890 = 1;
+  private int S33898 = 1;
+  private int S33906 = 1;
+  private int S33914 = 1;
+  private int S33922 = 1;
+  private int S33930 = 1;
   
-  private int[] ends = new int[53];
-  private int[] tdone = new int[53];
+  private int[] ends = new int[74];
+  private int[] tdone = new int[74];
   
-  public void thread34283(int [] tdone, int [] ends){
-        switch(S33925){
+  public void thread44773(int [] tdone, int [] ends){
+        switch(S33930){
       case 0 : 
         active[52]=0;
         ends[52]=0;
@@ -77,8 +77,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34282(int [] tdone, int [] ends){
-        switch(S33917){
+  public void thread44772(int [] tdone, int [] ends){
+        switch(S33922){
       case 0 : 
         active[51]=0;
         ends[51]=0;
@@ -102,8 +102,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34281(int [] tdone, int [] ends){
-        switch(S33909){
+  public void thread44771(int [] tdone, int [] ends){
+        switch(S33914){
       case 0 : 
         active[50]=0;
         ends[50]=0;
@@ -127,8 +127,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34280(int [] tdone, int [] ends){
-        switch(S33901){
+  public void thread44770(int [] tdone, int [] ends){
+        switch(S33906){
       case 0 : 
         active[49]=0;
         ends[49]=0;
@@ -152,8 +152,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34279(int [] tdone, int [] ends){
-        switch(S33893){
+  public void thread44769(int [] tdone, int [] ends){
+        switch(S33898){
       case 0 : 
         active[48]=0;
         ends[48]=0;
@@ -177,8 +177,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34278(int [] tdone, int [] ends){
-        switch(S33885){
+  public void thread44768(int [] tdone, int [] ends){
+        switch(S33890){
       case 0 : 
         active[47]=0;
         ends[47]=0;
@@ -202,8 +202,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34277(int [] tdone, int [] ends){
-        switch(S33877){
+  public void thread44767(int [] tdone, int [] ends){
+        switch(S33882){
       case 0 : 
         active[46]=0;
         ends[46]=0;
@@ -227,8 +227,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34276(int [] tdone, int [] ends){
-        switch(S33869){
+  public void thread44766(int [] tdone, int [] ends){
+        switch(S33874){
       case 0 : 
         active[45]=0;
         ends[45]=0;
@@ -252,8 +252,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34275(int [] tdone, int [] ends){
-        switch(S33861){
+  public void thread44765(int [] tdone, int [] ends){
+        switch(S33866){
       case 0 : 
         active[44]=0;
         ends[44]=0;
@@ -277,8 +277,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34274(int [] tdone, int [] ends){
-        switch(S33853){
+  public void thread44764(int [] tdone, int [] ends){
+        switch(S33858){
       case 0 : 
         active[43]=0;
         ends[43]=0;
@@ -302,8 +302,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34273(int [] tdone, int [] ends){
-        switch(S33845){
+  public void thread44763(int [] tdone, int [] ends){
+        switch(S33850){
       case 0 : 
         active[42]=0;
         ends[42]=0;
@@ -327,8 +327,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34272(int [] tdone, int [] ends){
-        switch(S33837){
+  public void thread44762(int [] tdone, int [] ends){
+        switch(S33842){
       case 0 : 
         active[41]=0;
         ends[41]=0;
@@ -352,8 +352,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34271(int [] tdone, int [] ends){
-        switch(S33927){
+  public void thread44761(int [] tdone, int [] ends){
+        switch(S33932){
       case 0 : 
         active[40]=0;
         ends[40]=0;
@@ -361,63 +361,63 @@ public class BaxterPlant extends ClockDomain{
         break;
       
       case 1 : 
-        thread34272(tdone,ends);
-        thread34273(tdone,ends);
-        thread34274(tdone,ends);
-        thread34275(tdone,ends);
-        thread34276(tdone,ends);
-        thread34277(tdone,ends);
-        thread34278(tdone,ends);
-        thread34279(tdone,ends);
-        thread34280(tdone,ends);
-        thread34281(tdone,ends);
-        thread34282(tdone,ends);
-        thread34283(tdone,ends);
-        int biggest34284 = 0;
-        if(ends[41]>=biggest34284){
-          biggest34284=ends[41];
+        thread44762(tdone,ends);
+        thread44763(tdone,ends);
+        thread44764(tdone,ends);
+        thread44765(tdone,ends);
+        thread44766(tdone,ends);
+        thread44767(tdone,ends);
+        thread44768(tdone,ends);
+        thread44769(tdone,ends);
+        thread44770(tdone,ends);
+        thread44771(tdone,ends);
+        thread44772(tdone,ends);
+        thread44773(tdone,ends);
+        int biggest44774 = 0;
+        if(ends[41]>=biggest44774){
+          biggest44774=ends[41];
         }
-        if(ends[42]>=biggest34284){
-          biggest34284=ends[42];
+        if(ends[42]>=biggest44774){
+          biggest44774=ends[42];
         }
-        if(ends[43]>=biggest34284){
-          biggest34284=ends[43];
+        if(ends[43]>=biggest44774){
+          biggest44774=ends[43];
         }
-        if(ends[44]>=biggest34284){
-          biggest34284=ends[44];
+        if(ends[44]>=biggest44774){
+          biggest44774=ends[44];
         }
-        if(ends[45]>=biggest34284){
-          biggest34284=ends[45];
+        if(ends[45]>=biggest44774){
+          biggest44774=ends[45];
         }
-        if(ends[46]>=biggest34284){
-          biggest34284=ends[46];
+        if(ends[46]>=biggest44774){
+          biggest44774=ends[46];
         }
-        if(ends[47]>=biggest34284){
-          biggest34284=ends[47];
+        if(ends[47]>=biggest44774){
+          biggest44774=ends[47];
         }
-        if(ends[48]>=biggest34284){
-          biggest34284=ends[48];
+        if(ends[48]>=biggest44774){
+          biggest44774=ends[48];
         }
-        if(ends[49]>=biggest34284){
-          biggest34284=ends[49];
+        if(ends[49]>=biggest44774){
+          biggest44774=ends[49];
         }
-        if(ends[50]>=biggest34284){
-          biggest34284=ends[50];
+        if(ends[50]>=biggest44774){
+          biggest44774=ends[50];
         }
-        if(ends[51]>=biggest34284){
-          biggest34284=ends[51];
+        if(ends[51]>=biggest44774){
+          biggest44774=ends[51];
         }
-        if(ends[52]>=biggest34284){
-          biggest34284=ends[52];
+        if(ends[52]>=biggest44774){
+          biggest44774=ends[52];
         }
-        if(biggest34284 == 1){
+        if(biggest44774 == 1){
           active[40]=1;
           ends[40]=1;
           tdone[40]=1;
         }
         //FINXME code
-        if(biggest34284 == 0){
-          S33927=0;
+        if(biggest44774 == 0){
+          S33932=0;
           active[40]=0;
           ends[40]=0;
           tdone[40]=1;
@@ -427,8 +427,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34270(int [] tdone, int [] ends){
-        switch(S33829){
+  public void thread44760(int [] tdone, int [] ends){
+        switch(S33834){
       case 0 : 
         active[39]=0;
         ends[39]=0;
@@ -436,7 +436,7 @@ public class BaxterPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S33779){
+        switch(S33784){
           case 0 : 
             if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 344, column: 11
               if((CMDL.getpreval() == null ? null : ((String)CMDL.getpreval())).contains("left_limb")){//sysj\ABSplant.sysj line: 345, column: 5
@@ -446,7 +446,7 @@ public class BaxterPlant extends ClockDomain{
                     currsigs.addElement(LAE);
                     CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                     currsigs.addElement(CMDLfb);
-                    S33779=1;
+                    S33784=1;
                     active[39]=1;
                     ends[39]=1;
                     tdone[39]=1;
@@ -457,7 +457,7 @@ public class BaxterPlant extends ClockDomain{
                       currsigs.addElement(LBE);
                       CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                       currsigs.addElement(CMDLfb);
-                      S33779=1;
+                      S33784=1;
                       active[39]=1;
                       ends[39]=1;
                       tdone[39]=1;
@@ -468,7 +468,7 @@ public class BaxterPlant extends ClockDomain{
                         currsigs.addElement(LCE);
                         CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                         currsigs.addElement(CMDLfb);
-                        S33779=1;
+                        S33784=1;
                         active[39]=1;
                         ends[39]=1;
                         tdone[39]=1;
@@ -479,7 +479,7 @@ public class BaxterPlant extends ClockDomain{
                           currsigs.addElement(LDE);
                           CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                           currsigs.addElement(CMDLfb);
-                          S33779=1;
+                          S33784=1;
                           active[39]=1;
                           ends[39]=1;
                           tdone[39]=1;
@@ -488,7 +488,7 @@ public class BaxterPlant extends ClockDomain{
                           System.err.println("Incorrect position argument");//sysj\ABSplant.sysj line: 356, column: 8
                           CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                           currsigs.addElement(CMDLfb);
-                          S33779=1;
+                          S33784=1;
                           active[39]=1;
                           ends[39]=1;
                           tdone[39]=1;
@@ -504,7 +504,7 @@ public class BaxterPlant extends ClockDomain{
                       currsigs.addElement(LOE);
                       CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                       currsigs.addElement(CMDLfb);
-                      S33779=1;
+                      S33784=1;
                       active[39]=1;
                       ends[39]=1;
                       tdone[39]=1;
@@ -515,7 +515,7 @@ public class BaxterPlant extends ClockDomain{
                         currsigs.addElement(LGE);
                         CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                         currsigs.addElement(CMDLfb);
-                        S33779=1;
+                        S33784=1;
                         active[39]=1;
                         ends[39]=1;
                         tdone[39]=1;
@@ -524,7 +524,7 @@ public class BaxterPlant extends ClockDomain{
                         System.err.println("Incorrect position argument");//sysj\ABSplant.sysj line: 364, column: 8
                         CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                         currsigs.addElement(CMDLfb);
-                        S33779=1;
+                        S33784=1;
                         active[39]=1;
                         ends[39]=1;
                         tdone[39]=1;
@@ -534,7 +534,7 @@ public class BaxterPlant extends ClockDomain{
                   else {
                     CMDLfb.setPresent();//sysj\ABSplant.sysj line: 367, column: 6
                     currsigs.addElement(CMDLfb);
-                    S33779=1;
+                    S33784=1;
                     active[39]=1;
                     ends[39]=1;
                     tdone[39]=1;
@@ -542,7 +542,7 @@ public class BaxterPlant extends ClockDomain{
                 }
               }
               else {
-                S33779=1;
+                S33784=1;
                 active[39]=1;
                 ends[39]=1;
                 tdone[39]=1;
@@ -556,15 +556,15 @@ public class BaxterPlant extends ClockDomain{
             break;
           
           case 1 : 
-            S33779=1;
-            S33779=0;
+            S33784=1;
+            S33784=0;
             if(CMDL.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 343, column: 12
               active[39]=1;
               ends[39]=1;
               tdone[39]=1;
             }
             else {
-              S33779=1;
+              S33784=1;
               active[39]=1;
               ends[39]=1;
               tdone[39]=1;
@@ -577,8 +577,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34269(int [] tdone, int [] ends){
-        switch(S33755){
+  public void thread44759(int [] tdone, int [] ends){
+        switch(S33760){
       case 0 : 
         active[38]=0;
         ends[38]=0;
@@ -586,7 +586,7 @@ public class BaxterPlant extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S33705){
+        switch(S33710){
           case 0 : 
             if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 311, column: 11
               if((CMDR.getpreval() == null ? null : ((String)CMDR.getpreval())).contains("right_limb")){//sysj\ABSplant.sysj line: 312, column: 5
@@ -596,7 +596,7 @@ public class BaxterPlant extends ClockDomain{
                     currsigs.addElement(RAE);
                     CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                     currsigs.addElement(CMDRfb);
-                    S33705=1;
+                    S33710=1;
                     active[38]=1;
                     ends[38]=1;
                     tdone[38]=1;
@@ -607,7 +607,7 @@ public class BaxterPlant extends ClockDomain{
                       currsigs.addElement(RBE);
                       CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                       currsigs.addElement(CMDRfb);
-                      S33705=1;
+                      S33710=1;
                       active[38]=1;
                       ends[38]=1;
                       tdone[38]=1;
@@ -618,7 +618,7 @@ public class BaxterPlant extends ClockDomain{
                         currsigs.addElement(RCE);
                         CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                         currsigs.addElement(CMDRfb);
-                        S33705=1;
+                        S33710=1;
                         active[38]=1;
                         ends[38]=1;
                         tdone[38]=1;
@@ -629,7 +629,7 @@ public class BaxterPlant extends ClockDomain{
                           currsigs.addElement(RDE);
                           CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                           currsigs.addElement(CMDRfb);
-                          S33705=1;
+                          S33710=1;
                           active[38]=1;
                           ends[38]=1;
                           tdone[38]=1;
@@ -638,7 +638,7 @@ public class BaxterPlant extends ClockDomain{
                           System.err.println("Incorrect position argument");//sysj\ABSplant.sysj line: 323, column: 8
                           CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                           currsigs.addElement(CMDRfb);
-                          S33705=1;
+                          S33710=1;
                           active[38]=1;
                           ends[38]=1;
                           tdone[38]=1;
@@ -654,7 +654,7 @@ public class BaxterPlant extends ClockDomain{
                       currsigs.addElement(ROE);
                       CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                       currsigs.addElement(CMDRfb);
-                      S33705=1;
+                      S33710=1;
                       active[38]=1;
                       ends[38]=1;
                       tdone[38]=1;
@@ -665,7 +665,7 @@ public class BaxterPlant extends ClockDomain{
                         currsigs.addElement(RGE);
                         CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                         currsigs.addElement(CMDRfb);
-                        S33705=1;
+                        S33710=1;
                         active[38]=1;
                         ends[38]=1;
                         tdone[38]=1;
@@ -674,7 +674,7 @@ public class BaxterPlant extends ClockDomain{
                         System.err.println("Incorrect position argument");//sysj\ABSplant.sysj line: 331, column: 8
                         CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                         currsigs.addElement(CMDRfb);
-                        S33705=1;
+                        S33710=1;
                         active[38]=1;
                         ends[38]=1;
                         tdone[38]=1;
@@ -684,7 +684,7 @@ public class BaxterPlant extends ClockDomain{
                   else {
                     CMDRfb.setPresent();//sysj\ABSplant.sysj line: 334, column: 6
                     currsigs.addElement(CMDRfb);
-                    S33705=1;
+                    S33710=1;
                     active[38]=1;
                     ends[38]=1;
                     tdone[38]=1;
@@ -692,7 +692,7 @@ public class BaxterPlant extends ClockDomain{
                 }
               }
               else {
-                S33705=1;
+                S33710=1;
                 active[38]=1;
                 ends[38]=1;
                 tdone[38]=1;
@@ -706,15 +706,15 @@ public class BaxterPlant extends ClockDomain{
             break;
           
           case 1 : 
-            S33705=1;
-            S33705=0;
+            S33710=1;
+            S33710=0;
             if(CMDR.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 310, column: 12
               active[38]=1;
               ends[38]=1;
               tdone[38]=1;
             }
             else {
-              S33705=1;
+              S33710=1;
               active[38]=1;
               ends[38]=1;
               tdone[38]=1;
@@ -727,8 +727,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34266(int [] tdone, int [] ends){
-        S33925=1;
+  public void thread44756(int [] tdone, int [] ends){
+        S33930=1;
     if(RGE.getprestatus()){//sysj\ABSplant.sysj line: 397, column: 17
       System.out.println("RG");//sysj\ABSplant.sysj line: 397, column: 22
       active[52]=1;
@@ -742,8 +742,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34265(int [] tdone, int [] ends){
-        S33917=1;
+  public void thread44755(int [] tdone, int [] ends){
+        S33922=1;
     if(ROE.getprestatus()){//sysj\ABSplant.sysj line: 395, column: 17
       System.out.println("RO");//sysj\ABSplant.sysj line: 395, column: 22
       active[51]=1;
@@ -757,8 +757,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34264(int [] tdone, int [] ends){
-        S33909=1;
+  public void thread44754(int [] tdone, int [] ends){
+        S33914=1;
     if(RDE.getprestatus()){//sysj\ABSplant.sysj line: 393, column: 17
       System.out.println("RD");//sysj\ABSplant.sysj line: 393, column: 22
       active[50]=1;
@@ -772,8 +772,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34263(int [] tdone, int [] ends){
-        S33901=1;
+  public void thread44753(int [] tdone, int [] ends){
+        S33906=1;
     if(RCE.getprestatus()){//sysj\ABSplant.sysj line: 391, column: 17
       System.out.println("RC");//sysj\ABSplant.sysj line: 391, column: 22
       active[49]=1;
@@ -787,8 +787,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34262(int [] tdone, int [] ends){
-        S33893=1;
+  public void thread44752(int [] tdone, int [] ends){
+        S33898=1;
     if(RBE.getprestatus()){//sysj\ABSplant.sysj line: 389, column: 17
       System.out.println("RB");//sysj\ABSplant.sysj line: 389, column: 22
       active[48]=1;
@@ -802,8 +802,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34261(int [] tdone, int [] ends){
-        S33885=1;
+  public void thread44751(int [] tdone, int [] ends){
+        S33890=1;
     if(RAE.getprestatus()){//sysj\ABSplant.sysj line: 387, column: 17
       System.out.println("RA");//sysj\ABSplant.sysj line: 387, column: 22
       active[47]=1;
@@ -817,8 +817,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34260(int [] tdone, int [] ends){
-        S33877=1;
+  public void thread44750(int [] tdone, int [] ends){
+        S33882=1;
     if(LGE.getprestatus()){//sysj\ABSplant.sysj line: 385, column: 17
       System.out.println("LG");//sysj\ABSplant.sysj line: 385, column: 22
       active[46]=1;
@@ -832,8 +832,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34259(int [] tdone, int [] ends){
-        S33869=1;
+  public void thread44749(int [] tdone, int [] ends){
+        S33874=1;
     if(LOE.getprestatus()){//sysj\ABSplant.sysj line: 383, column: 17
       System.out.println("LO");//sysj\ABSplant.sysj line: 383, column: 22
       active[45]=1;
@@ -847,8 +847,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34258(int [] tdone, int [] ends){
-        S33861=1;
+  public void thread44748(int [] tdone, int [] ends){
+        S33866=1;
     if(LDE.getprestatus()){//sysj\ABSplant.sysj line: 381, column: 17
       System.out.println("LD");//sysj\ABSplant.sysj line: 381, column: 22
       active[44]=1;
@@ -862,8 +862,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34257(int [] tdone, int [] ends){
-        S33853=1;
+  public void thread44747(int [] tdone, int [] ends){
+        S33858=1;
     if(LCE.getprestatus()){//sysj\ABSplant.sysj line: 379, column: 17
       System.out.println("LC");//sysj\ABSplant.sysj line: 379, column: 22
       active[43]=1;
@@ -877,8 +877,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34256(int [] tdone, int [] ends){
-        S33845=1;
+  public void thread44746(int [] tdone, int [] ends){
+        S33850=1;
     if(LBE.getprestatus()){//sysj\ABSplant.sysj line: 377, column: 17
       System.out.println("LB");//sysj\ABSplant.sysj line: 377, column: 22
       active[42]=1;
@@ -892,8 +892,8 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34255(int [] tdone, int [] ends){
-        S33837=1;
+  public void thread44745(int [] tdone, int [] ends){
+        S33842=1;
     if(LAE.getprestatus()){//sysj\ABSplant.sysj line: 375, column: 17
       System.out.println("LA");//sysj\ABSplant.sysj line: 375, column: 22
       active[41]=1;
@@ -907,90 +907,90 @@ public class BaxterPlant extends ClockDomain{
     }
   }
 
-  public void thread34254(int [] tdone, int [] ends){
-        S33927=1;
-    thread34255(tdone,ends);
-    thread34256(tdone,ends);
-    thread34257(tdone,ends);
-    thread34258(tdone,ends);
-    thread34259(tdone,ends);
-    thread34260(tdone,ends);
-    thread34261(tdone,ends);
-    thread34262(tdone,ends);
-    thread34263(tdone,ends);
-    thread34264(tdone,ends);
-    thread34265(tdone,ends);
-    thread34266(tdone,ends);
-    int biggest34267 = 0;
-    if(ends[41]>=biggest34267){
-      biggest34267=ends[41];
+  public void thread44744(int [] tdone, int [] ends){
+        S33932=1;
+    thread44745(tdone,ends);
+    thread44746(tdone,ends);
+    thread44747(tdone,ends);
+    thread44748(tdone,ends);
+    thread44749(tdone,ends);
+    thread44750(tdone,ends);
+    thread44751(tdone,ends);
+    thread44752(tdone,ends);
+    thread44753(tdone,ends);
+    thread44754(tdone,ends);
+    thread44755(tdone,ends);
+    thread44756(tdone,ends);
+    int biggest44757 = 0;
+    if(ends[41]>=biggest44757){
+      biggest44757=ends[41];
     }
-    if(ends[42]>=biggest34267){
-      biggest34267=ends[42];
+    if(ends[42]>=biggest44757){
+      biggest44757=ends[42];
     }
-    if(ends[43]>=biggest34267){
-      biggest34267=ends[43];
+    if(ends[43]>=biggest44757){
+      biggest44757=ends[43];
     }
-    if(ends[44]>=biggest34267){
-      biggest34267=ends[44];
+    if(ends[44]>=biggest44757){
+      biggest44757=ends[44];
     }
-    if(ends[45]>=biggest34267){
-      biggest34267=ends[45];
+    if(ends[45]>=biggest44757){
+      biggest44757=ends[45];
     }
-    if(ends[46]>=biggest34267){
-      biggest34267=ends[46];
+    if(ends[46]>=biggest44757){
+      biggest44757=ends[46];
     }
-    if(ends[47]>=biggest34267){
-      biggest34267=ends[47];
+    if(ends[47]>=biggest44757){
+      biggest44757=ends[47];
     }
-    if(ends[48]>=biggest34267){
-      biggest34267=ends[48];
+    if(ends[48]>=biggest44757){
+      biggest44757=ends[48];
     }
-    if(ends[49]>=biggest34267){
-      biggest34267=ends[49];
+    if(ends[49]>=biggest44757){
+      biggest44757=ends[49];
     }
-    if(ends[50]>=biggest34267){
-      biggest34267=ends[50];
+    if(ends[50]>=biggest44757){
+      biggest44757=ends[50];
     }
-    if(ends[51]>=biggest34267){
-      biggest34267=ends[51];
+    if(ends[51]>=biggest44757){
+      biggest44757=ends[51];
     }
-    if(ends[52]>=biggest34267){
-      biggest34267=ends[52];
+    if(ends[52]>=biggest44757){
+      biggest44757=ends[52];
     }
-    if(biggest34267 == 1){
+    if(biggest44757 == 1){
       active[40]=1;
       ends[40]=1;
       tdone[40]=1;
     }
   }
 
-  public void thread34253(int [] tdone, int [] ends){
-        S33829=1;
-    S33779=0;
+  public void thread44743(int [] tdone, int [] ends){
+        S33834=1;
+    S33784=0;
     if(CMDL.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 343, column: 12
       active[39]=1;
       ends[39]=1;
       tdone[39]=1;
     }
     else {
-      S33779=1;
+      S33784=1;
       active[39]=1;
       ends[39]=1;
       tdone[39]=1;
     }
   }
 
-  public void thread34252(int [] tdone, int [] ends){
-        S33755=1;
-    S33705=0;
+  public void thread44742(int [] tdone, int [] ends){
+        S33760=1;
+    S33710=0;
     if(CMDR.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 310, column: 12
       active[38]=1;
       ends[38]=1;
       tdone[38]=1;
     }
     else {
-      S33705=1;
+      S33710=1;
       active[38]=1;
       ends[38]=1;
       tdone[38]=1;
@@ -1004,60 +1004,59 @@ public class BaxterPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S34174){
+      switch(S34180){
         case 0 : 
-          S34174=0;
+          S34180=0;
           break RUN;
         
         case 1 : 
-          S34174=2;
-          S34174=2;
+          S34180=2;
+          S34180=2;
           System.out.println("BaxterPlant");//sysj\ABSplant.sysj line: 306, column: 2
-          new Thread(new GUI()).start();//sysj\ABSplant.sysj line: 307, column: 2
-          thread34252(tdone,ends);
-          thread34253(tdone,ends);
-          thread34254(tdone,ends);
-          int biggest34268 = 0;
-          if(ends[38]>=biggest34268){
-            biggest34268=ends[38];
+          thread44742(tdone,ends);
+          thread44743(tdone,ends);
+          thread44744(tdone,ends);
+          int biggest44758 = 0;
+          if(ends[38]>=biggest44758){
+            biggest44758=ends[38];
           }
-          if(ends[39]>=biggest34268){
-            biggest34268=ends[39];
+          if(ends[39]>=biggest44758){
+            biggest44758=ends[39];
           }
-          if(ends[40]>=biggest34268){
-            biggest34268=ends[40];
+          if(ends[40]>=biggest44758){
+            biggest44758=ends[40];
           }
-          if(biggest34268 == 1){
+          if(biggest44758 == 1){
             active[37]=1;
             ends[37]=1;
             break RUN;
           }
         
         case 2 : 
-          thread34269(tdone,ends);
-          thread34270(tdone,ends);
-          thread34271(tdone,ends);
-          int biggest34285 = 0;
-          if(ends[38]>=biggest34285){
-            biggest34285=ends[38];
+          thread44759(tdone,ends);
+          thread44760(tdone,ends);
+          thread44761(tdone,ends);
+          int biggest44775 = 0;
+          if(ends[38]>=biggest44775){
+            biggest44775=ends[38];
           }
-          if(ends[39]>=biggest34285){
-            biggest34285=ends[39];
+          if(ends[39]>=biggest44775){
+            biggest44775=ends[39];
           }
-          if(ends[40]>=biggest34285){
-            biggest34285=ends[40];
+          if(ends[40]>=biggest44775){
+            biggest44775=ends[40];
           }
-          if(biggest34285 == 1){
+          if(biggest44775 == 1){
             active[37]=1;
             ends[37]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest34285 == 0){
-            S34174=0;
+          if(biggest44775 == 0){
+            S34180=0;
             active[37]=0;
             ends[37]=0;
-            S34174=0;
+            S34180=0;
             break RUN;
           }
         
@@ -1066,9 +1065,9 @@ public class BaxterPlant extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;

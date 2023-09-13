@@ -22,15 +22,15 @@ public class SACS extends JFrame {
 	
 	public SACS() {
 
-		panel = new Canvas();
+		panel = new SACSCanvas();
 		panel.setPreferredSize(new Dimension(360, 350));
 		panel.setBackground(Color.WHITE);
 		JButton accessDoor1 = new JButton("access_door1");
-		accessDoor1.addActionListener(new SignalClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_ACCESS_DOOR1));
+		accessDoor1.addActionListener(new SignalClient(Ports.PORT_SACS_CONTROLLER, Ports.SIGNAL_ACCESS_DOOR1));
 		JButton accessDoor2 = new JButton("access_door2");
-		accessDoor2.addActionListener(new SignalClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_ACCESS_DOOR2));
+		accessDoor2.addActionListener(new SignalClient(Ports.PORT_SACS_CONTROLLER, Ports.SIGNAL_ACCESS_DOOR2));
 		JButton accessDoor3 = new JButton("access_door3");
-		accessDoor3.addActionListener(new SignalClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_ACCESS_DOOR3));
+		accessDoor3.addActionListener(new SignalClient(Ports.PORT_SACS_CONTROLLER, Ports.SIGNAL_ACCESS_DOOR3));
 		
 		
 		JPanel ss = new JPanel();
@@ -49,29 +49,29 @@ public class SACS extends JFrame {
 		
 
 		JCheckBox hp1 = new JCheckBox("hp1");
-		hp1.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP1));
+		hp1.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_PLANT, Ports.HP1));
 		
 		JCheckBox hp2 = new JCheckBox("hp2");
-		hp2.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP2));
+		hp2.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_PLANT, Ports.HP2));
 		
 		JCheckBox hp3 = new JCheckBox("hp3");
-		hp3.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP3));
+		hp3.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_PLANT, Ports.HP3));
 		
 		JCheckBox hp4 = new JCheckBox("hp4");
-		hp4.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP4));
+		hp4.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_PLANT, Ports.HP4));
 		
 		JCheckBox hp5 = new JCheckBox("hp5");
-		hp5.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP5));
+		hp5.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_PLANT, Ports.HP5));
 		
 		JCheckBox hp6 = new JCheckBox("hp6");
-		hp6.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP6));
+		hp6.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_PLANT, Ports.HP6));
 		
 		JCheckBox hp7 = new JCheckBox("hp7");
-		hp7.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_PLANT, Ports.HP7));
+		hp7.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_PLANT, Ports.HP7));
 		
 		
 		JCheckBox smokeDetected = new JCheckBox("smokeDetected");
-		smokeDetected.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SmokeDetected));
+		smokeDetected.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_CONTROLLER, Ports.SmokeDetected));
 		
 		JPanel pan = new JPanel(new GridLayout(2, 0));
 		pan.add(hp1);
@@ -88,10 +88,10 @@ public class SACS extends JFrame {
 
 
 		JCheckBox oa = new JCheckBox("Office section Authorized ");
-		oa.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_OFFICE_AUTH));
+		oa.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_CONTROLLER, Ports.SIGNAL_OFFICE_AUTH));
 		
 		JCheckBox ma = new JCheckBox("Manufacturing section Authorized");
-		ma.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_Manufacturing_AUTH));
+		ma.addItemListener(new SignalCheckBoxClient(Ports.PORT_SACS_CONTROLLER, Ports.SIGNAL_Manufacturing_AUTH));
 		
 		
 		JPanel pan2 = new JPanel(new GridLayout(1, 2));
@@ -113,20 +113,20 @@ public class SACS extends JFrame {
 		this.setResizable(false);
 	}
 
-	public static void main(String[] args) {
-		SACS cl = new SACS();
-		cl.pack();
-		cl.setVisible(true);
-		
-		SignalServer<SACSVizWorker> server = new SignalServer<SACSVizWorker>(Ports.PORT_SACS_VIZ, SACSVizWorker.class);
-		new Thread(server).start();
-		while(true){
-			try {
-				cl.repaint();
-				Thread.sleep(5);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//	public static void main(String[] args) {
+//		SACS cl = new SACS();
+//		cl.pack();
+//		cl.setVisible(true);
+//		
+//		SignalServer<SACSVizWorker> server = new SignalServer<SACSVizWorker>(Ports.PORT_SACS_VIZ, SACSVizWorker.class);
+//		new Thread(server).start();
+//		while(true){
+//			try {
+//				cl.repaint();
+//				Thread.sleep(5);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 }

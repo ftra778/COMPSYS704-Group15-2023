@@ -16,7 +16,7 @@ public class SACSCanvas extends JPanel {
 	
 	public SACSCanvas(){
 		try {
-			layout = ImageIO.read(new File("res/layoutW.png"));
+			layout = ImageIO.read(new File("res/layoutsacs.png"));
 			door_closed = ImageIO.read(new File("res/door_closed.png"));
 			door_opened = ImageIO.read(new File("res/door_opened.png"));
 			

@@ -61,11 +61,18 @@ public class Baxter extends JFrame {
 		bx.pack();
 		bx.setVisible(true);
 		bx.setLocation(0, 0);
+		
 		ECS ecs = new ECS();
 		ecs.pack();
 		ecs.setVisible(true);
 		ecs.setLocation(MAXIMIZED_BOTH, ABORT);
+
+		SACS sacs = new SACS();
+		sacs.pack();
+		sacs.setVisible(true);
 		
+
+		SignalServer<SACSVizWorker> sacsserver = new SignalServer<SACSVizWorker>(Ports.PORT_SACS_VIZ, SACSVizWorker.class);
 		SignalServer<ECSVizWorker> ecsserver = new SignalServer<ECSVizWorker>(Ports.PORT_ECS_VIZ, ECSVizWorker.class);
 		SignalServer<ConveyorVizWorker> conserver = new SignalServer<ConveyorVizWorker>(Ports.PORT_CONVEYOR_VIZ, ConveyorVizWorker.class);
 		SignalServer<RotaryVizWorker> roterver = new SignalServer<RotaryVizWorker>(Ports.PORT_ROTARY_VIZ, RotaryVizWorker.class);
@@ -78,6 +85,7 @@ public class Baxter extends JFrame {
 		new Thread(clserver).start();
 		new Thread(baxserver).start();
 		new Thread(ecsserver).start();
+		new Thread(sacsserver).start();
 		
 		while(true){
 			try {
@@ -87,6 +95,7 @@ public class Baxter extends JFrame {
 				cl.repaint();
 				bx.repaint();
 				ecs.repaint();
+				sacs.repaint();
 				Thread.sleep(5);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
