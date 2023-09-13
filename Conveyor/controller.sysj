@@ -1,0 +1,37 @@
+Controller(
+		input signal emptyBottleReady, bottleAtPos1, bottleAtPos5, bottleLeftPos5, emergencyStop;
+		output signal ConveyorON, ConveyorOFF;
+		)
+->{
+
+    loop{
+        await(bottleLeftPos5); // Wait until no bottles are on the far end of the conveyor
+        
+        emit ConveyorON; // Enable the conveyor motor
+        
+        //Check if the empty bottle is ready on the conveyor
+        await(emptyBottleReady);
+        
+        //Check if the bottle has arrived at position 1 and then pause the conveyor
+        abort(bottleAtPos1) {
+            sustain ConveyorOFF;
+        }
+        
+        // Check if the bottle has arrived at position 5 and then turn on the conveyor
+        await(bottleAtPos5);
+        emit ConveyorON;
+        
+        //Wait until the bottle successfully leaves position 5
+        await(bottleLeftPos5);
+        
+        emit ConveyorOFF; //Stop the conveyor motor
+    }
+
+    //Emergency stop functionality
+    ||
+    loop{
+        await(emergencyStop);
+        emit ConveyorOFF;
+    }
+}
+	
