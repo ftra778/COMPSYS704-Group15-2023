@@ -5,10 +5,10 @@ Controller(
 ->{
    
 	loop{
-		await(bottleLeftPos5 && emptyBottleReady);
+		await(bottleLeftPos5 && (emptyBottleReady || bottleAtPos5));
 		
 		trap(T){
-			{sustain ConveyorON;} || {waitl(3.0s); exit(T);}
+			{sustain ConveyorON;} || {await(bottleAtPos1); exit(T);}
 		}
 		emit ConveyorOFF;
 		
