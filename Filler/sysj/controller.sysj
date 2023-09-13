@@ -3,6 +3,7 @@ import java.util.List;
 Controller(
 			input signal bottleAtPos2, dosUnitEvac, dosUnitFilled, emergencyStop;
 			input List signal liquidRatio;
+			input int signal liquidVolumeDetector;
 			output signal bottleFilled;
 			output signal valveInjectorOnOff1, valveInjectorOnOff2, valveInjectorOnOff3, valveInjectorOnOff4;
 			output signal valveInletOnOff1, valveInletOnOff2, valveInletOnOff3, valveInletOnOff4;
@@ -11,9 +12,97 @@ Controller(
 		)
 ->{
 	
-	loop {
-		
-	}
+	int signal fillerNum;
 	
+	while(true){
+		
+		abort(immediate(emergencyStop)) {
+	        trap(T){
+	            {
+	                await(bottleAtPos2);
+	                
+	                List<Integer> liquids = Arrays.asList(#liquidRatio);
+	                
+	                trap(P){
+	                    loop{
+	                        emit valveInjectorOnOff1;
+	                        abort(immediate(dosUnitFilled)){
+	                            {sustain valveInjectorOnOff1;}
+	                            ||
+	                            {sustain dosUnitValveRetract1;}
+	                        }
+	                        
+	                        
+	                        System.out.println("Filler: 1, Fill Percent: " + liquids.get(0) + "%");
+	                        trap(P){{waitl(1 s); exit(P);}}
+	                        
+	                        abort(immediate(dosUnitEvac)){
+	                            {sustain valveInletOnOff1;}
+	                            ||
+	                            {sustain dosUnitValveExtend1;}
+	                        }
+	                        
+	                        
+	                        emit valveInjectorOnOff2;
+	                        abort(immediate(dosUnitFilled)){
+	                            {sustain valveInjectorOnOff2;}
+	                            ||
+	                            {sustain dosUnitValveRetract2;}
+	                        }
+	                        
+	                        System.out.println("Filler: 2, Fill Percent: " + liquids.get(1) + "%");
+	                        trap(P){{waitl(1 s); exit(P);}}
+	                        
+	                        abort(immediate(dosUnitEvac)){
+	                            {sustain valveInletOnOff2;}
+	                            ||
+	                            {sustain dosUnitValveExtend2;}
+	                        }
+	                        
+	                        
+	                        emit valveInjectorOnOff3;
+	                        abort(immediate(dosUnitFilled)){
+	                            {sustain valveInjectorOnOff3;}
+	                            ||
+	                            {sustain dosUnitValveRetract3;}
+	                        }
+	                        
+	                        System.out.println("Filler: 3, Fill Percent: " + liquids.get(2) + "%");
+	                        trap(P){{waitl(1 s); exit(P);}}
+	                        
+	                        abort(immediate(dosUnitEvac)){
+	                            {sustain valveInletOnOff3;}
+	                            ||
+	                            {sustain dosUnitValveExtend3;}
+	                        }
+	                        
+	                        
+	                        
+	                        emit valveInjectorOnOff4;
+	                        abort(immediate(dosUnitFilled)){
+	                            {sustain valveInjectorOnOff4;}
+	                            ||
+	                            {sustain dosUnitValveRetract4;}
+	                        }
+	                        
+	                        System.out.println("Filler: 4, Fill Percent: " + liquids.get(3) + "%");
+	                        trap(P){{waitl(1 s); exit(P);}}
+	                        
+	                        abort(immediate(dosUnitEvac)){
+	                            {sustain valveInletOnOff4;}
+	                            ||
+	                            {sustain dosUnitValveExtend4;}
+	                        }
+	                        
+	                    }
+	                }
+	                exit(T);
+	            } 
+	        }
+	        System.out.println("Bottle filled at pos 2");
+	        emit bottleFilled;
+	        pause;
+	    }
+	}
 		
 }
