@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.compsys704.*;
 
-Controller(
+POSController(
 		/*output signal 			emergency;*/
 		
 		input int signal		orderQuantity;
@@ -16,7 +16,7 @@ Controller(
 ->{
 	
 	// This queue will simulate a database of all orders that need to be processed
-	List<List<Integer>> orderQueue = new ArrayList<>();
+	List orderQueue = Arrays.asList();
 	
 	
 	loop {
@@ -34,9 +34,10 @@ Controller(
 					exit(T);
 				}
 				
-				orderQueue.add((List<Float>)#liquidRatio);
+				orderQueue.add((List)#liquidRatio);
 				System.out.println("Order added, number " + (currentCount + 1));
 				currentCount++;
+				pause;
 			}
 		}
 	}

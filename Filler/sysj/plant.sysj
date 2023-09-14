@@ -6,8 +6,9 @@ Plant(
 		input signal valveInletOnOff1, valveInletOnOff2, valveInletOnOff3, valveInletOnOff4;
 		input signal dosUnitValveRetract1, dosUnitValveRetract2, dosUnitValveRetract3, dosUnitValveRetract4;
 		input signal dosUnitExtend1, dosUnitExtend2, dosUnitExtend3, dosUnitExtend4;
-		output signal dosUnitEvac, dosUnitFilled, liquidVolumeDetector;
+		output signal dosUnitEvac, dosUnitFilled/*, liquidVolumeDetector*/;
 		output signal dosUnitEvacE, dosUnitFilledE, liquidVolumeDetectorE;
+		output int signal liquidVolumeDetector;
 		
 		// In real simulation we would need need these signals to check whether the cannister is at the top or bottom
 		// and signals to open the injectors and inlets
@@ -18,7 +19,7 @@ Plant(
 		)
 ->
 {
-	new Thread(new GUI()).start();
+//	new Thread(new GUI()).start();
 
 	{
 		while(true){
@@ -50,8 +51,8 @@ Plant(
 	
     {
         while(true){
-            present(dosUnitValveExtend1){
-                abort(!dosUnitValveExtend1){
+            present(dosUnitExtend1){
+                abort(!dosUnitExtend1){
                 	// check if cannister is at bottom
                 	System.out.println("FillerPlant: valveExtend");
                     sustain dosUnitEvac;
@@ -110,8 +111,8 @@ Plant(
 	
     {
         while(true){
-            present(dosUnitValveExtend2){
-                abort(!dosUnitValveExtend2){
+            present(dosUnitExtend2){
+                abort(!dosUnitExtend2){
                 	// check if cannister is at bottom
                 	System.out.println("FillerPlant: valveExtend");
                     sustain dosUnitEvac;
@@ -170,8 +171,8 @@ Plant(
 	
     {
         while(true){
-            present(dosUnitValveExtend3){
-                abort(!dosUnitValveExtend3){
+            present(dosUnitExtend3){
+                abort(!dosUnitExtend3){
                 	// check if cannister is at bottom
                 	System.out.println("FillerPlant: valveExtend");
                     sustain dosUnitEvac;
@@ -230,8 +231,8 @@ Plant(
 	
     {
         while(true){
-            present(dosUnitValveExtend4){
-                abort(!dosUnitValveExtend4){
+            present(dosUnitExtend4){
+                abort(!dosUnitExtend4){
                 	// check if cannister is at bottom
                 	System.out.println("FillerPlant: valveExtend");
                     
@@ -260,10 +261,13 @@ Plant(
 	||
 	
 	{
-		while(true) {present(dosUnitEvac){emit dosUnitEvacE;} pause;}}
-		while(true) {present(dosUnitFilled){emit dosUnitFilledE;} pause;}}
-		while(true) {emit liquidVolumeDetectorE(#liquidVolumeDetector);} pause;};
-		while(true) {emit liquidVolumeDetector(#liquidVolumeDetector);} pause;}}
+		{while(true) {present(dosUnitEvac){emit dosUnitEvacE;}pause;}}
+		||
+		{while(true) {present(dosUnitFilled){emit dosUnitFilledE;}pause;}}
+		||
+		{while(true) {emit liquidVolumeDetectorE(#liquidVolumeDetector);pause;}}
+		||
+		{while(true) {emit liquidVolumeDetector(#liquidVolumeDetector);pause;}}
 	}
 	
 	

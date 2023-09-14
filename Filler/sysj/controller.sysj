@@ -14,14 +14,14 @@ Controller(
 	
 	int signal fillerNum;
 	
-	while(true){
+	loop{
 		
 		abort(immediate(emergencyStop)) {
 	        trap(T){
 	            {
 	                await(bottleAtPos2);
 	                
-	                List<Integer> liquids = Arrays.asList(#liquidRatio);
+	                List liquids = Arrays.asList(#liquidRatio);
 	                
 	                trap(P){
 	                    loop{
@@ -33,13 +33,13 @@ Controller(
 	                        }
 	                        
 	                        
-	                        System.out.println("Filler: 1, Fill Percent: " + liquids.get(0) + "%");
+	                        System.out.println("Filler: 1, Fill Percent: " + (int)liquids.get(0) + "%");
 	                        trap(P){{waitl(1 s); exit(P);}}
 	                        
 	                        abort(immediate(dosUnitEvac)){
 	                            {sustain valveInletOnOff1;}
 	                            ||
-	                            {sustain dosUnitValveExtend1;}
+	                            {sustain dosUnitExtend1;}
 	                        }
 	                        
 	                        
@@ -50,13 +50,13 @@ Controller(
 	                            {sustain dosUnitValveRetract2;}
 	                        }
 	                        
-	                        System.out.println("Filler: 2, Fill Percent: " + liquids.get(1) + "%");
+	                        System.out.println("Filler: 2, Fill Percent: " + (int)liquids.get(1) + "%");
 	                        trap(P){{waitl(1 s); exit(P);}}
 	                        
 	                        abort(immediate(dosUnitEvac)){
 	                            {sustain valveInletOnOff2;}
 	                            ||
-	                            {sustain dosUnitValveExtend2;}
+	                            {sustain dosUnitExtend2;}
 	                        }
 	                        
 	                        
@@ -67,13 +67,13 @@ Controller(
 	                            {sustain dosUnitValveRetract3;}
 	                        }
 	                        
-	                        System.out.println("Filler: 3, Fill Percent: " + liquids.get(2) + "%");
+	                        System.out.println("Filler: 3, Fill Percent: " + (int)liquids.get(2) + "%");
 	                        trap(P){{waitl(1 s); exit(P);}}
 	                        
 	                        abort(immediate(dosUnitEvac)){
 	                            {sustain valveInletOnOff3;}
 	                            ||
-	                            {sustain dosUnitValveExtend3;}
+	                            {sustain dosUnitExtend3;}
 	                        }
 	                        
 	                        
@@ -85,13 +85,13 @@ Controller(
 	                            {sustain dosUnitValveRetract4;}
 	                        }
 	                        
-	                        System.out.println("Filler: 4, Fill Percent: " + liquids.get(3) + "%");
+	                        System.out.println("Filler: 4, Fill Percent: " + (int)liquids.get(3) + "%");
 	                        trap(P){{waitl(1 s); exit(P);}}
 	                        
 	                        abort(immediate(dosUnitEvac)){
 	                            {sustain valveInletOnOff4;}
 	                            ||
-	                            {sustain dosUnitValveExtend4;}
+	                            {sustain dosUnitExtend4;}
 	                        }
 	                        
 	                    }
@@ -103,6 +103,7 @@ Controller(
 	        emit bottleFilled;
 	        pause;
 	    }
+		pause;
 	}
 		
 }

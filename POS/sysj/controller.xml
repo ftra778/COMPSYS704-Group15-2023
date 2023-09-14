@@ -1,6 +1,6 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SS2" Local="true">
-		<ClockDomain Name="POSControllerCD" Class="Controller">
+		<ClockDomain Name="POSControllerCD" Class="POSController">
 			<iSignal Name="orderQuantity" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="liquidRatio" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="bottleReady" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
