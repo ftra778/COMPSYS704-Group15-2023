@@ -3,7 +3,7 @@ package org.compsys704;
 import java.util.Arrays;
 import java.util.List;
 
-public class ECSVizWorker extends Worker{
+public class POSVizWorker extends Worker{
 	
 	public volatile Boolean dupe = false;		// SIGNALS ARE SENT TWICE: ONCE ON EACH EMITTED/SUSTAINED RISING AND FALLING EDGE
 	

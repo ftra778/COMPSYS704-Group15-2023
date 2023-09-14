@@ -20,19 +20,20 @@ public class POSController extends ClockDomain{
   public Signal liquidRatio = new Signal("liquidRatio", Signal.INPUT);
   public Signal sendOrder = new Signal("sendOrder", Signal.INPUT);
   public Signal liquidRatioOrder = new Signal("liquidRatioOrder", Signal.OUTPUT);
-  private List orderQueue_thread_1;//sysj\controller.sysj line: 19, column: 2
+  private Signal orderQueue_1;
   private int currentCount_thread_2;//sysj\controller.sysj line: 27, column: 3
-  private int S201 = 1;
-  private int S81 = 1;
-  private int S1 = 1;
-  private int S99 = 1;
-  private int S89 = 1;
+  private List orderQueueVar_thread_2;//sysj\controller.sysj line: 30, column: 4
+  private int S172 = 1;
+  private int S152 = 1;
+  private int S2 = 1;
+  private int S170 = 1;
+  private int S160 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread207(int [] tdone, int [] ends){
-        switch(S99){
+  public void thread178(int [] tdone, int [] ends){
+        switch(S170){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -40,13 +41,13 @@ public class POSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S89){
+        switch(S160){
           case 0 : 
-            if(bottleReady.getprestatus() && !suspendOrders.getprestatus()){//sysj\controller.sysj line: 50, column: 9
-              S89=1;
-              liquidRatioOrder.setPresent();//sysj\controller.sysj line: 53, column: 3
+            if(bottleReady.getprestatus() && !suspendOrders.getprestatus()){//sysj\controller.sysj line: 51, column: 9
+              S160=1;
+              liquidRatioOrder.setPresent();//sysj\controller.sysj line: 54, column: 3
               currsigs.addElement(liquidRatioOrder);
-              liquidRatioOrder.setValue(orderQueue.get(0));//sysj\controller.sysj line: 53, column: 3
+              liquidRatioOrder.setValue((orderQueue_1.getpreval() == null ? null : ((List)orderQueue_1.getpreval())).get(0));//sysj\controller.sysj line: 54, column: 3
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -59,9 +60,9 @@ public class POSController extends ClockDomain{
             break;
           
           case 1 : 
-            liquidRatioOrder.setPresent();//sysj\controller.sysj line: 53, column: 3
+            liquidRatioOrder.setPresent();//sysj\controller.sysj line: 54, column: 3
             currsigs.addElement(liquidRatioOrder);
-            liquidRatioOrder.setValue(orderQueue.get(0));//sysj\controller.sysj line: 53, column: 3
+            liquidRatioOrder.setValue((orderQueue_1.getpreval() == null ? null : ((List)orderQueue_1.getpreval())).get(0));//sysj\controller.sysj line: 54, column: 3
             active[3]=1;
             ends[3]=1;
             tdone[3]=1;
@@ -73,8 +74,8 @@ public class POSController extends ClockDomain{
     }
   }
 
-  public void thread206(int [] tdone, int [] ends){
-        switch(S81){
+  public void thread177(int [] tdone, int [] ends){
+        switch(S152){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -82,21 +83,22 @@ public class POSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1){
+        switch(S2){
           case 0 : 
             if(sendOrder.getprestatus()){//sysj\controller.sysj line: 25, column: 9
               currentCount_thread_2 = 0;//sysj\controller.sysj line: 27, column: 3
-              S1=1;
+              S2=1;
+              orderQueueVar_thread_2 = Arrays.asList();//sysj\controller.sysj line: 30, column: 4
               if(currentCount_thread_2 == (Integer)(orderQuantity.getpreval() == null ? 0 : ((Integer)orderQuantity.getpreval()).intValue())){//sysj\controller.sysj line: 33, column: 8
                 ends[2]=2;
                 ;//sysj\controller.sysj line: 29, column: 3
-                S1=0;
+                S2=0;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               else {
-                orderQueue.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 37, column: 5
+                orderQueueVar_thread_2.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 37, column: 5
                 System.out.println("Order added, number " + (currentCount_thread_2 + 1));//sysj\controller.sysj line: 38, column: 5
                 currentCount_thread_2 = currentCount_thread_2 + 1;//sysj\controller.sysj line: 39, column: 5
                 active[2]=1;
@@ -115,13 +117,13 @@ public class POSController extends ClockDomain{
             if(currentCount_thread_2 == (Integer)(orderQuantity.getpreval() == null ? 0 : ((Integer)orderQuantity.getpreval()).intValue())){//sysj\controller.sysj line: 33, column: 8
               ends[2]=2;
               ;//sysj\controller.sysj line: 29, column: 3
-              S1=0;
+              S2=0;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              orderQueue.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 37, column: 5
+              orderQueueVar_thread_2.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 37, column: 5
               System.out.println("Order added, number " + (currentCount_thread_2 + 1));//sysj\controller.sysj line: 38, column: 5
               currentCount_thread_2 = currentCount_thread_2 + 1;//sysj\controller.sysj line: 39, column: 5
               active[2]=1;
@@ -136,17 +138,17 @@ public class POSController extends ClockDomain{
     }
   }
 
-  public void thread204(int [] tdone, int [] ends){
-        S99=1;
-    S89=0;
+  public void thread175(int [] tdone, int [] ends){
+        S170=1;
+    S160=0;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread203(int [] tdone, int [] ends){
-        S81=1;
-    S1=0;
+  public void thread174(int [] tdone, int [] ends){
+        S152=1;
+    S2=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
@@ -159,51 +161,52 @@ public class POSController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S201){
+      switch(S172){
         case 0 : 
-          S201=0;
+          S172=0;
           break RUN;
         
         case 1 : 
-          S201=2;
-          S201=2;
-          orderQueue_thread_1 = Arrays.asList();//sysj\controller.sysj line: 19, column: 2
-          thread203(tdone,ends);
-          thread204(tdone,ends);
-          int biggest205 = 0;
-          if(ends[2]>=biggest205){
-            biggest205=ends[2];
+          S172=2;
+          S172=2;
+          orderQueue_1.setClear();//sysj\controller.sysj line: 19, column: 2
+          thread174(tdone,ends);
+          thread175(tdone,ends);
+          int biggest176 = 0;
+          if(ends[2]>=biggest176){
+            biggest176=ends[2];
           }
-          if(ends[3]>=biggest205){
-            biggest205=ends[3];
+          if(ends[3]>=biggest176){
+            biggest176=ends[3];
           }
-          if(biggest205 == 1){
+          if(biggest176 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread206(tdone,ends);
-          thread207(tdone,ends);
-          int biggest208 = 0;
-          if(ends[2]>=biggest208){
-            biggest208=ends[2];
+          orderQueue_1.setClear();//sysj\controller.sysj line: 19, column: 2
+          thread177(tdone,ends);
+          thread178(tdone,ends);
+          int biggest179 = 0;
+          if(ends[2]>=biggest179){
+            biggest179=ends[2];
           }
-          if(ends[3]>=biggest208){
-            biggest208=ends[3];
+          if(ends[3]>=biggest179){
+            biggest179=ends[3];
           }
-          if(biggest208 == 1){
+          if(biggest179 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest208 == 0){
-            S201=0;
+          if(biggest179 == 0){
+            S172=0;
             active[1]=0;
             ends[1]=0;
-            S201=0;
+            S172=0;
             break RUN;
           }
         
@@ -219,6 +222,7 @@ public class POSController extends ClockDomain{
     active = active1;
     suspended = suspended1;
     // Now instantiate all the local signals ONLY
+    orderQueue_1 = new Signal();
     // --------------------------------------------------
   }
   
@@ -248,6 +252,7 @@ public class POSController extends ClockDomain{
       liquidRatio.setpreclear();
       sendOrder.setpreclear();
       liquidRatioOrder.setpreclear();
+      orderQueue_1.setpreclear();
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
@@ -271,6 +276,7 @@ public class POSController extends ClockDomain{
       sendOrder.setClear();
       liquidRatioOrder.sethook();
       liquidRatioOrder.setClear();
+      orderQueue_1.setClear();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         orderQuantity.gethook();

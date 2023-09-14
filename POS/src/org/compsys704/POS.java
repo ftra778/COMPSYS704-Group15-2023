@@ -47,15 +47,16 @@ public class POS extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		POS cl = new POS();
-		cl.pack();
-		cl.setVisible(true);
-		cl.setLocation(MAXIMIZED_BOTH, ABORT);
-		
-		
+		POS pos = new POS();
+		pos.pack();
+		pos.setVisible(true);
+		pos.setLocation(MAXIMIZED_BOTH, ABORT);
+
+		SignalServer<POSVizWorker> server = new SignalServer<POSVizWorker>(Ports.PORT_POS_VIZ, POSVizWorker.class);
+		new Thread(server).start();
 		while(true){
 			try {
-				cl.repaint();
+				pos.repaint();
 				Thread.sleep(5);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

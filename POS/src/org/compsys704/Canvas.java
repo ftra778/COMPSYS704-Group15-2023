@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -48,10 +50,15 @@ public class Canvas extends JPanel {
 		
 		try {
 			
-			liquidRatio = new SimpleClient(IP, 10000, "POSControllerCD", "liquidRatio");
-			orderQuantity = new SimpleClient(IP, 10000, "POSControllerCD", "orderQuantity");
-			sendOrder = new SimpleClient(IP, 10000, "POSControllerCD", "sendOrder");
-			submitOrder = ImageIO.read(new File("res/submitOrder.ong"));
+//			liquidRatio = new SimpleClient(IP, 10000, "POSControllerCD", "liquidRatio");
+//			orderQuantity = new SimpleClient(IP, 10000, "POSControllerCD", "orderQuantity");
+//			sendOrder = new SimpleClient(IP, 10000, "POSControllerCD", "sendOrder");
+			JSlider liquidRatio = new JSlider(0,100);
+			liquidRatio.addChangeListener(new SignalSliderClient(Ports.PORT_POS_CONTROLLER, Ports.LIQUID_RATIO, new JLabel(), "°C"));
+			JTextField orderQuantity = new JTextField(25);
+			orderQuantity.addFocusListener(new SignalTextBoxClient(Ports.PORT_POS_CONTROLLER, Ports.TIME_SIGNAL,"25"));
+			
+			submitOrder = ImageIO.read(new File("res/button.png"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -61,15 +68,18 @@ public class Canvas extends JPanel {
 		
 		try {
 			orderButton.setIcon(new ImageIcon(submitOrder));
+			orderButton.setOpaque(false);
+			orderButton.setContentAreaFilled(false);
+			orderButton.setBorderPainted(false);
+			orderButton.setFocusPainted(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 		
 		orderButton.addActionListener(e -> {
-			
 			sendOrder();
-			System.out.println("Order submitted");
+			System.out.println("Button Pressed");
 		});
 		
 		orderButton.setBounds(250, 500, 200, 100);

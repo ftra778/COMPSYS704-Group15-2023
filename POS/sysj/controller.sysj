@@ -16,7 +16,7 @@ POSController(
 ->{
 	
 	// This queue will simulate a database of all orders that need to be processed
-	List orderQueue = Arrays.asList();
+	List signal orderQueue;// = Arrays.asList();
 	
 	
 	loop {
@@ -27,18 +27,19 @@ POSController(
 		int currentCount = 0;
 		
 		trap(T) {
+			List orderQueueVar = Arrays.asList();
 			loop {
-			
 				// Add order to the queue for quantity in order
 				if(currentCount == (Integer)#orderQuantity) {
 					exit(T);
 				}
 				
-				orderQueue.add((List)#liquidRatio);
+				orderQueueVar.add((List)#liquidRatio);
 				System.out.println("Order added, number " + (currentCount + 1));
 				currentCount++;
 				pause;
 			}
+			emit orderQueue(orderQueueVar);
 		}
 	}
 	
@@ -50,7 +51,7 @@ POSController(
 		await(bottleReady && !suspendOrders);
 		
 		// Send the first order in the queue
-		sustain liquidRatioOrder(orderQueue.get(0));
+		sustain liquidRatioOrder(#orderQueue.get(0));
 		
 		// Remove the order from the queue
 		orderQueue.remove(0);
