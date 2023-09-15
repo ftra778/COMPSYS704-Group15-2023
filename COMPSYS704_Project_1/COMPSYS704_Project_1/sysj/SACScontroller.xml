@@ -9,12 +9,12 @@
 			<iSignal Name="ManufacturingAuthorised"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
 			<iSignal Name="smokeDetected"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40000" />
 			
-			<oSignal Name="open_door1" To="PlantCD.open_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
-			<oSignal Name="open_door2" To="PlantCD.open_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
-			<oSignal Name="open_door3" To="PlantCD.open_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
-			<oSignal Name="close_door1" To="PlantCD.close_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
-			<oSignal Name="close_door2" To="PlantCD.close_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
-			<oSignal Name="close_door3" To="PlantCD.close_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="open_door1" To="SACSPlantCD.open_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="open_door2" To="SACSPlantCD.open_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="open_door3" To="SACSPlantCD.open_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="close_door1" To="SACSPlantCD.close_door1" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="close_door2" To="SACSPlantCD.close_door2" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
+			<oSignal Name="close_door3" To="SACSPlantCD.close_door3" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40001" />
 
 
 		</ClockDomain>

@@ -59,6 +59,7 @@ public class ECSController extends ClockDomain{
   public Signal smokeState = new Signal("smokeState", Signal.OUTPUT);
   public Signal closedState = new Signal("closedState", Signal.OUTPUT);
   public Signal emergency = new Signal("emergency", Signal.OUTPUT);
+  public Signal emergencySACS = new Signal("emergencySACS", Signal.OUTPUT);
   private int setSmoke_thread_3;//sysj\ECScontroller.sysj line: 130, column: 4
   private List setTemp_thread_2;//sysj\ECScontroller.sysj line: 46, column: 5
   private List setHumidity_thread_2;//sysj\ECScontroller.sysj line: 47, column: 5
@@ -67,30 +68,90 @@ public class ECSController extends ClockDomain{
   private String timeString_thread_2;//sysj\ECScontroller.sysj line: 50, column: 5
   private int setClosed_thread_2;//sysj\ECScontroller.sysj line: 51, column: 5
   private int j_thread_2;//sysj\ECScontroller.sysj line: 54, column: 5
-  private int S51538 = 1;
-  private int S46924 = 1;
-  private int S44834 = 1;
-  private int S47022 = 1;
-  private int S46938 = 1;
-  private int S47066 = 1;
-  private int S47026 = 1;
+  private int S64290 = 1;
+  private int S59505 = 1;
+  private int S57415 = 1;
+  private int S59603 = 1;
+  private int S59519 = 1;
+  private int S59704 = 1;
+  private int S59636 = 1;
+  private int S59608 = 1;
+  private int S59616 = 1;
   
-  private int[] ends = new int[5];
-  private int[] tdone = new int[5];
+  private int[] ends = new int[7];
+  private int[] tdone = new int[7];
   
-  public void thread51550(int [] tdone, int [] ends){
-        S47066=1;
-    S47026=0;
-    active[4]=1;
-    ends[4]=1;
-    tdone[4]=1;
+  public void thread64313(int [] tdone, int [] ends){
+        S59616=1;
+    if((smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue()) == 0){//sysj\ECScontroller.sysj line: 155, column: 41
+      ends[6]=2;
+      tdone[6]=1;
+    }
+    else {
+      active[6]=1;
+      ends[6]=1;
+      tdone[6]=1;
+    }
   }
 
-  public void thread51549(int [] tdone, int [] ends){
-        S47022=1;
+  public void thread64312(int [] tdone, int [] ends){
+        S59608=1;
+    emergency.setPresent();//sysj\ECScontroller.sysj line: 155, column: 9
+    currsigs.addElement(emergency);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread64311(int [] tdone, int [] ends){
+        S59704=1;
+    S59636=0;
+    if(smokeState.getprestatus()){//sysj\ECScontroller.sysj line: 149, column: 13
+      System.out.println("a");//sysj\ECScontroller.sysj line: 150, column: 6
+      if((smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue()) == 1){//sysj\ECScontroller.sysj line: 151, column: 9
+        thread64312(tdone,ends);
+        thread64313(tdone,ends);
+        int biggest64314 = 0;
+        if(ends[5]>=biggest64314){
+          biggest64314=ends[5];
+        }
+        if(ends[6]>=biggest64314){
+          biggest64314=ends[6];
+        }
+        if(biggest64314 == 1){
+          active[4]=1;
+          ends[4]=1;
+          tdone[4]=1;
+        }
+        if(biggest64314 == 2){
+          ends[4]=2;
+          ;//sysj\ECScontroller.sysj line: 153, column: 7
+          S59636=1;
+          active[4]=1;
+          ends[4]=1;
+          tdone[4]=1;
+        }
+      }
+      else {
+        S59636=1;
+        active[4]=1;
+        ends[4]=1;
+        tdone[4]=1;
+      }
+    }
+    else {
+      S59636=1;
+      active[4]=1;
+      ends[4]=1;
+      tdone[4]=1;
+    }
+  }
+
+  public void thread64310(int [] tdone, int [] ends){
+        S59603=1;
         if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\ECScontroller.sysj line: 133, column: 13
       setSmoke_thread_3 = 1;//sysj\ECScontroller.sysj line: 134, column: 6
-      S46938=0;
+      S59519=0;
       smokeState.setPresent();//sysj\ECScontroller.sysj line: 141, column: 7
       currsigs.addElement(smokeState);
       smokeState.setValue(setSmoke_thread_3);//sysj\ECScontroller.sysj line: 141, column: 7
@@ -100,7 +161,7 @@ public class ECSController extends ClockDomain{
     }
     else {
       setSmoke_thread_3 = 0;//sysj\ECScontroller.sysj line: 136, column: 6
-      S46938=0;
+      S59519=0;
       smokeState.setPresent();//sysj\ECScontroller.sysj line: 141, column: 7
       currsigs.addElement(smokeState);
       smokeState.setValue(setSmoke_thread_3);//sysj\ECScontroller.sysj line: 141, column: 7
@@ -110,17 +171,81 @@ public class ECSController extends ClockDomain{
     }
   }
 
-  public void thread51548(int [] tdone, int [] ends){
-        S46924=1;
+  public void thread64309(int [] tdone, int [] ends){
+        S59505=1;
     System.out.println("1");//sysj\ECScontroller.sysj line: 41, column: 5
-    S44834=0;
+    S57415=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
   }
 
-  public void thread51546(int [] tdone, int [] ends){
-        switch(S47066){
+  public void thread64306(int [] tdone, int [] ends){
+        S59616=1;
+    if((smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue()) == 0){//sysj\ECScontroller.sysj line: 155, column: 41
+      ends[6]=2;
+      tdone[6]=1;
+    }
+    else {
+      active[6]=1;
+      ends[6]=1;
+      tdone[6]=1;
+    }
+  }
+
+  public void thread64305(int [] tdone, int [] ends){
+        S59608=1;
+    emergency.setPresent();//sysj\ECScontroller.sysj line: 155, column: 9
+    currsigs.addElement(emergency);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread64303(int [] tdone, int [] ends){
+        switch(S59616){
+      case 0 : 
+        active[6]=0;
+        ends[6]=0;
+        tdone[6]=1;
+        break;
+      
+      case 1 : 
+        if((smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue()) == 0){//sysj\ECScontroller.sysj line: 155, column: 41
+          ends[6]=2;
+          tdone[6]=1;
+        }
+        else {
+          active[6]=1;
+          ends[6]=1;
+          tdone[6]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread64302(int [] tdone, int [] ends){
+        switch(S59608){
+      case 0 : 
+        active[5]=0;
+        ends[5]=0;
+        tdone[5]=1;
+        break;
+      
+      case 1 : 
+        emergency.setPresent();//sysj\ECScontroller.sysj line: 155, column: 9
+        currsigs.addElement(emergency);
+        active[5]=1;
+        ends[5]=1;
+        tdone[5]=1;
+        break;
+      
+    }
+  }
+
+  public void thread64301(int [] tdone, int [] ends){
+        switch(S59704){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -128,15 +253,33 @@ public class ECSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S47026){
+        switch(S59636){
           case 0 : 
-            if(smokeState.getprestatus()){//sysj\ECScontroller.sysj line: 149, column: 11
-              S47026=1;
+            thread64302(tdone,ends);
+            thread64303(tdone,ends);
+            int biggest64304 = 0;
+            if(ends[5]>=biggest64304){
+              biggest64304=ends[5];
+            }
+            if(ends[6]>=biggest64304){
+              biggest64304=ends[6];
+            }
+            if(biggest64304 == 1){
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
-            else {
+            if(biggest64304 == 2){
+              ends[4]=2;
+              ;//sysj\ECScontroller.sysj line: 153, column: 7
+              S59636=1;
+              active[4]=1;
+              ends[4]=1;
+              tdone[4]=1;
+            }
+            //FINXME code
+            if(biggest64304 == 0){
+              S59636=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -144,45 +287,43 @@ public class ECSController extends ClockDomain{
             break;
           
           case 1 : 
-            if(!smokeState.getprestatus()){//sysj\ECScontroller.sysj line: 150, column: 11
-              S47026=2;
-              emergency.setPresent();//sysj\ECScontroller.sysj line: 152, column: 6
-              currsigs.addElement(emergency);
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
+            S59636=1;
+            S59636=0;
+            if(smokeState.getprestatus()){//sysj\ECScontroller.sysj line: 149, column: 13
+              System.out.println("a");//sysj\ECScontroller.sysj line: 150, column: 6
+              if((smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue()) == 1){//sysj\ECScontroller.sysj line: 151, column: 9
+                thread64305(tdone,ends);
+                thread64306(tdone,ends);
+                int biggest64307 = 0;
+                if(ends[5]>=biggest64307){
+                  biggest64307=ends[5];
+                }
+                if(ends[6]>=biggest64307){
+                  biggest64307=ends[6];
+                }
+                if(biggest64307 == 1){
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+                if(biggest64307 == 2){
+                  ends[4]=2;
+                  ;//sysj\ECScontroller.sysj line: 153, column: 7
+                  S59636=1;
+                  active[4]=1;
+                  ends[4]=1;
+                  tdone[4]=1;
+                }
+              }
+              else {
+                S59636=1;
+                active[4]=1;
+                ends[4]=1;
+                tdone[4]=1;
+              }
             }
             else {
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            break;
-          
-          case 2 : 
-            if(smokeState.getprestatus()){//sysj\ECScontroller.sysj line: 151, column: 11
-              S47026=3;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            else {
-              emergency.setPresent();//sysj\ECScontroller.sysj line: 152, column: 6
-              currsigs.addElement(emergency);
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            break;
-          
-          case 3 : 
-            if(!smokeState.getprestatus()){//sysj\ECScontroller.sysj line: 155, column: 11
-              S47026=0;
-              active[4]=1;
-              ends[4]=1;
-              tdone[4]=1;
-            }
-            else {
+              S59636=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -195,8 +336,8 @@ public class ECSController extends ClockDomain{
     }
   }
 
-  public void thread51545(int [] tdone, int [] ends){
-        switch(S47022){
+  public void thread64300(int [] tdone, int [] ends){
+        switch(S59603){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -204,10 +345,10 @@ public class ECSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S46938){
+        switch(S59519){
           case 0 : 
             if(updates.getprestatus()){//sysj\ECScontroller.sysj line: 140, column: 11
-              S46938=1;
+              S59519=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -226,7 +367,7 @@ public class ECSController extends ClockDomain{
             if(!updates.getprestatus()){//sysj\ECScontroller.sysj line: 143, column: 11
               if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\ECScontroller.sysj line: 133, column: 13
                 setSmoke_thread_3 = 1;//sysj\ECScontroller.sysj line: 134, column: 6
-                S46938=0;
+                S59519=0;
                 smokeState.setPresent();//sysj\ECScontroller.sysj line: 141, column: 7
                 currsigs.addElement(smokeState);
                 smokeState.setValue(setSmoke_thread_3);//sysj\ECScontroller.sysj line: 141, column: 7
@@ -236,7 +377,7 @@ public class ECSController extends ClockDomain{
               }
               else {
                 setSmoke_thread_3 = 0;//sysj\ECScontroller.sysj line: 136, column: 6
-                S46938=0;
+                S59519=0;
                 smokeState.setPresent();//sysj\ECScontroller.sysj line: 141, column: 7
                 currsigs.addElement(smokeState);
                 smokeState.setValue(setSmoke_thread_3);//sysj\ECScontroller.sysj line: 141, column: 7
@@ -258,8 +399,8 @@ public class ECSController extends ClockDomain{
     }
   }
 
-  public void thread51544(int [] tdone, int [] ends){
-        switch(S46924){
+  public void thread64299(int [] tdone, int [] ends){
+        switch(S59505){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -267,10 +408,10 @@ public class ECSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S44834){
+        switch(S57415){
           case 0 : 
             if(update.getprestatus()){//sysj\ECScontroller.sysj line: 42, column: 11
-              S44834=1;
+              S57415=1;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -344,7 +485,7 @@ public class ECSController extends ClockDomain{
                   setClosed_thread_2 = 0;//sysj\ECScontroller.sysj line: 90, column: 6
                 }
               }
-              S44834=2;
+              S57415=2;
               if(SIGNAL_Z1_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 95, column: 13
                 setPresence_thread_2.set(0, true);//sysj\ECScontroller.sysj line: 95, column: 35
                 if(SIGNAL_Z2_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 96, column: 13
@@ -359,7 +500,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -368,7 +509,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -380,7 +521,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -389,7 +530,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -404,7 +545,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -413,7 +554,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -425,7 +566,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -434,7 +575,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -452,7 +593,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -461,7 +602,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -473,7 +614,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -482,7 +623,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -497,7 +638,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -506,7 +647,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -518,7 +659,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -527,7 +668,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -548,7 +689,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -557,7 +698,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -569,7 +710,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -578,7 +719,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -593,7 +734,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -602,7 +743,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -614,7 +755,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -623,7 +764,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -641,7 +782,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -650,7 +791,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -662,7 +803,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -671,7 +812,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -686,7 +827,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -695,7 +836,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -707,7 +848,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -716,7 +857,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -740,7 +881,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -749,7 +890,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -761,7 +902,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -770,7 +911,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -785,7 +926,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -794,7 +935,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -806,7 +947,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -815,7 +956,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -833,7 +974,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -842,7 +983,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -854,7 +995,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -863,7 +1004,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -878,7 +1019,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -887,7 +1028,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -899,7 +1040,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -908,7 +1049,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -929,7 +1070,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -938,7 +1079,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -950,7 +1091,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -959,7 +1100,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -974,7 +1115,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -983,7 +1124,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -995,7 +1136,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1004,7 +1145,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1022,7 +1163,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1031,7 +1172,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1043,7 +1184,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1052,7 +1193,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1067,7 +1208,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1076,7 +1217,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1088,7 +1229,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1097,7 +1238,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1124,7 +1265,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1133,7 +1274,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1145,7 +1286,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1154,7 +1295,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1169,7 +1310,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1178,7 +1319,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1190,7 +1331,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1199,7 +1340,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1217,7 +1358,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1226,7 +1367,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1238,7 +1379,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1247,7 +1388,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1262,7 +1403,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1271,7 +1412,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1283,7 +1424,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1292,7 +1433,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1313,7 +1454,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1322,7 +1463,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1334,7 +1475,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1343,7 +1484,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1358,7 +1499,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1367,7 +1508,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1379,7 +1520,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1388,7 +1529,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1406,7 +1547,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1415,7 +1556,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1427,7 +1568,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1436,7 +1577,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1451,7 +1592,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1460,7 +1601,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1472,7 +1613,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1481,7 +1622,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1505,7 +1646,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1514,7 +1655,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1526,7 +1667,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1535,7 +1676,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1550,7 +1691,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1559,7 +1700,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1571,7 +1712,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1580,7 +1721,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1598,7 +1739,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1607,7 +1748,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1619,7 +1760,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1628,7 +1769,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1643,7 +1784,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1652,7 +1793,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1664,7 +1805,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1673,7 +1814,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1694,7 +1835,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1703,7 +1844,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1715,7 +1856,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1724,7 +1865,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1739,7 +1880,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1748,7 +1889,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1760,7 +1901,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1769,7 +1910,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1787,7 +1928,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1796,7 +1937,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1808,7 +1949,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1817,7 +1958,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1832,7 +1973,7 @@ public class ECSController extends ClockDomain{
                           setPresence_thread_2.set(5, true);//sysj\ECScontroller.sysj line: 100, column: 35
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1841,7 +1982,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1853,7 +1994,7 @@ public class ECSController extends ClockDomain{
                         else {
                           if(SIGNAL_Z7_PRESENCE.getprestatus()){//sysj\ECScontroller.sysj line: 101, column: 13
                             setPresence_thread_2.set(6, true);//sysj\ECScontroller.sysj line: 101, column: 35
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1862,7 +2003,7 @@ public class ECSController extends ClockDomain{
                             tdone[2]=1;
                           }
                           else {
-                            S44834=3;
+                            S57415=3;
                             tempState.setPresent();//sysj\ECScontroller.sysj line: 105, column: 7
                             currsigs.addElement(tempState);
                             tempState.setValue(setTemp_thread_2);//sysj\ECScontroller.sysj line: 105, column: 7
@@ -1886,7 +2027,7 @@ public class ECSController extends ClockDomain{
           
           case 2 : 
             System.out.println("1");//sysj\ECScontroller.sysj line: 41, column: 5
-            S44834=0;
+            S57415=0;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -1894,7 +2035,7 @@ public class ECSController extends ClockDomain{
           
           case 3 : 
             if(updatep.getprestatus()){//sysj\ECScontroller.sysj line: 104, column: 11
-              S44834=4;
+              S57415=4;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1911,7 +2052,7 @@ public class ECSController extends ClockDomain{
           
           case 4 : 
             if(!updatep.getprestatus()){//sysj\ECScontroller.sysj line: 107, column: 11
-              S44834=5;
+              S57415=5;
               humidityState.setPresent();//sysj\ECScontroller.sysj line: 109, column: 7
               currsigs.addElement(humidityState);
               humidityState.setValue(setHumidity_thread_2);//sysj\ECScontroller.sysj line: 109, column: 7
@@ -1928,7 +2069,7 @@ public class ECSController extends ClockDomain{
           
           case 5 : 
             if(updatep.getprestatus()){//sysj\ECScontroller.sysj line: 108, column: 11
-              S44834=6;
+              S57415=6;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1945,7 +2086,7 @@ public class ECSController extends ClockDomain{
           
           case 6 : 
             if(!updatep.getprestatus()){//sysj\ECScontroller.sysj line: 111, column: 11
-              S44834=7;
+              S57415=7;
               lightState.setPresent();//sysj\ECScontroller.sysj line: 113, column: 7
               currsigs.addElement(lightState);
               lightState.setValue(setLight_thread_2);//sysj\ECScontroller.sysj line: 113, column: 7
@@ -1962,7 +2103,7 @@ public class ECSController extends ClockDomain{
           
           case 7 : 
             if(updatep.getprestatus()){//sysj\ECScontroller.sysj line: 112, column: 11
-              S44834=8;
+              S57415=8;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -1979,7 +2120,7 @@ public class ECSController extends ClockDomain{
           
           case 8 : 
             if(!updatep.getprestatus()){//sysj\ECScontroller.sysj line: 115, column: 11
-              S44834=9;
+              S57415=9;
               presenceState.setPresent();//sysj\ECScontroller.sysj line: 117, column: 7
               currsigs.addElement(presenceState);
               presenceState.setValue(setPresence_thread_2);//sysj\ECScontroller.sysj line: 117, column: 7
@@ -1996,7 +2137,7 @@ public class ECSController extends ClockDomain{
           
           case 9 : 
             if(updatep.getprestatus()){//sysj\ECScontroller.sysj line: 116, column: 11
-              S44834=10;
+              S57415=10;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -2013,7 +2154,7 @@ public class ECSController extends ClockDomain{
           
           case 10 : 
             if(!updatep.getprestatus()){//sysj\ECScontroller.sysj line: 119, column: 11
-              S44834=11;
+              S57415=11;
               closedState.setPresent();//sysj\ECScontroller.sysj line: 121, column: 7
               currsigs.addElement(closedState);
               closedState.setValue(setClosed_thread_2);//sysj\ECScontroller.sysj line: 121, column: 7
@@ -2030,7 +2171,7 @@ public class ECSController extends ClockDomain{
           
           case 11 : 
             if(updatep.getprestatus()){//sysj\ECScontroller.sysj line: 120, column: 11
-              S44834=12;
+              S57415=12;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -2047,7 +2188,7 @@ public class ECSController extends ClockDomain{
           
           case 12 : 
             if(!updatep.getprestatus()){//sysj\ECScontroller.sysj line: 123, column: 11
-              S44834=13;
+              S57415=13;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -2060,9 +2201,9 @@ public class ECSController extends ClockDomain{
             break;
           
           case 13 : 
-            S44834=13;
+            S57415=13;
             System.out.println("1");//sysj\ECScontroller.sysj line: 41, column: 5
-            S44834=0;
+            S57415=0;
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
@@ -2074,19 +2215,77 @@ public class ECSController extends ClockDomain{
     }
   }
 
-  public void thread51542(int [] tdone, int [] ends){
-        S47066=1;
-    S47026=0;
-    active[4]=1;
-    ends[4]=1;
-    tdone[4]=1;
+  public void thread64296(int [] tdone, int [] ends){
+        S59616=1;
+    if((smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue()) == 0){//sysj\ECScontroller.sysj line: 155, column: 41
+      ends[6]=2;
+      tdone[6]=1;
+    }
+    else {
+      active[6]=1;
+      ends[6]=1;
+      tdone[6]=1;
+    }
   }
 
-  public void thread51541(int [] tdone, int [] ends){
-        S47022=1;
+  public void thread64295(int [] tdone, int [] ends){
+        S59608=1;
+    emergency.setPresent();//sysj\ECScontroller.sysj line: 155, column: 9
+    currsigs.addElement(emergency);
+    active[5]=1;
+    ends[5]=1;
+    tdone[5]=1;
+  }
+
+  public void thread64294(int [] tdone, int [] ends){
+        S59704=1;
+    S59636=0;
+    if(smokeState.getprestatus()){//sysj\ECScontroller.sysj line: 149, column: 13
+      System.out.println("a");//sysj\ECScontroller.sysj line: 150, column: 6
+      if((smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue()) == 1){//sysj\ECScontroller.sysj line: 151, column: 9
+        thread64295(tdone,ends);
+        thread64296(tdone,ends);
+        int biggest64297 = 0;
+        if(ends[5]>=biggest64297){
+          biggest64297=ends[5];
+        }
+        if(ends[6]>=biggest64297){
+          biggest64297=ends[6];
+        }
+        if(biggest64297 == 1){
+          active[4]=1;
+          ends[4]=1;
+          tdone[4]=1;
+        }
+        if(biggest64297 == 2){
+          ends[4]=2;
+          ;//sysj\ECScontroller.sysj line: 153, column: 7
+          S59636=1;
+          active[4]=1;
+          ends[4]=1;
+          tdone[4]=1;
+        }
+      }
+      else {
+        S59636=1;
+        active[4]=1;
+        ends[4]=1;
+        tdone[4]=1;
+      }
+    }
+    else {
+      S59636=1;
+      active[4]=1;
+      ends[4]=1;
+      tdone[4]=1;
+    }
+  }
+
+  public void thread64293(int [] tdone, int [] ends){
+        S59603=1;
         if(SIGNAL_Z1_SMOKE.getprestatus() || SIGNAL_Z2_SMOKE.getprestatus() || SIGNAL_Z3_SMOKE.getprestatus() || SIGNAL_Z4_SMOKE.getprestatus() || SIGNAL_Z5_SMOKE.getprestatus() || SIGNAL_Z6_SMOKE.getprestatus() || SIGNAL_Z7_SMOKE.getprestatus()){//sysj\ECScontroller.sysj line: 133, column: 13
       setSmoke_thread_3 = 1;//sysj\ECScontroller.sysj line: 134, column: 6
-      S46938=0;
+      S59519=0;
       smokeState.setPresent();//sysj\ECScontroller.sysj line: 141, column: 7
       currsigs.addElement(smokeState);
       smokeState.setValue(setSmoke_thread_3);//sysj\ECScontroller.sysj line: 141, column: 7
@@ -2096,7 +2295,7 @@ public class ECSController extends ClockDomain{
     }
     else {
       setSmoke_thread_3 = 0;//sysj\ECScontroller.sysj line: 136, column: 6
-      S46938=0;
+      S59519=0;
       smokeState.setPresent();//sysj\ECScontroller.sysj line: 141, column: 7
       currsigs.addElement(smokeState);
       smokeState.setValue(setSmoke_thread_3);//sysj\ECScontroller.sysj line: 141, column: 7
@@ -2106,10 +2305,10 @@ public class ECSController extends ClockDomain{
     }
   }
 
-  public void thread51540(int [] tdone, int [] ends){
-        S46924=1;
+  public void thread64292(int [] tdone, int [] ends){
+        S59505=1;
     System.out.println("1");//sysj\ECScontroller.sysj line: 41, column: 5
-    S44834=0;
+    S57415=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
@@ -2122,68 +2321,68 @@ public class ECSController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S51538){
+      switch(S64290){
         case 0 : 
-          S51538=0;
+          S64290=0;
           break RUN;
         
         case 1 : 
-          S51538=2;
-          S51538=2;
-          thread51540(tdone,ends);
-          thread51541(tdone,ends);
-          thread51542(tdone,ends);
-          int biggest51543 = 0;
-          if(ends[2]>=biggest51543){
-            biggest51543=ends[2];
+          S64290=2;
+          S64290=2;
+          thread64292(tdone,ends);
+          thread64293(tdone,ends);
+          thread64294(tdone,ends);
+          int biggest64298 = 0;
+          if(ends[2]>=biggest64298){
+            biggest64298=ends[2];
           }
-          if(ends[3]>=biggest51543){
-            biggest51543=ends[3];
+          if(ends[3]>=biggest64298){
+            biggest64298=ends[3];
           }
-          if(ends[4]>=biggest51543){
-            biggest51543=ends[4];
+          if(ends[4]>=biggest64298){
+            biggest64298=ends[4];
           }
-          if(biggest51543 == 1){
+          if(biggest64298 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread51544(tdone,ends);
-          thread51545(tdone,ends);
-          thread51546(tdone,ends);
-          int biggest51547 = 0;
-          if(ends[2]>=biggest51547){
-            biggest51547=ends[2];
+          thread64299(tdone,ends);
+          thread64300(tdone,ends);
+          thread64301(tdone,ends);
+          int biggest64308 = 0;
+          if(ends[2]>=biggest64308){
+            biggest64308=ends[2];
           }
-          if(ends[3]>=biggest51547){
-            biggest51547=ends[3];
+          if(ends[3]>=biggest64308){
+            biggest64308=ends[3];
           }
-          if(ends[4]>=biggest51547){
-            biggest51547=ends[4];
+          if(ends[4]>=biggest64308){
+            biggest64308=ends[4];
           }
-          if(biggest51547 == 1){
+          if(biggest64308 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest51547 == 0){
-            thread51548(tdone,ends);
-            thread51549(tdone,ends);
-            thread51550(tdone,ends);
-            int biggest51551 = 0;
-            if(ends[2]>=biggest51551){
-              biggest51551=ends[2];
+          if(biggest64308 == 0){
+            thread64309(tdone,ends);
+            thread64310(tdone,ends);
+            thread64311(tdone,ends);
+            int biggest64315 = 0;
+            if(ends[2]>=biggest64315){
+              biggest64315=ends[2];
             }
-            if(ends[3]>=biggest51551){
-              biggest51551=ends[3];
+            if(ends[3]>=biggest64315){
+              biggest64315=ends[3];
             }
-            if(ends[4]>=biggest51551){
-              biggest51551=ends[4];
+            if(ends[4]>=biggest64315){
+              biggest64315=ends[4];
             }
-            if(biggest51551 == 1){
+            if(biggest64315 == 1){
               active[1]=1;
               ends[1]=1;
               break RUN;
@@ -2195,9 +2394,9 @@ public class ECSController extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -2305,6 +2504,7 @@ public class ECSController extends ClockDomain{
       smokeState.setpreclear();
       closedState.setpreclear();
       emergency.setpreclear();
+      emergencySACS.setpreclear();
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
@@ -2442,6 +2642,8 @@ public class ECSController extends ClockDomain{
       closedState.setClear();
       emergency.sethook();
       emergency.setClear();
+      emergencySACS.sethook();
+      emergencySACS.setClear();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         update.gethook();

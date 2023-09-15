@@ -31,7 +31,7 @@
 			<oSignal Name="stopE" To="RotaryUI.stopE"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="12002" />
 		</ClockDomain>
 		
-		<!--<ClockDomain Name="FillerPlantCD" Class="FillerPlant">
+		<ClockDomain Name="FillerPlantCD" Class="FillerPlant">
 			<iSignal Name="valveInjectorOnOff1" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
 			<iSignal Name="valveInjectorOnOff2" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
 			<iSignal Name="valveInjectorOnOff3" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
@@ -52,14 +52,14 @@
 			<iSignal Name="dosUnitExtend3" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
 			<iSignal Name="dosUnitExtend4" Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="13001" />
 			
-			<oSignal Name="dosUnitEvac" To="ControllerCD.dosUnitEvac" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
-			<oSignal Name="dosUnitFilled" To="ControllerCD.dosUnitFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
-			<oSignal Name="liquidVolumeDetector" To="ControllerCD.liquidVolumeDetector" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="dosUnitEvac" To="FillerControllerCD.dosUnitEvac" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="dosUnitFilled" To="FillerControllerCD.dosUnitFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
+			<oSignal Name="liquidVolumeDetector" To="FillerControllerCD.liquidVolumeDetector" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13000" />
 			
 			<oSignal Name="dosUnitEvacE" To="UI.dosUnitEvacE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13002" />
 			<oSignal Name="dosUnitFilledE" To="UI.dosUnitFilledE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13002" />
 			<oSignal Name="liquidVolumeDetectorE" To="UI.liquidVolumeDetectorE" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="13002" />
-		</ClockDomain>-->
+		</ClockDomain>
 		
 		<ClockDomain Name="CapLoaderPlantCD" Class="CapLoaderPlant">
 			<iSignal Name="pusherExtend" 													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="14001" />
@@ -175,12 +175,12 @@
 			<iSignal Name="hp7"         Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="40001" />
 			
 
-			<oSignal Name="door1_opened" To="UI.door1_opened" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="door2_opened" To="UI.door2_opened"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="door3_opened" To="UI.door3_opened"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="door1_closed" To="UI.door1_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="door2_closed" To="UI.door2_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
-			<oSignal Name="door3_closed" To="UI.door3_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
+			<oSignal Name="door1_opened" To="SACSUI.door1_opened" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40002" />
+			<oSignal Name="door2_opened" To="SACSUI.door2_opened"  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40002" />
+			<oSignal Name="door3_opened" To="SACSUI.door3_opened"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40002" />
+			<oSignal Name="door1_closed" To="SACSUI.door1_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40002" />
+			<oSignal Name="door2_closed" To="SACSUI.door2_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40002" />
+			<oSignal Name="door3_closed" To="SACSUI.door3_closed"       Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40002" />
 
 		</ClockDomain>
 	</SubSystem>

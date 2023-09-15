@@ -30,74 +30,74 @@ public class ECSPlant extends ClockDomain{
   public Signal lightOffE = new Signal("lightOffE", Signal.OUTPUT);
   public Signal emergency = new Signal("emergency", Signal.OUTPUT);
   public Signal lightOnE = new Signal("lightOnE", Signal.OUTPUT);
-  private List tempOut_thread_54;//sysj\ABSplant.sysj line: 438, column: 4
-  private List humidityOut_thread_54;//sysj\ABSplant.sysj line: 439, column: 4
-  private List lightOut_thread_54;//sysj\ABSplant.sysj line: 440, column: 4
-  private List presence_thread_54;//sysj\ABSplant.sysj line: 441, column: 4
-  private int closed_thread_54;//sysj\ABSplant.sysj line: 442, column: 4
-  private int i_thread_54;//sysj\ABSplant.sysj line: 443, column: 8
-  private int smoke_thread_55;//sysj\ABSplant.sysj line: 485, column: 4
-  private int S44394 = 1;
-  private int S39254 = 1;
-  private int S34190 = 1;
-  private int S34253 = 1;
-  private int S34241 = 1;
-  private int S34240 = 1;
-  private int S34264 = 1;
-  private int S34263 = 1;
-  private int S34304 = 1;
-  private int S39286 = 1;
-  private int S39264 = 1;
+  private List tempOut_thread_76;//sysj\ABSplant.sysj line: 712, column: 4
+  private List humidityOut_thread_76;//sysj\ABSplant.sysj line: 713, column: 4
+  private List lightOut_thread_76;//sysj\ABSplant.sysj line: 714, column: 4
+  private List presence_thread_76;//sysj\ABSplant.sysj line: 715, column: 4
+  private int closed_thread_76;//sysj\ABSplant.sysj line: 716, column: 4
+  private int i_thread_76;//sysj\ABSplant.sysj line: 717, column: 8
+  private int smoke_thread_77;//sysj\ABSplant.sysj line: 759, column: 4
+  private int S56929 = 1;
+  private int S51789 = 1;
+  private int S46725 = 1;
+  private int S46788 = 1;
+  private int S46776 = 1;
+  private int S46775 = 1;
+  private int S46799 = 1;
+  private int S46798 = 1;
+  private int S46839 = 1;
+  private int S51821 = 1;
+  private int S51799 = 1;
   
-  private int[] ends = new int[74];
-  private int[] tdone = new int[74];
+  private int[] ends = new int[96];
+  private int[] tdone = new int[96];
   
-  public void thread44780(int [] tdone, int [] ends){
-        switch(S39286){
+  public void thread57361(int [] tdone, int [] ends){
+        switch(S51821){
       case 0 : 
-        active[55]=0;
-        ends[55]=0;
-        tdone[55]=1;
+        active[77]=0;
+        ends[77]=0;
+        tdone[77]=1;
         break;
       
       case 1 : 
-        switch(S39264){
+        switch(S51799){
           case 0 : 
-            if(smokeState.getprestatus()){//sysj\ABSplant.sysj line: 481, column: 10
-              S39264=1;
-              updates.setPresent();//sysj\ABSplant.sysj line: 483, column: 5
+            if(smokeState.getprestatus()){//sysj\ABSplant.sysj line: 755, column: 10
+              S51799=1;
+              updates.setPresent();//sysj\ABSplant.sysj line: 757, column: 5
               currsigs.addElement(updates);
-              active[55]=1;
-              ends[55]=1;
-              tdone[55]=1;
+              active[77]=1;
+              ends[77]=1;
+              tdone[77]=1;
             }
             else {
-              active[55]=1;
-              ends[55]=1;
-              tdone[55]=1;
+              active[77]=1;
+              ends[77]=1;
+              tdone[77]=1;
             }
             break;
           
           case 1 : 
-            if(!smokeState.getprestatus()){//sysj\ABSplant.sysj line: 482, column: 10
-              smoke_thread_55 = (smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue());//sysj\ABSplant.sysj line: 485, column: 4
-              if((int)smoke_thread_55 == 1) {//sysj\ABSplant.sysj line: 486, column: 25
-                States.SMOKE_STATE = 1;//sysj\ABSplant.sysj line: 487, column: 5
+            if(!smokeState.getprestatus()){//sysj\ABSplant.sysj line: 756, column: 10
+              smoke_thread_77 = (smokeState.getpreval() == null ? 0 : ((Integer)smokeState.getpreval()).intValue());//sysj\ABSplant.sysj line: 759, column: 4
+              if((int)smoke_thread_77 == 1) {//sysj\ABSplant.sysj line: 760, column: 25
+                States.SMOKE_STATE = 1;//sysj\ABSplant.sysj line: 761, column: 5
               }
-              else {//sysj\ABSplant.sysj line: 488, column: 11
-                States.SMOKE_STATE = 0;//sysj\ABSplant.sysj line: 489, column: 5
+              else {//sysj\ABSplant.sysj line: 762, column: 11
+                States.SMOKE_STATE = 0;//sysj\ABSplant.sysj line: 763, column: 5
               }
-              S39264=0;
-              active[55]=1;
-              ends[55]=1;
-              tdone[55]=1;
+              S51799=0;
+              active[77]=1;
+              ends[77]=1;
+              tdone[77]=1;
             }
             else {
-              updates.setPresent();//sysj\ABSplant.sysj line: 483, column: 5
+              updates.setPresent();//sysj\ABSplant.sysj line: 757, column: 5
               currsigs.addElement(updates);
-              active[55]=1;
-              ends[55]=1;
-              tdone[55]=1;
+              active[77]=1;
+              ends[77]=1;
+              tdone[77]=1;
             }
             break;
           
@@ -107,335 +107,335 @@ public class ECSPlant extends ClockDomain{
     }
   }
 
-  public void thread44779(int [] tdone, int [] ends){
-        switch(S39254){
+  public void thread57360(int [] tdone, int [] ends){
+        switch(S51789){
       case 0 : 
-        active[54]=0;
-        ends[54]=0;
-        tdone[54]=1;
+        active[76]=0;
+        ends[76]=0;
+        tdone[76]=1;
         break;
       
       case 1 : 
-        switch(S34190){
+        switch(S46725){
           case 0 : 
-            if(tempState.getprestatus()){//sysj\ABSplant.sysj line: 416, column: 10
-              S34190=1;
-              updatep.setPresent();//sysj\ABSplant.sysj line: 418, column: 5
+            if(tempState.getprestatus()){//sysj\ABSplant.sysj line: 690, column: 10
+              S46725=1;
+              updatep.setPresent();//sysj\ABSplant.sysj line: 692, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 1 : 
-            if(!tempState.getprestatus()){//sysj\ABSplant.sysj line: 417, column: 10
-              S34190=2;
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+            if(!tempState.getprestatus()){//sysj\ABSplant.sysj line: 691, column: 10
+              S46725=2;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              updatep.setPresent();//sysj\ABSplant.sysj line: 418, column: 5
+              updatep.setPresent();//sysj\ABSplant.sysj line: 692, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 2 : 
-            if(humidityState.getprestatus()){//sysj\ABSplant.sysj line: 420, column: 10
-              S34190=3;
-              updatep.setPresent();//sysj\ABSplant.sysj line: 422, column: 5
+            if(humidityState.getprestatus()){//sysj\ABSplant.sysj line: 694, column: 10
+              S46725=3;
+              updatep.setPresent();//sysj\ABSplant.sysj line: 696, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 3 : 
-            if(!humidityState.getprestatus()){//sysj\ABSplant.sysj line: 421, column: 10
-              S34190=4;
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+            if(!humidityState.getprestatus()){//sysj\ABSplant.sysj line: 695, column: 10
+              S46725=4;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              updatep.setPresent();//sysj\ABSplant.sysj line: 422, column: 5
+              updatep.setPresent();//sysj\ABSplant.sysj line: 696, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 4 : 
-            if(lightState.getprestatus()){//sysj\ABSplant.sysj line: 424, column: 10
-              S34190=5;
-              updatep.setPresent();//sysj\ABSplant.sysj line: 426, column: 5
+            if(lightState.getprestatus()){//sysj\ABSplant.sysj line: 698, column: 10
+              S46725=5;
+              updatep.setPresent();//sysj\ABSplant.sysj line: 700, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 5 : 
-            if(!lightState.getprestatus()){//sysj\ABSplant.sysj line: 425, column: 10
-              S34190=6;
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+            if(!lightState.getprestatus()){//sysj\ABSplant.sysj line: 699, column: 10
+              S46725=6;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              updatep.setPresent();//sysj\ABSplant.sysj line: 426, column: 5
+              updatep.setPresent();//sysj\ABSplant.sysj line: 700, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 6 : 
-            if(presenceState.getprestatus()){//sysj\ABSplant.sysj line: 428, column: 10
-              S34190=7;
-              updatep.setPresent();//sysj\ABSplant.sysj line: 430, column: 5
+            if(presenceState.getprestatus()){//sysj\ABSplant.sysj line: 702, column: 10
+              S46725=7;
+              updatep.setPresent();//sysj\ABSplant.sysj line: 704, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 7 : 
-            if(!presenceState.getprestatus()){//sysj\ABSplant.sysj line: 429, column: 10
-              S34190=8;
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+            if(!presenceState.getprestatus()){//sysj\ABSplant.sysj line: 703, column: 10
+              S46725=8;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              updatep.setPresent();//sysj\ABSplant.sysj line: 430, column: 5
+              updatep.setPresent();//sysj\ABSplant.sysj line: 704, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 8 : 
-            if(closedState.getprestatus()){//sysj\ABSplant.sysj line: 432, column: 10
-              S34190=9;
-              updatep.setPresent();//sysj\ABSplant.sysj line: 434, column: 5
+            if(closedState.getprestatus()){//sysj\ABSplant.sysj line: 706, column: 10
+              S46725=9;
+              updatep.setPresent();//sysj\ABSplant.sysj line: 708, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             else {
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 9 : 
-            if(!closedState.getprestatus()){//sysj\ABSplant.sysj line: 433, column: 10
-              tempOut_thread_54 = (tempState.getpreval() == null ? null : ((List)tempState.getpreval()));//sysj\ABSplant.sysj line: 438, column: 4
-              humidityOut_thread_54 = (humidityState.getpreval() == null ? null : ((List)humidityState.getpreval()));//sysj\ABSplant.sysj line: 439, column: 4
-              lightOut_thread_54 = (lightState.getpreval() == null ? null : ((List)lightState.getpreval()));//sysj\ABSplant.sysj line: 440, column: 4
-              presence_thread_54 = (presenceState.getpreval() == null ? null : ((List)presenceState.getpreval()));//sysj\ABSplant.sysj line: 441, column: 4
-              closed_thread_54 = (closedState.getpreval() == null ? 0 : ((Integer)closedState.getpreval()).intValue());//sysj\ABSplant.sysj line: 442, column: 4
-              i_thread_54 = 0;//sysj\ABSplant.sysj line: 443, column: 8
-              S34190=10;
-              if(i_thread_54 < 7){//sysj\ABSplant.sysj line: 443, column: 19
-                States.CURR_ZONE = i_thread_54;//sysj\ABSplant.sysj line: 444, column: 5
-                S34253=0;
-                if(((int)tempOut_thread_54.get(i_thread_54) == 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 445, column: 9
-                  S34241=0;
-                  tempHotE.setPresent();//sysj\ABSplant.sysj line: 446, column: 6
+            if(!closedState.getprestatus()){//sysj\ABSplant.sysj line: 707, column: 10
+              tempOut_thread_76 = (tempState.getpreval() == null ? null : ((List)tempState.getpreval()));//sysj\ABSplant.sysj line: 712, column: 4
+              humidityOut_thread_76 = (humidityState.getpreval() == null ? null : ((List)humidityState.getpreval()));//sysj\ABSplant.sysj line: 713, column: 4
+              lightOut_thread_76 = (lightState.getpreval() == null ? null : ((List)lightState.getpreval()));//sysj\ABSplant.sysj line: 714, column: 4
+              presence_thread_76 = (presenceState.getpreval() == null ? null : ((List)presenceState.getpreval()));//sysj\ABSplant.sysj line: 715, column: 4
+              closed_thread_76 = (closedState.getpreval() == null ? 0 : ((Integer)closedState.getpreval()).intValue());//sysj\ABSplant.sysj line: 716, column: 4
+              i_thread_76 = 0;//sysj\ABSplant.sysj line: 717, column: 8
+              S46725=10;
+              if(i_thread_76 < 7){//sysj\ABSplant.sysj line: 717, column: 19
+                States.CURR_ZONE = i_thread_76;//sysj\ABSplant.sysj line: 718, column: 5
+                S46788=0;
+                if(((int)tempOut_thread_76.get(i_thread_76) == 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 719, column: 9
+                  S46776=0;
+                  tempHotE.setPresent();//sysj\ABSplant.sysj line: 720, column: 6
                   currsigs.addElement(tempHotE);
-                  active[54]=1;
-                  ends[54]=1;
-                  tdone[54]=1;
+                  active[76]=1;
+                  ends[76]=1;
+                  tdone[76]=1;
                 }
                 else {
-                  S34241=1;
-                  if(((int)tempOut_thread_54.get(i_thread_54) == 2) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 448, column: 16
-                    S34240=0;
-                    tempColdE.setPresent();//sysj\ABSplant.sysj line: 449, column: 6
+                  S46776=1;
+                  if(((int)tempOut_thread_76.get(i_thread_76) == 2) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 722, column: 16
+                    S46775=0;
+                    tempColdE.setPresent();//sysj\ABSplant.sysj line: 723, column: 6
                     currsigs.addElement(tempColdE);
-                    active[54]=1;
-                    ends[54]=1;
-                    tdone[54]=1;
+                    active[76]=1;
+                    ends[76]=1;
+                    tdone[76]=1;
                   }
                   else {
-                    S34240=1;
-                    tempOffE.setPresent();//sysj\ABSplant.sysj line: 452, column: 6
+                    S46775=1;
+                    tempOffE.setPresent();//sysj\ABSplant.sysj line: 726, column: 6
                     currsigs.addElement(tempOffE);
-                    active[54]=1;
-                    ends[54]=1;
-                    tdone[54]=1;
+                    active[76]=1;
+                    ends[76]=1;
+                    tdone[76]=1;
                   }
                 }
               }
               else {
-                ends[54]=2;
-                ;//sysj\ABSplant.sysj line: 412, column: 2
-                S34190=0;
-                active[54]=1;
-                ends[54]=1;
-                tdone[54]=1;
+                ends[76]=2;
+                ;//sysj\ABSplant.sysj line: 686, column: 2
+                S46725=0;
+                active[76]=1;
+                ends[76]=1;
+                tdone[76]=1;
               }
             }
             else {
-              updatep.setPresent();//sysj\ABSplant.sysj line: 434, column: 5
+              updatep.setPresent();//sysj\ABSplant.sysj line: 708, column: 5
               currsigs.addElement(updatep);
-              active[54]=1;
-              ends[54]=1;
-              tdone[54]=1;
+              active[76]=1;
+              ends[76]=1;
+              tdone[76]=1;
             }
             break;
           
           case 10 : 
-            switch(S34253){
+            switch(S46788){
               case 0 : 
-                switch(S34241){
+                switch(S46776){
                   case 0 : 
-                    if(!tempHotE.getprestatus()){//sysj\ABSplant.sysj line: 447, column: 12
-                      S34253=1;
-                      if(((int)humidityOut_thread_54.get(i_thread_54) == 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 455, column: 9
-                        S34264=0;
-                        humidityIncE.setPresent();//sysj\ABSplant.sysj line: 456, column: 6
+                    if(!tempHotE.getprestatus()){//sysj\ABSplant.sysj line: 721, column: 12
+                      S46788=1;
+                      if(((int)humidityOut_thread_76.get(i_thread_76) == 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 729, column: 9
+                        S46799=0;
+                        humidityIncE.setPresent();//sysj\ABSplant.sysj line: 730, column: 6
                         currsigs.addElement(humidityIncE);
-                        active[54]=1;
-                        ends[54]=1;
-                        tdone[54]=1;
+                        active[76]=1;
+                        ends[76]=1;
+                        tdone[76]=1;
                       }
                       else {
-                        S34264=1;
-                        if(((int)humidityOut_thread_54.get(i_thread_54) == 2) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 458, column: 16
-                          S34263=0;
-                          humidityRedE.setPresent();//sysj\ABSplant.sysj line: 459, column: 6
+                        S46799=1;
+                        if(((int)humidityOut_thread_76.get(i_thread_76) == 2) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 732, column: 16
+                          S46798=0;
+                          humidityRedE.setPresent();//sysj\ABSplant.sysj line: 733, column: 6
                           currsigs.addElement(humidityRedE);
-                          active[54]=1;
-                          ends[54]=1;
-                          tdone[54]=1;
+                          active[76]=1;
+                          ends[76]=1;
+                          tdone[76]=1;
                         }
                         else {
-                          S34263=1;
-                          humidityOffE.setPresent();//sysj\ABSplant.sysj line: 462, column: 6
+                          S46798=1;
+                          humidityOffE.setPresent();//sysj\ABSplant.sysj line: 736, column: 6
                           currsigs.addElement(humidityOffE);
-                          active[54]=1;
-                          ends[54]=1;
-                          tdone[54]=1;
+                          active[76]=1;
+                          ends[76]=1;
+                          tdone[76]=1;
                         }
                       }
                     }
                     else {
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                     break;
                   
                   case 1 : 
-                    switch(S34240){
+                    switch(S46775){
                       case 0 : 
-                        if(!tempColdE.getprestatus()){//sysj\ABSplant.sysj line: 450, column: 12
-                          S34253=1;
-                          if(((int)humidityOut_thread_54.get(i_thread_54) == 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 455, column: 9
-                            S34264=0;
-                            humidityIncE.setPresent();//sysj\ABSplant.sysj line: 456, column: 6
+                        if(!tempColdE.getprestatus()){//sysj\ABSplant.sysj line: 724, column: 12
+                          S46788=1;
+                          if(((int)humidityOut_thread_76.get(i_thread_76) == 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 729, column: 9
+                            S46799=0;
+                            humidityIncE.setPresent();//sysj\ABSplant.sysj line: 730, column: 6
                             currsigs.addElement(humidityIncE);
-                            active[54]=1;
-                            ends[54]=1;
-                            tdone[54]=1;
+                            active[76]=1;
+                            ends[76]=1;
+                            tdone[76]=1;
                           }
                           else {
-                            S34264=1;
-                            if(((int)humidityOut_thread_54.get(i_thread_54) == 2) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 458, column: 16
-                              S34263=0;
-                              humidityRedE.setPresent();//sysj\ABSplant.sysj line: 459, column: 6
+                            S46799=1;
+                            if(((int)humidityOut_thread_76.get(i_thread_76) == 2) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 732, column: 16
+                              S46798=0;
+                              humidityRedE.setPresent();//sysj\ABSplant.sysj line: 733, column: 6
                               currsigs.addElement(humidityRedE);
-                              active[54]=1;
-                              ends[54]=1;
-                              tdone[54]=1;
+                              active[76]=1;
+                              ends[76]=1;
+                              tdone[76]=1;
                             }
                             else {
-                              S34263=1;
-                              humidityOffE.setPresent();//sysj\ABSplant.sysj line: 462, column: 6
+                              S46798=1;
+                              humidityOffE.setPresent();//sysj\ABSplant.sysj line: 736, column: 6
                               currsigs.addElement(humidityOffE);
-                              active[54]=1;
-                              ends[54]=1;
-                              tdone[54]=1;
+                              active[76]=1;
+                              ends[76]=1;
+                              tdone[76]=1;
                             }
                           }
                         }
                         else {
-                          active[54]=1;
-                          ends[54]=1;
-                          tdone[54]=1;
+                          active[76]=1;
+                          ends[76]=1;
+                          tdone[76]=1;
                         }
                         break;
                       
                       case 1 : 
-                        if(!tempOffE.getprestatus()){//sysj\ABSplant.sysj line: 453, column: 12
-                          S34253=1;
-                          if(((int)humidityOut_thread_54.get(i_thread_54) == 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 455, column: 9
-                            S34264=0;
-                            humidityIncE.setPresent();//sysj\ABSplant.sysj line: 456, column: 6
+                        if(!tempOffE.getprestatus()){//sysj\ABSplant.sysj line: 727, column: 12
+                          S46788=1;
+                          if(((int)humidityOut_thread_76.get(i_thread_76) == 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 729, column: 9
+                            S46799=0;
+                            humidityIncE.setPresent();//sysj\ABSplant.sysj line: 730, column: 6
                             currsigs.addElement(humidityIncE);
-                            active[54]=1;
-                            ends[54]=1;
-                            tdone[54]=1;
+                            active[76]=1;
+                            ends[76]=1;
+                            tdone[76]=1;
                           }
                           else {
-                            S34264=1;
-                            if(((int)humidityOut_thread_54.get(i_thread_54) == 2) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 458, column: 16
-                              S34263=0;
-                              humidityRedE.setPresent();//sysj\ABSplant.sysj line: 459, column: 6
+                            S46799=1;
+                            if(((int)humidityOut_thread_76.get(i_thread_76) == 2) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 732, column: 16
+                              S46798=0;
+                              humidityRedE.setPresent();//sysj\ABSplant.sysj line: 733, column: 6
                               currsigs.addElement(humidityRedE);
-                              active[54]=1;
-                              ends[54]=1;
-                              tdone[54]=1;
+                              active[76]=1;
+                              ends[76]=1;
+                              tdone[76]=1;
                             }
                             else {
-                              S34263=1;
-                              humidityOffE.setPresent();//sysj\ABSplant.sysj line: 462, column: 6
+                              S46798=1;
+                              humidityOffE.setPresent();//sysj\ABSplant.sysj line: 736, column: 6
                               currsigs.addElement(humidityOffE);
-                              active[54]=1;
-                              ends[54]=1;
-                              tdone[54]=1;
+                              active[76]=1;
+                              ends[76]=1;
+                              tdone[76]=1;
                             }
                           }
                         }
                         else {
-                          active[54]=1;
-                          ends[54]=1;
-                          tdone[54]=1;
+                          active[76]=1;
+                          ends[76]=1;
+                          tdone[76]=1;
                         }
                         break;
                       
@@ -446,90 +446,90 @@ public class ECSPlant extends ClockDomain{
                 break;
               
               case 1 : 
-                switch(S34264){
+                switch(S46799){
                   case 0 : 
-                    if(!humidityIncE.getprestatus()){//sysj\ABSplant.sysj line: 457, column: 12
-                      S34253=2;
-                      if(((int)lightOut_thread_54.get(i_thread_54) > 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 465, column: 9
-                        S34304=0;
-                        lightOnE.setPresent();//sysj\ABSplant.sysj line: 466, column: 6
+                    if(!humidityIncE.getprestatus()){//sysj\ABSplant.sysj line: 731, column: 12
+                      S46788=2;
+                      if(((int)lightOut_thread_76.get(i_thread_76) > 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 739, column: 9
+                        S46839=0;
+                        lightOnE.setPresent();//sysj\ABSplant.sysj line: 740, column: 6
                         currsigs.addElement(lightOnE);
-                        lightOnE.setValue(lightOut_thread_54.get(i_thread_54));//sysj\ABSplant.sysj line: 466, column: 6
-                        active[54]=1;
-                        ends[54]=1;
-                        tdone[54]=1;
+                        lightOnE.setValue(lightOut_thread_76.get(i_thread_76));//sysj\ABSplant.sysj line: 740, column: 6
+                        active[76]=1;
+                        ends[76]=1;
+                        tdone[76]=1;
                       }
                       else {
-                        S34304=1;
-                        lightOffE.setPresent();//sysj\ABSplant.sysj line: 469, column: 6
+                        S46839=1;
+                        lightOffE.setPresent();//sysj\ABSplant.sysj line: 743, column: 6
                         currsigs.addElement(lightOffE);
-                        active[54]=1;
-                        ends[54]=1;
-                        tdone[54]=1;
+                        active[76]=1;
+                        ends[76]=1;
+                        tdone[76]=1;
                       }
                     }
                     else {
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                     break;
                   
                   case 1 : 
-                    switch(S34263){
+                    switch(S46798){
                       case 0 : 
-                        if(!humidityRedE.getprestatus()){//sysj\ABSplant.sysj line: 460, column: 12
-                          S34253=2;
-                          if(((int)lightOut_thread_54.get(i_thread_54) > 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 465, column: 9
-                            S34304=0;
-                            lightOnE.setPresent();//sysj\ABSplant.sysj line: 466, column: 6
+                        if(!humidityRedE.getprestatus()){//sysj\ABSplant.sysj line: 734, column: 12
+                          S46788=2;
+                          if(((int)lightOut_thread_76.get(i_thread_76) > 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 739, column: 9
+                            S46839=0;
+                            lightOnE.setPresent();//sysj\ABSplant.sysj line: 740, column: 6
                             currsigs.addElement(lightOnE);
-                            lightOnE.setValue(lightOut_thread_54.get(i_thread_54));//sysj\ABSplant.sysj line: 466, column: 6
-                            active[54]=1;
-                            ends[54]=1;
-                            tdone[54]=1;
+                            lightOnE.setValue(lightOut_thread_76.get(i_thread_76));//sysj\ABSplant.sysj line: 740, column: 6
+                            active[76]=1;
+                            ends[76]=1;
+                            tdone[76]=1;
                           }
                           else {
-                            S34304=1;
-                            lightOffE.setPresent();//sysj\ABSplant.sysj line: 469, column: 6
+                            S46839=1;
+                            lightOffE.setPresent();//sysj\ABSplant.sysj line: 743, column: 6
                             currsigs.addElement(lightOffE);
-                            active[54]=1;
-                            ends[54]=1;
-                            tdone[54]=1;
+                            active[76]=1;
+                            ends[76]=1;
+                            tdone[76]=1;
                           }
                         }
                         else {
-                          active[54]=1;
-                          ends[54]=1;
-                          tdone[54]=1;
+                          active[76]=1;
+                          ends[76]=1;
+                          tdone[76]=1;
                         }
                         break;
                       
                       case 1 : 
-                        if(!humidityOffE.getprestatus()){//sysj\ABSplant.sysj line: 463, column: 12
-                          S34253=2;
-                          if(((int)lightOut_thread_54.get(i_thread_54) > 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 465, column: 9
-                            S34304=0;
-                            lightOnE.setPresent();//sysj\ABSplant.sysj line: 466, column: 6
+                        if(!humidityOffE.getprestatus()){//sysj\ABSplant.sysj line: 737, column: 12
+                          S46788=2;
+                          if(((int)lightOut_thread_76.get(i_thread_76) > 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 739, column: 9
+                            S46839=0;
+                            lightOnE.setPresent();//sysj\ABSplant.sysj line: 740, column: 6
                             currsigs.addElement(lightOnE);
-                            lightOnE.setValue(lightOut_thread_54.get(i_thread_54));//sysj\ABSplant.sysj line: 466, column: 6
-                            active[54]=1;
-                            ends[54]=1;
-                            tdone[54]=1;
+                            lightOnE.setValue(lightOut_thread_76.get(i_thread_76));//sysj\ABSplant.sysj line: 740, column: 6
+                            active[76]=1;
+                            ends[76]=1;
+                            tdone[76]=1;
                           }
                           else {
-                            S34304=1;
-                            lightOffE.setPresent();//sysj\ABSplant.sysj line: 469, column: 6
+                            S46839=1;
+                            lightOffE.setPresent();//sysj\ABSplant.sysj line: 743, column: 6
                             currsigs.addElement(lightOffE);
-                            active[54]=1;
-                            ends[54]=1;
-                            tdone[54]=1;
+                            active[76]=1;
+                            ends[76]=1;
+                            tdone[76]=1;
                           }
                         }
                         else {
-                          active[54]=1;
-                          ends[54]=1;
-                          tdone[54]=1;
+                          active[76]=1;
+                          ends[76]=1;
+                          tdone[76]=1;
                         }
                         break;
                       
@@ -540,32 +540,32 @@ public class ECSPlant extends ClockDomain{
                 break;
               
               case 2 : 
-                switch(S34304){
+                switch(S46839){
                   case 0 : 
-                    if(!lightOnE.getprestatus()){//sysj\ABSplant.sysj line: 467, column: 12
-                      S34253=3;
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                    if(!lightOnE.getprestatus()){//sysj\ABSplant.sysj line: 741, column: 12
+                      S46788=3;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                     else {
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                     break;
                   
                   case 1 : 
-                    if(!lightOffE.getprestatus()){//sysj\ABSplant.sysj line: 470, column: 12
-                      S34253=3;
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                    if(!lightOffE.getprestatus()){//sysj\ABSplant.sysj line: 744, column: 12
+                      S46788=3;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                     else {
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                     break;
                   
@@ -573,46 +573,46 @@ public class ECSPlant extends ClockDomain{
                 break;
               
               case 3 : 
-                S34253=3;
-                i_thread_54 = i_thread_54 + 1;//sysj\ABSplant.sysj line: 443, column: 26
-                if(i_thread_54 < 7){//sysj\ABSplant.sysj line: 443, column: 19
-                  States.CURR_ZONE = i_thread_54;//sysj\ABSplant.sysj line: 444, column: 5
-                  S34253=0;
-                  if(((int)tempOut_thread_54.get(i_thread_54) == 0) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 445, column: 9
-                    S34241=0;
-                    tempHotE.setPresent();//sysj\ABSplant.sysj line: 446, column: 6
+                S46788=3;
+                i_thread_76 = i_thread_76 + 1;//sysj\ABSplant.sysj line: 717, column: 26
+                if(i_thread_76 < 7){//sysj\ABSplant.sysj line: 717, column: 19
+                  States.CURR_ZONE = i_thread_76;//sysj\ABSplant.sysj line: 718, column: 5
+                  S46788=0;
+                  if(((int)tempOut_thread_76.get(i_thread_76) == 0) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 719, column: 9
+                    S46776=0;
+                    tempHotE.setPresent();//sysj\ABSplant.sysj line: 720, column: 6
                     currsigs.addElement(tempHotE);
-                    active[54]=1;
-                    ends[54]=1;
-                    tdone[54]=1;
+                    active[76]=1;
+                    ends[76]=1;
+                    tdone[76]=1;
                   }
                   else {
-                    S34241=1;
-                    if(((int)tempOut_thread_54.get(i_thread_54) == 2) && (((Boolean)presence_thread_54.get(i_thread_54) == true) || ((int)closed_thread_54 == 0))){//sysj\ABSplant.sysj line: 448, column: 16
-                      S34240=0;
-                      tempColdE.setPresent();//sysj\ABSplant.sysj line: 449, column: 6
+                    S46776=1;
+                    if(((int)tempOut_thread_76.get(i_thread_76) == 2) && (((Boolean)presence_thread_76.get(i_thread_76) == true) || ((int)closed_thread_76 == 0))){//sysj\ABSplant.sysj line: 722, column: 16
+                      S46775=0;
+                      tempColdE.setPresent();//sysj\ABSplant.sysj line: 723, column: 6
                       currsigs.addElement(tempColdE);
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                     else {
-                      S34240=1;
-                      tempOffE.setPresent();//sysj\ABSplant.sysj line: 452, column: 6
+                      S46775=1;
+                      tempOffE.setPresent();//sysj\ABSplant.sysj line: 726, column: 6
                       currsigs.addElement(tempOffE);
-                      active[54]=1;
-                      ends[54]=1;
-                      tdone[54]=1;
+                      active[76]=1;
+                      ends[76]=1;
+                      tdone[76]=1;
                     }
                   }
                 }
                 else {
-                  ends[54]=2;
-                  ;//sysj\ABSplant.sysj line: 412, column: 2
-                  S34190=0;
-                  active[54]=1;
-                  ends[54]=1;
-                  tdone[54]=1;
+                  ends[76]=2;
+                  ;//sysj\ABSplant.sysj line: 686, column: 2
+                  S46725=0;
+                  active[76]=1;
+                  ends[76]=1;
+                  tdone[76]=1;
                 }
                 break;
               
@@ -625,21 +625,21 @@ public class ECSPlant extends ClockDomain{
     }
   }
 
-  public void thread44777(int [] tdone, int [] ends){
-        S39286=1;
-    S39264=0;
-    active[55]=1;
-    ends[55]=1;
-    tdone[55]=1;
+  public void thread57358(int [] tdone, int [] ends){
+        S51821=1;
+    S51799=0;
+    active[77]=1;
+    ends[77]=1;
+    tdone[77]=1;
   }
 
-  public void thread44776(int [] tdone, int [] ends){
-        S39254=1;
-    System.out.println("ECSPlant");//sysj\ABSplant.sysj line: 413, column: 3
-    S34190=0;
-    active[54]=1;
-    ends[54]=1;
-    tdone[54]=1;
+  public void thread57357(int [] tdone, int [] ends){
+        S51789=1;
+    System.out.println("ECSPlant");//sysj\ABSplant.sysj line: 687, column: 3
+    S46725=0;
+    active[76]=1;
+    ends[76]=1;
+    tdone[76]=1;
   }
 
   public void runClockDomain(){
@@ -649,51 +649,51 @@ public class ECSPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S44394){
+      switch(S56929){
         case 0 : 
-          S44394=0;
+          S56929=0;
           break RUN;
         
         case 1 : 
-          S44394=2;
-          S44394=2;
-          new Thread(new GUI()).start();//sysj\ABSplant.sysj line: 411, column: 2
-          thread44776(tdone,ends);
-          thread44777(tdone,ends);
-          int biggest44778 = 0;
-          if(ends[54]>=biggest44778){
-            biggest44778=ends[54];
+          S56929=2;
+          S56929=2;
+          new Thread(new GUI()).start();//sysj\ABSplant.sysj line: 685, column: 2
+          thread57357(tdone,ends);
+          thread57358(tdone,ends);
+          int biggest57359 = 0;
+          if(ends[76]>=biggest57359){
+            biggest57359=ends[76];
           }
-          if(ends[55]>=biggest44778){
-            biggest44778=ends[55];
+          if(ends[77]>=biggest57359){
+            biggest57359=ends[77];
           }
-          if(biggest44778 == 1){
-            active[53]=1;
-            ends[53]=1;
+          if(biggest57359 == 1){
+            active[75]=1;
+            ends[75]=1;
             break RUN;
           }
         
         case 2 : 
-          thread44779(tdone,ends);
-          thread44780(tdone,ends);
-          int biggest44781 = 0;
-          if(ends[54]>=biggest44781){
-            biggest44781=ends[54];
+          thread57360(tdone,ends);
+          thread57361(tdone,ends);
+          int biggest57362 = 0;
+          if(ends[76]>=biggest57362){
+            biggest57362=ends[76];
           }
-          if(ends[55]>=biggest44781){
-            biggest44781=ends[55];
+          if(ends[77]>=biggest57362){
+            biggest57362=ends[77];
           }
-          if(biggest44781 == 1){
-            active[53]=1;
-            ends[53]=1;
+          if(biggest57362 == 1){
+            active[75]=1;
+            ends[75]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest44781 == 0){
-            S44394=0;
-            active[53]=0;
-            ends[53]=0;
-            S44394=0;
+          if(biggest57362 == 0){
+            S56929=0;
+            active[75]=0;
+            ends[75]=0;
+            S56929=0;
             break RUN;
           }
         
@@ -702,9 +702,9 @@ public class ECSPlant extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -713,14 +713,14 @@ public class ECSPlant extends ClockDomain{
   }
   
   public void run(){
-    while(active[53] != 0){
-      int index = 53;
+    while(active[75] != 0){
+      int index = 75;
       if(paused[index]==1 || suspended[index]==1 || active[index] == 0){
         for(int h=1;h<paused.length;++h){
           paused[h]=0;
         }
       }
-      if(paused[53]!=0 || suspended[53]!=0 || active[53]!=1);
+      if(paused[75]!=0 || suspended[75]!=0 || active[75]!=1);
       else{
         if(!df){
           tempState.gethook();
@@ -796,7 +796,7 @@ public class ECSPlant extends ClockDomain{
       emergency.setClear();
       lightOnE.sethook();
       lightOnE.setClear();
-      if(paused[53]!=0 || suspended[53]!=0 || active[53]!=1);
+      if(paused[75]!=0 || suspended[75]!=0 || active[75]!=1);
       else{
         tempState.gethook();
         humidityState.gethook();
@@ -806,7 +806,7 @@ public class ECSPlant extends ClockDomain{
         closedState.gethook();
       }
       runFinisher();
-      if(active[53] == 0){
+      if(active[75] == 0){
       	this.terminated = true;
       }
       if(!threaded) break;

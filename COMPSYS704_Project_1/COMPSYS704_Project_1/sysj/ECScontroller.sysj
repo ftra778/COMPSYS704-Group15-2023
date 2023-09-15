@@ -12,7 +12,7 @@ ECSController(
 		
 		output List signal 		tempState,humidityState,lightState,presenceState;
 		output int signal		smokeState,closedState;
-		output signal 			emergency;
+		output signal 			emergency,emergencySACS;
 		)
 ->{
 	{
@@ -145,16 +145,40 @@ ECSController(
 		}
 		||
 		{
-			loop {
-				await(smokeState);
-				await(!smokeState);
-				abort(smokeState){
-					sustain emergency;
+			loop{
+				present(smokeState) {
+					System.out.println("a");
+					if(#smokeState == 1) {
+						
+						trap(T){
+//							sustain emergency;
+							{sustain emergency;} || {loop{if(#smokeState == 0) { exit(T); } pause;}}
+						}
+					}
 				}
-
-				await(!smokeState);
+				pause;
 			}
 		}
+//		||
+//		{
+//			loop {
+////				abort(smokeState){
+////					sustain emergency;
+////				}
+////
+////				await(!smokeState);
+//				while(#smokeState == 1) {
+//					trap(T) {
+//						{ sustain emergency; } 
+//						|| 
+//						{
+//							while(#smokeState == 1) { System.out.println("emergency"); } ;
+//							exit(T);
+//						}
+//					}
+//				}
+//			}
+//		}
 	}
 }
 }

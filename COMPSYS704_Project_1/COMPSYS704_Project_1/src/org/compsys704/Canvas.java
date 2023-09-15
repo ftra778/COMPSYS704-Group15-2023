@@ -1,5 +1,6 @@
 package org.compsys704;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,18 +10,15 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	BufferedImage layout;
-	BufferedImage turn;
+	BufferedImage door_closed;
 	BufferedImage door_opened;
 	
 	public Canvas(){
 		try {
-			layout = ImageIO.read(new File("res/rotaryTable_layout.png"));
-			turn = ImageIO.read(new File("res/rotaryTable_turn.png"));
+			layout = ImageIO.read(new File("res/layoutsacs.png"));
+			door_closed = ImageIO.read(new File("res/door_closed.png"));
+			door_opened = ImageIO.read(new File("res/door_opened.png"));
 			
 			
 		} catch (IOException e) {
@@ -33,12 +31,33 @@ public class Canvas extends JPanel {
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(layout, 0, 50, null);
+		g.drawImage(door_closed, 0, 100, null);
+		g.drawImage(door_closed, 120, 100, null);
+		g.drawImage(door_closed, 170, 210, null);
+	
 		
 		
-		if(States.ROTARYTABLE_TRIGGERED) {
-			g.drawImage(turn, 0, 50, null);
+		if(!States.AUTHORIZED_DOOR_2) {
+			g.drawImage(door_closed, 120, 100, null);
+		}
+		
+		if(!States.AUTHORIZED_DOOR_3) {
+			g.drawImage(door_closed, 170, 210, null);
+		}
+		
+		if(States.AUTHORIZED_DOOR_1) {
+			g.drawImage(door_opened, 0, 100, null);
+			
 		}else {
-			g.drawImage(layout, 0, 50, null);
+			g.drawImage(door_closed, 0, 100, null);
+		}
+		
+		if(States.AUTHORIZED_DOOR_2) {
+			g.drawImage(door_opened, 120, 100, null);
+		}
+		
+		if(States.AUTHORIZED_DOOR_3) {
+			g.drawImage(door_opened, 170, 210, null);
 		}
 		
 		

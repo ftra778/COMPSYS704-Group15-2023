@@ -40,372 +40,372 @@ public class CapperPlant extends ClockDomain{
   public Signal gripperAtFinalE = new Signal("gripperAtFinalE", Signal.OUTPUT);
   public Signal gripperAtHomeE = new Signal("gripperAtHomeE", Signal.OUTPUT);
   public Signal bottlePos5DispE = new Signal("bottlePos5DispE", Signal.OUTPUT);
-  private int S33686 = 1;
-  private int S33095 = 1;
-  private int S33049 = 1;
-  private int S33148 = 1;
-  private int S33102 = 1;
-  private int S33201 = 1;
-  private int S33155 = 1;
-  private int S33254 = 1;
-  private int S33208 = 1;
-  private int S33286 = 1;
-  private int S33256 = 1;
-  private int S33352 = 1;
-  private int S33294 = 1;
-  private int S33302 = 1;
-  private int S33310 = 1;
-  private int S33318 = 1;
-  private int S33326 = 1;
-  private int S33334 = 1;
-  private int S33342 = 1;
-  private int S33350 = 1;
-  private int S33363 = 1;
+  private int S46221 = 1;
+  private int S45630 = 1;
+  private int S45584 = 1;
+  private int S45683 = 1;
+  private int S45637 = 1;
+  private int S45736 = 1;
+  private int S45690 = 1;
+  private int S45789 = 1;
+  private int S45743 = 1;
+  private int S45821 = 1;
+  private int S45791 = 1;
+  private int S45887 = 1;
+  private int S45829 = 1;
+  private int S45837 = 1;
+  private int S45845 = 1;
+  private int S45853 = 1;
+  private int S45861 = 1;
+  private int S45869 = 1;
+  private int S45877 = 1;
+  private int S45885 = 1;
+  private int S45898 = 1;
   
-  private int[] ends = new int[74];
-  private int[] tdone = new int[74];
+  private int[] ends = new int[96];
+  private int[] tdone = new int[96];
   
-  public void thread44740(int [] tdone, int [] ends){
-        switch(S33363){
+  public void thread57321(int [] tdone, int [] ends){
+        switch(S45898){
       case 0 : 
-        active[36]=0;
-        ends[36]=0;
-        tdone[36]=1;
+        active[58]=0;
+        ends[58]=0;
+        tdone[58]=1;
         break;
       
       case 1 : 
-        if(modeGUI.getprestatus()){//sysj\ABSplant.sysj line: 286, column: 12
-          mode = modeGUI;//sysj\ABSplant.sysj line: 287, column: 5
-          mode.setPresent();//sysj\ABSplant.sysj line: 288, column: 5
+        if(modeGUI.getprestatus()){//sysj\ABSplant.sysj line: 560, column: 13
+          mode = modeGUI;//sysj\ABSplant.sysj line: 561, column: 6
+          mode.setPresent();//sysj\ABSplant.sysj line: 562, column: 6
           currsigs.addElement(mode);
-          active[36]=1;
-          ends[36]=1;
-          tdone[36]=1;
+          active[58]=1;
+          ends[58]=1;
+          tdone[58]=1;
         }
         else {
-          active[36]=1;
-          ends[36]=1;
-          tdone[36]=1;
+          active[58]=1;
+          ends[58]=1;
+          tdone[58]=1;
         }
         break;
       
     }
   }
 
-  public void thread44738(int [] tdone, int [] ends){
-        switch(S33350){
+  public void thread57319(int [] tdone, int [] ends){
+        switch(S45885){
       case 0 : 
-        active[35]=0;
-        ends[35]=0;
-        tdone[35]=1;
+        active[57]=0;
+        ends[57]=0;
+        tdone[57]=1;
         break;
       
       case 1 : 
-        if(bottlePos5Disp.getprestatus()){//sysj\ABSplant.sysj line: 281, column: 24
-          bottlePos5DispE.setPresent();//sysj\ABSplant.sysj line: 281, column: 40
+        if(bottlePos5Disp.getprestatus()){//sysj\ABSplant.sysj line: 555, column: 24
+          bottlePos5DispE.setPresent();//sysj\ABSplant.sysj line: 555, column: 40
           currsigs.addElement(bottlePos5DispE);
-          active[35]=1;
-          ends[35]=1;
-          tdone[35]=1;
+          active[57]=1;
+          ends[57]=1;
+          tdone[57]=1;
         }
         else {
-          active[35]=1;
-          ends[35]=1;
-          tdone[35]=1;
+          active[57]=1;
+          ends[57]=1;
+          tdone[57]=1;
         }
         break;
       
     }
   }
 
-  public void thread44737(int [] tdone, int [] ends){
-        switch(S33342){
+  public void thread57318(int [] tdone, int [] ends){
+        switch(S45877){
       case 0 : 
-        active[34]=0;
-        ends[34]=0;
-        tdone[34]=1;
+        active[56]=0;
+        ends[56]=0;
+        tdone[56]=1;
         break;
       
       case 1 : 
-        if(gripperAtFinal.getprestatus()){//sysj\ABSplant.sysj line: 279, column: 24
-          gripperAtFinalE.setPresent();//sysj\ABSplant.sysj line: 279, column: 40
+        if(gripperAtFinal.getprestatus()){//sysj\ABSplant.sysj line: 553, column: 24
+          gripperAtFinalE.setPresent();//sysj\ABSplant.sysj line: 553, column: 40
           currsigs.addElement(gripperAtFinalE);
-          active[34]=1;
-          ends[34]=1;
-          tdone[34]=1;
+          active[56]=1;
+          ends[56]=1;
+          tdone[56]=1;
         }
         else {
-          active[34]=1;
-          ends[34]=1;
-          tdone[34]=1;
+          active[56]=1;
+          ends[56]=1;
+          tdone[56]=1;
         }
         break;
       
     }
   }
 
-  public void thread44736(int [] tdone, int [] ends){
-        switch(S33334){
+  public void thread57317(int [] tdone, int [] ends){
+        switch(S45869){
       case 0 : 
-        active[33]=0;
-        ends[33]=0;
-        tdone[33]=1;
+        active[55]=0;
+        ends[55]=0;
+        tdone[55]=1;
         break;
       
       case 1 : 
-        if(capperLowered.getprestatus()){//sysj\ABSplant.sysj line: 277, column: 24
-          capperLoweredE.setPresent();//sysj\ABSplant.sysj line: 277, column: 39
+        if(capperLowered.getprestatus()){//sysj\ABSplant.sysj line: 551, column: 24
+          capperLoweredE.setPresent();//sysj\ABSplant.sysj line: 551, column: 39
           currsigs.addElement(capperLoweredE);
-          active[33]=1;
-          ends[33]=1;
-          tdone[33]=1;
+          active[55]=1;
+          ends[55]=1;
+          tdone[55]=1;
         }
         else {
-          active[33]=1;
-          ends[33]=1;
-          tdone[33]=1;
+          active[55]=1;
+          ends[55]=1;
+          tdone[55]=1;
         }
         break;
       
     }
   }
 
-  public void thread44735(int [] tdone, int [] ends){
-        switch(S33326){
+  public void thread57316(int [] tdone, int [] ends){
+        switch(S45861){
       case 0 : 
-        active[32]=0;
-        ends[32]=0;
-        tdone[32]=1;
+        active[54]=0;
+        ends[54]=0;
+        tdone[54]=1;
         break;
       
       case 1 : 
-        if(capperRaised.getprestatus()){//sysj\ABSplant.sysj line: 275, column: 24
-          capperRaisedE.setPresent();//sysj\ABSplant.sysj line: 275, column: 38
+        if(capperRaised.getprestatus()){//sysj\ABSplant.sysj line: 549, column: 24
+          capperRaisedE.setPresent();//sysj\ABSplant.sysj line: 549, column: 38
           currsigs.addElement(capperRaisedE);
-          active[32]=1;
-          ends[32]=1;
-          tdone[32]=1;
+          active[54]=1;
+          ends[54]=1;
+          tdone[54]=1;
         }
         else {
-          active[32]=1;
-          ends[32]=1;
-          tdone[32]=1;
+          active[54]=1;
+          ends[54]=1;
+          tdone[54]=1;
         }
         break;
       
     }
   }
 
-  public void thread44734(int [] tdone, int [] ends){
-        switch(S33318){
+  public void thread57315(int [] tdone, int [] ends){
+        switch(S45853){
       case 0 : 
-        active[31]=0;
-        ends[31]=0;
-        tdone[31]=1;
+        active[53]=0;
+        ends[53]=0;
+        tdone[53]=1;
         break;
       
       case 1 : 
-        if(gripperAtHome.getprestatus()){//sysj\ABSplant.sysj line: 273, column: 24
-          gripperAtHomeE.setPresent();//sysj\ABSplant.sysj line: 273, column: 39
+        if(gripperAtHome.getprestatus()){//sysj\ABSplant.sysj line: 547, column: 24
+          gripperAtHomeE.setPresent();//sysj\ABSplant.sysj line: 547, column: 39
           currsigs.addElement(gripperAtHomeE);
-          active[31]=1;
-          ends[31]=1;
-          tdone[31]=1;
+          active[53]=1;
+          ends[53]=1;
+          tdone[53]=1;
         }
         else {
-          active[31]=1;
-          ends[31]=1;
-          tdone[31]=1;
+          active[53]=1;
+          ends[53]=1;
+          tdone[53]=1;
         }
         break;
       
     }
   }
 
-  public void thread44733(int [] tdone, int [] ends){
-        switch(S33310){
+  public void thread57314(int [] tdone, int [] ends){
+        switch(S45845){
       case 0 : 
-        active[30]=0;
-        ends[30]=0;
-        tdone[30]=1;
+        active[52]=0;
+        ends[52]=0;
+        tdone[52]=1;
         break;
       
       case 1 : 
-        if(gripperClose.getprestatus()){//sysj\ABSplant.sysj line: 271, column: 24
-          gripperCloseE.setPresent();//sysj\ABSplant.sysj line: 271, column: 38
+        if(gripperClose.getprestatus()){//sysj\ABSplant.sysj line: 545, column: 24
+          gripperCloseE.setPresent();//sysj\ABSplant.sysj line: 545, column: 38
           currsigs.addElement(gripperCloseE);
-          active[30]=1;
-          ends[30]=1;
-          tdone[30]=1;
+          active[52]=1;
+          ends[52]=1;
+          tdone[52]=1;
         }
         else {
-          active[30]=1;
-          ends[30]=1;
-          tdone[30]=1;
+          active[52]=1;
+          ends[52]=1;
+          tdone[52]=1;
         }
         break;
       
     }
   }
 
-  public void thread44732(int [] tdone, int [] ends){
-        switch(S33302){
+  public void thread57313(int [] tdone, int [] ends){
+        switch(S45837){
       case 0 : 
-        active[29]=0;
-        ends[29]=0;
-        tdone[29]=1;
+        active[51]=0;
+        ends[51]=0;
+        tdone[51]=1;
         break;
       
       case 1 : 
-        if(clampOpen.getprestatus()){//sysj\ABSplant.sysj line: 269, column: 24
-          clampOpenE.setPresent();//sysj\ABSplant.sysj line: 269, column: 35
+        if(clampOpen.getprestatus()){//sysj\ABSplant.sysj line: 543, column: 24
+          clampOpenE.setPresent();//sysj\ABSplant.sysj line: 543, column: 35
           currsigs.addElement(clampOpenE);
-          active[29]=1;
-          ends[29]=1;
-          tdone[29]=1;
+          active[51]=1;
+          ends[51]=1;
+          tdone[51]=1;
         }
         else {
-          active[29]=1;
-          ends[29]=1;
-          tdone[29]=1;
+          active[51]=1;
+          ends[51]=1;
+          tdone[51]=1;
         }
         break;
       
     }
   }
 
-  public void thread44731(int [] tdone, int [] ends){
-        switch(S33294){
+  public void thread57312(int [] tdone, int [] ends){
+        switch(S45829){
       case 0 : 
-        active[28]=0;
-        ends[28]=0;
-        tdone[28]=1;
+        active[50]=0;
+        ends[50]=0;
+        tdone[50]=1;
         break;
       
       case 1 : 
-        if(clampClose.getprestatus()){//sysj\ABSplant.sysj line: 267, column: 24
-          clampCloseE.setPresent();//sysj\ABSplant.sysj line: 267, column: 36
+        if(clampClose.getprestatus()){//sysj\ABSplant.sysj line: 541, column: 24
+          clampCloseE.setPresent();//sysj\ABSplant.sysj line: 541, column: 36
           currsigs.addElement(clampCloseE);
-          active[28]=1;
-          ends[28]=1;
-          tdone[28]=1;
+          active[50]=1;
+          ends[50]=1;
+          tdone[50]=1;
         }
         else {
-          active[28]=1;
-          ends[28]=1;
-          tdone[28]=1;
+          active[50]=1;
+          ends[50]=1;
+          tdone[50]=1;
         }
         break;
       
     }
   }
 
-  public void thread44730(int [] tdone, int [] ends){
-        switch(S33352){
+  public void thread57311(int [] tdone, int [] ends){
+        switch(S45887){
       case 0 : 
-        active[27]=0;
-        ends[27]=0;
-        tdone[27]=1;
+        active[49]=0;
+        ends[49]=0;
+        tdone[49]=1;
         break;
       
       case 1 : 
-        thread44731(tdone,ends);
-        thread44732(tdone,ends);
-        thread44733(tdone,ends);
-        thread44734(tdone,ends);
-        thread44735(tdone,ends);
-        thread44736(tdone,ends);
-        thread44737(tdone,ends);
-        thread44738(tdone,ends);
-        int biggest44739 = 0;
-        if(ends[28]>=biggest44739){
-          biggest44739=ends[28];
+        thread57312(tdone,ends);
+        thread57313(tdone,ends);
+        thread57314(tdone,ends);
+        thread57315(tdone,ends);
+        thread57316(tdone,ends);
+        thread57317(tdone,ends);
+        thread57318(tdone,ends);
+        thread57319(tdone,ends);
+        int biggest57320 = 0;
+        if(ends[50]>=biggest57320){
+          biggest57320=ends[50];
         }
-        if(ends[29]>=biggest44739){
-          biggest44739=ends[29];
+        if(ends[51]>=biggest57320){
+          biggest57320=ends[51];
         }
-        if(ends[30]>=biggest44739){
-          biggest44739=ends[30];
+        if(ends[52]>=biggest57320){
+          biggest57320=ends[52];
         }
-        if(ends[31]>=biggest44739){
-          biggest44739=ends[31];
+        if(ends[53]>=biggest57320){
+          biggest57320=ends[53];
         }
-        if(ends[32]>=biggest44739){
-          biggest44739=ends[32];
+        if(ends[54]>=biggest57320){
+          biggest57320=ends[54];
         }
-        if(ends[33]>=biggest44739){
-          biggest44739=ends[33];
+        if(ends[55]>=biggest57320){
+          biggest57320=ends[55];
         }
-        if(ends[34]>=biggest44739){
-          biggest44739=ends[34];
+        if(ends[56]>=biggest57320){
+          biggest57320=ends[56];
         }
-        if(ends[35]>=biggest44739){
-          biggest44739=ends[35];
+        if(ends[57]>=biggest57320){
+          biggest57320=ends[57];
         }
-        if(biggest44739 == 1){
-          active[27]=1;
-          ends[27]=1;
-          tdone[27]=1;
+        if(biggest57320 == 1){
+          active[49]=1;
+          ends[49]=1;
+          tdone[49]=1;
         }
         //FINXME code
-        if(biggest44739 == 0){
-          S33352=0;
-          active[27]=0;
-          ends[27]=0;
-          tdone[27]=1;
+        if(biggest57320 == 0){
+          S45887=0;
+          active[49]=0;
+          ends[49]=0;
+          tdone[49]=1;
         }
         break;
       
     }
   }
 
-  public void thread44729(int [] tdone, int [] ends){
-        switch(S33286){
+  public void thread57310(int [] tdone, int [] ends){
+        switch(S45821){
       case 0 : 
-        active[26]=0;
-        ends[26]=0;
-        tdone[26]=1;
+        active[48]=0;
+        ends[48]=0;
+        tdone[48]=1;
         break;
       
       case 1 : 
-        switch(S33256){
+        switch(S45791){
           case 0 : 
-            if(bottlePos5.getprestatus() && capperRaised.getprestatus()){//sysj\ABSplant.sysj line: 256, column: 10
-              S33256=1;
-              active[26]=1;
-              ends[26]=1;
-              tdone[26]=1;
+            if(bottlePos5.getprestatus() && capperRaised.getprestatus()){//sysj\ABSplant.sysj line: 530, column: 10
+              S45791=1;
+              active[48]=1;
+              ends[48]=1;
+              tdone[48]=1;
             }
             else {
-              active[26]=1;
-              ends[26]=1;
-              tdone[26]=1;
+              active[48]=1;
+              ends[48]=1;
+              tdone[48]=1;
             }
             break;
           
           case 1 : 
-            S33256=1;
-            S33256=2;
-            bottlePos5Disp.setPresent();//sysj\ABSplant.sysj line: 261, column: 5
+            S45791=1;
+            S45791=2;
+            bottlePos5Disp.setPresent();//sysj\ABSplant.sysj line: 535, column: 5
             currsigs.addElement(bottlePos5Disp);
-            active[26]=1;
-            ends[26]=1;
-            tdone[26]=1;
+            active[48]=1;
+            ends[48]=1;
+            tdone[48]=1;
             break;
           
           case 2 : 
-            if(!bottlePos5.getprestatus()){//sysj\ABSplant.sysj line: 260, column: 10
-              S33256=0;
-              active[26]=1;
-              ends[26]=1;
-              tdone[26]=1;
+            if(!bottlePos5.getprestatus()){//sysj\ABSplant.sysj line: 534, column: 10
+              S45791=0;
+              active[48]=1;
+              ends[48]=1;
+              tdone[48]=1;
             }
             else {
-              bottlePos5Disp.setPresent();//sysj\ABSplant.sysj line: 261, column: 5
+              bottlePos5Disp.setPresent();//sysj\ABSplant.sysj line: 535, column: 5
               currsigs.addElement(bottlePos5Disp);
-              active[26]=1;
-              ends[26]=1;
-              tdone[26]=1;
+              active[48]=1;
+              ends[48]=1;
+              tdone[48]=1;
             }
             break;
           
@@ -415,77 +415,77 @@ public class CapperPlant extends ClockDomain{
     }
   }
 
-  public void thread44728(int [] tdone, int [] ends){
-        switch(S33254){
+  public void thread57309(int [] tdone, int [] ends){
+        switch(S45789){
       case 0 : 
-        active[25]=0;
-        ends[25]=0;
-        tdone[25]=1;
+        active[47]=0;
+        ends[47]=0;
+        tdone[47]=1;
         break;
       
       case 1 : 
-        switch(S33208){
+        switch(S45743){
           case 0 : 
-            if(lowerCapper.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 243, column: 10
-              S33208=1;
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+            if(lowerCapper.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 517, column: 10
+              S45743=1;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             else {
-              capperRaised.setPresent();//sysj\ABSplant.sysj line: 244, column: 5
+              capperRaised.setPresent();//sysj\ABSplant.sysj line: 518, column: 5
               currsigs.addElement(capperRaised);
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             break;
           
           case 1 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 246, column: 10
-              S33208=2;
-              capperLowered.setPresent();//sysj\ABSplant.sysj line: 248, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 520, column: 10
+              S45743=2;
+              capperLowered.setPresent();//sysj\ABSplant.sysj line: 522, column: 5
               currsigs.addElement(capperLowered);
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             else {
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             break;
           
           case 2 : 
-            if(!lowerCapper.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 247, column: 10
-              S33208=3;
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+            if(!lowerCapper.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 521, column: 10
+              S45743=3;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             else {
-              capperLowered.setPresent();//sysj\ABSplant.sysj line: 248, column: 5
+              capperLowered.setPresent();//sysj\ABSplant.sysj line: 522, column: 5
               currsigs.addElement(capperLowered);
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             break;
           
           case 3 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 250, column: 10
-              S33208=0;
-              capperRaised.setPresent();//sysj\ABSplant.sysj line: 244, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 524, column: 10
+              S45743=0;
+              capperRaised.setPresent();//sysj\ABSplant.sysj line: 518, column: 5
               currsigs.addElement(capperRaised);
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             else {
-              active[25]=1;
-              ends[25]=1;
-              tdone[25]=1;
+              active[47]=1;
+              ends[47]=1;
+              tdone[47]=1;
             }
             break;
           
@@ -495,77 +495,77 @@ public class CapperPlant extends ClockDomain{
     }
   }
 
-  public void thread44727(int [] tdone, int [] ends){
-        switch(S33201){
+  public void thread57308(int [] tdone, int [] ends){
+        switch(S45736){
       case 0 : 
-        active[24]=0;
-        ends[24]=0;
-        tdone[24]=1;
+        active[46]=0;
+        ends[46]=0;
+        tdone[46]=1;
         break;
       
       case 1 : 
-        switch(S33155){
+        switch(S45690){
           case 0 : 
-            if(turnGripperFinal.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 230, column: 10
-              S33155=1;
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+            if(turnGripperFinal.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 504, column: 10
+              S45690=1;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             else {
-              gripperAtHome.setPresent();//sysj\ABSplant.sysj line: 231, column: 5
+              gripperAtHome.setPresent();//sysj\ABSplant.sysj line: 505, column: 5
               currsigs.addElement(gripperAtHome);
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             break;
           
           case 1 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 233, column: 10
-              S33155=2;
-              gripperAtFinal.setPresent();//sysj\ABSplant.sysj line: 235, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 507, column: 10
+              S45690=2;
+              gripperAtFinal.setPresent();//sysj\ABSplant.sysj line: 509, column: 5
               currsigs.addElement(gripperAtFinal);
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             else {
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             break;
           
           case 2 : 
-            if(turnGripperHome.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 234, column: 10
-              S33155=3;
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+            if(turnGripperHome.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 508, column: 10
+              S45690=3;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             else {
-              gripperAtFinal.setPresent();//sysj\ABSplant.sysj line: 235, column: 5
+              gripperAtFinal.setPresent();//sysj\ABSplant.sysj line: 509, column: 5
               currsigs.addElement(gripperAtFinal);
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             break;
           
           case 3 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 237, column: 10
-              S33155=0;
-              gripperAtHome.setPresent();//sysj\ABSplant.sysj line: 231, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 511, column: 10
+              S45690=0;
+              gripperAtHome.setPresent();//sysj\ABSplant.sysj line: 505, column: 5
               currsigs.addElement(gripperAtHome);
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             else {
-              active[24]=1;
-              ends[24]=1;
-              tdone[24]=1;
+              active[46]=1;
+              ends[46]=1;
+              tdone[46]=1;
             }
             break;
           
@@ -575,77 +575,77 @@ public class CapperPlant extends ClockDomain{
     }
   }
 
-  public void thread44726(int [] tdone, int [] ends){
-        switch(S33148){
+  public void thread57307(int [] tdone, int [] ends){
+        switch(S45683){
       case 0 : 
-        active[23]=0;
-        ends[23]=0;
-        tdone[23]=1;
+        active[45]=0;
+        ends[45]=0;
+        tdone[45]=1;
         break;
       
       case 1 : 
-        switch(S33102){
+        switch(S45637){
           case 0 : 
-            if(gripCap.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 217, column: 10
-              S33102=1;
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+            if(gripCap.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 491, column: 10
+              S45637=1;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             else {
-              gripperOpen.setPresent();//sysj\ABSplant.sysj line: 218, column: 5
+              gripperOpen.setPresent();//sysj\ABSplant.sysj line: 492, column: 5
               currsigs.addElement(gripperOpen);
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             break;
           
           case 1 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 220, column: 10
-              S33102=2;
-              gripperClose.setPresent();//sysj\ABSplant.sysj line: 222, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 494, column: 10
+              S45637=2;
+              gripperClose.setPresent();//sysj\ABSplant.sysj line: 496, column: 5
               currsigs.addElement(gripperClose);
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             else {
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             break;
           
           case 2 : 
-            if(!gripCap.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 221, column: 10
-              S33102=3;
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+            if(!gripCap.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 495, column: 10
+              S45637=3;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             else {
-              gripperClose.setPresent();//sysj\ABSplant.sysj line: 222, column: 5
+              gripperClose.setPresent();//sysj\ABSplant.sysj line: 496, column: 5
               currsigs.addElement(gripperClose);
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             break;
           
           case 3 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 224, column: 10
-              S33102=0;
-              gripperOpen.setPresent();//sysj\ABSplant.sysj line: 218, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 498, column: 10
+              S45637=0;
+              gripperOpen.setPresent();//sysj\ABSplant.sysj line: 492, column: 5
               currsigs.addElement(gripperOpen);
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             else {
-              active[23]=1;
-              ends[23]=1;
-              tdone[23]=1;
+              active[45]=1;
+              ends[45]=1;
+              tdone[45]=1;
             }
             break;
           
@@ -655,77 +655,77 @@ public class CapperPlant extends ClockDomain{
     }
   }
 
-  public void thread44725(int [] tdone, int [] ends){
-        switch(S33095){
+  public void thread57306(int [] tdone, int [] ends){
+        switch(S45630){
       case 0 : 
-        active[22]=0;
-        ends[22]=0;
-        tdone[22]=1;
+        active[44]=0;
+        ends[44]=0;
+        tdone[44]=1;
         break;
       
       case 1 : 
-        switch(S33049){
+        switch(S45584){
           case 0 : 
-            if(clampBottle.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 204, column: 10
-              S33049=1;
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+            if(clampBottle.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 478, column: 10
+              S45584=1;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             else {
-              clampOpen.setPresent();//sysj\ABSplant.sysj line: 205, column: 5
+              clampOpen.setPresent();//sysj\ABSplant.sysj line: 479, column: 5
               currsigs.addElement(clampOpen);
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             break;
           
           case 1 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 207, column: 10
-              S33049=2;
-              clampClose.setPresent();//sysj\ABSplant.sysj line: 209, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 481, column: 10
+              S45584=2;
+              clampClose.setPresent();//sysj\ABSplant.sysj line: 483, column: 5
               currsigs.addElement(clampClose);
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             else {
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             break;
           
           case 2 : 
-            if(!clampBottle.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 208, column: 10
-              S33049=3;
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+            if(!clampBottle.getprestatus() && enable.getprestatus()){//sysj\ABSplant.sysj line: 482, column: 10
+              S45584=3;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             else {
-              clampClose.setPresent();//sysj\ABSplant.sysj line: 209, column: 5
+              clampClose.setPresent();//sysj\ABSplant.sysj line: 483, column: 5
               currsigs.addElement(clampClose);
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             break;
           
           case 3 : 
-            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 211, column: 10
-              S33049=0;
-              clampOpen.setPresent();//sysj\ABSplant.sysj line: 205, column: 5
+            if(!enable.getprestatus()){//sysj\ABSplant.sysj line: 485, column: 10
+              S45584=0;
+              clampOpen.setPresent();//sysj\ABSplant.sysj line: 479, column: 5
               currsigs.addElement(clampOpen);
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             else {
-              active[22]=1;
-              ends[22]=1;
-              tdone[22]=1;
+              active[44]=1;
+              ends[44]=1;
+              tdone[44]=1;
             }
             break;
           
@@ -735,239 +735,239 @@ public class CapperPlant extends ClockDomain{
     }
   }
 
-  public void thread44723(int [] tdone, int [] ends){
-        S33363=1;
-    if(modeGUI.getprestatus()){//sysj\ABSplant.sysj line: 286, column: 12
-      mode = modeGUI;//sysj\ABSplant.sysj line: 287, column: 5
-      mode.setPresent();//sysj\ABSplant.sysj line: 288, column: 5
+  public void thread57304(int [] tdone, int [] ends){
+        S45898=1;
+    if(modeGUI.getprestatus()){//sysj\ABSplant.sysj line: 560, column: 13
+      mode = modeGUI;//sysj\ABSplant.sysj line: 561, column: 6
+      mode.setPresent();//sysj\ABSplant.sysj line: 562, column: 6
       currsigs.addElement(mode);
-      active[36]=1;
-      ends[36]=1;
-      tdone[36]=1;
+      active[58]=1;
+      ends[58]=1;
+      tdone[58]=1;
     }
     else {
-      active[36]=1;
-      ends[36]=1;
-      tdone[36]=1;
+      active[58]=1;
+      ends[58]=1;
+      tdone[58]=1;
     }
   }
 
-  public void thread44721(int [] tdone, int [] ends){
-        S33350=1;
-    if(bottlePos5Disp.getprestatus()){//sysj\ABSplant.sysj line: 281, column: 24
-      bottlePos5DispE.setPresent();//sysj\ABSplant.sysj line: 281, column: 40
+  public void thread57302(int [] tdone, int [] ends){
+        S45885=1;
+    if(bottlePos5Disp.getprestatus()){//sysj\ABSplant.sysj line: 555, column: 24
+      bottlePos5DispE.setPresent();//sysj\ABSplant.sysj line: 555, column: 40
       currsigs.addElement(bottlePos5DispE);
-      active[35]=1;
-      ends[35]=1;
-      tdone[35]=1;
+      active[57]=1;
+      ends[57]=1;
+      tdone[57]=1;
     }
     else {
-      active[35]=1;
-      ends[35]=1;
-      tdone[35]=1;
+      active[57]=1;
+      ends[57]=1;
+      tdone[57]=1;
     }
   }
 
-  public void thread44720(int [] tdone, int [] ends){
-        S33342=1;
-    if(gripperAtFinal.getprestatus()){//sysj\ABSplant.sysj line: 279, column: 24
-      gripperAtFinalE.setPresent();//sysj\ABSplant.sysj line: 279, column: 40
+  public void thread57301(int [] tdone, int [] ends){
+        S45877=1;
+    if(gripperAtFinal.getprestatus()){//sysj\ABSplant.sysj line: 553, column: 24
+      gripperAtFinalE.setPresent();//sysj\ABSplant.sysj line: 553, column: 40
       currsigs.addElement(gripperAtFinalE);
-      active[34]=1;
-      ends[34]=1;
-      tdone[34]=1;
+      active[56]=1;
+      ends[56]=1;
+      tdone[56]=1;
     }
     else {
-      active[34]=1;
-      ends[34]=1;
-      tdone[34]=1;
+      active[56]=1;
+      ends[56]=1;
+      tdone[56]=1;
     }
   }
 
-  public void thread44719(int [] tdone, int [] ends){
-        S33334=1;
-    if(capperLowered.getprestatus()){//sysj\ABSplant.sysj line: 277, column: 24
-      capperLoweredE.setPresent();//sysj\ABSplant.sysj line: 277, column: 39
+  public void thread57300(int [] tdone, int [] ends){
+        S45869=1;
+    if(capperLowered.getprestatus()){//sysj\ABSplant.sysj line: 551, column: 24
+      capperLoweredE.setPresent();//sysj\ABSplant.sysj line: 551, column: 39
       currsigs.addElement(capperLoweredE);
-      active[33]=1;
-      ends[33]=1;
-      tdone[33]=1;
+      active[55]=1;
+      ends[55]=1;
+      tdone[55]=1;
     }
     else {
-      active[33]=1;
-      ends[33]=1;
-      tdone[33]=1;
+      active[55]=1;
+      ends[55]=1;
+      tdone[55]=1;
     }
   }
 
-  public void thread44718(int [] tdone, int [] ends){
-        S33326=1;
-    if(capperRaised.getprestatus()){//sysj\ABSplant.sysj line: 275, column: 24
-      capperRaisedE.setPresent();//sysj\ABSplant.sysj line: 275, column: 38
+  public void thread57299(int [] tdone, int [] ends){
+        S45861=1;
+    if(capperRaised.getprestatus()){//sysj\ABSplant.sysj line: 549, column: 24
+      capperRaisedE.setPresent();//sysj\ABSplant.sysj line: 549, column: 38
       currsigs.addElement(capperRaisedE);
-      active[32]=1;
-      ends[32]=1;
-      tdone[32]=1;
+      active[54]=1;
+      ends[54]=1;
+      tdone[54]=1;
     }
     else {
-      active[32]=1;
-      ends[32]=1;
-      tdone[32]=1;
+      active[54]=1;
+      ends[54]=1;
+      tdone[54]=1;
     }
   }
 
-  public void thread44717(int [] tdone, int [] ends){
-        S33318=1;
-    if(gripperAtHome.getprestatus()){//sysj\ABSplant.sysj line: 273, column: 24
-      gripperAtHomeE.setPresent();//sysj\ABSplant.sysj line: 273, column: 39
+  public void thread57298(int [] tdone, int [] ends){
+        S45853=1;
+    if(gripperAtHome.getprestatus()){//sysj\ABSplant.sysj line: 547, column: 24
+      gripperAtHomeE.setPresent();//sysj\ABSplant.sysj line: 547, column: 39
       currsigs.addElement(gripperAtHomeE);
-      active[31]=1;
-      ends[31]=1;
-      tdone[31]=1;
+      active[53]=1;
+      ends[53]=1;
+      tdone[53]=1;
     }
     else {
-      active[31]=1;
-      ends[31]=1;
-      tdone[31]=1;
+      active[53]=1;
+      ends[53]=1;
+      tdone[53]=1;
     }
   }
 
-  public void thread44716(int [] tdone, int [] ends){
-        S33310=1;
-    if(gripperClose.getprestatus()){//sysj\ABSplant.sysj line: 271, column: 24
-      gripperCloseE.setPresent();//sysj\ABSplant.sysj line: 271, column: 38
+  public void thread57297(int [] tdone, int [] ends){
+        S45845=1;
+    if(gripperClose.getprestatus()){//sysj\ABSplant.sysj line: 545, column: 24
+      gripperCloseE.setPresent();//sysj\ABSplant.sysj line: 545, column: 38
       currsigs.addElement(gripperCloseE);
-      active[30]=1;
-      ends[30]=1;
-      tdone[30]=1;
+      active[52]=1;
+      ends[52]=1;
+      tdone[52]=1;
     }
     else {
-      active[30]=1;
-      ends[30]=1;
-      tdone[30]=1;
+      active[52]=1;
+      ends[52]=1;
+      tdone[52]=1;
     }
   }
 
-  public void thread44715(int [] tdone, int [] ends){
-        S33302=1;
-    if(clampOpen.getprestatus()){//sysj\ABSplant.sysj line: 269, column: 24
-      clampOpenE.setPresent();//sysj\ABSplant.sysj line: 269, column: 35
+  public void thread57296(int [] tdone, int [] ends){
+        S45837=1;
+    if(clampOpen.getprestatus()){//sysj\ABSplant.sysj line: 543, column: 24
+      clampOpenE.setPresent();//sysj\ABSplant.sysj line: 543, column: 35
       currsigs.addElement(clampOpenE);
-      active[29]=1;
-      ends[29]=1;
-      tdone[29]=1;
+      active[51]=1;
+      ends[51]=1;
+      tdone[51]=1;
     }
     else {
-      active[29]=1;
-      ends[29]=1;
-      tdone[29]=1;
+      active[51]=1;
+      ends[51]=1;
+      tdone[51]=1;
     }
   }
 
-  public void thread44714(int [] tdone, int [] ends){
-        S33294=1;
-    if(clampClose.getprestatus()){//sysj\ABSplant.sysj line: 267, column: 24
-      clampCloseE.setPresent();//sysj\ABSplant.sysj line: 267, column: 36
+  public void thread57295(int [] tdone, int [] ends){
+        S45829=1;
+    if(clampClose.getprestatus()){//sysj\ABSplant.sysj line: 541, column: 24
+      clampCloseE.setPresent();//sysj\ABSplant.sysj line: 541, column: 36
       currsigs.addElement(clampCloseE);
-      active[28]=1;
-      ends[28]=1;
-      tdone[28]=1;
+      active[50]=1;
+      ends[50]=1;
+      tdone[50]=1;
     }
     else {
-      active[28]=1;
-      ends[28]=1;
-      tdone[28]=1;
+      active[50]=1;
+      ends[50]=1;
+      tdone[50]=1;
     }
   }
 
-  public void thread44713(int [] tdone, int [] ends){
-        S33352=1;
-    thread44714(tdone,ends);
-    thread44715(tdone,ends);
-    thread44716(tdone,ends);
-    thread44717(tdone,ends);
-    thread44718(tdone,ends);
-    thread44719(tdone,ends);
-    thread44720(tdone,ends);
-    thread44721(tdone,ends);
-    int biggest44722 = 0;
-    if(ends[28]>=biggest44722){
-      biggest44722=ends[28];
+  public void thread57294(int [] tdone, int [] ends){
+        S45887=1;
+    thread57295(tdone,ends);
+    thread57296(tdone,ends);
+    thread57297(tdone,ends);
+    thread57298(tdone,ends);
+    thread57299(tdone,ends);
+    thread57300(tdone,ends);
+    thread57301(tdone,ends);
+    thread57302(tdone,ends);
+    int biggest57303 = 0;
+    if(ends[50]>=biggest57303){
+      biggest57303=ends[50];
     }
-    if(ends[29]>=biggest44722){
-      biggest44722=ends[29];
+    if(ends[51]>=biggest57303){
+      biggest57303=ends[51];
     }
-    if(ends[30]>=biggest44722){
-      biggest44722=ends[30];
+    if(ends[52]>=biggest57303){
+      biggest57303=ends[52];
     }
-    if(ends[31]>=biggest44722){
-      biggest44722=ends[31];
+    if(ends[53]>=biggest57303){
+      biggest57303=ends[53];
     }
-    if(ends[32]>=biggest44722){
-      biggest44722=ends[32];
+    if(ends[54]>=biggest57303){
+      biggest57303=ends[54];
     }
-    if(ends[33]>=biggest44722){
-      biggest44722=ends[33];
+    if(ends[55]>=biggest57303){
+      biggest57303=ends[55];
     }
-    if(ends[34]>=biggest44722){
-      biggest44722=ends[34];
+    if(ends[56]>=biggest57303){
+      biggest57303=ends[56];
     }
-    if(ends[35]>=biggest44722){
-      biggest44722=ends[35];
+    if(ends[57]>=biggest57303){
+      biggest57303=ends[57];
     }
-    if(biggest44722 == 1){
-      active[27]=1;
-      ends[27]=1;
-      tdone[27]=1;
+    if(biggest57303 == 1){
+      active[49]=1;
+      ends[49]=1;
+      tdone[49]=1;
     }
   }
 
-  public void thread44712(int [] tdone, int [] ends){
-        S33286=1;
-    S33256=0;
-    active[26]=1;
-    ends[26]=1;
-    tdone[26]=1;
+  public void thread57293(int [] tdone, int [] ends){
+        S45821=1;
+    S45791=0;
+    active[48]=1;
+    ends[48]=1;
+    tdone[48]=1;
   }
 
-  public void thread44711(int [] tdone, int [] ends){
-        S33254=1;
-    S33208=0;
-    capperRaised.setPresent();//sysj\ABSplant.sysj line: 244, column: 5
+  public void thread57292(int [] tdone, int [] ends){
+        S45789=1;
+    S45743=0;
+    capperRaised.setPresent();//sysj\ABSplant.sysj line: 518, column: 5
     currsigs.addElement(capperRaised);
-    active[25]=1;
-    ends[25]=1;
-    tdone[25]=1;
+    active[47]=1;
+    ends[47]=1;
+    tdone[47]=1;
   }
 
-  public void thread44710(int [] tdone, int [] ends){
-        S33201=1;
-    S33155=0;
-    gripperAtHome.setPresent();//sysj\ABSplant.sysj line: 231, column: 5
+  public void thread57291(int [] tdone, int [] ends){
+        S45736=1;
+    S45690=0;
+    gripperAtHome.setPresent();//sysj\ABSplant.sysj line: 505, column: 5
     currsigs.addElement(gripperAtHome);
-    active[24]=1;
-    ends[24]=1;
-    tdone[24]=1;
+    active[46]=1;
+    ends[46]=1;
+    tdone[46]=1;
   }
 
-  public void thread44709(int [] tdone, int [] ends){
-        S33148=1;
-    S33102=0;
-    gripperOpen.setPresent();//sysj\ABSplant.sysj line: 218, column: 5
+  public void thread57290(int [] tdone, int [] ends){
+        S45683=1;
+    S45637=0;
+    gripperOpen.setPresent();//sysj\ABSplant.sysj line: 492, column: 5
     currsigs.addElement(gripperOpen);
-    active[23]=1;
-    ends[23]=1;
-    tdone[23]=1;
+    active[45]=1;
+    ends[45]=1;
+    tdone[45]=1;
   }
 
-  public void thread44708(int [] tdone, int [] ends){
-        S33095=1;
-    S33049=0;
-    clampOpen.setPresent();//sysj\ABSplant.sysj line: 205, column: 5
+  public void thread57289(int [] tdone, int [] ends){
+        S45630=1;
+    S45584=0;
+    clampOpen.setPresent();//sysj\ABSplant.sysj line: 479, column: 5
     currsigs.addElement(clampOpen);
-    active[22]=1;
-    ends[22]=1;
-    tdone[22]=1;
+    active[44]=1;
+    ends[44]=1;
+    tdone[44]=1;
   }
 
   public void runClockDomain(){
@@ -977,91 +977,91 @@ public class CapperPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S33686){
+      switch(S46221){
         case 0 : 
-          S33686=0;
+          S46221=0;
           break RUN;
         
         case 1 : 
-          S33686=2;
-          S33686=2;
-          System.out.println("CapperPlant");//sysj\ABSplant.sysj line: 201, column: 2
-          thread44708(tdone,ends);
-          thread44709(tdone,ends);
-          thread44710(tdone,ends);
-          thread44711(tdone,ends);
-          thread44712(tdone,ends);
-          thread44713(tdone,ends);
-          thread44723(tdone,ends);
-          int biggest44724 = 0;
-          if(ends[22]>=biggest44724){
-            biggest44724=ends[22];
+          S46221=2;
+          S46221=2;
+          System.out.println("CapperPlant");//sysj\ABSplant.sysj line: 475, column: 2
+          thread57289(tdone,ends);
+          thread57290(tdone,ends);
+          thread57291(tdone,ends);
+          thread57292(tdone,ends);
+          thread57293(tdone,ends);
+          thread57294(tdone,ends);
+          thread57304(tdone,ends);
+          int biggest57305 = 0;
+          if(ends[44]>=biggest57305){
+            biggest57305=ends[44];
           }
-          if(ends[23]>=biggest44724){
-            biggest44724=ends[23];
+          if(ends[45]>=biggest57305){
+            biggest57305=ends[45];
           }
-          if(ends[24]>=biggest44724){
-            biggest44724=ends[24];
+          if(ends[46]>=biggest57305){
+            biggest57305=ends[46];
           }
-          if(ends[25]>=biggest44724){
-            biggest44724=ends[25];
+          if(ends[47]>=biggest57305){
+            biggest57305=ends[47];
           }
-          if(ends[26]>=biggest44724){
-            biggest44724=ends[26];
+          if(ends[48]>=biggest57305){
+            biggest57305=ends[48];
           }
-          if(ends[27]>=biggest44724){
-            biggest44724=ends[27];
+          if(ends[49]>=biggest57305){
+            biggest57305=ends[49];
           }
-          if(ends[36]>=biggest44724){
-            biggest44724=ends[36];
+          if(ends[58]>=biggest57305){
+            biggest57305=ends[58];
           }
-          if(biggest44724 == 1){
-            active[21]=1;
-            ends[21]=1;
+          if(biggest57305 == 1){
+            active[43]=1;
+            ends[43]=1;
             break RUN;
           }
         
         case 2 : 
-          thread44725(tdone,ends);
-          thread44726(tdone,ends);
-          thread44727(tdone,ends);
-          thread44728(tdone,ends);
-          thread44729(tdone,ends);
-          thread44730(tdone,ends);
-          thread44740(tdone,ends);
-          int biggest44741 = 0;
-          if(ends[22]>=biggest44741){
-            biggest44741=ends[22];
+          thread57306(tdone,ends);
+          thread57307(tdone,ends);
+          thread57308(tdone,ends);
+          thread57309(tdone,ends);
+          thread57310(tdone,ends);
+          thread57311(tdone,ends);
+          thread57321(tdone,ends);
+          int biggest57322 = 0;
+          if(ends[44]>=biggest57322){
+            biggest57322=ends[44];
           }
-          if(ends[23]>=biggest44741){
-            biggest44741=ends[23];
+          if(ends[45]>=biggest57322){
+            biggest57322=ends[45];
           }
-          if(ends[24]>=biggest44741){
-            biggest44741=ends[24];
+          if(ends[46]>=biggest57322){
+            biggest57322=ends[46];
           }
-          if(ends[25]>=biggest44741){
-            biggest44741=ends[25];
+          if(ends[47]>=biggest57322){
+            biggest57322=ends[47];
           }
-          if(ends[26]>=biggest44741){
-            biggest44741=ends[26];
+          if(ends[48]>=biggest57322){
+            biggest57322=ends[48];
           }
-          if(ends[27]>=biggest44741){
-            biggest44741=ends[27];
+          if(ends[49]>=biggest57322){
+            biggest57322=ends[49];
           }
-          if(ends[36]>=biggest44741){
-            biggest44741=ends[36];
+          if(ends[58]>=biggest57322){
+            biggest57322=ends[58];
           }
-          if(biggest44741 == 1){
-            active[21]=1;
-            ends[21]=1;
+          if(biggest57322 == 1){
+            active[43]=1;
+            ends[43]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest44741 == 0){
-            S33686=0;
-            active[21]=0;
-            ends[21]=0;
-            S33686=0;
+          if(biggest57322 == 0){
+            S46221=0;
+            active[43]=0;
+            ends[43]=0;
+            S46221=0;
             break RUN;
           }
         
@@ -1070,9 +1070,9 @@ public class CapperPlant extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
@@ -1081,14 +1081,14 @@ public class CapperPlant extends ClockDomain{
   }
   
   public void run(){
-    while(active[21] != 0){
-      int index = 21;
+    while(active[43] != 0){
+      int index = 43;
       if(paused[index]==1 || suspended[index]==1 || active[index] == 0){
         for(int h=1;h<paused.length;++h){
           paused[h]=0;
         }
       }
-      if(paused[21]!=0 || suspended[21]!=0 || active[21]!=1);
+      if(paused[43]!=0 || suspended[43]!=0 || active[43]!=1);
       else{
         if(!df){
           modeGUI.gethook();
@@ -1198,7 +1198,7 @@ public class CapperPlant extends ClockDomain{
       gripperAtHomeE.setClear();
       bottlePos5DispE.sethook();
       bottlePos5DispE.setClear();
-      if(paused[21]!=0 || suspended[21]!=0 || active[21]!=1);
+      if(paused[43]!=0 || suspended[43]!=0 || active[43]!=1);
       else{
         modeGUI.gethook();
         clampBottle.gethook();
@@ -1210,7 +1210,7 @@ public class CapperPlant extends ClockDomain{
         bottlePos5.gethook();
       }
       runFinisher();
-      if(active[21] == 0){
+      if(active[43] == 0){
       	this.terminated = true;
       }
       if(!threaded) break;
