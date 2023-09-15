@@ -28,7 +28,7 @@ public class POS extends JFrame {
 	public POS() {
 		// Canvas
 		panel = new Canvas();
-		panel.setPreferredSize(new Dimension(700, 600));
+		panel.setPreferredSize(new Dimension(1300, 500));
 		panel.setBackground(Color.WHITE);
 		
 		// System

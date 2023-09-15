@@ -40,6 +40,15 @@ public class Canvas extends JPanel {
 	
 	JButton orderButton = new JButton();
 	
+//	JTextField p1liquid1 = new JTextField();
+//	JTextField p2liquid2 = new JTextField();
+//	JTextField p3liquid3 = new JTextField();
+//	JTextField p4liquid4 = new JTextField();
+	JTextField p1quantity = new JTextField();
+	JTextField p2quantity = new JTextField();
+	JTextField p3quantity = new JTextField();
+	JTextField p4quantity = new JTextField();
+	
 	JTextField liquid1 = new JTextField();
 	JTextField liquid2 = new JTextField();
 	JTextField liquid3 = new JTextField();
@@ -82,53 +91,90 @@ public class Canvas extends JPanel {
 			System.out.println("Button Pressed");
 		});
 		
-		orderButton.setBounds(250, 500, 200, 100);
+		orderButton.setBounds(500, 800, 400, 400);
 		add(orderButton);
 		
-		liquid1.setColumns(10);
-		liquid2.setColumns(10);
-		liquid3.setColumns(10);
-		liquid4.setColumns(10);
-		Dimension d = liquid1.getPreferredSize();
-		liquid1.setBounds(150, 150 - d.height, d.width, d.height);
-		liquid2.setBounds(150, 200 - d.height, d.width, d.height);
-		liquid3.setBounds(150, 250 - d.height, d.width, d.height);
-		liquid4.setBounds(150, 300 - d.height, d.width, d.height);
+		p1quantity.setColumns(5);
+		Dimension d = p1quantity.getPreferredSize();
+		p1quantity.setBounds(100, 400 - d.height, d.width, d.height);
 		
-		quantity.setColumns(10);
-		d = quantity.getPreferredSize();
-		quantity.setBounds(300, 150 - d.height, d.width, d.height);
+		p2quantity.setColumns(5);
+		p2quantity.setBounds(350, 400 - d.height, d.width, d.height);
 		
-		add(liquid1);
-		add(liquid2);
-		add(liquid3);
-		add(liquid4);
-		add(quantity);
+		p3quantity.setColumns(5);
+		p3quantity.setBounds(600, 400 - d.height, d.width, d.height);
+		
+		p4quantity.setColumns(5);
+		p4quantity.setBounds(850, 400 - d.height, d.width, d.height);
+		
+		add(p1quantity);
+		add(p2quantity);
+		add(p3quantity);
+		add(p4quantity);
 	}
 	
-	int getLiquidTotal() {
-		if(liquid1.getText().equals("") || liquid2.getText().equals("")
-				|| liquid3.getText().equals("") || liquid4.getText().equals("")) {
+//	int getLiquidTotal() {
+//		if(liquid1.getText().equals("") || liquid2.getText().equals("")
+//				|| liquid3.getText().equals("") || liquid4.getText().equals("")) {
+//			return 0;
+//		}
+//		
+//		try {
+//			int total = Integer.parseInt(liquid1.getText()) + Integer.parseInt(liquid2.getText()) +
+//					Integer.parseInt(liquid3.getText()) + Integer.parseInt(liquid4.getText());
+//			
+//			return total;
+//		} catch (NumberFormatException e) {
+//			return 0;
+//		}
+//	}
+	
+	int getP1Quantity() {
+		if(p1quantity.getText().equals("")) {
 			return 0;
 		}
 		
 		try {
-			int total = Integer.parseInt(liquid1.getText()) + Integer.parseInt(liquid2.getText()) +
-					Integer.parseInt(liquid3.getText()) + Integer.parseInt(liquid4.getText());
-			
+			int total = Integer.parseInt(p1quantity.getText());
 			return total;
-		} catch (NumberFormatException e) {
+		} catch(NumberFormatException e) {
 			return 0;
 		}
 	}
 	
-	int getQuantity() {
-		if(quantity.getText().equals("")) {
+	int getP2Quantity() {
+		if(p2quantity.getText().equals("")) {
 			return 0;
 		}
 		
 		try {
-			int total = Integer.parseInt(quantity.getText());
+			int total = Integer.parseInt(p2quantity.getText());
+			return total;
+		} catch(NumberFormatException e) {
+			return 0;
+		}
+	}
+	
+	int getP3Quantity() {
+		if(p3quantity.getText().equals("")) {
+			return 0;
+		}
+		
+		try {
+			int total = Integer.parseInt(p3quantity.getText());
+			return total;
+		} catch(NumberFormatException e) {
+			return 0;
+		}
+	}
+	
+	int getP4Quantity() {
+		if(p4quantity.getText().equals("")) {
+			return 0;
+		}
+		
+		try {
+			int total = Integer.parseInt(p4quantity.getText());
 			return total;
 		} catch(NumberFormatException e) {
 			return 0;
@@ -137,9 +183,9 @@ public class Canvas extends JPanel {
 	
 	void sendOrder() {
 		
-		int bottleQuantity = getQuantity();
-        int total = getLiquidTotal();
-        if (bottleQuantity == 0 || total != 100) {
+		int bottleQuantity = getP1Quantity();
+      
+        if (bottleQuantity == 0) {
             System.out.println("Invalid order");
             return;
         }
@@ -182,24 +228,40 @@ public class Canvas extends JPanel {
 			
 		g.setFont(g.getFont().deriveFont(30f));
 		g.drawString("Purchase Order System", 30, 50);
-	 	g.setFont(g.getFont().deriveFont(25f));
-        g.drawString("Fill Amounts", 50, 120);
-        g.setFont(g.getFont().deriveFont(20f));
-        g.drawString("Liquid 1(%)", 50, 150);
-        g.drawString("Liquid 2(%)", 50, 200);
-        g.drawString("Liquid 3(%)", 50, 250);
-        g.drawString("Liquid 4(%)", 50, 300);
-        g.setFont(g.getFont().deriveFont(25f));
-        g.drawString("Quantity", 400, 120);
 		
+	 	g.setFont(g.getFont().deriveFont(20f));
+        g.drawString("Product 1", 50, 100);
+        g.setFont(g.getFont().deriveFont(20f));
+        g.drawString("Liquid 1(%) 50", 50, 150);
+        g.drawString("Liquid 2(%) 25", 50, 200);
+        g.drawString("Liquid 3(%) 15", 50, 250);
+        g.drawString("Liquid 4(%) 10", 50, 300);
+        g.drawString("Quantity", 50, 350);
         
-		if (getLiquidTotal() != 100) {
-            g.setFont(g.getFont().deriveFont(20f));
-            g.drawString("Liquid values do not add up to 100 percent", 50, 420);
-        }
-        if (getQuantity() == 0) {
-            g.setFont(g.getFont().deriveFont(20f));
-            g.drawString("Quantity not valid", 442, 420);
-        }
+        g.drawString("Product 2", 300, 100);
+        g.setFont(g.getFont().deriveFont(20f));
+        g.drawString("Liquid 1(%) 25", 300, 150);
+        g.drawString("Liquid 2(%) 25", 300, 200);
+        g.drawString("Liquid 3(%) 25", 300, 250);
+        g.drawString("Liquid 4(%) 25", 300, 300);
+        g.drawString("Quantity", 300, 350);
+        
+        g.drawString("Product 3", 550, 100);
+        g.setFont(g.getFont().deriveFont(20f));
+        g.drawString("Liquid 1(%) 0", 550, 150);
+        g.drawString("Liquid 2(%) 25", 550, 200);
+        g.drawString("Liquid 3(%) 75", 550, 250);
+        g.drawString("Liquid 4(%) 0", 550, 300);
+        g.drawString("Quantity", 550, 350);
+        
+        g.drawString("Product 4", 800, 100);
+        g.setFont(g.getFont().deriveFont(20f));
+        g.drawString("Liquid 1(%) 5", 800, 150);
+        g.drawString("Liquid 2(%) 40", 800, 200);
+        g.drawString("Liquid 3(%) 25", 800, 250);
+        g.drawString("Liquid 4(%) 30", 800, 300);
+        g.drawString("Quantity", 800, 350);
+		
+       
 	}
 }

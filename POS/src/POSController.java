@@ -21,8 +21,8 @@ public class POSController extends ClockDomain{
   public Signal sendOrder = new Signal("sendOrder", Signal.INPUT);
   public Signal liquidRatioOrder = new Signal("liquidRatioOrder", Signal.OUTPUT);
   private Signal orderQueue_1;
-  private int currentCount_thread_2;//sysj\controller.sysj line: 27, column: 3
-  private List orderQueueVar_thread_2;//sysj\controller.sysj line: 30, column: 4
+  private int currentCount_thread_2;//sysj\controller.sysj line: 29, column: 3
+  private List orderQueueVar_thread_2;//sysj\controller.sysj line: 32, column: 4
   private int S172 = 1;
   private int S152 = 1;
   private int S2 = 1;
@@ -43,11 +43,11 @@ public class POSController extends ClockDomain{
       case 1 : 
         switch(S160){
           case 0 : 
-            if(bottleReady.getprestatus() && !suspendOrders.getprestatus()){//sysj\controller.sysj line: 51, column: 9
+            if(bottleReady.getprestatus() && !suspendOrders.getprestatus()){//sysj\controller.sysj line: 53, column: 9
               S160=1;
-              liquidRatioOrder.setPresent();//sysj\controller.sysj line: 54, column: 3
+              liquidRatioOrder.setPresent();//sysj\controller.sysj line: 56, column: 3
               currsigs.addElement(liquidRatioOrder);
-              liquidRatioOrder.setValue((orderQueue_1.getpreval() == null ? null : ((List)orderQueue_1.getpreval())).get(0));//sysj\controller.sysj line: 54, column: 3
+              liquidRatioOrder.setValue((orderQueue_1.getpreval() == null ? null : ((List)orderQueue_1.getpreval())).get(0));//sysj\controller.sysj line: 56, column: 3
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -60,9 +60,9 @@ public class POSController extends ClockDomain{
             break;
           
           case 1 : 
-            liquidRatioOrder.setPresent();//sysj\controller.sysj line: 54, column: 3
+            liquidRatioOrder.setPresent();//sysj\controller.sysj line: 56, column: 3
             currsigs.addElement(liquidRatioOrder);
-            liquidRatioOrder.setValue((orderQueue_1.getpreval() == null ? null : ((List)orderQueue_1.getpreval())).get(0));//sysj\controller.sysj line: 54, column: 3
+            liquidRatioOrder.setValue((orderQueue_1.getpreval() == null ? null : ((List)orderQueue_1.getpreval())).get(0));//sysj\controller.sysj line: 56, column: 3
             active[3]=1;
             ends[3]=1;
             tdone[3]=1;
@@ -85,22 +85,22 @@ public class POSController extends ClockDomain{
       case 1 : 
         switch(S2){
           case 0 : 
-            if(sendOrder.getprestatus()){//sysj\controller.sysj line: 25, column: 9
-              currentCount_thread_2 = 0;//sysj\controller.sysj line: 27, column: 3
+            if(sendOrder.getprestatus()){//sysj\controller.sysj line: 27, column: 9
+              currentCount_thread_2 = 0;//sysj\controller.sysj line: 29, column: 3
               S2=1;
-              orderQueueVar_thread_2 = Arrays.asList();//sysj\controller.sysj line: 30, column: 4
-              if(currentCount_thread_2 == (Integer)(orderQuantity.getpreval() == null ? 0 : ((Integer)orderQuantity.getpreval()).intValue())){//sysj\controller.sysj line: 33, column: 8
+              orderQueueVar_thread_2 = Arrays.asList();//sysj\controller.sysj line: 32, column: 4
+              if(currentCount_thread_2 == (Integer)(orderQuantity.getpreval() == null ? 0 : ((Integer)orderQuantity.getpreval()).intValue())){//sysj\controller.sysj line: 35, column: 8
                 ends[2]=2;
-                ;//sysj\controller.sysj line: 29, column: 3
+                ;//sysj\controller.sysj line: 31, column: 3
                 S2=0;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               else {
-                orderQueueVar_thread_2.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 37, column: 5
-                System.out.println("Order added, number " + (currentCount_thread_2 + 1));//sysj\controller.sysj line: 38, column: 5
-                currentCount_thread_2 = currentCount_thread_2 + 1;//sysj\controller.sysj line: 39, column: 5
+                orderQueueVar_thread_2.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 39, column: 5
+                System.out.println("Order added, number " + (currentCount_thread_2 + 1));//sysj\controller.sysj line: 40, column: 5
+                currentCount_thread_2 = currentCount_thread_2 + 1;//sysj\controller.sysj line: 41, column: 5
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -114,18 +114,18 @@ public class POSController extends ClockDomain{
             break;
           
           case 1 : 
-            if(currentCount_thread_2 == (Integer)(orderQuantity.getpreval() == null ? 0 : ((Integer)orderQuantity.getpreval()).intValue())){//sysj\controller.sysj line: 33, column: 8
+            if(currentCount_thread_2 == (Integer)(orderQuantity.getpreval() == null ? 0 : ((Integer)orderQuantity.getpreval()).intValue())){//sysj\controller.sysj line: 35, column: 8
               ends[2]=2;
-              ;//sysj\controller.sysj line: 29, column: 3
+              ;//sysj\controller.sysj line: 31, column: 3
               S2=0;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              orderQueueVar_thread_2.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 37, column: 5
-              System.out.println("Order added, number " + (currentCount_thread_2 + 1));//sysj\controller.sysj line: 38, column: 5
-              currentCount_thread_2 = currentCount_thread_2 + 1;//sysj\controller.sysj line: 39, column: 5
+              orderQueueVar_thread_2.add((List)(liquidRatio.getpreval() == null ? null : ((List)liquidRatio.getpreval())));//sysj\controller.sysj line: 39, column: 5
+              System.out.println("Order added, number " + (currentCount_thread_2 + 1));//sysj\controller.sysj line: 40, column: 5
+              currentCount_thread_2 = currentCount_thread_2 + 1;//sysj\controller.sysj line: 41, column: 5
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -169,7 +169,7 @@ public class POSController extends ClockDomain{
         case 1 : 
           S172=2;
           S172=2;
-          orderQueue_1.setClear();//sysj\controller.sysj line: 19, column: 2
+          orderQueue_1.setClear();//sysj\controller.sysj line: 21, column: 2
           thread174(tdone,ends);
           thread175(tdone,ends);
           int biggest176 = 0;
@@ -186,7 +186,7 @@ public class POSController extends ClockDomain{
           }
         
         case 2 : 
-          orderQueue_1.setClear();//sysj\controller.sysj line: 19, column: 2
+          orderQueue_1.setClear();//sysj\controller.sysj line: 21, column: 2
           thread177(tdone,ends);
           thread178(tdone,ends);
           int biggest179 = 0;

@@ -15,6 +15,8 @@ POSController(
 		)
 ->{
 	
+	//new Thread(new GUI()).start();
+	
 	// This queue will simulate a database of all orders that need to be processed
 	List signal orderQueue;// = Arrays.asList();
 	
