@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.awt.Dimension;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -190,22 +191,42 @@ public class Canvas extends JPanel {
 	
 	void sendOrder() {
 		
+		List<Object> order = new ArrayList<>();
+		
 		int p1bottleQuantity = getP1Quantity();
 		int p2bottleQuantity = getP2Quantity();
 		int p3bottleQuantity = getP3Quantity();
 		int p4bottleQuantity = getP4Quantity();
       
+		for(int i = 0; i < p1bottleQuantity; i++) {
+			List<Integer> p1recipe = Arrays.asList(50, 25, 10, 5);
+			order.add(p1recipe);
+			System.out.println("Product 1 ordered " + p1bottleQuantity + " times");
+		}
+		
+		for(int i = 0; i < p2bottleQuantity; i++) {
+			List<Integer> p2recipe = Arrays.asList(25, 25, 25, 25);
+			order.add(p2recipe);
+			System.out.println("Product 2 ordered " + p2bottleQuantity + " times");
+		}
+		
+		for(int i = 0; i < p3bottleQuantity; i++) {
+			List<Integer> p3recipe = Arrays.asList(0, 25, 75, 0);
+			order.add(p3recipe);
+			System.out.println("Product 3 ordered " + p3bottleQuantity + " times");
+		}
+		
+		for(int i = 0; i < p4bottleQuantity; i++) {
+			List<Integer> p4recipe = Arrays.asList(5, 40, 25, 30);
+			order.add(p4recipe);
+			System.out.println("Product 4 ordered " + p4bottleQuantity + " times");
+		}
         
-        List<Integer> order = new ArrayList<>();
         
         try {
-            order.add(Integer.parseInt(liquid1.getText()));
-            order.add(Integer.parseInt(liquid2.getText()));
-            order.add(Integer.parseInt(liquid3.getText()));
-            order.add(Integer.parseInt(liquid4.getText()));
             
             liquidRatio.sustain(order);
-            orderQuantity.sustain(Float.parseFloat(quantity.getText()));
+            System.out.println("Order sent");
             
             
             // trying to emit a send order signal
