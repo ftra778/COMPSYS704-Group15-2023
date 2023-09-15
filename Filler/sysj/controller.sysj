@@ -4,7 +4,7 @@ Controller(
 			input signal bottleAtPos2, dosUnitEvac, dosUnitFilled, emergencyStop;
 			input List signal liquidRatio;
 			input int signal liquidVolumeDetector;
-			output signal bottleFilled;
+			output signal bottleFilled, fillingOn;
 			output signal valveInjectorOnOff1, valveInjectorOnOff2, valveInjectorOnOff3, valveInjectorOnOff4;
 			output signal valveInletOnOff1, valveInletOnOff2, valveInletOnOff3, valveInletOnOff4;
 			output signal dosUnitValveRetract1, dosUnitValveRetract2, dosUnitValveRetract3, dosUnitValveRetract4;
@@ -104,6 +104,14 @@ Controller(
 	        pause;
 	    }
 		pause;
+	}
+	
+	||
+	
+	{
+		abort(bottleFilled) {
+			sustain fillingOn;
+		}
 	}
 		
 }

@@ -31,6 +31,7 @@
 			<oSignal Name="dosUnitExtend4" To="PlantCD.dosUnitExtend4" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			
 			<oSignal Name="bottleFilled" To="ABSCD.bottleFilled" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="fillingOn" To="ABSCD.fillingOn" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			
 		</ClockDomain>
 	</SubSystem>
