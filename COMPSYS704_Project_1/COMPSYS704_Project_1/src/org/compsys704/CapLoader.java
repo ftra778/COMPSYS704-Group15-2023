@@ -69,9 +69,6 @@ public class CapLoader extends JFrame {
 		JCheckBox pe = new JCheckBox("pusherExtend");
 		pe.setEnabled(false);
 		pe.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_PUSHER_EXTEND));
-//		JCheckBox pr = new JCheckBox("vacOff");
-//		pr.setEnabled(false);
-//		pr.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_VACOFF));
 		JCheckBox vo = new JCheckBox("vacOn");
 		vo.setEnabled(false);
 		vo.addItemListener(new SignalCheckBoxClient(Ports.PORT_LOADER_CONTROLLER, Ports.SIGNAL_VACON));
@@ -98,6 +95,7 @@ public class CapLoader extends JFrame {
 		c.gridy = 2;
 		this.add(pan3,c);
 		
+		amode.doClick();
 		this.setTitle("Cap Loader");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);

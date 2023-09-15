@@ -49,6 +49,7 @@
 			<oSignal Name="presenceState"   To="ECSPlantCD.presenceState"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50001" />
 			<oSignal Name="closedState"   	To="ECSPlantCD.closedState"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50001" />
 			<oSignal Name="emergency"  		To="ABSCoordinatorCD.emergency" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="emergencySACS"  	To="SACSControllerCD.smokeDetected" Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="40000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

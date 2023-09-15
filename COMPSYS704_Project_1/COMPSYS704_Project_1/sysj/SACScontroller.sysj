@@ -4,7 +4,6 @@ SACSController(
 		)
 ->{
 	
-	
 
 	loop{
 		await(officeAuthorised && accessDoor1 && !smokeDetected); // Wait until both signals are present
@@ -55,11 +54,17 @@ SACSController(
 	    await(smokeDetected); // Wait for smokeDetected signal
 	    
 	    trap(T5){
-	    	{sustain open_door3;} || {await(!smokeDetected); exit(T5);}
+	    	{sustain open_door1;} || {sustain open_door2;} || {sustain open_door3;} || {await(!smokeDetected); exit(T5);}
 	    }
-		{emit close_door1;} || {emit close_door2;} || {emit close_door3;}
+		{emit close_door1;} || {emit close_door2;} || {emit close_door3; System.out.println("smoke NOT detected. CLOSE DOOR");}
 		
 	}
+||
+{
+	loop{
+		present(open_door3){System.out.println("open_door3");} pause;
+	}
+}
 	
 	
 }

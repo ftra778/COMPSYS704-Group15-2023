@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SACSVizWorker extends Worker{
-
 	@Override
 	public void setSignal(boolean status) {
 
+		System.out.println(signame);
 		switch(signame){
 		
 		case "door1_opened":

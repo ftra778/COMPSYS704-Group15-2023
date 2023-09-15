@@ -74,6 +74,7 @@ public class Conveyor extends JFrame {
 		c.gridy = 1;
 		this.add(pan3,c);
 		
+		LeftPos5.doClick();
 		this.setTitle("Conveyor");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);

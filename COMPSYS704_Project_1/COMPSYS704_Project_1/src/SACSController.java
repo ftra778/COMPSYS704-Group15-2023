@@ -23,99 +23,171 @@ public class SACSController extends ClockDomain{
   public Signal close_door1 = new Signal("close_door1", Signal.OUTPUT);
   public Signal close_door2 = new Signal("close_door2", Signal.OUTPUT);
   public Signal close_door3 = new Signal("close_door3", Signal.OUTPUT);
-  private long __start_thread_4;//sysj\SACScontroller.sysj line: 13, column: 30
-  private long __start_thread_7;//sysj\SACScontroller.sysj line: 30, column: 29
-  private long __start_thread_10;//sysj\SACScontroller.sysj line: 44, column: 29
-  private int S52399 = 1;
-  private int S51769 = 1;
-  private int S51597 = 1;
-  private int S51557 = 1;
-  private int S51573 = 1;
-  private int S51559 = 1;
-  private int S51987 = 1;
-  private int S51815 = 1;
-  private int S51775 = 1;
-  private int S51791 = 1;
-  private int S52205 = 1;
-  private int S52033 = 1;
-  private int S51993 = 1;
-  private int S52009 = 1;
-  private int S52397 = 1;
-  private int S52225 = 1;
-  private int S52211 = 1;
-  private int S52214 = 1;
+  private long __start_thread_4;//sysj\SACScontroller.sysj line: 12, column: 30
+  private long __start_thread_7;//sysj\SACScontroller.sysj line: 29, column: 29
+  private long __start_thread_10;//sysj\SACScontroller.sysj line: 43, column: 29
+  private int S65271 = 1;
+  private int S64533 = 1;
+  private int S64361 = 1;
+  private int S64321 = 1;
+  private int S64337 = 1;
+  private int S64323 = 1;
+  private int S64751 = 1;
+  private int S64579 = 1;
+  private int S64539 = 1;
+  private int S64555 = 1;
+  private int S64969 = 1;
+  private int S64797 = 1;
+  private int S64757 = 1;
+  private int S64773 = 1;
+  private int S65261 = 1;
+  private int S65009 = 1;
+  private int S64975 = 1;
+  private int S64980 = 1;
+  private int S64985 = 1;
+  private int S64988 = 1;
+  private int S65269 = 1;
   
-  private int[] ends = new int[17];
-  private int[] tdone = new int[17];
+  private int[] ends = new int[20];
+  private int[] tdone = new int[20];
   
-  public void thread52444(int [] tdone, int [] ends){
+  public void thread65323(int [] tdone, int [] ends){
+        switch(S65269){
+      case 0 : 
+        active[19]=0;
+        ends[19]=0;
+        tdone[19]=1;
+        break;
+      
+      case 1 : 
+        if(open_door3.getprestatus()){//sysj\SACScontroller.sysj line: 65, column: 11
+          System.out.println("open_door3");//sysj\SACScontroller.sysj line: 65, column: 23
+          active[19]=1;
+          ends[19]=1;
+          tdone[19]=1;
+        }
+        else {
+          active[19]=1;
+          ends[19]=1;
+          tdone[19]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread65321(int [] tdone, int [] ends){
+        active[18]=0;
+    ends[18]=0;
+    tdone[18]=1;
+  }
+
+  public void thread65320(int [] tdone, int [] ends){
+        active[17]=0;
+    ends[17]=0;
+    tdone[17]=1;
+  }
+
+  public void thread65319(int [] tdone, int [] ends){
         active[16]=0;
     ends[16]=0;
     tdone[16]=1;
   }
 
-  public void thread52443(int [] tdone, int [] ends){
+  public void thread65317(int [] tdone, int [] ends){
+        close_door3.setPresent();//sysj\SACScontroller.sysj line: 59, column: 50
+    currsigs.addElement(close_door3);
+    System.out.println("smoke NOT detected. CLOSE DOOR");//sysj\SACScontroller.sysj line: 59, column: 68
+    active[18]=0;
+    ends[18]=0;
+    tdone[18]=1;
+  }
+
+  public void thread65316(int [] tdone, int [] ends){
+        close_door2.setPresent();//sysj\SACScontroller.sysj line: 59, column: 27
+    currsigs.addElement(close_door2);
+    active[17]=0;
+    ends[17]=0;
+    tdone[17]=1;
+  }
+
+  public void thread65315(int [] tdone, int [] ends){
+        close_door1.setPresent();//sysj\SACScontroller.sysj line: 59, column: 4
+    currsigs.addElement(close_door1);
+    active[16]=0;
+    ends[16]=0;
+    tdone[16]=1;
+  }
+
+  public void thread65313(int [] tdone, int [] ends){
+        close_door3.setPresent();//sysj\SACScontroller.sysj line: 59, column: 50
+    currsigs.addElement(close_door3);
+    System.out.println("smoke NOT detected. CLOSE DOOR");//sysj\SACScontroller.sysj line: 59, column: 68
+    active[18]=0;
+    ends[18]=0;
+    tdone[18]=1;
+  }
+
+  public void thread65312(int [] tdone, int [] ends){
+        close_door2.setPresent();//sysj\SACScontroller.sysj line: 59, column: 27
+    currsigs.addElement(close_door2);
+    active[17]=0;
+    ends[17]=0;
+    tdone[17]=1;
+  }
+
+  public void thread65311(int [] tdone, int [] ends){
+        close_door1.setPresent();//sysj\SACScontroller.sysj line: 59, column: 4
+    currsigs.addElement(close_door1);
+    active[16]=0;
+    ends[16]=0;
+    tdone[16]=1;
+  }
+
+  public void thread65309(int [] tdone, int [] ends){
+        switch(S64988){
+      case 0 : 
         active[15]=0;
-    ends[15]=0;
-    tdone[15]=1;
+        ends[15]=0;
+        tdone[15]=1;
+        break;
+      
+      case 1 : 
+        if(!smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 57, column: 89
+          ends[15]=2;
+          tdone[15]=1;
+        }
+        else {
+          active[15]=1;
+          ends[15]=1;
+          tdone[15]=1;
+        }
+        break;
+      
+    }
   }
 
-  public void thread52442(int [] tdone, int [] ends){
+  public void thread65308(int [] tdone, int [] ends){
+        switch(S64985){
+      case 0 : 
         active[14]=0;
-    ends[14]=0;
-    tdone[14]=1;
+        ends[14]=0;
+        tdone[14]=1;
+        break;
+      
+      case 1 : 
+        open_door3.setPresent();//sysj\SACScontroller.sysj line: 57, column: 58
+        currsigs.addElement(open_door3);
+        active[14]=1;
+        ends[14]=1;
+        tdone[14]=1;
+        break;
+      
+    }
   }
 
-  public void thread52440(int [] tdone, int [] ends){
-        close_door3.setPresent();//sysj\SACScontroller.sysj line: 60, column: 50
-    currsigs.addElement(close_door3);
-    active[16]=0;
-    ends[16]=0;
-    tdone[16]=1;
-  }
-
-  public void thread52439(int [] tdone, int [] ends){
-        close_door2.setPresent();//sysj\SACScontroller.sysj line: 60, column: 27
-    currsigs.addElement(close_door2);
-    active[15]=0;
-    ends[15]=0;
-    tdone[15]=1;
-  }
-
-  public void thread52438(int [] tdone, int [] ends){
-        close_door1.setPresent();//sysj\SACScontroller.sysj line: 60, column: 4
-    currsigs.addElement(close_door1);
-    active[14]=0;
-    ends[14]=0;
-    tdone[14]=1;
-  }
-
-  public void thread52436(int [] tdone, int [] ends){
-        close_door3.setPresent();//sysj\SACScontroller.sysj line: 60, column: 50
-    currsigs.addElement(close_door3);
-    active[16]=0;
-    ends[16]=0;
-    tdone[16]=1;
-  }
-
-  public void thread52435(int [] tdone, int [] ends){
-        close_door2.setPresent();//sysj\SACScontroller.sysj line: 60, column: 27
-    currsigs.addElement(close_door2);
-    active[15]=0;
-    ends[15]=0;
-    tdone[15]=1;
-  }
-
-  public void thread52434(int [] tdone, int [] ends){
-        close_door1.setPresent();//sysj\SACScontroller.sysj line: 60, column: 4
-    currsigs.addElement(close_door1);
-    active[14]=0;
-    ends[14]=0;
-    tdone[14]=1;
-  }
-
-  public void thread52432(int [] tdone, int [] ends){
-        switch(S52214){
+  public void thread65307(int [] tdone, int [] ends){
+        switch(S64980){
       case 0 : 
         active[13]=0;
         ends[13]=0;
@@ -123,22 +195,18 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        if(!smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 58, column: 39
-          ends[13]=2;
-          tdone[13]=1;
-        }
-        else {
-          active[13]=1;
-          ends[13]=1;
-          tdone[13]=1;
-        }
+        open_door2.setPresent();//sysj\SACScontroller.sysj line: 57, column: 33
+        currsigs.addElement(open_door2);
+        active[13]=1;
+        ends[13]=1;
+        tdone[13]=1;
         break;
       
     }
   }
 
-  public void thread52431(int [] tdone, int [] ends){
-        switch(S52211){
+  public void thread65306(int [] tdone, int [] ends){
+        switch(S64975){
       case 0 : 
         active[12]=0;
         ends[12]=0;
@@ -146,8 +214,8 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        open_door3.setPresent();//sysj\SACScontroller.sysj line: 58, column: 8
-        currsigs.addElement(open_door3);
+        open_door1.setPresent();//sysj\SACScontroller.sysj line: 57, column: 8
+        currsigs.addElement(open_door1);
         active[12]=1;
         ends[12]=1;
         tdone[12]=1;
@@ -156,24 +224,42 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52429(int [] tdone, int [] ends){
-        S52214=1;
+  public void thread65304(int [] tdone, int [] ends){
+        S64988=1;
+    active[15]=1;
+    ends[15]=1;
+    tdone[15]=1;
+  }
+
+  public void thread65303(int [] tdone, int [] ends){
+        S64985=1;
+    open_door3.setPresent();//sysj\SACScontroller.sysj line: 57, column: 58
+    currsigs.addElement(open_door3);
+    active[14]=1;
+    ends[14]=1;
+    tdone[14]=1;
+  }
+
+  public void thread65302(int [] tdone, int [] ends){
+        S64980=1;
+    open_door2.setPresent();//sysj\SACScontroller.sysj line: 57, column: 33
+    currsigs.addElement(open_door2);
     active[13]=1;
     ends[13]=1;
     tdone[13]=1;
   }
 
-  public void thread52428(int [] tdone, int [] ends){
-        S52211=1;
-    open_door3.setPresent();//sysj\SACScontroller.sysj line: 58, column: 8
-    currsigs.addElement(open_door3);
+  public void thread65301(int [] tdone, int [] ends){
+        S64975=1;
+    open_door1.setPresent();//sysj\SACScontroller.sysj line: 57, column: 8
+    currsigs.addElement(open_door1);
     active[12]=1;
     ends[12]=1;
     tdone[12]=1;
   }
 
-  public void thread52427(int [] tdone, int [] ends){
-        switch(S52397){
+  public void thread65300(int [] tdone, int [] ends){
+        switch(S65261){
       case 0 : 
         active[11]=0;
         ends[11]=0;
@@ -181,20 +267,28 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S52225){
+        switch(S65009){
           case 0 : 
-            if(smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 55, column: 12
-              S52225=1;
-              thread52428(tdone,ends);
-              thread52429(tdone,ends);
-              int biggest52430 = 0;
-              if(ends[12]>=biggest52430){
-                biggest52430=ends[12];
+            if(smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 54, column: 12
+              S65009=1;
+              thread65301(tdone,ends);
+              thread65302(tdone,ends);
+              thread65303(tdone,ends);
+              thread65304(tdone,ends);
+              int biggest65305 = 0;
+              if(ends[12]>=biggest65305){
+                biggest65305=ends[12];
               }
-              if(ends[13]>=biggest52430){
-                biggest52430=ends[13];
+              if(ends[13]>=biggest65305){
+                biggest65305=ends[13];
               }
-              if(biggest52430 == 1){
+              if(ends[14]>=biggest65305){
+                biggest65305=ends[14];
+              }
+              if(ends[15]>=biggest65305){
+                biggest65305=ends[15];
+              }
+              if(biggest65305 == 1){
                 active[11]=1;
                 ends[11]=1;
                 tdone[11]=1;
@@ -208,64 +302,72 @@ public class SACSController extends ClockDomain{
             break;
           
           case 1 : 
-            thread52431(tdone,ends);
-            thread52432(tdone,ends);
-            int biggest52433 = 0;
-            if(ends[12]>=biggest52433){
-              biggest52433=ends[12];
+            thread65306(tdone,ends);
+            thread65307(tdone,ends);
+            thread65308(tdone,ends);
+            thread65309(tdone,ends);
+            int biggest65310 = 0;
+            if(ends[12]>=biggest65310){
+              biggest65310=ends[12];
             }
-            if(ends[13]>=biggest52433){
-              biggest52433=ends[13];
+            if(ends[13]>=biggest65310){
+              biggest65310=ends[13];
             }
-            if(biggest52433 == 1){
+            if(ends[14]>=biggest65310){
+              biggest65310=ends[14];
+            }
+            if(ends[15]>=biggest65310){
+              biggest65310=ends[15];
+            }
+            if(biggest65310 == 1){
               active[11]=1;
               ends[11]=1;
               tdone[11]=1;
             }
-            if(biggest52433 == 2){
+            if(biggest65310 == 2){
               ends[11]=2;
-              ;//sysj\SACScontroller.sysj line: 57, column: 6
-              S52225=2;
-              thread52434(tdone,ends);
-              thread52435(tdone,ends);
-              thread52436(tdone,ends);
-              int biggest52437 = 0;
-              if(ends[14]>=biggest52437){
-                biggest52437=ends[14];
+              ;//sysj\SACScontroller.sysj line: 56, column: 6
+              S65009=2;
+              thread65311(tdone,ends);
+              thread65312(tdone,ends);
+              thread65313(tdone,ends);
+              int biggest65314 = 0;
+              if(ends[16]>=biggest65314){
+                biggest65314=ends[16];
               }
-              if(ends[15]>=biggest52437){
-                biggest52437=ends[15];
+              if(ends[17]>=biggest65314){
+                biggest65314=ends[17];
               }
-              if(ends[16]>=biggest52437){
-                biggest52437=ends[16];
+              if(ends[18]>=biggest65314){
+                biggest65314=ends[18];
               }
               //FINXME code
-              if(biggest52437 == 0){
-                S52225=0;
+              if(biggest65314 == 0){
+                S65009=0;
                 active[11]=1;
                 ends[11]=1;
                 tdone[11]=1;
               }
             }
             //FINXME code
-            if(biggest52433 == 0){
-              S52225=2;
-              thread52438(tdone,ends);
-              thread52439(tdone,ends);
-              thread52440(tdone,ends);
-              int biggest52441 = 0;
-              if(ends[14]>=biggest52441){
-                biggest52441=ends[14];
+            if(biggest65310 == 0){
+              S65009=2;
+              thread65315(tdone,ends);
+              thread65316(tdone,ends);
+              thread65317(tdone,ends);
+              int biggest65318 = 0;
+              if(ends[16]>=biggest65318){
+                biggest65318=ends[16];
               }
-              if(ends[15]>=biggest52441){
-                biggest52441=ends[15];
+              if(ends[17]>=biggest65318){
+                biggest65318=ends[17];
               }
-              if(ends[16]>=biggest52441){
-                biggest52441=ends[16];
+              if(ends[18]>=biggest65318){
+                biggest65318=ends[18];
               }
               //FINXME code
-              if(biggest52441 == 0){
-                S52225=0;
+              if(biggest65318 == 0){
+                S65009=0;
                 active[11]=1;
                 ends[11]=1;
                 tdone[11]=1;
@@ -274,22 +376,22 @@ public class SACSController extends ClockDomain{
             break;
           
           case 2 : 
-            thread52442(tdone,ends);
-            thread52443(tdone,ends);
-            thread52444(tdone,ends);
-            int biggest52445 = 0;
-            if(ends[14]>=biggest52445){
-              biggest52445=ends[14];
+            thread65319(tdone,ends);
+            thread65320(tdone,ends);
+            thread65321(tdone,ends);
+            int biggest65322 = 0;
+            if(ends[16]>=biggest65322){
+              biggest65322=ends[16];
             }
-            if(ends[15]>=biggest52445){
-              biggest52445=ends[15];
+            if(ends[17]>=biggest65322){
+              biggest65322=ends[17];
             }
-            if(ends[16]>=biggest52445){
-              biggest52445=ends[16];
+            if(ends[18]>=biggest65322){
+              biggest65322=ends[18];
             }
             //FINXME code
-            if(biggest52445 == 0){
-              S52225=0;
+            if(biggest65322 == 0){
+              S65009=0;
               active[11]=1;
               ends[11]=1;
               tdone[11]=1;
@@ -302,8 +404,8 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52425(int [] tdone, int [] ends){
-        switch(S52009){
+  public void thread65298(int [] tdone, int [] ends){
+        switch(S64773){
       case 0 : 
         active[10]=0;
         ends[10]=0;
@@ -311,9 +413,9 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        if(com.systemj.Timer.getMs() - __start_thread_10 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 44, column: 29
+        if(com.systemj.Timer.getMs() - __start_thread_10 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 43, column: 29
           ends[10]=3;
-          ;//sysj\SACScontroller.sysj line: 44, column: 29
+          ;//sysj\SACScontroller.sysj line: 43, column: 29
           ends[10]=2;
           tdone[10]=1;
         }
@@ -327,8 +429,8 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52424(int [] tdone, int [] ends){
-        switch(S51993){
+  public void thread65297(int [] tdone, int [] ends){
+        switch(S64757){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -336,7 +438,7 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        open_door3.setPresent();//sysj\SACScontroller.sysj line: 44, column: 5
+        open_door3.setPresent();//sysj\SACScontroller.sysj line: 43, column: 5
         currsigs.addElement(open_door3);
         active[9]=1;
         ends[9]=1;
@@ -346,12 +448,12 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52422(int [] tdone, int [] ends){
-        S52009=1;
-    __start_thread_10 = com.systemj.Timer.getMs();//sysj\SACScontroller.sysj line: 44, column: 29
-    if(com.systemj.Timer.getMs() - __start_thread_10 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 44, column: 29
+  public void thread65295(int [] tdone, int [] ends){
+        S64773=1;
+    __start_thread_10 = com.systemj.Timer.getMs();//sysj\SACScontroller.sysj line: 43, column: 29
+    if(com.systemj.Timer.getMs() - __start_thread_10 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 43, column: 29
       ends[10]=3;
-      ;//sysj\SACScontroller.sysj line: 44, column: 29
+      ;//sysj\SACScontroller.sysj line: 43, column: 29
       ends[10]=2;
       tdone[10]=1;
     }
@@ -362,17 +464,17 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52421(int [] tdone, int [] ends){
-        S51993=1;
-    open_door3.setPresent();//sysj\SACScontroller.sysj line: 44, column: 5
+  public void thread65294(int [] tdone, int [] ends){
+        S64757=1;
+    open_door3.setPresent();//sysj\SACScontroller.sysj line: 43, column: 5
     currsigs.addElement(open_door3);
     active[9]=1;
     ends[9]=1;
     tdone[9]=1;
   }
 
-  public void thread52420(int [] tdone, int [] ends){
-        switch(S52205){
+  public void thread65293(int [] tdone, int [] ends){
+        switch(S64969){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -380,30 +482,30 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S52033){
+        switch(S64797){
           case 0 : 
-            if(ManufacturingAuthorised.getprestatus() && accessDoor3.getprestatus() && !smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 41, column: 9
-              S52033=1;
-              thread52421(tdone,ends);
-              thread52422(tdone,ends);
-              int biggest52423 = 0;
-              if(ends[9]>=biggest52423){
-                biggest52423=ends[9];
+            if(ManufacturingAuthorised.getprestatus() && accessDoor3.getprestatus() && !smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 40, column: 9
+              S64797=1;
+              thread65294(tdone,ends);
+              thread65295(tdone,ends);
+              int biggest65296 = 0;
+              if(ends[9]>=biggest65296){
+                biggest65296=ends[9];
               }
-              if(ends[10]>=biggest52423){
-                biggest52423=ends[10];
+              if(ends[10]>=biggest65296){
+                biggest65296=ends[10];
               }
-              if(biggest52423 == 1){
+              if(biggest65296 == 1){
                 active[8]=1;
                 ends[8]=1;
                 tdone[8]=1;
               }
-              if(biggest52423 == 2){
+              if(biggest65296 == 2){
                 ends[8]=2;
-                ;//sysj\SACScontroller.sysj line: 43, column: 3
-                close_door3.setPresent();//sysj\SACScontroller.sysj line: 46, column: 3
+                ;//sysj\SACScontroller.sysj line: 42, column: 3
+                close_door3.setPresent();//sysj\SACScontroller.sysj line: 45, column: 3
                 currsigs.addElement(close_door3);
-                S52033=2;
+                S64797=2;
                 active[8]=1;
                 ends[8]=1;
                 tdone[8]=1;
@@ -417,35 +519,35 @@ public class SACSController extends ClockDomain{
             break;
           
           case 1 : 
-            thread52424(tdone,ends);
-            thread52425(tdone,ends);
-            int biggest52426 = 0;
-            if(ends[9]>=biggest52426){
-              biggest52426=ends[9];
+            thread65297(tdone,ends);
+            thread65298(tdone,ends);
+            int biggest65299 = 0;
+            if(ends[9]>=biggest65299){
+              biggest65299=ends[9];
             }
-            if(ends[10]>=biggest52426){
-              biggest52426=ends[10];
+            if(ends[10]>=biggest65299){
+              biggest65299=ends[10];
             }
-            if(biggest52426 == 1){
+            if(biggest65299 == 1){
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
             }
-            if(biggest52426 == 2){
+            if(biggest65299 == 2){
               ends[8]=2;
-              ;//sysj\SACScontroller.sysj line: 43, column: 3
-              close_door3.setPresent();//sysj\SACScontroller.sysj line: 46, column: 3
+              ;//sysj\SACScontroller.sysj line: 42, column: 3
+              close_door3.setPresent();//sysj\SACScontroller.sysj line: 45, column: 3
               currsigs.addElement(close_door3);
-              S52033=2;
+              S64797=2;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
             }
             //FINXME code
-            if(biggest52426 == 0){
-              close_door3.setPresent();//sysj\SACScontroller.sysj line: 46, column: 3
+            if(biggest65299 == 0){
+              close_door3.setPresent();//sysj\SACScontroller.sysj line: 45, column: 3
               currsigs.addElement(close_door3);
-              S52033=2;
+              S64797=2;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
@@ -453,15 +555,15 @@ public class SACSController extends ClockDomain{
             break;
           
           case 2 : 
-            if(ManufacturingAuthorised.getprestatus() && accessDoor3.getprestatus()){//sysj\SACScontroller.sysj line: 48, column: 9
-              S52033=0;
+            if(ManufacturingAuthorised.getprestatus() && accessDoor3.getprestatus()){//sysj\SACScontroller.sysj line: 47, column: 9
+              S64797=0;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
             }
             else {
-              if(!open_door3.getprestatus()){//sysj\SACScontroller.sysj line: 49, column: 16
-                S52033=0;
+              if(!open_door3.getprestatus()){//sysj\SACScontroller.sysj line: 48, column: 16
+                S64797=0;
                 active[8]=1;
                 ends[8]=1;
                 tdone[8]=1;
@@ -480,8 +582,8 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52418(int [] tdone, int [] ends){
-        switch(S51791){
+  public void thread65291(int [] tdone, int [] ends){
+        switch(S64555){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -489,9 +591,9 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        if(com.systemj.Timer.getMs() - __start_thread_7 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 30, column: 29
+        if(com.systemj.Timer.getMs() - __start_thread_7 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 29, column: 29
           ends[7]=3;
-          ;//sysj\SACScontroller.sysj line: 30, column: 29
+          ;//sysj\SACScontroller.sysj line: 29, column: 29
           ends[7]=2;
           tdone[7]=1;
         }
@@ -505,8 +607,8 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52417(int [] tdone, int [] ends){
-        switch(S51775){
+  public void thread65290(int [] tdone, int [] ends){
+        switch(S64539){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -514,7 +616,7 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        open_door2.setPresent();//sysj\SACScontroller.sysj line: 30, column: 5
+        open_door2.setPresent();//sysj\SACScontroller.sysj line: 29, column: 5
         currsigs.addElement(open_door2);
         active[6]=1;
         ends[6]=1;
@@ -524,12 +626,12 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52415(int [] tdone, int [] ends){
-        S51791=1;
-    __start_thread_7 = com.systemj.Timer.getMs();//sysj\SACScontroller.sysj line: 30, column: 29
-    if(com.systemj.Timer.getMs() - __start_thread_7 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 30, column: 29
+  public void thread65288(int [] tdone, int [] ends){
+        S64555=1;
+    __start_thread_7 = com.systemj.Timer.getMs();//sysj\SACScontroller.sysj line: 29, column: 29
+    if(com.systemj.Timer.getMs() - __start_thread_7 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 29, column: 29
       ends[7]=3;
-      ;//sysj\SACScontroller.sysj line: 30, column: 29
+      ;//sysj\SACScontroller.sysj line: 29, column: 29
       ends[7]=2;
       tdone[7]=1;
     }
@@ -540,17 +642,17 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52414(int [] tdone, int [] ends){
-        S51775=1;
-    open_door2.setPresent();//sysj\SACScontroller.sysj line: 30, column: 5
+  public void thread65287(int [] tdone, int [] ends){
+        S64539=1;
+    open_door2.setPresent();//sysj\SACScontroller.sysj line: 29, column: 5
     currsigs.addElement(open_door2);
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
   }
 
-  public void thread52413(int [] tdone, int [] ends){
-        switch(S51987){
+  public void thread65286(int [] tdone, int [] ends){
+        switch(S64751){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -558,30 +660,30 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S51815){
+        switch(S64579){
           case 0 : 
-            if(ManufacturingAuthorised.getprestatus() && accessDoor2.getprestatus() && !smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 27, column: 9
-              S51815=1;
-              thread52414(tdone,ends);
-              thread52415(tdone,ends);
-              int biggest52416 = 0;
-              if(ends[6]>=biggest52416){
-                biggest52416=ends[6];
+            if(ManufacturingAuthorised.getprestatus() && accessDoor2.getprestatus() && !smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 26, column: 9
+              S64579=1;
+              thread65287(tdone,ends);
+              thread65288(tdone,ends);
+              int biggest65289 = 0;
+              if(ends[6]>=biggest65289){
+                biggest65289=ends[6];
               }
-              if(ends[7]>=biggest52416){
-                biggest52416=ends[7];
+              if(ends[7]>=biggest65289){
+                biggest65289=ends[7];
               }
-              if(biggest52416 == 1){
+              if(biggest65289 == 1){
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
               }
-              if(biggest52416 == 2){
+              if(biggest65289 == 2){
                 ends[5]=2;
-                ;//sysj\SACScontroller.sysj line: 29, column: 3
-                close_door2.setPresent();//sysj\SACScontroller.sysj line: 32, column: 3
+                ;//sysj\SACScontroller.sysj line: 28, column: 3
+                close_door2.setPresent();//sysj\SACScontroller.sysj line: 31, column: 3
                 currsigs.addElement(close_door2);
-                S51815=2;
+                S64579=2;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
@@ -595,35 +697,35 @@ public class SACSController extends ClockDomain{
             break;
           
           case 1 : 
-            thread52417(tdone,ends);
-            thread52418(tdone,ends);
-            int biggest52419 = 0;
-            if(ends[6]>=biggest52419){
-              biggest52419=ends[6];
+            thread65290(tdone,ends);
+            thread65291(tdone,ends);
+            int biggest65292 = 0;
+            if(ends[6]>=biggest65292){
+              biggest65292=ends[6];
             }
-            if(ends[7]>=biggest52419){
-              biggest52419=ends[7];
+            if(ends[7]>=biggest65292){
+              biggest65292=ends[7];
             }
-            if(biggest52419 == 1){
+            if(biggest65292 == 1){
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
-            if(biggest52419 == 2){
+            if(biggest65292 == 2){
               ends[5]=2;
-              ;//sysj\SACScontroller.sysj line: 29, column: 3
-              close_door2.setPresent();//sysj\SACScontroller.sysj line: 32, column: 3
+              ;//sysj\SACScontroller.sysj line: 28, column: 3
+              close_door2.setPresent();//sysj\SACScontroller.sysj line: 31, column: 3
               currsigs.addElement(close_door2);
-              S51815=2;
+              S64579=2;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             //FINXME code
-            if(biggest52419 == 0){
-              close_door2.setPresent();//sysj\SACScontroller.sysj line: 32, column: 3
+            if(biggest65292 == 0){
+              close_door2.setPresent();//sysj\SACScontroller.sysj line: 31, column: 3
               currsigs.addElement(close_door2);
-              S51815=2;
+              S64579=2;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
@@ -631,15 +733,15 @@ public class SACSController extends ClockDomain{
             break;
           
           case 2 : 
-            if(ManufacturingAuthorised.getprestatus() && accessDoor2.getprestatus()){//sysj\SACScontroller.sysj line: 34, column: 9
-              S51815=0;
+            if(ManufacturingAuthorised.getprestatus() && accessDoor2.getprestatus()){//sysj\SACScontroller.sysj line: 33, column: 9
+              S64579=0;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
-              if(!open_door2.getprestatus()){//sysj\SACScontroller.sysj line: 35, column: 16
-                S51815=0;
+              if(!open_door2.getprestatus()){//sysj\SACScontroller.sysj line: 34, column: 16
+                S64579=0;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
@@ -658,8 +760,8 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52411(int [] tdone, int [] ends){
-        switch(S51573){
+  public void thread65284(int [] tdone, int [] ends){
+        switch(S64337){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -667,17 +769,17 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S51559){
+        switch(S64323){
           case 0 : 
-            S51559=0;
-            if(com.systemj.Timer.getMs() - __start_thread_4 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 13, column: 30
+            S64323=0;
+            if(com.systemj.Timer.getMs() - __start_thread_4 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 12, column: 30
               ends[4]=3;
-              ;//sysj\SACScontroller.sysj line: 13, column: 30
+              ;//sysj\SACScontroller.sysj line: 12, column: 30
               ends[4]=2;
               tdone[4]=1;
             }
             else {
-              S51559=1;
+              S64323=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -685,16 +787,16 @@ public class SACSController extends ClockDomain{
             break;
           
           case 1 : 
-            S51559=1;
-            S51559=0;
-            if(com.systemj.Timer.getMs() - __start_thread_4 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 13, column: 30
+            S64323=1;
+            S64323=0;
+            if(com.systemj.Timer.getMs() - __start_thread_4 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 12, column: 30
               ends[4]=3;
-              ;//sysj\SACScontroller.sysj line: 13, column: 30
+              ;//sysj\SACScontroller.sysj line: 12, column: 30
               ends[4]=2;
               tdone[4]=1;
             }
             else {
-              S51559=1;
+              S64323=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -707,8 +809,8 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52410(int [] tdone, int [] ends){
-        switch(S51557){
+  public void thread65283(int [] tdone, int [] ends){
+        switch(S64321){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -716,7 +818,7 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        open_door1.setPresent();//sysj\SACScontroller.sysj line: 13, column: 6
+        open_door1.setPresent();//sysj\SACScontroller.sysj line: 12, column: 6
         currsigs.addElement(open_door1);
         active[3]=1;
         ends[3]=1;
@@ -726,35 +828,35 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52408(int [] tdone, int [] ends){
-        S51573=1;
-    __start_thread_4 = com.systemj.Timer.getMs();//sysj\SACScontroller.sysj line: 13, column: 30
-    S51559=0;
-    if(com.systemj.Timer.getMs() - __start_thread_4 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 13, column: 30
+  public void thread65281(int [] tdone, int [] ends){
+        S64337=1;
+    __start_thread_4 = com.systemj.Timer.getMs();//sysj\SACScontroller.sysj line: 12, column: 30
+    S64323=0;
+    if(com.systemj.Timer.getMs() - __start_thread_4 >= (3.0) * 1000){//sysj\SACScontroller.sysj line: 12, column: 30
       ends[4]=3;
-      ;//sysj\SACScontroller.sysj line: 13, column: 30
+      ;//sysj\SACScontroller.sysj line: 12, column: 30
       ends[4]=2;
       tdone[4]=1;
     }
     else {
-      S51559=1;
+      S64323=1;
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
   }
 
-  public void thread52407(int [] tdone, int [] ends){
-        S51557=1;
-    open_door1.setPresent();//sysj\SACScontroller.sysj line: 13, column: 6
+  public void thread65280(int [] tdone, int [] ends){
+        S64321=1;
+    open_door1.setPresent();//sysj\SACScontroller.sysj line: 12, column: 6
     currsigs.addElement(open_door1);
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
   }
 
-  public void thread52406(int [] tdone, int [] ends){
-        switch(S51769){
+  public void thread65279(int [] tdone, int [] ends){
+        switch(S64533){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -762,30 +864,30 @@ public class SACSController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S51597){
+        switch(S64361){
           case 0 : 
-            if(officeAuthorised.getprestatus() && accessDoor1.getprestatus() && !smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 10, column: 9
-              S51597=1;
-              thread52407(tdone,ends);
-              thread52408(tdone,ends);
-              int biggest52409 = 0;
-              if(ends[3]>=biggest52409){
-                biggest52409=ends[3];
+            if(officeAuthorised.getprestatus() && accessDoor1.getprestatus() && !smokeDetected.getprestatus()){//sysj\SACScontroller.sysj line: 9, column: 9
+              S64361=1;
+              thread65280(tdone,ends);
+              thread65281(tdone,ends);
+              int biggest65282 = 0;
+              if(ends[3]>=biggest65282){
+                biggest65282=ends[3];
               }
-              if(ends[4]>=biggest52409){
-                biggest52409=ends[4];
+              if(ends[4]>=biggest65282){
+                biggest65282=ends[4];
               }
-              if(biggest52409 == 1){
+              if(biggest65282 == 1){
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
-              if(biggest52409 == 2){
+              if(biggest65282 == 2){
                 ends[2]=2;
-                ;//sysj\SACScontroller.sysj line: 11, column: 4
-                close_door1.setPresent();//sysj\SACScontroller.sysj line: 16, column: 4
+                ;//sysj\SACScontroller.sysj line: 10, column: 4
+                close_door1.setPresent();//sysj\SACScontroller.sysj line: 15, column: 4
                 currsigs.addElement(close_door1);
-                S51597=2;
+                S64361=2;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -799,35 +901,35 @@ public class SACSController extends ClockDomain{
             break;
           
           case 1 : 
-            thread52410(tdone,ends);
-            thread52411(tdone,ends);
-            int biggest52412 = 0;
-            if(ends[3]>=biggest52412){
-              biggest52412=ends[3];
+            thread65283(tdone,ends);
+            thread65284(tdone,ends);
+            int biggest65285 = 0;
+            if(ends[3]>=biggest65285){
+              biggest65285=ends[3];
             }
-            if(ends[4]>=biggest52412){
-              biggest52412=ends[4];
+            if(ends[4]>=biggest65285){
+              biggest65285=ends[4];
             }
-            if(biggest52412 == 1){
+            if(biggest65285 == 1){
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
-            if(biggest52412 == 2){
+            if(biggest65285 == 2){
               ends[2]=2;
-              ;//sysj\SACScontroller.sysj line: 11, column: 4
-              close_door1.setPresent();//sysj\SACScontroller.sysj line: 16, column: 4
+              ;//sysj\SACScontroller.sysj line: 10, column: 4
+              close_door1.setPresent();//sysj\SACScontroller.sysj line: 15, column: 4
               currsigs.addElement(close_door1);
-              S51597=2;
+              S64361=2;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             //FINXME code
-            if(biggest52412 == 0){
-              close_door1.setPresent();//sysj\SACScontroller.sysj line: 16, column: 4
+            if(biggest65285 == 0){
+              close_door1.setPresent();//sysj\SACScontroller.sysj line: 15, column: 4
               currsigs.addElement(close_door1);
-              S51597=2;
+              S64361=2;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -835,15 +937,15 @@ public class SACSController extends ClockDomain{
             break;
           
           case 2 : 
-            if(officeAuthorised.getprestatus() && accessDoor1.getprestatus()){//sysj\SACScontroller.sysj line: 18, column: 10
-              S51597=0;
+            if(officeAuthorised.getprestatus() && accessDoor1.getprestatus()){//sysj\SACScontroller.sysj line: 17, column: 10
+              S64361=0;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              if(!open_door1.getprestatus()){//sysj\SACScontroller.sysj line: 19, column: 17
-                S51597=0;
+              if(!open_door1.getprestatus()){//sysj\SACScontroller.sysj line: 18, column: 17
+                S64361=0;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -862,33 +964,48 @@ public class SACSController extends ClockDomain{
     }
   }
 
-  public void thread52404(int [] tdone, int [] ends){
-        S52397=1;
-    S52225=0;
+  public void thread65277(int [] tdone, int [] ends){
+        S65269=1;
+    if(open_door3.getprestatus()){//sysj\SACScontroller.sysj line: 65, column: 11
+      System.out.println("open_door3");//sysj\SACScontroller.sysj line: 65, column: 23
+      active[19]=1;
+      ends[19]=1;
+      tdone[19]=1;
+    }
+    else {
+      active[19]=1;
+      ends[19]=1;
+      tdone[19]=1;
+    }
+  }
+
+  public void thread65276(int [] tdone, int [] ends){
+        S65261=1;
+    S65009=0;
     active[11]=1;
     ends[11]=1;
     tdone[11]=1;
   }
 
-  public void thread52403(int [] tdone, int [] ends){
-        S52205=1;
-    S52033=0;
+  public void thread65275(int [] tdone, int [] ends){
+        S64969=1;
+    S64797=0;
     active[8]=1;
     ends[8]=1;
     tdone[8]=1;
   }
 
-  public void thread52402(int [] tdone, int [] ends){
-        S51987=1;
-    S51815=0;
+  public void thread65274(int [] tdone, int [] ends){
+        S64751=1;
+    S64579=0;
     active[5]=1;
     ends[5]=1;
     tdone[5]=1;
   }
 
-  public void thread52401(int [] tdone, int [] ends){
-        S51769=1;
-    S51597=0;
+  public void thread65273(int [] tdone, int [] ends){
+        S64533=1;
+    S64361=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
@@ -901,66 +1018,74 @@ public class SACSController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S52399){
+      switch(S65271){
         case 0 : 
-          S52399=0;
+          S65271=0;
           break RUN;
         
         case 1 : 
-          S52399=2;
-          S52399=2;
-          thread52401(tdone,ends);
-          thread52402(tdone,ends);
-          thread52403(tdone,ends);
-          thread52404(tdone,ends);
-          int biggest52405 = 0;
-          if(ends[2]>=biggest52405){
-            biggest52405=ends[2];
+          S65271=2;
+          S65271=2;
+          thread65273(tdone,ends);
+          thread65274(tdone,ends);
+          thread65275(tdone,ends);
+          thread65276(tdone,ends);
+          thread65277(tdone,ends);
+          int biggest65278 = 0;
+          if(ends[2]>=biggest65278){
+            biggest65278=ends[2];
           }
-          if(ends[5]>=biggest52405){
-            biggest52405=ends[5];
+          if(ends[5]>=biggest65278){
+            biggest65278=ends[5];
           }
-          if(ends[8]>=biggest52405){
-            biggest52405=ends[8];
+          if(ends[8]>=biggest65278){
+            biggest65278=ends[8];
           }
-          if(ends[11]>=biggest52405){
-            biggest52405=ends[11];
+          if(ends[11]>=biggest65278){
+            biggest65278=ends[11];
           }
-          if(biggest52405 == 1){
+          if(ends[19]>=biggest65278){
+            biggest65278=ends[19];
+          }
+          if(biggest65278 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          thread52406(tdone,ends);
-          thread52413(tdone,ends);
-          thread52420(tdone,ends);
-          thread52427(tdone,ends);
-          int biggest52446 = 0;
-          if(ends[2]>=biggest52446){
-            biggest52446=ends[2];
+          thread65279(tdone,ends);
+          thread65286(tdone,ends);
+          thread65293(tdone,ends);
+          thread65300(tdone,ends);
+          thread65323(tdone,ends);
+          int biggest65324 = 0;
+          if(ends[2]>=biggest65324){
+            biggest65324=ends[2];
           }
-          if(ends[5]>=biggest52446){
-            biggest52446=ends[5];
+          if(ends[5]>=biggest65324){
+            biggest65324=ends[5];
           }
-          if(ends[8]>=biggest52446){
-            biggest52446=ends[8];
+          if(ends[8]>=biggest65324){
+            biggest65324=ends[8];
           }
-          if(ends[11]>=biggest52446){
-            biggest52446=ends[11];
+          if(ends[11]>=biggest65324){
+            biggest65324=ends[11];
           }
-          if(biggest52446 == 1){
+          if(ends[19]>=biggest65324){
+            biggest65324=ends[19];
+          }
+          if(biggest65324 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest52446 == 0){
-            S52399=0;
+          if(biggest65324 == 0){
+            S65271=0;
             active[1]=0;
             ends[1]=0;
-            S52399=0;
+            S65271=0;
             break RUN;
           }
         
@@ -969,9 +1094,9 @@ public class SACSController extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;

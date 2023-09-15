@@ -49,6 +49,7 @@ RotaryPlant(
 				System.out.println("STOP");
 				
 			}
+//			await(!stop);
 
 		}
 		
@@ -61,6 +62,279 @@ RotaryPlant(
 		||
 		{while(true){present(stop){emit stopE;}; pause;}}
 	}
+}
+
+FillerPlant(
+	
+		input signal valveInjectorOnOff1, valveInjectorOnOff2, valveInjectorOnOff3, valveInjectorOnOff4;
+		input signal valveInletOnOff1, valveInletOnOff2, valveInletOnOff3, valveInletOnOff4;
+		input signal dosUnitValveRetract1, dosUnitValveRetract2, dosUnitValveRetract3, dosUnitValveRetract4;
+		input signal dosUnitExtend1, dosUnitExtend2, dosUnitExtend3, dosUnitExtend4;
+		output signal dosUnitEvac, dosUnitFilled/*, liquidVolumeDetector*/;
+		output signal dosUnitEvacE, dosUnitFilledE, liquidVolumeDetectorE;
+		output int signal liquidVolumeDetector;
+		
+		// In real simulation we would need need these signals to check whether the cannister is at the top or bottom
+		// and signals to open the injectors and inlets
+		
+	//	signal valveInjectorOpen1, valveInjectorOpen2, valveInjectorOpen3, valveInjectorOpen4
+	//	signal valveInletOpen1, valveInletOpen2, valveInletOpen3, valveInletOpen4
+	//	signal cannisterTop, cannisterBottom
+		)
+	->
+	{
+	//new Thread(new GUI()).start();
+	
+	{
+		while(true){
+	        present(valveInjectorOnOff1){
+	            abort(!valveInjectorOnOff1){
+	                System.out.println("FillerPlant: valveInjectorOnOff1");
+	                // sustain valveInjectorOpen1;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		while(true){
+	        present(valveInletOnOff1){
+	            abort(!valveInletOnOff1){
+	                System.out.println("FillerPlant: valveInletOnOff1");
+	                // sustain valveInletOpen1;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitExtend1){
+	            abort(!dosUnitExtend1){
+	            	// check if cannister is at bottom
+	            	System.out.println("FillerPlant: valveExtend");
+	                sustain dosUnitEvac;
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitValveRetract1){
+	            abort(!dosUnitValveRetract1){
+	            	// check if cannister is at top
+	            	System.out.println("FillerPlant: valveRetract");
+	                sustain dosUnitFilled;
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		while(true){
+	        present(valveInjectorOnOff2){
+	            abort(!valveInjectorOnOff2){
+	                System.out.println("FillerPlant: valveInjectorOnOff2");
+	                // sustain valveInjectorOpen2;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		while(true){
+	        present(valveInletOnOff2){
+	            abort(!valveInletOnOff2){
+	                System.out.println("FillerPlant: valveInletOnOff2");
+	                // sustain valveInletOpen2;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitExtend2){
+	            abort(!dosUnitExtend2){
+	            	// check if cannister is at bottom
+	            	System.out.println("FillerPlant: valveExtend");
+	                sustain dosUnitEvac;
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitValveRetract2){
+	            abort(!dosUnitValveRetract2){
+	            	// check if cannister is at top
+	            	System.out.println("FillerPlant: valveRetract");
+	                sustain dosUnitFilled;
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		while(true){
+	        present(valveInjectorOnOff3){
+	            abort(!valveInjectorOnOff3){
+	                System.out.println("FillerPlant: valveInjectorOnOff3");
+	                // sustain valveInjectorOpen3;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		while(true){
+	        present(valveInletOnOff3){
+	            abort(!valveInletOnOff3){
+	                System.out.println("FillerPlant: valveInletOnOff3");
+	                // sustain valveInletOpen3;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitExtend3){
+	            abort(!dosUnitExtend3){
+	            	// check if cannister is at bottom
+	            	System.out.println("FillerPlant: valveExtend");
+	                sustain dosUnitEvac;
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitValveRetract3){
+	            abort(!dosUnitValveRetract3){
+	            	// check if cannister is at top
+	            	System.out.println("FillerPlant: valveRetract");
+	                sustain dosUnitFilled;
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		while(true){
+	        present(valveInjectorOnOff4){
+	            abort(!valveInjectorOnOff4){
+	                System.out.println("FillerPlant: valveInjectorOnOff4");
+	                // sustain valveInjectorOpen4;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		while(true){
+	        present(valveInletOnOff4){
+	            abort(!valveInletOnOff4){
+	                System.out.println("FillerPlant: valveInletOnOff4");
+	                // sustain valveInletOpen4;
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitExtend4){
+	            abort(!dosUnitExtend4){
+	            	// check if cannister is at bottom
+	            	System.out.println("FillerPlant: valveExtend");
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+	    while(true){
+	        present(dosUnitValveRetract4){
+	            abort(!dosUnitValveRetract4){
+	            	// check if cannister is at top
+	            	System.out.println("FillerPlant: valveRetract");
+	                sustain dosUnitFilled;
+	                
+	            }
+	        }
+	        pause;
+	    }
+	}
+	
+	||
+	
+	{
+		{while(true) {present(dosUnitEvac){emit dosUnitEvacE;}pause;}}
+		||
+		{while(true) {present(dosUnitFilled){emit dosUnitFilledE;}pause;}}
+		||
+		{while(true) {emit liquidVolumeDetectorE(#liquidVolumeDetector);pause;}}
+		||
+		{while(true) {emit liquidVolumeDetector(#liquidVolumeDetector);pause;}}
+	}
+	
+
 }
 
 CapLoaderPlant(
@@ -283,14 +557,14 @@ CapperPlant(
 	||
 	{// Mode selection
 		{while(true){
-			present(modeGUI){
-				mode = modeGUI;
-				emit mode;
+				present(modeGUI){
+					mode = modeGUI;
+					emit mode;
+				}
+				pause;
 			}
-			pause;
 		}
 	}
-}
 }
 
 BaxterPlant(
