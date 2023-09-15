@@ -183,12 +183,11 @@ public class Canvas extends JPanel {
 	
 	void sendOrder() {
 		
-		int bottleQuantity = getP1Quantity();
+		int p1bottleQuantity = getP1Quantity();
+		int p2bottleQuantity = getP2Quantity();
+		int p3bottleQuantity = getP3Quantity();
+		int p4bottleQuantity = getP4Quantity();
       
-        if (bottleQuantity == 0) {
-            System.out.println("Invalid order");
-            return;
-        }
         
         List<Integer> order = new ArrayList<>();
         
@@ -214,10 +213,7 @@ public class Canvas extends JPanel {
         } catch (IOException e) {
             System.out.println("Order failed to send");
             e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid liquid percentages");
-            e.printStackTrace();
-        }
+        } 
     }
 	
 	
