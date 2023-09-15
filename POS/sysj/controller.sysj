@@ -10,7 +10,6 @@ POSController(
 		input signal			suspendOrders;
 		input List signal		liquidRatio;
 		input signal			sendOrder;
-		
 		output List signal		liquidRatioOrder;
 		)
 ->{
@@ -26,17 +25,15 @@ POSController(
 		// Wait until a new order is sent from GUI
 		await(sendOrder);
 	
+		List orderQueueVar = Arrays.asList();
+		loop {
 		
-		trap(T) {
-			List orderQueueVar = Arrays.asList();
-			loop {
-			
-				orderQueueVar.add((List)#liquidRatio);
-				System.out.println("Order added");
-				pause;
-			}
-			emit orderQueue(orderQueueVar);
+			orderQueueVar.add((List)#liquidRatio);
+			System.out.println("Order added");
+			pause;
 		}
+		emit orderQueue(orderQueueVar);
+		
 	}
 	
 	||
@@ -45,19 +42,23 @@ POSController(
 		
 		// Wait until conveyor senses a bottle is ready at pos0 and suspension of orders
 		abort(!suspendOrders) {
-		
-		// Send the first order in the queue
-		List signal order;
-		// Get the first 4 liquid values in the queue
-		order.add(#orderQueue.get(0));
-		order.add(#orderQueue.get(1));
-		order.add(#orderQueue.get(2));
-		order.add(#orderQueue.get(3));
-		
-		sustain liquidRatioOrder(#order);
-		
-		// Remove the order from the queue
-		orderQueue.remove(0);
+			
+			loop {
+				// Send the first order in the queue
+				List signal order;
+				// Get the first 4 liquid values in the queue
+				order.add(#orderQueue.get(0));
+				order.add(#orderQueue.get(1));
+				order.add(#orderQueue.get(2));
+				order.add(#orderQueue.get(3));
+				
+				abort(bottleReady) {
+					sustain liquidRatioOrder(#order);
+				}
+				
+				// Remove the order from the queue
+				orderQueue.remove(0);
+			}
 		
 		}
 	}
