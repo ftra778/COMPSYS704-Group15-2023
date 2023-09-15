@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.awt.Dimension;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -26,7 +27,7 @@ import java.awt.ActiveEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Canvas extends JPanel {
+public class POSCanvas extends JPanel {
 	/**
 	 * 
 	 */
@@ -37,16 +38,11 @@ public class Canvas extends JPanel {
 	private static final String IP = "127.0.0.1";
 	
 	SimpleClient liquidRatio;
-	SimpleClient orderQuantity;
 	SimpleClient sendOrder;
 	BufferedImage submitOrder;
 	
 	JButton orderButton = new JButton();
 	
-//	JTextField p1liquid1 = new JTextField();
-//	JTextField p2liquid2 = new JTextField();
-//	JTextField p3liquid3 = new JTextField();
-//	JTextField p4liquid4 = new JTextField();
 	JTextField p1quantity = new JTextField();
 	JTextField p2quantity = new JTextField();
 	JTextField p3quantity = new JTextField();
@@ -58,18 +54,10 @@ public class Canvas extends JPanel {
 	JTextField liquid4 = new JTextField();
 	JTextField quantity = new JTextField();
 	
-	public Canvas(){
+	public POSCanvas(){
 		
 		
 		try {
-			
-//			liquidRatio = new SimpleClient(IP, 10000, "POSControllerCD", "liquidRatio");
-//			orderQuantity = new SimpleClient(IP, 10000, "POSControllerCD", "orderQuantity");
-//			sendOrder = new SimpleClient(IP, 10000, "POSControllerCD", "sendOrder");
-			JSlider liquidRatio = new JSlider(0,100);
-			liquidRatio.addChangeListener(new SignalSliderClient(Ports.PORT_POS_CONTROLLER, Ports.LIQUID_RATIO, new JLabel(), "°C"));
-//			JTextField orderQuantity = new JTextField(25);
-//			orderQuantity.addFocusListener(new SignalTextBoxClient(Ports.PORT_POS_CONTROLLER, Ports.TIME_SIGNAL,"25"));
 			
 			submitOrder = ImageIO.read(new File("res/button.png"));
 			
@@ -113,27 +101,11 @@ public class Canvas extends JPanel {
 		p4quantity.setBounds(850, 400 - d.height, d.width, d.height);
 		
 //		JPanel pan = new JPanel(new GridLayout(4, 1));
-//		pan.add(p1quantity);
-//		pan.add(p2quantity);
-//		pan.add(p3quantity);
-//		pan.add(p4quantity);
+		add(p1quantity);
+		add(p2quantity);
+		add(p3quantity);
+		add(p4quantity);
 	}
-	
-//	int getLiquidTotal() {
-//		if(liquid1.getText().equals("") || liquid2.getText().equals("")
-//				|| liquid3.getText().equals("") || liquid4.getText().equals("")) {
-//			return 0;
-//		}
-//		
-//		try {
-//			int total = Integer.parseInt(liquid1.getText()) + Integer.parseInt(liquid2.getText()) +
-//					Integer.parseInt(liquid3.getText()) + Integer.parseInt(liquid4.getText());
-//			
-//			return total;
-//		} catch (NumberFormatException e) {
-//			return 0;
-//		}
-//	}
 
 	
 	int getP1Quantity() {
@@ -190,41 +162,51 @@ public class Canvas extends JPanel {
 	
 	void sendOrder() {
 		
-		int bottleQuantity = getP1Quantity();
+		List<Object> order = new ArrayList<>();
+		
+		int p1bottleQuantity = getP1Quantity();
+		int p2bottleQuantity = getP2Quantity();
+		int p3bottleQuantity = getP3Quantity();
+		int p4bottleQuantity = getP4Quantity();
       
-        if (bottleQuantity == 0) {
-            System.out.println("Invalid order");
-            return;
-        }
+		for(int i = 0; i < p1bottleQuantity; i++) {
+			List<Integer> p1recipe = Arrays.asList(50, 25, 10, 5);
+			order.add(p1recipe);
+			System.out.println("Product 1 ordered " + p1bottleQuantity + " times");
+		}
+		
+		for(int i = 0; i < p2bottleQuantity; i++) {
+			List<Integer> p2recipe = Arrays.asList(25, 25, 25, 25);
+			order.add(p2recipe);
+			System.out.println("Product 2 ordered " + p2bottleQuantity + " times");
+		}
+		
+		for(int i = 0; i < p3bottleQuantity; i++) {
+			List<Integer> p3recipe = Arrays.asList(0, 25, 75, 0);
+			order.add(p3recipe);
+			System.out.println("Product 3 ordered " + p3bottleQuantity + " times");
+		}
+		
+		for(int i = 0; i < p4bottleQuantity; i++) {
+			List<Integer> p4recipe = Arrays.asList(5, 40, 25, 30);
+			order.add(p4recipe);
+			System.out.println("Product 4 ordered " + p4bottleQuantity + " times");
+		}
         
-        List<Integer> order = new ArrayList<>();
         
         try {
-            order.add(Integer.parseInt(liquid1.getText()));
-            order.add(Integer.parseInt(liquid2.getText()));
-            order.add(Integer.parseInt(liquid3.getText()));
-            order.add(Integer.parseInt(liquid4.getText()));
             
+        	liquidRatio = new SimpleClient(IP, 10000, "POSControllerCD", "liquidRatio");
             liquidRatio.sustain(order);
-            orderQuantity.sustain(Float.parseFloat(quantity.getText()));
+            sendOrder = new SimpleClient(IP, 10000, "POSControllerCD", "sendOrder");
+            sendOrder.emit(true, 10);
+            System.out.println("Order sent");
             
-            
-            // trying to emit a send order signal
-//            if(s.isClosed()) {
-//            	s = new Socket();
-//            	s.connect(new InetSocketAddress(ip, port), 10);
-//            	oos = newObjectOutputStream(s.getOutputStream());
-//            	oos.object(dest);
-//            	oos.writeObject(new Object[](true));
-//            }
             
         } catch (IOException e) {
             System.out.println("Order failed to send");
             e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid liquid percentages");
-            e.printStackTrace();
-        }
+        } 
     }
 	
 	
@@ -270,22 +252,6 @@ public class Canvas extends JPanel {
         g.drawString("Liquid 4(%) 30", 800, 300);
         g.drawString("Quantity", 835, 350);
         
-
-        
-     
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		c.gridx = 4;
-		c.gridy = 1;
-		this.add(p1quantity);
-		this.add(p2quantity);
-		this.add(p3quantity);
-		this.add(p4quantity);
-        
-        
-        
-		
        
 	}
 }

@@ -20,7 +20,7 @@ Rotary Table
 7.1  C
 
 Filler
-8.1  C
+8.1  Currently Filler does not have a GUI but will print to the console the percentages of which liquid is being dispensed
 
 Cap Loader
 9.1  Either receive a bottle from the Filler or send a bottle straight to the Cap Loader by clicking the 'request' button
