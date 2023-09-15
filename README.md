@@ -19,6 +19,7 @@ RunControllerl - Runs the project, including the POS system required to make ord
 
 Build/Run<Device> - Runs/Builds the specified device.
 To run the project as intended, build all the devices and then run them simultaneously with RunAll. The POS system will then allow you to make orders and the system will automatically process them.
+
 Project Members
 Yugyeong Hong
 Finn Tracey
