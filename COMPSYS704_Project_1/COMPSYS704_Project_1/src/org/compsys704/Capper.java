@@ -94,6 +94,7 @@ public class Capper extends JFrame {
 		c.gridy = 2;
 		this.add(pan3,c);
 		
+		amode.doClick();
 		this.setTitle("Capper");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);

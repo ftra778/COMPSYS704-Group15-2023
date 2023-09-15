@@ -1,6 +1,9 @@
 package org.compsys704;
 
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -57,6 +60,7 @@ public class Canvas extends JPanel {
 	
 	public Canvas(){
 		
+		
 		try {
 			
 //			liquidRatio = new SimpleClient(IP, 10000, "POSControllerCD", "liquidRatio");
@@ -64,8 +68,8 @@ public class Canvas extends JPanel {
 //			sendOrder = new SimpleClient(IP, 10000, "POSControllerCD", "sendOrder");
 			JSlider liquidRatio = new JSlider(0,100);
 			liquidRatio.addChangeListener(new SignalSliderClient(Ports.PORT_POS_CONTROLLER, Ports.LIQUID_RATIO, new JLabel(), "°C"));
-			JTextField orderQuantity = new JTextField(25);
-			orderQuantity.addFocusListener(new SignalTextBoxClient(Ports.PORT_POS_CONTROLLER, Ports.TIME_SIGNAL,"25"));
+//			JTextField orderQuantity = new JTextField(25);
+//			orderQuantity.addFocusListener(new SignalTextBoxClient(Ports.PORT_POS_CONTROLLER, Ports.TIME_SIGNAL,"25"));
 			
 			submitOrder = ImageIO.read(new File("res/button.png"));
 			
@@ -98,6 +102,7 @@ public class Canvas extends JPanel {
 		Dimension d = p1quantity.getPreferredSize();
 		p1quantity.setBounds(100, 400 - d.height, d.width, d.height);
 		
+		
 		p2quantity.setColumns(5);
 		p2quantity.setBounds(350, 400 - d.height, d.width, d.height);
 		
@@ -107,10 +112,11 @@ public class Canvas extends JPanel {
 		p4quantity.setColumns(5);
 		p4quantity.setBounds(850, 400 - d.height, d.width, d.height);
 		
-		add(p1quantity);
-		add(p2quantity);
-		add(p3quantity);
-		add(p4quantity);
+//		JPanel pan = new JPanel(new GridLayout(4, 1));
+//		pan.add(p1quantity);
+//		pan.add(p2quantity);
+//		pan.add(p3quantity);
+//		pan.add(p4quantity);
 	}
 	
 //	int getLiquidTotal() {
@@ -128,6 +134,7 @@ public class Canvas extends JPanel {
 //			return 0;
 //		}
 //	}
+
 	
 	int getP1Quantity() {
 		if(p1quantity.getText().equals("")) {
@@ -221,6 +228,7 @@ public class Canvas extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
+		
 			
 		g.setFont(g.getFont().deriveFont(30f));
 		g.drawString("Purchase Order System", 30, 50);
@@ -232,7 +240,7 @@ public class Canvas extends JPanel {
         g.drawString("Liquid 2(%) 25", 50, 200);
         g.drawString("Liquid 3(%) 15", 50, 250);
         g.drawString("Liquid 4(%) 10", 50, 300);
-        g.drawString("Quantity", 50, 350);
+        g.drawString("Quantity", 85, 350);
         
         g.drawString("Product 2", 300, 100);
         g.setFont(g.getFont().deriveFont(20f));
@@ -240,7 +248,7 @@ public class Canvas extends JPanel {
         g.drawString("Liquid 2(%) 25", 300, 200);
         g.drawString("Liquid 3(%) 25", 300, 250);
         g.drawString("Liquid 4(%) 25", 300, 300);
-        g.drawString("Quantity", 300, 350);
+        g.drawString("Quantity", 335, 350);
         
         g.drawString("Product 3", 550, 100);
         g.setFont(g.getFont().deriveFont(20f));
@@ -248,7 +256,7 @@ public class Canvas extends JPanel {
         g.drawString("Liquid 2(%) 25", 550, 200);
         g.drawString("Liquid 3(%) 75", 550, 250);
         g.drawString("Liquid 4(%) 0", 550, 300);
-        g.drawString("Quantity", 550, 350);
+        g.drawString("Quantity", 585, 350);
         
         g.drawString("Product 4", 800, 100);
         g.setFont(g.getFont().deriveFont(20f));
@@ -256,7 +264,23 @@ public class Canvas extends JPanel {
         g.drawString("Liquid 2(%) 40", 800, 200);
         g.drawString("Liquid 3(%) 25", 800, 250);
         g.drawString("Liquid 4(%) 30", 800, 300);
-        g.drawString("Quantity", 800, 350);
+        g.drawString("Quantity", 835, 350);
+        
+
+        
+     
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridx = 4;
+		c.gridy = 1;
+		this.add(p1quantity);
+		this.add(p2quantity);
+		this.add(p3quantity);
+		this.add(p4quantity);
+        
+        
+        
 		
        
 	}

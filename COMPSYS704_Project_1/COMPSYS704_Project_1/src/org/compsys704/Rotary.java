@@ -22,7 +22,7 @@ public class Rotary extends JFrame {
 	
 	public Rotary() {
 
-		panel = new Canvas();
+		panel = new RotaryCanvas();
 		panel.setPreferredSize(new Dimension(360, 350));
 		panel.setBackground(Color.WHITE);
 		JButton trigger = new JButton("rotaryTable Trigger");

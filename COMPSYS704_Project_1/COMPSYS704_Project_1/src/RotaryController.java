@@ -20,210 +20,429 @@ public class RotaryController extends ClockDomain{
   public Signal emergencyStop = new Signal("emergencyStop", Signal.INPUT);
   public Signal turn = new Signal("turn", Signal.OUTPUT);
   public Signal stop = new Signal("stop", Signal.OUTPUT);
-  private Signal readyToTurn_17;
-  private long __start_thread_23;//sysj\ABScontroller.sysj line: 110, column: 32
-  private int S1004 = 1;
-  private int S597 = 1;
-  private int S535 = 1;
-  private int S521 = 1;
-  private int S524 = 1;
-  private int S749 = 1;
-  private int S599 = 1;
-  private int S604 = 1;
-  private int S620 = 1;
-  private int S757 = 1;
+  private Signal readyToTurn_26;
+  private long __start_thread_32;//sysj\ABScontroller.sysj line: 128, column: 32
+  private long __start_thread_34;//sysj\ABScontroller.sysj line: 131, column: 32
+  private int S1798 = 1;
+  private int S839 = 1;
+  private int S777 = 1;
+  private int S763 = 1;
+  private int S766 = 1;
+  private int S1267 = 1;
+  private int S841 = 1;
+  private int S848 = 1;
+  private int S864 = 1;
+  private int S892 = 1;
+  private int S908 = 1;
+  private int S1275 = 1;
   
-  private int[] ends = new int[67];
-  private int[] tdone = new int[67];
+  private int[] ends = new int[93];
+  private int[] tdone = new int[93];
   
-  public void thread31394(int [] tdone, int [] ends){
-        switch(S757){
+  public void thread43525(int [] tdone, int [] ends){
+        switch(S1275){
       case 0 : 
-        active[24]=0;
-        ends[24]=0;
-        tdone[24]=1;
+        active[35]=0;
+        ends[35]=0;
+        tdone[35]=1;
         break;
       
       case 1 : 
-        if(emergencyStop.getprestatus()){//sysj\ABScontroller.sysj line: 121, column: 15
-          stop.setPresent();//sysj\ABScontroller.sysj line: 122, column: 9
+        if(emergencyStop.getprestatus()){//sysj\ABScontroller.sysj line: 140, column: 15
+          stop.setPresent();//sysj\ABScontroller.sysj line: 141, column: 9
           currsigs.addElement(stop);
-          active[24]=1;
-          ends[24]=1;
-          tdone[24]=1;
+          active[35]=1;
+          ends[35]=1;
+          tdone[35]=1;
         }
         else {
-          active[24]=1;
-          ends[24]=1;
-          tdone[24]=1;
+          active[35]=1;
+          ends[35]=1;
+          tdone[35]=1;
         }
         break;
       
     }
   }
 
-  public void thread31392(int [] tdone, int [] ends){
-        switch(S620){
+  public void thread43523(int [] tdone, int [] ends){
+        switch(S908){
       case 0 : 
-        active[23]=0;
-        ends[23]=0;
-        tdone[23]=1;
+        active[34]=0;
+        ends[34]=0;
+        tdone[34]=1;
         break;
       
       case 1 : 
-        if(com.systemj.Timer.getMs() - __start_thread_23 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 110, column: 32
-          ends[23]=3;
-          ;//sysj\ABScontroller.sysj line: 110, column: 32
-          ends[23]=2;
-          tdone[23]=1;
+        if(com.systemj.Timer.getMs() - __start_thread_34 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 131, column: 32
+          ends[34]=3;
+          ;//sysj\ABScontroller.sysj line: 131, column: 32
+          ends[34]=2;
+          tdone[34]=1;
         }
         else {
-          active[23]=1;
-          ends[23]=1;
-          tdone[23]=1;
+          active[34]=1;
+          ends[34]=1;
+          tdone[34]=1;
         }
         break;
       
     }
   }
 
-  public void thread31391(int [] tdone, int [] ends){
-        switch(S604){
+  public void thread43522(int [] tdone, int [] ends){
+        switch(S892){
       case 0 : 
-        active[22]=0;
-        ends[22]=0;
-        tdone[22]=1;
+        active[33]=0;
+        ends[33]=0;
+        tdone[33]=1;
         break;
       
       case 1 : 
-        turn.setPresent();//sysj\ABScontroller.sysj line: 110, column: 14
-        currsigs.addElement(turn);
-        active[22]=1;
-        ends[22]=1;
-        tdone[22]=1;
+        stop.setPresent();//sysj\ABScontroller.sysj line: 131, column: 14
+        currsigs.addElement(stop);
+        active[33]=1;
+        ends[33]=1;
+        tdone[33]=1;
         break;
       
     }
   }
 
-  public void thread31389(int [] tdone, int [] ends){
-        S620=1;
-    __start_thread_23 = com.systemj.Timer.getMs();//sysj\ABScontroller.sysj line: 110, column: 32
-    if(com.systemj.Timer.getMs() - __start_thread_23 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 110, column: 32
-      ends[23]=3;
-      ;//sysj\ABScontroller.sysj line: 110, column: 32
-      ends[23]=2;
-      tdone[23]=1;
+  public void thread43520(int [] tdone, int [] ends){
+        S908=1;
+    __start_thread_34 = com.systemj.Timer.getMs();//sysj\ABScontroller.sysj line: 131, column: 32
+    if(com.systemj.Timer.getMs() - __start_thread_34 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 131, column: 32
+      ends[34]=3;
+      ;//sysj\ABScontroller.sysj line: 131, column: 32
+      ends[34]=2;
+      tdone[34]=1;
     }
     else {
-      active[23]=1;
-      ends[23]=1;
-      tdone[23]=1;
+      active[34]=1;
+      ends[34]=1;
+      tdone[34]=1;
     }
   }
 
-  public void thread31388(int [] tdone, int [] ends){
-        S604=1;
-    turn.setPresent();//sysj\ABScontroller.sysj line: 110, column: 14
-    currsigs.addElement(turn);
-    active[22]=1;
-    ends[22]=1;
-    tdone[22]=1;
+  public void thread43519(int [] tdone, int [] ends){
+        S892=1;
+    stop.setPresent();//sysj\ABScontroller.sysj line: 131, column: 14
+    currsigs.addElement(stop);
+    active[33]=1;
+    ends[33]=1;
+    tdone[33]=1;
   }
 
-  public void thread31387(int [] tdone, int [] ends){
-        switch(S749){
+  public void thread43517(int [] tdone, int [] ends){
+        S908=1;
+    __start_thread_34 = com.systemj.Timer.getMs();//sysj\ABScontroller.sysj line: 131, column: 32
+    if(com.systemj.Timer.getMs() - __start_thread_34 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 131, column: 32
+      ends[34]=3;
+      ;//sysj\ABScontroller.sysj line: 131, column: 32
+      ends[34]=2;
+      tdone[34]=1;
+    }
+    else {
+      active[34]=1;
+      ends[34]=1;
+      tdone[34]=1;
+    }
+  }
+
+  public void thread43516(int [] tdone, int [] ends){
+        S892=1;
+    stop.setPresent();//sysj\ABScontroller.sysj line: 131, column: 14
+    currsigs.addElement(stop);
+    active[33]=1;
+    ends[33]=1;
+    tdone[33]=1;
+  }
+
+  public void thread43514(int [] tdone, int [] ends){
+        switch(S864){
       case 0 : 
-        active[21]=0;
-        ends[21]=0;
-        tdone[21]=1;
+        active[32]=0;
+        ends[32]=0;
+        tdone[32]=1;
         break;
       
       case 1 : 
-        switch(S599){
+        if(com.systemj.Timer.getMs() - __start_thread_32 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 128, column: 32
+          ends[32]=3;
+          ;//sysj\ABScontroller.sysj line: 128, column: 32
+          ends[32]=2;
+          tdone[32]=1;
+        }
+        else {
+          active[32]=1;
+          ends[32]=1;
+          tdone[32]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread43513(int [] tdone, int [] ends){
+        switch(S848){
+      case 0 : 
+        active[31]=0;
+        ends[31]=0;
+        tdone[31]=1;
+        break;
+      
+      case 1 : 
+        turn.setPresent();//sysj\ABScontroller.sysj line: 128, column: 14
+        currsigs.addElement(turn);
+        active[31]=1;
+        ends[31]=1;
+        tdone[31]=1;
+        break;
+      
+    }
+  }
+
+  public void thread43511(int [] tdone, int [] ends){
+        S908=1;
+    __start_thread_34 = com.systemj.Timer.getMs();//sysj\ABScontroller.sysj line: 131, column: 32
+    if(com.systemj.Timer.getMs() - __start_thread_34 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 131, column: 32
+      ends[34]=3;
+      ;//sysj\ABScontroller.sysj line: 131, column: 32
+      ends[34]=2;
+      tdone[34]=1;
+    }
+    else {
+      active[34]=1;
+      ends[34]=1;
+      tdone[34]=1;
+    }
+  }
+
+  public void thread43510(int [] tdone, int [] ends){
+        S892=1;
+    stop.setPresent();//sysj\ABScontroller.sysj line: 131, column: 14
+    currsigs.addElement(stop);
+    active[33]=1;
+    ends[33]=1;
+    tdone[33]=1;
+  }
+
+  public void thread43508(int [] tdone, int [] ends){
+        S864=1;
+    __start_thread_32 = com.systemj.Timer.getMs();//sysj\ABScontroller.sysj line: 128, column: 32
+    if(com.systemj.Timer.getMs() - __start_thread_32 >= (0.5) * 1000){//sysj\ABScontroller.sysj line: 128, column: 32
+      ends[32]=3;
+      ;//sysj\ABScontroller.sysj line: 128, column: 32
+      ends[32]=2;
+      tdone[32]=1;
+    }
+    else {
+      active[32]=1;
+      ends[32]=1;
+      tdone[32]=1;
+    }
+  }
+
+  public void thread43507(int [] tdone, int [] ends){
+        S848=1;
+    turn.setPresent();//sysj\ABScontroller.sysj line: 128, column: 14
+    currsigs.addElement(turn);
+    active[31]=1;
+    ends[31]=1;
+    tdone[31]=1;
+  }
+
+  public void thread43506(int [] tdone, int [] ends){
+        switch(S1267){
+      case 0 : 
+        active[30]=0;
+        ends[30]=0;
+        tdone[30]=1;
+        break;
+      
+      case 1 : 
+        switch(S841){
           case 0 : 
-            if(readyToTurn_17.getprestatus() && rotaryTableTrigger.getprestatus()){//sysj\ABScontroller.sysj line: 106, column: 15
-              System.out.println("rotaryTableTrigger");//sysj\ABScontroller.sysj line: 107, column: 9
-              S599=1;
-              thread31388(tdone,ends);
-              thread31389(tdone,ends);
-              int biggest31390 = 0;
-              if(ends[22]>=biggest31390){
-                biggest31390=ends[22];
-              }
-              if(ends[23]>=biggest31390){
-                biggest31390=ends[23];
-              }
-              if(biggest31390 == 1){
-                active[21]=1;
-                ends[21]=1;
-                tdone[21]=1;
-              }
-              if(biggest31390 == 2){
-                ends[21]=2;
-                ;//sysj\ABScontroller.sysj line: 109, column: 9
-                stop.setPresent();//sysj\ABScontroller.sysj line: 113, column: 9
-                currsigs.addElement(stop);
-                S599=2;
-                active[21]=1;
-                ends[21]=1;
-                tdone[21]=1;
-              }
+            if(readyToTurn_26.getprestatus() && rotaryTableTrigger.getprestatus()){//sysj\ABScontroller.sysj line: 124, column: 15
+              System.out.println("rotaryTableTrigger");//sysj\ABScontroller.sysj line: 125, column: 9
+              S841=1;
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
             }
             else {
-              active[21]=1;
-              ends[21]=1;
-              tdone[21]=1;
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
             }
             break;
           
           case 1 : 
-            thread31391(tdone,ends);
-            thread31392(tdone,ends);
-            int biggest31393 = 0;
-            if(ends[22]>=biggest31393){
-              biggest31393=ends[22];
+            if(!rotaryTableTrigger.getprestatus()){//sysj\ABScontroller.sysj line: 126, column: 15
+              S841=2;
+              thread43507(tdone,ends);
+              thread43508(tdone,ends);
+              int biggest43509 = 0;
+              if(ends[31]>=biggest43509){
+                biggest43509=ends[31];
+              }
+              if(ends[32]>=biggest43509){
+                biggest43509=ends[32];
+              }
+              if(biggest43509 == 1){
+                active[30]=1;
+                ends[30]=1;
+                tdone[30]=1;
+              }
+              if(biggest43509 == 2){
+                ends[30]=2;
+                ;//sysj\ABScontroller.sysj line: 127, column: 9
+                S841=3;
+                thread43510(tdone,ends);
+                thread43511(tdone,ends);
+                int biggest43512 = 0;
+                if(ends[33]>=biggest43512){
+                  biggest43512=ends[33];
+                }
+                if(ends[34]>=biggest43512){
+                  biggest43512=ends[34];
+                }
+                if(biggest43512 == 1){
+                  active[30]=1;
+                  ends[30]=1;
+                  tdone[30]=1;
+                }
+                if(biggest43512 == 2){
+                  ends[30]=2;
+                  ;//sysj\ABScontroller.sysj line: 130, column: 9
+                  S841=4;
+                  active[30]=1;
+                  ends[30]=1;
+                  tdone[30]=1;
+                }
+              }
             }
-            if(ends[23]>=biggest31393){
-              biggest31393=ends[23];
-            }
-            if(biggest31393 == 1){
-              active[21]=1;
-              ends[21]=1;
-              tdone[21]=1;
-            }
-            if(biggest31393 == 2){
-              ends[21]=2;
-              ;//sysj\ABScontroller.sysj line: 109, column: 9
-              stop.setPresent();//sysj\ABScontroller.sysj line: 113, column: 9
-              currsigs.addElement(stop);
-              S599=2;
-              active[21]=1;
-              ends[21]=1;
-              tdone[21]=1;
-            }
-            //FINXME code
-            if(biggest31393 == 0){
-              stop.setPresent();//sysj\ABScontroller.sysj line: 113, column: 9
-              currsigs.addElement(stop);
-              S599=2;
-              active[21]=1;
-              ends[21]=1;
-              tdone[21]=1;
+            else {
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
             }
             break;
           
           case 2 : 
-            if(!readyToTurn_17.getprestatus() || !rotaryTableTrigger.getprestatus()){//sysj\ABScontroller.sysj line: 114, column: 15
-              S599=0;
-              active[21]=1;
-              ends[21]=1;
-              tdone[21]=1;
+            thread43513(tdone,ends);
+            thread43514(tdone,ends);
+            int biggest43515 = 0;
+            if(ends[31]>=biggest43515){
+              biggest43515=ends[31];
+            }
+            if(ends[32]>=biggest43515){
+              biggest43515=ends[32];
+            }
+            if(biggest43515 == 1){
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
+            }
+            if(biggest43515 == 2){
+              ends[30]=2;
+              ;//sysj\ABScontroller.sysj line: 127, column: 9
+              S841=3;
+              thread43516(tdone,ends);
+              thread43517(tdone,ends);
+              int biggest43518 = 0;
+              if(ends[33]>=biggest43518){
+                biggest43518=ends[33];
+              }
+              if(ends[34]>=biggest43518){
+                biggest43518=ends[34];
+              }
+              if(biggest43518 == 1){
+                active[30]=1;
+                ends[30]=1;
+                tdone[30]=1;
+              }
+              if(biggest43518 == 2){
+                ends[30]=2;
+                ;//sysj\ABScontroller.sysj line: 130, column: 9
+                S841=4;
+                active[30]=1;
+                ends[30]=1;
+                tdone[30]=1;
+              }
+            }
+            //FINXME code
+            if(biggest43515 == 0){
+              S841=3;
+              thread43519(tdone,ends);
+              thread43520(tdone,ends);
+              int biggest43521 = 0;
+              if(ends[33]>=biggest43521){
+                biggest43521=ends[33];
+              }
+              if(ends[34]>=biggest43521){
+                biggest43521=ends[34];
+              }
+              if(biggest43521 == 1){
+                active[30]=1;
+                ends[30]=1;
+                tdone[30]=1;
+              }
+              if(biggest43521 == 2){
+                ends[30]=2;
+                ;//sysj\ABScontroller.sysj line: 130, column: 9
+                S841=4;
+                active[30]=1;
+                ends[30]=1;
+                tdone[30]=1;
+              }
+            }
+            break;
+          
+          case 3 : 
+            thread43522(tdone,ends);
+            thread43523(tdone,ends);
+            int biggest43524 = 0;
+            if(ends[33]>=biggest43524){
+              biggest43524=ends[33];
+            }
+            if(ends[34]>=biggest43524){
+              biggest43524=ends[34];
+            }
+            if(biggest43524 == 1){
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
+            }
+            if(biggest43524 == 2){
+              ends[30]=2;
+              ;//sysj\ABScontroller.sysj line: 130, column: 9
+              S841=4;
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
+            }
+            //FINXME code
+            if(biggest43524 == 0){
+              S841=4;
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
+            }
+            break;
+          
+          case 4 : 
+            if(!readyToTurn_26.getprestatus() || !rotaryTableTrigger.getprestatus()){//sysj\ABScontroller.sysj line: 133, column: 15
+              S841=0;
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
             }
             else {
-              active[21]=1;
-              ends[21]=1;
-              tdone[21]=1;
+              active[30]=1;
+              ends[30]=1;
+              tdone[30]=1;
             }
             break;
           
@@ -233,134 +452,134 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread31385(int [] tdone, int [] ends){
-        switch(S524){
+  public void thread43504(int [] tdone, int [] ends){
+        switch(S766){
       case 0 : 
-        active[20]=0;
-        ends[20]=0;
-        tdone[20]=1;
+        active[29]=0;
+        ends[29]=0;
+        tdone[29]=1;
         break;
       
       case 1 : 
-        if(emergencyStop.getprestatus() || CapOnBottleAtPos1.getprestatus() || bottleAtPos5.getprestatus()){//sysj\ABScontroller.sysj line: 98, column: 46
-          ends[20]=2;
-          tdone[20]=1;
+        if(emergencyStop.getprestatus() || CapOnBottleAtPos1.getprestatus() || bottleAtPos5.getprestatus()){//sysj\ABScontroller.sysj line: 116, column: 46
+          ends[29]=2;
+          tdone[29]=1;
         }
         else {
-          active[20]=1;
-          ends[20]=1;
-          tdone[20]=1;
+          active[29]=1;
+          ends[29]=1;
+          tdone[29]=1;
         }
         break;
       
     }
   }
 
-  public void thread31384(int [] tdone, int [] ends){
-        switch(S521){
+  public void thread43503(int [] tdone, int [] ends){
+        switch(S763){
       case 0 : 
-        active[19]=0;
-        ends[19]=0;
-        tdone[19]=1;
+        active[28]=0;
+        ends[28]=0;
+        tdone[28]=1;
         break;
       
       case 1 : 
-        readyToTurn_17.setPresent();//sysj\ABScontroller.sysj line: 98, column: 14
-        currsigs.addElement(readyToTurn_17);
-        active[19]=1;
-        ends[19]=1;
-        tdone[19]=1;
+        readyToTurn_26.setPresent();//sysj\ABScontroller.sysj line: 116, column: 14
+        currsigs.addElement(readyToTurn_26);
+        active[28]=1;
+        ends[28]=1;
+        tdone[28]=1;
         break;
       
     }
   }
 
-  public void thread31382(int [] tdone, int [] ends){
-        S524=1;
-    active[20]=1;
-    ends[20]=1;
-    tdone[20]=1;
+  public void thread43501(int [] tdone, int [] ends){
+        S766=1;
+    active[29]=1;
+    ends[29]=1;
+    tdone[29]=1;
   }
 
-  public void thread31381(int [] tdone, int [] ends){
-        S521=1;
-    readyToTurn_17.setPresent();//sysj\ABScontroller.sysj line: 98, column: 14
-    currsigs.addElement(readyToTurn_17);
-    active[19]=1;
-    ends[19]=1;
-    tdone[19]=1;
+  public void thread43500(int [] tdone, int [] ends){
+        S763=1;
+    readyToTurn_26.setPresent();//sysj\ABScontroller.sysj line: 116, column: 14
+    currsigs.addElement(readyToTurn_26);
+    active[28]=1;
+    ends[28]=1;
+    tdone[28]=1;
   }
 
-  public void thread31380(int [] tdone, int [] ends){
-        switch(S597){
+  public void thread43499(int [] tdone, int [] ends){
+        switch(S839){
       case 0 : 
-        active[18]=0;
-        ends[18]=0;
-        tdone[18]=1;
+        active[27]=0;
+        ends[27]=0;
+        tdone[27]=1;
         break;
       
       case 1 : 
-        switch(S535){
+        switch(S777){
           case 0 : 
-            if(tableAlignedWithSensor.getprestatus() && !CapOnBottleAtPos1.getprestatus() && !emergencyStop.getprestatus() && !bottleAtPos5.getprestatus()){//sysj\ABScontroller.sysj line: 96, column: 15
-              S535=1;
-              thread31381(tdone,ends);
-              thread31382(tdone,ends);
-              int biggest31383 = 0;
-              if(ends[19]>=biggest31383){
-                biggest31383=ends[19];
+            if(tableAlignedWithSensor.getprestatus() && !CapOnBottleAtPos1.getprestatus() && !emergencyStop.getprestatus() && !bottleAtPos5.getprestatus()){//sysj\ABScontroller.sysj line: 114, column: 15
+              S777=1;
+              thread43500(tdone,ends);
+              thread43501(tdone,ends);
+              int biggest43502 = 0;
+              if(ends[28]>=biggest43502){
+                biggest43502=ends[28];
               }
-              if(ends[20]>=biggest31383){
-                biggest31383=ends[20];
+              if(ends[29]>=biggest43502){
+                biggest43502=ends[29];
               }
-              if(biggest31383 == 1){
-                active[18]=1;
-                ends[18]=1;
-                tdone[18]=1;
+              if(biggest43502 == 1){
+                active[27]=1;
+                ends[27]=1;
+                tdone[27]=1;
               }
             }
             else {
-              active[18]=1;
-              ends[18]=1;
-              tdone[18]=1;
+              active[27]=1;
+              ends[27]=1;
+              tdone[27]=1;
             }
             break;
           
           case 1 : 
-            thread31384(tdone,ends);
-            thread31385(tdone,ends);
-            int biggest31386 = 0;
-            if(ends[19]>=biggest31386){
-              biggest31386=ends[19];
+            thread43503(tdone,ends);
+            thread43504(tdone,ends);
+            int biggest43505 = 0;
+            if(ends[28]>=biggest43505){
+              biggest43505=ends[28];
             }
-            if(ends[20]>=biggest31386){
-              biggest31386=ends[20];
+            if(ends[29]>=biggest43505){
+              biggest43505=ends[29];
             }
-            if(biggest31386 == 1){
-              active[18]=1;
-              ends[18]=1;
-              tdone[18]=1;
+            if(biggest43505 == 1){
+              active[27]=1;
+              ends[27]=1;
+              tdone[27]=1;
             }
-            if(biggest31386 == 2){
-              ends[18]=2;
-              ;//sysj\ABScontroller.sysj line: 97, column: 9
-              System.out.println("readyToTurn");//sysj\ABScontroller.sysj line: 100, column: 9
-              stop.setPresent();//sysj\ABScontroller.sysj line: 101, column: 9
+            if(biggest43505 == 2){
+              ends[27]=2;
+              ;//sysj\ABScontroller.sysj line: 115, column: 9
+              System.out.println("readyToTurn");//sysj\ABScontroller.sysj line: 118, column: 9
+              stop.setPresent();//sysj\ABScontroller.sysj line: 119, column: 9
               currsigs.addElement(stop);
-              S535=0;
-              active[18]=1;
-              ends[18]=1;
-              tdone[18]=1;
+              S777=0;
+              active[27]=1;
+              ends[27]=1;
+              tdone[27]=1;
             }
             //FINXME code
-            if(biggest31386 == 0){
-              System.out.println("readyToTurn");//sysj\ABScontroller.sysj line: 100, column: 9
-              stop.setPresent();//sysj\ABScontroller.sysj line: 101, column: 9
+            if(biggest43505 == 0){
+              System.out.println("readyToTurn");//sysj\ABScontroller.sysj line: 118, column: 9
+              stop.setPresent();//sysj\ABScontroller.sysj line: 119, column: 9
               currsigs.addElement(stop);
-              S535=0;
-              active[18]=1;
-              ends[18]=1;
-              tdone[18]=1;
+              S777=0;
+              active[27]=1;
+              ends[27]=1;
+              tdone[27]=1;
             }
             break;
           
@@ -370,27 +589,27 @@ public class RotaryController extends ClockDomain{
     }
   }
 
-  public void thread31378(int [] tdone, int [] ends){
-        S757=1;
-    active[24]=1;
-    ends[24]=1;
-    tdone[24]=1;
+  public void thread43497(int [] tdone, int [] ends){
+        S1275=1;
+    active[35]=1;
+    ends[35]=1;
+    tdone[35]=1;
   }
 
-  public void thread31377(int [] tdone, int [] ends){
-        S749=1;
-    S599=0;
-    active[21]=1;
-    ends[21]=1;
-    tdone[21]=1;
+  public void thread43496(int [] tdone, int [] ends){
+        S1267=1;
+    S841=0;
+    active[30]=1;
+    ends[30]=1;
+    tdone[30]=1;
   }
 
-  public void thread31376(int [] tdone, int [] ends){
-        S597=1;
-    S535=0;
-    active[18]=1;
-    ends[18]=1;
-    tdone[18]=1;
+  public void thread43495(int [] tdone, int [] ends){
+        S839=1;
+    S777=0;
+    active[27]=1;
+    ends[27]=1;
+    tdone[27]=1;
   }
 
   public void runClockDomain(){
@@ -400,61 +619,61 @@ public class RotaryController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S1004){
+      switch(S1798){
         case 0 : 
-          S1004=0;
+          S1798=0;
           break RUN;
         
         case 1 : 
-          S1004=2;
-          S1004=2;
-          System.out.println("RotaryController");//sysj\ABScontroller.sysj line: 91, column: 2
-          readyToTurn_17.setClear();//sysj\ABScontroller.sysj line: 92, column: 5
-          thread31376(tdone,ends);
-          thread31377(tdone,ends);
-          thread31378(tdone,ends);
-          int biggest31379 = 0;
-          if(ends[18]>=biggest31379){
-            biggest31379=ends[18];
+          S1798=2;
+          S1798=2;
+          System.out.println("RotaryController");//sysj\ABScontroller.sysj line: 109, column: 2
+          readyToTurn_26.setClear();//sysj\ABScontroller.sysj line: 110, column: 5
+          thread43495(tdone,ends);
+          thread43496(tdone,ends);
+          thread43497(tdone,ends);
+          int biggest43498 = 0;
+          if(ends[27]>=biggest43498){
+            biggest43498=ends[27];
           }
-          if(ends[21]>=biggest31379){
-            biggest31379=ends[21];
+          if(ends[30]>=biggest43498){
+            biggest43498=ends[30];
           }
-          if(ends[24]>=biggest31379){
-            biggest31379=ends[24];
+          if(ends[35]>=biggest43498){
+            biggest43498=ends[35];
           }
-          if(biggest31379 == 1){
-            active[17]=1;
-            ends[17]=1;
+          if(biggest43498 == 1){
+            active[26]=1;
+            ends[26]=1;
             break RUN;
           }
         
         case 2 : 
-          readyToTurn_17.setClear();//sysj\ABScontroller.sysj line: 92, column: 5
-          thread31380(tdone,ends);
-          thread31387(tdone,ends);
-          thread31394(tdone,ends);
-          int biggest31395 = 0;
-          if(ends[18]>=biggest31395){
-            biggest31395=ends[18];
+          readyToTurn_26.setClear();//sysj\ABScontroller.sysj line: 110, column: 5
+          thread43499(tdone,ends);
+          thread43506(tdone,ends);
+          thread43525(tdone,ends);
+          int biggest43526 = 0;
+          if(ends[27]>=biggest43526){
+            biggest43526=ends[27];
           }
-          if(ends[21]>=biggest31395){
-            biggest31395=ends[21];
+          if(ends[30]>=biggest43526){
+            biggest43526=ends[30];
           }
-          if(ends[24]>=biggest31395){
-            biggest31395=ends[24];
+          if(ends[35]>=biggest43526){
+            biggest43526=ends[35];
           }
-          if(biggest31395 == 1){
-            active[17]=1;
-            ends[17]=1;
+          if(biggest43526 == 1){
+            active[26]=1;
+            ends[26]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest31395 == 0){
-            S1004=0;
-            active[17]=0;
-            ends[17]=0;
-            S1004=0;
+          if(biggest43526 == 0){
+            S1798=0;
+            active[26]=0;
+            ends[26]=0;
+            S1798=0;
             break RUN;
           }
         
@@ -463,26 +682,26 @@ public class RotaryController extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
     // Now instantiate all the local signals ONLY
-    readyToTurn_17 = new Signal();
+    readyToTurn_26 = new Signal();
     // --------------------------------------------------
   }
   
   public void run(){
-    while(active[17] != 0){
-      int index = 17;
+    while(active[26] != 0){
+      int index = 26;
       if(paused[index]==1 || suspended[index]==1 || active[index] == 0){
         for(int h=1;h<paused.length;++h){
           paused[h]=0;
         }
       }
-      if(paused[17]!=0 || suspended[17]!=0 || active[17]!=1);
+      if(paused[26]!=0 || suspended[26]!=0 || active[26]!=1);
       else{
         if(!df){
           tableAlignedWithSensor.gethook();
@@ -501,7 +720,7 @@ public class RotaryController extends ClockDomain{
       emergencyStop.setpreclear();
       turn.setpreclear();
       stop.setpreclear();
-      readyToTurn_17.setpreclear();
+      readyToTurn_26.setpreclear();
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
@@ -527,8 +746,8 @@ public class RotaryController extends ClockDomain{
       turn.setClear();
       stop.sethook();
       stop.setClear();
-      readyToTurn_17.setClear();
-      if(paused[17]!=0 || suspended[17]!=0 || active[17]!=1);
+      readyToTurn_26.setClear();
+      if(paused[26]!=0 || suspended[26]!=0 || active[26]!=1);
       else{
         tableAlignedWithSensor.gethook();
         bottleAtPos5.gethook();
@@ -537,7 +756,7 @@ public class RotaryController extends ClockDomain{
         emergencyStop.gethook();
       }
       runFinisher();
-      if(active[17] == 0){
+      if(active[26] == 0){
       	this.terminated = true;
       }
       if(!threaded) break;

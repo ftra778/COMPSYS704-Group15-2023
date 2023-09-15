@@ -18,11 +18,11 @@ public class ConveyorPlant extends ClockDomain{
   public Signal emergencyStopPlant = new Signal("emergencyStopPlant", Signal.INPUT);
   public Signal ConveyorONe = new Signal("ConveyorONe", Signal.OUTPUT);
   public Signal ConveyorOFFe = new Signal("ConveyorOFFe", Signal.OUTPUT);
-  private int S31604 = 1;
-  private int S31580 = 1;
+  private int S43786 = 1;
+  private int S43762 = 1;
   
-  private int[] ends = new int[74];
-  private int[] tdone = new int[74];
+  private int[] ends = new int[96];
+  private int[] tdone = new int[96];
   
   public void runClockDomain(){
     for(int i=0;i<ends.length;i++){
@@ -31,28 +31,28 @@ public class ConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S31604){
+      switch(S43786){
         case 0 : 
-          S31604=0;
+          S43786=0;
           break RUN;
         
         case 1 : 
-          S31604=2;
-          S31604=2;
+          S43786=2;
+          S43786=2;
           System.out.println("ConveyorPlant");//sysj\ABSplant.sysj line: 12, column: 2
-          S31580=0;
+          S43762=0;
           active[1]=1;
           ends[1]=1;
           break RUN;
         
         case 2 : 
-          switch(S31580){
+          switch(S43762){
             case 0 : 
               if(ConveyorON.getprestatus() && !emergencyStopPlant.getprestatus()){//sysj\ABSplant.sysj line: 15, column: 10
                 System.out.println("Conveyor ON");//sysj\ABSplant.sysj line: 17, column: 5
                 ConveyorONe.setPresent();//sysj\ABSplant.sysj line: 18, column: 5
                 currsigs.addElement(ConveyorONe);
-                S31580=1;
+                S43762=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
@@ -68,7 +68,7 @@ public class ConveyorPlant extends ClockDomain{
                 System.out.println("Conveyor OFF");//sysj\ABSplant.sysj line: 23, column: 5
                 ConveyorOFFe.setPresent();//sysj\ABSplant.sysj line: 24, column: 5
                 currsigs.addElement(ConveyorOFFe);
-                S31580=0;
+                S43762=0;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
@@ -86,9 +86,9 @@ public class ConveyorPlant extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
