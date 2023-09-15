@@ -29,3 +29,7 @@ Cap Loader
 Capper
 10.1 Either receive a bottle from the Cap Loader or send a bottle straight to the Capper by clicking the 'Bottle Ready' button
 10.2 Click 'enable' to observe each stage of the Cap Loader's functionality, or follow the steps yourself by enabling Manual mode by clicking the 'Manual' radio button
+
+ECS
+11.1 Click 'Update' to uupdate the current environment conditions with the initial conditions
+11.2 To set your custom environment state, adjust the sliders or type the time (24HR) and click 'Update' to observe changes to the actuators on the GUI
