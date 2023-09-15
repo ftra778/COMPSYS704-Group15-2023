@@ -114,10 +114,10 @@ public class Canvas extends JPanel {
 		p4quantity.setBounds(850, 400 - d.height, d.width, d.height);
 		
 //		JPanel pan = new JPanel(new GridLayout(4, 1));
-//		pan.add(p1quantity);
-//		pan.add(p2quantity);
-//		pan.add(p3quantity);
-//		pan.add(p4quantity);
+		add(p1quantity);
+		add(p2quantity);
+		add(p3quantity);
+		add(p4quantity);
 	}
 	
 //	int getLiquidTotal() {
@@ -290,15 +290,15 @@ public class Canvas extends JPanel {
 
         
      
-		this.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
-		c.gridx = 4;
-		c.gridy = 1;
-		this.add(p1quantity);
-		this.add(p2quantity);
-		this.add(p3quantity);
-		this.add(p4quantity);
+//		this.setLayout(new GridBagLayout());
+//		GridBagConstraints c = new GridBagConstraints();
+//		
+//		c.gridx = 4;
+//		c.gridy = 1;
+//		this.add(p1quantity);
+//		this.add(p2quantity);
+//		this.add(p3quantity);
+//		this.add(p4quantity);
         
         
         
