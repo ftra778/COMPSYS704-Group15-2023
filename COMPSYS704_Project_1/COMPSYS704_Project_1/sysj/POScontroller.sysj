@@ -1,0 +1,65 @@
+import java.util.List;
+import java.util.ArrayList;
+import org.compsys704.*;
+
+POSController(
+		/*output signal 			emergency;*/
+		
+		input int signal		orderQuantity;
+		input signal			bottleReady;
+		input signal			suspendOrders;
+		input List signal		liquidRatio;
+		input signal			sendOrder;
+		
+		output List signal		liquidRatioOrder;
+		)
+->{
+	
+	//new Thread(new GUI()).start();
+	
+	// This queue will simulate a database of all orders that need to be processed
+	List signal orderQueue;// = Arrays.asList();
+	
+	
+	loop {
+		
+		// Wait until a new order is sent from GUI
+		await(sendOrder);
+	
+		
+		trap(T) {
+			List orderQueueVar = Arrays.asList();
+			loop {
+			
+				orderQueueVar.add((List)#liquidRatio);
+				System.out.println("Order added");
+				pause;
+			}
+			emit orderQueue(orderQueueVar);
+		}
+	}
+	
+	||
+	
+	loop {
+		
+		// Wait until conveyor senses a bottle is ready at pos0 and suspension of orders
+		abort(!suspendOrders) {
+		
+		// Send the first order in the queue
+		List signal order;
+		// Get the first 4 liquid values in the queue
+		order.add(#orderQueue.get(0));
+		order.add(#orderQueue.get(1));
+		order.add(#orderQueue.get(2));
+		order.add(#orderQueue.get(3));
+		
+		sustain liquidRatioOrder(#order);
+		
+		// Remove the order from the queue
+		orderQueue.remove(0);
+		
+		}
+	}
+}
+	

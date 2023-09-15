@@ -1,0 +1,7 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS2" Local="true">
+		<ClockDomain Name="POSPlantCD" Class="POSPlant">
+			<iSignal Name="CMDR"	Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+		</ClockDomain>
+	</SubSystem>
+</System>

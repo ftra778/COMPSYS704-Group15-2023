@@ -27,7 +27,7 @@ import java.awt.ActiveEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Canvas extends JPanel {
+public class POSCanvas extends JPanel {
 	/**
 	 * 
 	 */
@@ -54,7 +54,7 @@ public class Canvas extends JPanel {
 	JTextField liquid4 = new JTextField();
 	JTextField quantity = new JTextField();
 	
-	public Canvas(){
+	public POSCanvas(){
 		
 		
 		try {
